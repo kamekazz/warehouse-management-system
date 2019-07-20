@@ -4,8 +4,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const app = express();
 const usersRoutes = require('./routes/users');
-const profileRoutes = require('./routes/profile');
-const postsRoutes = require('./routes/posts');
+
 const passport = require('passport');
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -20,8 +19,6 @@ app.use(passport.initialize());
 require('./middleware/passport')(passport);
 
 app.use('/api/users', usersRoutes);
-app.use('/api/profile', profileRoutes);
-app.use('/api/posts', postsRoutes);
 
 app.listen(process.env.PORT, () =>
   console.log(`server running on port ${process.env.PORT}`)
