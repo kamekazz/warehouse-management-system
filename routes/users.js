@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const gravatar = require('gravatar');
 const User = require('../model/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -23,15 +22,9 @@ router.post('/register', (req, res) => {
       errors.email = 'Email already exists';
       return res.status(400).json(errors);
     } else {
-      const avatar = gravatar.url(req.body.email, {
-        s: '200',
-        r: 'r',
-        d: 'mm'
-      });
       const newUser = new User({
         name: req.body.name,
         email: req.body.email,
-        avatar,
         password: req.body.password
       });
 
