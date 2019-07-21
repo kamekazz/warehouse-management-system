@@ -1,5 +1,8 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-multi-assign */
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+
+const { Schema } = mongoose;
 
 const LocationSchema = new Schema({
   zone: {
@@ -27,6 +30,14 @@ const LocationSchema = new Schema({
   },
   skuNumber: {
     type: String
+  },
+  maxSize: {
+    type: Number,
+    default: 0
+  },
+  size: {
+    type: Number,
+    default: 0
   },
   palletId: [{ type: Schema.Types.ObjectId, ref: 'pallets' }],
   activate: [{ type: Number }],

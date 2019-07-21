@@ -1,8 +1,31 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-undef */
+/* eslint-disable node/no-unsupported-features/es-syntax */
 const express = require('express');
+
 const router = express.Router();
 const Item = require('../model/Item');
 const Pallet = require('../model/Pallets');
 const Location = require('../model/Location');
+
+function helperUniqItem(arr, id) {
+  let result = false;
+  arr.forEach(element => {
+    if (element === id) {
+      result = true;
+    }
+  });
+  return result;
+}
+
+function helperGoodSize(location, pallet, maxLocation) {
+  let result = false;
+  const endSize = location + pallet;
+  if (endSize <= maxLocation) {
+    result = true;
+  }
+  return result;
+}
 
 router.get('/', async (req, res) => {
   try {
@@ -82,6 +105,7 @@ router.get('/:skuNumber', async (req, res) => {
   }
 });
 
+// eslint-disable-next-line consistent-return
 router.post('/update', async (req, res) => {
   const { id, status, location } = req.body;
   try {
@@ -97,7 +121,7 @@ router.post('/update', async (req, res) => {
     } else {
       if (status) pallet.status = status;
       if (location) {
-        pallet.location = location;
+        pallet.location = location; // test
         const locationFond = await Location.findOne({
           fullName: location
         });
@@ -112,9 +136,21 @@ router.post('/update', async (req, res) => {
           locationFond.skuNumber === undefined
         ) {
           locationFond.skuNumber = pallet.skuNumber;
-          locationFond.palletId.push(pallet._id);
-          const uniqueSet = new Set(locationFond.palletId);
-          locationFond.palletId = [uniqueSet];
+          if (helperUniqItem(locationFond.palletId, pallet._id)) {
+            locationFond.palletId.push(pallet._id);
+            if (
+              helperGoodSize(
+                locationFond.size,
+                pallet.size,
+                locationFond.maxSize
+              )
+            ) {
+              return res.json({
+                success: false,
+                message: `err size`
+              });
+            }
+          }
           await locationFond.save();
           await pallet.save();
           res.json({
@@ -126,9 +162,7 @@ router.post('/update', async (req, res) => {
         } else {
           res.json({
             success: false,
-            message: `mix sku not permeated (${pallet.skuNumber} - ${
-              locationFond.skuNumber
-            })`
+            message: `mix sku not permeated (${pallet.skuNumber} - ${locationFond.skuNumber})`
           });
         }
       } else {
