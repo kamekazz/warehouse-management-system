@@ -28,9 +28,7 @@ const LocationSchema = new Schema({
   skuNumber: {
     type: String
   },
-  size: {
-    type: Number
-  },
+  palletId: [{ type: Schema.Types.ObjectId, ref: 'pallets' }],
   activate: [{ type: Number }],
   quantity: {
     type: Number

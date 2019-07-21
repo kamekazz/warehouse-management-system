@@ -88,6 +88,7 @@ router.post('/update', async (req, res) => {
     const pallet = await Pallet.findOne({
       _id: id
     });
+
     if (!pallet) {
       res.json({
         success: false,
@@ -108,13 +109,19 @@ router.post('/update', async (req, res) => {
         }
         if (
           locationFond.skuNumber === pallet.skuNumber ||
-          locationFond.skuNumber === null
+          locationFond.skuNumber === undefined
         ) {
+          locationFond.skuNumber = pallet.skuNumber;
+          locationFond.palletId.push(pallet._id);
+          const uniqueSet = new Set(locationFond.palletId);
+          locationFond.palletId = [uniqueSet];
+          await locationFond.save();
           await pallet.save();
           res.json({
             success: true,
             message: `pallet Updated `,
-            data: pallet
+            pallet: pallet,
+            locationFond
           });
         } else {
           res.json({
@@ -129,7 +136,7 @@ router.post('/update', async (req, res) => {
         res.json({
           success: true,
           message: `pallet Updated `,
-          data: pallet
+          pallet: pallet
         });
       }
     }
@@ -143,20 +150,31 @@ router.post('/update', async (req, res) => {
 });
 
 router.delete('/delete', async (req, res) => {
-  const { skuNumber } = req.body;
+  const { id } = req.body;
   try {
-    const resolve = await Item.deleteOne({ skuNumber: skuNumber });
-    if (resolve.deletedCount === 1) {
+    const resolve = await Pallet.findOne({ _id: id });
+    if (resolve) {
+      const locationFond = await Location.findOne({
+        palletId: id
+      });
+      if (locationFond) {
+        const result = locationFond.palletId.filter(item => item !== id);
+        locationFond.palletId = result;
+        await locationFond.save();
+      }
+      await resolve.delete();
       res.json({
         success: true,
         message: 'done',
-        data: resolve
+        data: resolve,
+        locationFond
       });
     } else {
       res.json({
         success: false,
         message: 'not fond',
-        data: resolve
+        data: resolve,
+        locationFond
       });
     }
   } catch (err) {
