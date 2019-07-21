@@ -12,12 +12,16 @@ const PalletSchema = new Schema({
     required: true
   },
   status: {
-    type: String,
-    required: true
+    type: String
+  },
+  location: {
+    type: String
   },
   cont: {
-    type: Number,
-    default: 0
+    type: Number
+  },
+  ounce: {
+    type: Number
   },
   date: {
     type: Date,
