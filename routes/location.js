@@ -60,6 +60,34 @@ router.post('/create', async (req, res) => {
   }
 });
 
+router.get('/:location', async (req, res) => {
+  const { location } = req.params;
+  try {
+    const locationFond = await Location.findOne({
+      fullName: location
+    });
+
+    if (!locationFond) {
+      res.json({
+        success: false,
+        message: `location not fond (${location})`
+      });
+    } else {
+      res.json({
+        success: true,
+        message: `Location fond `,
+        data: locationFond
+      });
+    }
+  } catch (err) {
+    console.error(err);
+    res.json({
+      success: false,
+      err: err
+    });
+  }
+});
+
 router.post('/update', async (req, res) => {
   const { skuNumber, location, department, size } = req.body;
   try {
