@@ -1,4 +1,7 @@
+/* eslint-disable no-undef */
+/* eslint-disable node/no-unsupported-features/es-syntax */
 const express = require('express');
+
 const router = express.Router();
 const Location = require('../model/Location');
 

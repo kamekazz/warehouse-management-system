@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-undef */
 /* eslint-disable node/no-unsupported-features/es-syntax */
@@ -8,20 +9,24 @@ const Item = require('../model/Item');
 const Pallet = require('../model/Pallets');
 const Location = require('../model/Location');
 
-function helperUniqItem(arr, id) {
-  let result = false;
-  arr.forEach(element => {
-    if (element === id) {
-      result = true;
-    }
-  });
-  return result;
-}
+// function helperUniqItem(arr, idParam) {
+//   let result = true;
+//   arr.forEach(function(item) {
+//     if (item === idParam) {
+//       result = false;
+//       console.log('good');
+//     }
+//   });
+//   console.log('arr', arr[0]);
+//   console.log('id', idParam);
+//   console.log('result', result);
+//   return result;
+// }
 
-function helperGoodSize(location, pallet, maxLocation) {
+function helperNotGoodSize(location, pallet, maxLocation) {
   let result = false;
   const endSize = location + pallet;
-  if (endSize <= maxLocation) {
+  if (endSize > maxLocation) {
     result = true;
   }
   return result;
@@ -116,12 +121,11 @@ router.post('/update', async (req, res) => {
     if (!pallet) {
       res.json({
         success: false,
-        message: `pallet not fond (${pallet})`
+        message: `pallet not fond (${id})`
       });
     } else {
       if (status) pallet.status = status;
       if (location) {
-        pallet.location = location; // test
         const locationFond = await Location.findOne({
           fullName: location
         });
@@ -131,15 +135,33 @@ router.post('/update', async (req, res) => {
             message: `location nat valid ${location}`
           });
         }
+
         if (
           locationFond.skuNumber === pallet.skuNumber ||
-          locationFond.skuNumber === undefined
+          locationFond.skuNumber === undefined ||
+          locationFond.skuNumber === null
         ) {
           locationFond.skuNumber = pallet.skuNumber;
-          if (helperUniqItem(locationFond.palletId, pallet._id)) {
+          if (pallet.location !== locationFond.fullName) {
+            if (pallet.location) {
+              const oldLocation = await Location.findOne({
+                fullName: pallet.location
+              });
+              if (oldLocation) {
+                oldLocation.size -= pallet.size;
+                const newPalletArry = oldLocation.palletId.filter(
+                  item => item === pallet._id
+                );
+                oldLocation.palletId = newPalletArry;
+                if (oldLocation.size <= 0) {
+                  oldLocation.skuNumber = null;
+                }
+                await oldLocation.save();
+              }
+            }
             locationFond.palletId.push(pallet._id);
             if (
-              helperGoodSize(
+              helperNotGoodSize(
                 locationFond.size,
                 pallet.size,
                 locationFond.maxSize
@@ -149,6 +171,11 @@ router.post('/update', async (req, res) => {
                 success: false,
                 message: `err size`
               });
+              // eslint-disable-next-line no-else-return
+            } else {
+              // eslint-disable-next-line operator-assignment
+              locationFond.size = locationFond.size + pallet.size;
+              pallet.location = location; // ojo
             }
           }
           await locationFond.save();
@@ -186,28 +213,32 @@ router.post('/update', async (req, res) => {
 router.delete('/delete', async (req, res) => {
   const { id } = req.body;
   try {
-    const resolve = await Pallet.findOne({ _id: id });
-    if (resolve) {
+    const pallet = await Pallet.findOne({ _id: id });
+    if (pallet) {
       const locationFond = await Location.findOne({
         palletId: id
       });
       if (locationFond) {
-        const result = locationFond.palletId.filter(item => item !== id);
+        const result = locationFond.palletId.filter(
+          item => item === pallet._id
+        );
         locationFond.palletId = result;
+        locationFond.size -= pallet.size;
+        locationFond.skuNumber = null;
         await locationFond.save();
       }
-      await resolve.delete();
+      await pallet.delete();
       res.json({
         success: true,
         message: 'done',
-        data: resolve,
+        data: pallet,
         locationFond
       });
     } else {
       res.json({
         success: false,
         message: 'not fond',
-        data: resolve,
+        data: pallet,
         locationFond
       });
     }
