@@ -224,7 +224,9 @@ router.delete('/delete', async (req, res) => {
         );
         locationFond.palletId = result;
         locationFond.size -= pallet.size;
-        locationFond.skuNumber = null;
+        if (result <= 0) {
+          locationFond.skuNumber = null;
+        }
         await locationFond.save();
       }
       await pallet.delete();

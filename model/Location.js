@@ -41,9 +41,6 @@ const LocationSchema = new Schema({
   },
   palletId: [{ type: Schema.Types.ObjectId, ref: 'pallets' }],
   activate: [{ type: Number }],
-  quantity: {
-    type: Number
-  },
   date: {
     type: Date,
     default: Date.now()

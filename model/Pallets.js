@@ -26,6 +26,15 @@ const PalletSchema = new Schema({
   ounce: {
     type: Number
   },
+  activate: [
+    {
+      note: { type: String },
+      date: {
+        type: Date,
+        default: Date.now()
+      }
+    }
+  ],
   date: {
     type: Date,
     default: Date.now()

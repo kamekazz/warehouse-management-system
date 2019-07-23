@@ -2,14 +2,15 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const passport = require('passport');
+
 const app = express();
 
 const usersRoutes = require('./routes/users');
 const locationRoutes = require('./routes/location');
 const itemRoutes = require('./routes/item');
 const palletRoutes = require('./routes/pallet');
-
-const passport = require('passport');
+const receivingRoutes = require('./routes/receiving');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -26,6 +27,7 @@ app.use('/api/users', usersRoutes);
 app.use('/api/location', locationRoutes);
 app.use('/api/item', itemRoutes);
 app.use('/api/pallet', palletRoutes);
+app.use('/api/receiving', receivingRoutes);
 
 app.listen(process.env.PORT, () =>
   console.log(`server running on port ${process.env.PORT}`)
