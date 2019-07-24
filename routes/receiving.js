@@ -94,7 +94,7 @@ router.post('/send', async (req, res) => {
 
       if (
         locationFond.skuNumber === pallet.skuNumber ||
-        locationFond.skuNumber === undefined ||
+        // locationFond.skuNumber === undefined ||
         locationFond.skuNumber === null
       ) {
         if (
@@ -164,6 +164,12 @@ router.post('/valedation', async (req, res) => {
   const pallet = await Pallet.findOne({
     _id: id
   });
+  if (pallet.status !== 'r/p') {
+    return res.json({
+      success: false,
+      message: `pallet not r/p status (${pallet.status})`
+    });
+  }
   if (!pallet) {
     res.json({
       success: false,

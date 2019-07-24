@@ -29,7 +29,8 @@ const LocationSchema = new Schema({
     required: true
   },
   skuNumber: {
-    type: String
+    type: String,
+    default: null
   },
   maxSize: {
     type: Number,

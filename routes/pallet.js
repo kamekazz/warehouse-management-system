@@ -45,6 +45,62 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/skuNumber/:skuNumber', async (req, res) => {
+  const { skuNumber } = req.params;
+  try {
+    const palletsFond = await Pallet.find({
+      skuNumber: skuNumber
+    });
+
+    if (palletsFond <= 0) {
+      res.json({
+        success: false,
+        message: `items not fond (${skuNumber})`
+      });
+    } else {
+      res.json({
+        success: true,
+        message: `items fond `,
+        pallets: palletsFond
+      });
+    }
+  } catch (err) {
+    console.error(err);
+    res.json({
+      success: false,
+      err: err
+    });
+  }
+});
+
+router.get('/id/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const palletsFond = await Pallet.find({
+      _id: id
+    });
+
+    if (!palletsFond) {
+      res.json({
+        success: false,
+        message: `id not fond (${id})`
+      });
+    } else {
+      res.json({
+        success: true,
+        message: `id fond `,
+        pallets: palletsFond
+      });
+    }
+  } catch (err) {
+    console.error(err);
+    res.json({
+      success: false,
+      err: err
+    });
+  }
+});
+
 router.post('/create', async (req, res) => {
   newPallet = new Pallet({ ...req.body });
   const { skuNumber } = newPallet;
@@ -71,34 +127,6 @@ router.post('/create', async (req, res) => {
         message: 'pallet create',
         item: newPallet,
         locations
-      });
-    }
-  } catch (err) {
-    console.error(err);
-    res.json({
-      success: false,
-      err: err
-    });
-  }
-});
-
-router.get('/:skuNumber', async (req, res) => {
-  const { skuNumber } = req.params;
-  try {
-    const palletsFond = await Pallet.find({
-      skuNumber: skuNumber
-    });
-
-    if (palletsFond <= 0) {
-      res.json({
-        success: false,
-        message: `items not fond (${skuNumber})`
-      });
-    } else {
-      res.json({
-        success: true,
-        message: `items fond `,
-        pallets: palletsFond
       });
     }
   } catch (err) {
