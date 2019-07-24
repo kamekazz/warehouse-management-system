@@ -4,8 +4,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const OrderSchema = new Schema({
-  ticketsId: { type: Schema.Types.ObjectId, ref: 'tickets' },
+const TicketSchema = new Schema({
   customerId: { type: Schema.Types.ObjectId, ref: 'customers' },
   status: {
     type: String
@@ -26,6 +25,13 @@ const OrderSchema = new Schema({
       },
       cont: {
         type: Number
+      },
+      palletId: {
+        type: Schema.Types.ObjectId,
+        ref: 'pallets'
+      },
+      status: {
+        type: String
       }
     }
   ],
@@ -45,4 +51,4 @@ const OrderSchema = new Schema({
   }
 });
 
-module.exports = Orders = mongoose.model('orders', OrderSchema);
+module.exports = Tickets = mongoose.model('tickets', TicketSchema);

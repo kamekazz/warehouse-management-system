@@ -6,7 +6,7 @@ const express = require('express');
 
 const router = express.Router();
 // const Item = require('../model/Item');
-const Pallet = require('../model/Pallets');
+// const Pallet = require('../model/Pallets');
 // const Location = require('../model/Location');
 const Orders = require('../model/Order');
 
@@ -43,31 +43,6 @@ router.post('/create', async (req, res) => {
       success: true,
       message: 'Order create',
       newOrder
-    });
-  } catch (err) {
-    console.error(err);
-    res.json({
-      success: false,
-      err: err
-    });
-  }
-});
-
-router.post('/submit', async (req, res) => {
-  const { id } = req.body;
-  try {
-    const order = await Orders.findOne({ _id: id });
-    const orderItemArry = order.items;
-    const ticketItems = [];
-    const orderItemsI = [];
-
-    res.json({
-      success: true,
-      message: ' orders',
-      items: order.items,
-      ticketItems,
-      orderItemsI,
-      palletAvilaval
     });
   } catch (err) {
     console.error(err);

@@ -12,6 +12,7 @@ const itemRoutes = require('./routes/item');
 const palletRoutes = require('./routes/pallet');
 const receivingRoutes = require('./routes/receiving');
 const orderRoutes = require('./routes/order');
+const ticketRoutes = require('./routes/ticket');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -30,6 +31,7 @@ app.use('/api/item', itemRoutes);
 app.use('/api/pallet', palletRoutes);
 app.use('/api/receiving', receivingRoutes);
 app.use('/api/order', orderRoutes);
+app.use('/api/ticket', ticketRoutes);
 
 app.listen(process.env.PORT, () =>
   console.log(`server running on port ${process.env.PORT}`)
