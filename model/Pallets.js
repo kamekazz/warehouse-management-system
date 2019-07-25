@@ -23,6 +23,13 @@ const PalletSchema = new Schema({
   cont: {
     type: Number
   },
+  contToBePick: {
+    type: Number,
+    default: 0
+  },
+  contAvailable: {
+    type: Number
+  },
   ounce: {
     type: Number
   },

@@ -40,7 +40,8 @@ router.post('/', async (req, res) => {
 
 router.post('/create', async (req, res) => {
   newPallet = new Pallet({ ...req.body });
-  const { skuNumber } = newPallet;
+  const { skuNumber, cont } = newPallet;
+  newPallet.contAvailable = cont;
   try {
     const itemFond = await Item.findOne({
       skuNumber: skuNumber
