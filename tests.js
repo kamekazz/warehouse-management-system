@@ -19,7 +19,7 @@ const arry = [
   '5d36019080b69a47bc25f761'
 ];
 
-function helperUniqItem(arr, idParam) {
+function helperUniqItemOne(arr, idParam) {
   let result = true;
   arr.forEach(function(item) {
     if (item === idParam) {
@@ -33,4 +33,4 @@ function helperUniqItem(arr, idParam) {
   return result;
 }
 
-console.log(helperUniqItem(arry, id));
+console.log(helperUniqItemOne(arry, id));
