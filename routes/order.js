@@ -63,7 +63,7 @@ router.post('/submit', async (req, res) => {
 
     res.json({
       success: true,
-      message: ' orders',
+      message: 'orders',
       items: order.items,
       ticketItems,
       orderItemsI,

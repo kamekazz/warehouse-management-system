@@ -6,7 +6,7 @@ const express = require('express');
 
 const router = express.Router();
 // const Item = require('../model/Item');
-// const Pallet = require('../model/Pallets');
+const Pallet = require('../model/Pallets');
 // const Location = require('../model/Location');
 const Orders = require('../model/Order');
 
