@@ -35,9 +35,7 @@ const TicketSchema = new Schema({
       status: {
         type: String
       },
-      location: {
-        type: Number
-      }
+      palletsCont: [{ type: Number }]
     }
   ],
   itemsI: [

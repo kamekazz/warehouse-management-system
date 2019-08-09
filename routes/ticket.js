@@ -10,6 +10,7 @@ const Pallet = require('../model/Pallets');
 // const Location = require('../model/Location');
 const Orders = require('../model/Order');
 const Ticket = require('../model/Ticket');
+
 router.get('/', async (req, res) => {
   try {
     const allOrder = await Orders.find();
@@ -28,16 +29,18 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/create', async (req, res) => {
-  var not_found = [];
+  let not_found = [];
 
-  var new_items = [];
+  let new_items = [];
   const order_id = req.body['order_id'];
   const customer_id = req.body['customerId'];
 
-  var order = await Orders.findOne({ _id: order_id });
-  for (var i = 0; i < order['items'].length; i++) {
-    var cont_sum = 0;
-    var total_cont = await Pallet.aggregate([
+  let order = await Orders.findOne({ _id: order_id });
+  if (order.status === 'plash')
+    return res.json({ success: false, message: 'order is allergy plash' });
+  for (let i = 0; i < order['items'].length; i++) {
+    let cont_sum = 0;
+    let total_cont = await Pallet.aggregate([
       {
         $match: {
           $and: [
@@ -58,20 +61,24 @@ router.post('/create', async (req, res) => {
     if (order['items'][i]['cont'] > cont_sum) {
       not_found.push(order['items'][i]);
     } else {
-      var item_qty = order['items'][i]['cont'];
-      var is_updated = 0;
-      var pallets = [];
-      var location = 1;
-      var pallet = await Pallet.find({
+      let item_qty = order['items'][i]['cont'];
+      let is_updated = 0;
+      let pallets = [];
+      let palletsCont = [];
+      let pallet = await Pallet.find({
         skuNumber: order['items'][i]['skuNumber'],
         location: { $exists: true }
       });
-      for (var j = 0; j < pallet.length; j++) {
+      for (let j = 0; j < pallet.length; j++) {
         if (item_qty <= pallet[j]['contAvailable'] && is_updated == 0) {
+          let toBePick = item_qty;
+          palletsCont.push(toBePick);
           pallet[j]['contAvailable'] = pallet[j]['contAvailable'] - item_qty;
           pallets.push(pallet[j]._id);
           is_updated = 1;
         } else if (item_qty > pallet[j]['contAvailable']) {
+          let toBePick = pallet[j]['contAvailable'];
+          palletsCont.push(toBePick);
           item_qty = item_qty - pallet[j]['contAvailable'];
           pallet[j]['contAvailable'] = 0;
           pallets.push(pallet[j]._id);
@@ -82,7 +89,7 @@ router.post('/create', async (req, res) => {
       item['skuNumber'] = order['items'][i]['skuNumber'];
       item['cont'] = order['items'][i]['cont'];
       item['palletId'] = pallets;
-      item['location'] = location;
+      item['palletsCont'] = palletsCont;
       item['status'] = 'plash';
       new_items.push(item);
     }
@@ -95,6 +102,7 @@ router.post('/create', async (req, res) => {
       itemsI: not_found
     });
     await newTicket.save();
+    order.status = 'plash';
     order.ticketsId = newTicket._id;
     await order.save();
 
