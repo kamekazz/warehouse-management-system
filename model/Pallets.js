@@ -21,11 +21,8 @@ const PalletSchema = new Schema({
     type: String
   },
   cont: {
-    type: Number
-  },
-  contToBePick: {
     type: Number,
-    default: 0
+    required: true
   },
   contAvailable: {
     type: Number

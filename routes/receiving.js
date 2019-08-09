@@ -16,7 +16,7 @@ function helperNotGoodSize(location, pallet, maxLocation) {
   if (endSize > maxLocation) {
     result = true;
   }
-  return result;
+  return result; //TEST
 }
 
 router.post('/', async (req, res) => {

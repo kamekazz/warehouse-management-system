@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const TicketSchema = new Schema({
-  customerId: { type: Schema.Types.ObjectId, ref: 'customers' },
+  // customerId: { type: Schema.Types.ObjectId, ref: 'customers' },
   status: {
     type: String
   },
@@ -26,16 +26,17 @@ const TicketSchema = new Schema({
       cont: {
         type: Number
       },
-      palletId: {
-        type: Schema.Types.ObjectId,
-        ref: 'pallets'
-      },
+      palletId: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'pallets'
+        }
+      ],
       status: {
         type: String
       },
       location: {
-        type: Number,
-        required: true
+        type: Number
       }
     }
   ],
