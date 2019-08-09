@@ -1,23 +1,16 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable no-undef */
-/* eslint-disable node/no-unsupported-features/es-syntax */
 const express = require('express');
-
 const router = express.Router();
-// const Item = require('../model/Item');
 const Pallet = require('../model/Pallets');
-// const Location = require('../model/Location');
 const Orders = require('../model/Order');
 const Ticket = require('../model/Ticket');
 
 router.get('/', async (req, res) => {
   try {
-    const allOrder = await Orders.find();
+    const allTicket = await Ticket.find();
     res.json({
       success: true,
-      message: 'all orders',
-      allOrder
+      message: 'all Ticket',
+      allTicket
     });
   } catch (err) {
     console.error(err);
@@ -35,7 +28,7 @@ router.post('/create', async (req, res) => {
   const order_id = req.body['order_id'];
   const customer_id = req.body['customerId'];
 
-  let order = await Orders.findOne({ _id: order_id });
+  let order = await Orders.findOne({ _id: order_id, status: 'create' });
   if (order.status === 'plash')
     return res.json({ success: false, message: 'order is allergy plash' });
   for (let i = 0; i < order['items'].length; i++) {
@@ -110,6 +103,43 @@ router.post('/create', async (req, res) => {
       success: true,
       message: 'Ticket created',
       newTicket
+    });
+  } catch (err) {
+    console.error(err);
+    res.json({
+      success: false,
+      err: err
+    });
+  }
+});
+
+router.get('/find/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const ticket = await Ticket.findOne({ _id: id });
+    if (!ticket)
+      return res.json({ success: false, message: 'Ticket is not fond' });
+    res.json({
+      success: true,
+      message: 'find one',
+      ticket
+    });
+  } catch (err) {
+    console.error(err);
+    res.json({
+      success: false,
+      err: err
+    });
+  }
+});
+
+router.delete('/delete', async (req, res) => {
+  const { id } = req.body;
+  try {
+    const resolve = await Ticket.deleteOne({ _id: id });
+    res.json({
+      message: 'done',
+      data: resolve
     });
   } catch (err) {
     console.error(err);

@@ -36,7 +36,7 @@ router.post('/create', async (req, res) => {
     //    ticketsId, customerId,
     items
   });
-  newOrder.status = 'plash';
+  newOrder.status = 'create';
   try {
     await newOrder.save();
     res.json({
