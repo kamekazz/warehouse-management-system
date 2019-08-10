@@ -13,6 +13,7 @@ const palletRoutes = require('./routes/pallet');
 const receivingRoutes = require('./routes/receiving');
 const orderRoutes = require('./routes/order');
 const ticketRoutes = require('./routes/ticket');
+const pickerRoutes = require('./routes/picker.routes');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -32,6 +33,7 @@ app.use('/api/pallet', palletRoutes);
 app.use('/api/receiving', receivingRoutes);
 app.use('/api/order', orderRoutes);
 app.use('/api/ticket', ticketRoutes);
+app.use('/api/picker', pickerRoutes);
 
 app.listen(process.env.PORT, () =>
   console.log(`server running on port ${process.env.PORT}`)

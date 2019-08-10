@@ -51,7 +51,8 @@ const TicketSchema = new Schema({
   date: {
     type: Date,
     default: Date.now()
-  }
+  },
+  cart: { type: String }
 });
 
 module.exports = Tickets = mongoose.model('tickets', TicketSchema);

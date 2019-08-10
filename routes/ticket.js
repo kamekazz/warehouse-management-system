@@ -29,8 +29,6 @@ router.post('/create', async (req, res) => {
   const customer_id = req.body['customerId'];
 
   let order = await Orders.findOne({ _id: order_id, status: 'create' });
-  if (order.status === 'plash')
-    return res.json({ success: false, message: 'order is allergy plash' });
   for (let i = 0; i < order['items'].length; i++) {
     let cont_sum = 0;
     let total_cont = await Pallet.aggregate([
@@ -90,6 +88,7 @@ router.post('/create', async (req, res) => {
 
   try {
     newTicket = new Ticket({
+      status: 'plash',
       customerId: customer_id,
       items: new_items,
       itemsI: not_found
