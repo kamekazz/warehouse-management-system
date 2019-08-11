@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Ticket = require('../model/Ticket');
 
+//SCEND TICK EN GET PRODUCT
 router.post('/', async (req, res) => {
   const { id } = req.body;
   try {
@@ -37,6 +38,7 @@ router.post('/', async (req, res) => {
   }
 });
 
+//PICK PRODUCT AND UPDATE
 router.post('/pick', async (req, res) => {
   const { id, itemIndex, palletsContIndex, palletsContValue } = req.body;
   try {
@@ -87,7 +89,8 @@ router.post('/pick', async (req, res) => {
   }
 });
 
-router.post('/spelt_ticket', async (req, res) => {
+//FINECH TICKT
+router.post('/done', async (req, res) => {
   const { ticketId, orderId } = req.body;
   let new_items = [];
   try {
@@ -106,21 +109,6 @@ router.post('/spelt_ticket', async (req, res) => {
         await oldTicket.save();
       }
     }
-  } catch (err) {
-    console.error(err);
-    res.json({
-      success: false,
-      err: err
-    });
-  }
-});
-
-router.post('/ticket_done', async (req, res) => {
-  const { ticketId, orderId } = req.body;
-  let new_items = [];
-  try {
-    let oldTicket = await Ticket.findOne({ _id: ticketId });
-    let order = await Orders.findOne({ _id: orderId, status: 'plash' });
   } catch (err) {
     console.error(err);
     res.json({

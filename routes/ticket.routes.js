@@ -22,23 +22,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/test', async (req, res) => {
-  try {
-    newTicket = new Ticket({});
-    res.json({
-      success: true,
-      message: 'all Ticket',
-      newTicket
-    });
-  } catch (err) {
-    console.error(err);
-    res.json({
-      success: false,
-      err: err
-    });
-  }
-});
-
 router.post('/create', async (req, res) => {
   let not_found = [];
   const order_id = req.body['order_id'];
@@ -108,6 +91,7 @@ router.post('/create', async (req, res) => {
       }
     }
   }
+
   try {
     newTicket['status'] = 'plash';
     newTicket['customerId'] = customer_id;
