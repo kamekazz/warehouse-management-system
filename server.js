@@ -2,11 +2,10 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const passport = require('passport');
 
 const app = express();
 
-const usersRoutes = require('./routes/users');
+const usersRoutes = require('./routes/users.routes');
 const locationRoutes = require('./routes/location');
 const itemRoutes = require('./routes/item');
 const palletRoutes = require('./routes/pallet');
@@ -18,13 +17,11 @@ const pickerRoutes = require('./routes/picker.routes');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+// Connect Database
 mongoose
   .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .then(() => console.log(`mongodb connected`))
   .catch(err => console.log(err));
-
-app.use(passport.initialize());
-require('./middleware/passport')(passport);
 
 app.use('/api/users', usersRoutes);
 app.use('/api/location', locationRoutes);
