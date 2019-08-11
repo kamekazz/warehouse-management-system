@@ -3,6 +3,7 @@ const router = express.Router();
 const Pallet = require('../model/Pallets');
 const Orders = require('../model/Order');
 const Ticket = require('../model/Ticket');
+const Product = require('../model/Product');
 
 router.get('/', async (req, res) => {
   try {
@@ -21,14 +22,31 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/test', async (req, res) => {
+  try {
+    newTicket = new Ticket({});
+    res.json({
+      success: true,
+      message: 'all Ticket',
+      newTicket
+    });
+  } catch (err) {
+    console.error(err);
+    res.json({
+      success: false,
+      err: err
+    });
+  }
+});
+
 router.post('/create', async (req, res) => {
   let not_found = [];
-
-  let new_items = [];
   const order_id = req.body['order_id'];
   const customer_id = req.body['customerId'];
-
+  newTicket = new Ticket();
+  let products = [];
   let order = await Orders.findOne({ _id: order_id, status: 'create' });
+  if (!order) return res.json({ success: false, message: 'Order not fond' });
   for (let i = 0; i < order['items'].length; i++) {
     let cont_sum = 0;
     let total_cont = await Pallet.aggregate([
@@ -54,54 +72,57 @@ router.post('/create', async (req, res) => {
     } else {
       let item_qty = order['items'][i]['cont'];
       let is_updated = 0;
-      let pallets = [];
-      let palletsCont = [];
-      let pallet = await Pallet.find({
+      let palletss = await Pallet.find({
         skuNumber: order['items'][i]['skuNumber'],
         location: { $exists: true }
       });
-      for (let j = 0; j < pallet.length; j++) {
-        if (item_qty <= pallet[j]['contAvailable'] && is_updated == 0) {
+      for (let pallet of palletss) {
+        if (item_qty <= pallet['contAvailable'] && is_updated == 0) {
           let toBePick = item_qty;
-          palletsCont.push(toBePick);
-          pallet[j]['contAvailable'] = pallet[j]['contAvailable'] - item_qty;
-          pallets.push(pallet[j]._id);
+          pallet['contAvailable'] = pallet['contAvailable'] - item_qty;
+          let product = new Product({
+            location: pallet['location'],
+            sku_number: pallet['skuNumber'],
+            cont: toBePick,
+            cont_to_be_pick: toBePick,
+            ticketId: newTicket._id
+          });
+          products.push(product._id);
+          await product.save();
           is_updated = 1;
-        } else if (item_qty > pallet[j]['contAvailable']) {
-          let toBePick = pallet[j]['contAvailable'];
-          palletsCont.push(toBePick);
-          item_qty = item_qty - pallet[j]['contAvailable'];
-          pallet[j]['contAvailable'] = 0;
-          pallets.push(pallet[j]._id);
+        } else if (item_qty > pallet['contAvailable']) {
+          let toBePick = pallet['contAvailable'];
+          item_qty = item_qty - pallet['contAvailable'];
+          pallet['contAvailable'] = 0;
+          let product = new Product({
+            location: pallet['location'],
+            sku_number: pallet['skuNumber'],
+            cont: toBePick,
+            cont_to_be_pick: toBePick,
+            ticketId: newTicket._id
+          });
+          products.push(product._id);
+          await product.save();
         }
-        await pallet[j].save();
+        await pallet.save();
       }
-      item = {};
-      item['skuNumber'] = order['items'][i]['skuNumber'];
-      item['cont'] = order['items'][i]['cont'];
-      item['palletId'] = pallets;
-      item['palletsCont'] = palletsCont;
-      item['status'] = 'plash';
-      new_items.push(item);
     }
   }
-
   try {
-    newTicket = new Ticket({
-      status: 'plash',
-      customerId: customer_id,
-      items: new_items,
-      itemsI: not_found
-    });
+    newTicket['status'] = 'plash';
+    newTicket['customerId'] = customer_id;
+    newTicket['products'] = products;
+
     await newTicket.save();
     order.status = 'plash';
+    order.itemsI = not_found;
     order.ticketsId = newTicket._id;
     await order.save();
-
     res.json({
       success: true,
       message: 'Ticket created',
-      newTicket
+      newTicket,
+      itemI: order.itemI
     });
   } catch (err) {
     console.error(err);

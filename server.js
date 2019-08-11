@@ -6,12 +6,12 @@ const bodyParser = require('body-parser');
 const app = express();
 
 const usersRoutes = require('./routes/users.routes');
-const locationRoutes = require('./routes/location');
-const itemRoutes = require('./routes/item');
-const palletRoutes = require('./routes/pallet');
-const receivingRoutes = require('./routes/receiving');
-const orderRoutes = require('./routes/order');
-const ticketRoutes = require('./routes/ticket');
+const locationRoutes = require('./routes/location.routes');
+const itemRoutes = require('./routes/item.routes');
+const palletRoutes = require('./routes/pallet.routes');
+const receivingRoutes = require('./routes/receiving.routes');
+const orderRoutes = require('./routes/order.routes');
+const ticketRoutes = require('./routes/ticket.routes');
 const pickerRoutes = require('./routes/picker.routes');
 
 app.use(bodyParser.urlencoded({ extended: false }));

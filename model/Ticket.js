@@ -1,11 +1,8 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-multi-assign */
 const mongoose = require('mongoose');
-
 const { Schema } = mongoose;
 
 const TicketSchema = new Schema({
-  // customerId: { type: Schema.Types.ObjectId, ref: 'customers' },
+  customerId: { type: Schema.Types.ObjectId, ref: 'customers' },
   status: {
     type: String
   },
@@ -18,24 +15,10 @@ const TicketSchema = new Schema({
       }
     }
   ],
-  items: [
+  products: [
     {
-      skuNumber: {
-        type: String
-      },
-      cont: {
-        type: Number
-      },
-      palletId: [
-        {
-          type: Schema.Types.ObjectId,
-          ref: 'pallets'
-        }
-      ],
-      status: {
-        type: String
-      },
-      palletsCont: [{ type: Number }]
+      type: Schema.Types.ObjectId,
+      ref: 'products'
     }
   ],
   itemsI: [
