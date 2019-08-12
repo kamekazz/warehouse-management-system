@@ -1,0 +1,14 @@
+/*Main Content Styles*/
+.app-main-content {
+  flex: 1;
+  width: 100%;
+}
+
+.app-wrapper {
+  padding: 30px;
+  width: 100%;
+
+  @media screen and (max-width: 575px) {
+    padding: 20px;
+  }
+}

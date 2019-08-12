@@ -1,0 +1,627 @@
+/*Theme Deep Purple Styles*/
+$app-primary-deep-purple: #673ab7 !default;
+$secondary-deep-purple: #FFAB00;
+
+$sidebar-deep-purple: rgba($app-primary-deep-purple, 0.25) !default;
+$sidebar-text-deep-purple: #868e96 !default;
+
+//-Base-scss
+.deep-purple .right-arrow {
+  color: $app-primary-deep-purple;
+  &:after {
+    color: $app-primary-deep-purple;
+  }
+}
+
+//- Bootstrap file Style
+.deep-purple {
+  a,
+  .card-link,
+  .jr-link,
+  .jr-link.text-primary {
+    color: $app-primary-deep-purple;
+    &:focus,
+    &:hover {
+      color: darken($app-primary-deep-purple, 10%);
+    }
+  }
+
+  & .text-primary {
+    color: $app-primary-deep-purple !important;
+  }
+
+  & .page-link {
+    color: $app-primary-deep-purple;
+    &:focus,
+    &:hover {
+      color: $app-primary-deep-purple;
+    }
+  }
+
+  & .page-heading .breadcrumb-item.active {
+    color: $app-primary-deep-purple;
+  }
+
+  & .bg-primary,
+  & .badge-primary {
+    background-color: $app-primary-deep-purple !important;
+    color: $white !important;
+  }
+
+  & .btn-primary {
+    background-color: $app-primary-deep-purple;
+    border-color: $app-primary-deep-purple;
+    color: $white;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: darken($app-primary-deep-purple, 5%) !important;
+      border-color: darken($app-primary-deep-purple, 5%) !important;
+      color: $white !important;
+    }
+  }
+
+  & .bg-primary {
+    &.lighten-4 {
+      background-color: #d1c4e9 !important;
+    }
+
+    &.lighten-3 {
+      background-color: #b39ddb !important;
+    }
+
+    &.lighten-2 {
+      background-color: #9575cd !important;
+    }
+
+    &.lighten-1 {
+      background-color: #7e57c2 !important;
+    }
+
+    &.darken-1 {
+      background-color: #5e35b1 !important;
+    }
+
+    &.darken-2 {
+      background-color: #512da8 !important;
+    }
+
+    &.darken-3 {
+      background-color: #4527a0 !important;
+    }
+
+    &.darken-4 {
+      background-color: #311b92 !important;
+    }
+
+    &.accent-1 {
+      background-color: #b388ff !important;
+    }
+
+    &.accent-2 {
+      background-color: #7c4dff !important;
+    }
+
+    &.accent-3 {
+      background-color: #651fff !important;
+    }
+
+    &.accent-4 {
+      background-color: #6200ea !important;
+    }
+  }
+}
+
+//Secondary
+.deep-purple {
+  .jr-link.text-secondary {
+    color: $secondary-deep-purple;
+    &:focus,
+    &:hover {
+      color: darken($secondary-deep-purple, 10%) !important;
+    }
+  }
+
+  & .text-secondary {
+    color: $secondary-deep-purple !important;
+  }
+
+  & .bg-secondary,
+  & .badge-secondary {
+    background-color: $secondary-deep-purple !important;
+    color: $white !important;
+  }
+
+  & .btn-secondary {
+    background-color: $secondary-deep-purple;
+    border-color: $secondary-deep-purple;
+    color: $white;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: darken($secondary-deep-purple, 5%) !important;
+      border-color: darken($secondary-deep-purple, 5%) !important;
+      color: $white !important;
+    }
+  }
+}
+
+//_header.scss
+.deep-purple .app-main-header {
+  background-color: $app-primary-deep-purple !important;
+
+  & .search-dropdown input {
+    @media screen and (max-width: 991px) {
+      background-color: $white;
+    }
+  }
+}
+
+//_right-sidebar.scss
+.deep-purple .color-theme-header {
+  background-color: $app-primary-deep-purple;
+}
+
+//_sidebar.scss
+.deep-purple .side-nav {
+  background-color: $white !important;
+  color: $sidebar-text-deep-purple !important;
+  @include box-shadow(0 1px 4px 0 rgba(0, 0, 0, 0.15));
+
+  & .user-profile {
+    background-color: $white;
+    margin-right: 20px;
+    margin-left: 20px;
+    padding-left: 0;
+    padding-right: 0;
+    border-bottom: $jr-border;
+    position: relative;
+    z-index: 2;
+  }
+
+  & .customizer {
+    border-bottom: solid 1px lighten($sidebar-text-deep-purple, 35%);
+  }
+
+  & .user-detail {
+    & .user-name {
+      color: $app-primary-deep-purple;
+    }
+  }
+}
+
+.deep-purple ul.nav-menu li button,
+.deep-purple ul.nav-menu li a {
+  color: $sidebar-text-deep-purple;
+}
+
+.deep-purple ul.nav-menu {
+  & .nav-header {
+    color: $sidebar-text-deep-purple;
+  }
+
+  & li.menu + .nav-header {
+    border-color: $gray-400;
+  }
+}
+
+.deep-purple ul.nav-menu > li.open > button,
+.deep-purple ul.nav-menu > li > button:hover,
+.deep-purple ul.nav-menu > li > button:focus,
+.deep-purple ul.nav-menu > li.open > a,
+.deep-purple ul.nav-menu > li > a:hover,
+.deep-purple ul.nav-menu > li > a:focus {
+  background-color: $white;
+  color: $app-primary-deep-purple;
+}
+
+.deep-purple ul.nav-menu li.menu.open > a {
+  border-color: $app-primary-deep-purple;
+}
+
+.deep-purple ul.nav-menu li.menu > button:focus:before,
+.deep-purple ul.nav-menu li.menu > button:hover:before,
+.deep-purple ul.nav-menu li.menu > a:focus:before,
+.deep-purple ul.nav-menu li.menu > a:hover:before {
+  color: $app-primary-deep-purple;
+}
+
+.deep-purple ul.nav-menu li ul {
+  background-color: $white;
+}
+
+.deep-purple ul.nav-menu li.menu > button:before,
+.deep-purple ul.nav-menu li.menu > a:before {
+  color: $sidebar-text-deep-purple;
+}
+
+.deep-purple ul.nav-menu li.menu.open > a:before,
+.deep-purple ul.nav-menu li.menu > a:focus:before,
+.deep-purple ul.nav-menu li.menu li > a:hover:before,
+.deep-purple ul.nav-menu li.menu.open > button:before,
+.deep-purple ul.nav-menu li.menu > button:focus:before,
+.deep-purple ul.nav-menu li.menu li > button:hover:before {
+  color: $app-primary-deep-purple;
+}
+
+.deep-purple ul.nav-menu li.menu .sub-menu li > a:before {
+  color: $sidebar-text-deep-purple;
+}
+
+.deep-purple ul.nav-menu li.menu.open .sub-menu li > a:after {
+  background-color: $app-primary-deep-purple;
+}
+
+.deep-purple ul.nav-menu li.menu.open .sub-menu li > a.active {
+  background-color: $sidebar-deep-purple;
+  color: $app-primary-deep-purple;
+}
+
+.deep-purple ul.nav-menu li.menu .sub-menu li > a:hover,
+.deep-purple ul.nav-menu li.menu .sub-menu li > a:focus,
+.deep-purple ul.nav-menu li.menu.open .sub-menu li > a.active:before,
+.deep-purple ul.nav-menu li.menu .sub-menu li > a:focus:before,
+.deep-purple ul.nav-menu li.menu .sub-menu li > a:hover:before {
+  background-color: $white;
+  color: $app-primary-deep-purple;
+}
+
+/*Header top Navbar Styles*/
+.deep-purple .navbar-nav {
+  & li {
+    &:hover > a,
+    &:focus > a,
+    &:hover > .nav-link,
+    &:focus > .nav-link {
+      color: $app-primary-deep-purple;
+    }
+
+    & a,
+    & .nav-link {
+      color: $sidebar-text-color;
+    }
+
+    & a:hover,
+    & a:focus,
+    & .nav-link:hover,
+    & .nav-link:focus {
+      color: $app-primary-deep-purple;
+    }
+  }
+
+  & li.nav-item > a,
+  & li.nav-item > .nav-link {
+    color: $white;
+  }
+
+  & li.nav-item:hover > a,
+  & li.nav-item:focus > a,
+  & li.nav-item > a:hover,
+  & li.nav-item > a:focus,
+  & li.nav-item.active > a,
+  & li.nav-item:hover > .nav-link,
+  & li.nav-item:focus > .nav-link,
+  & li.nav-item > .nav-link:hover,
+  & li.nav-item > .nav-link:focus,
+  & li.nav-item.active > .nav-link {
+    color: $secondary-deep-purple;
+  }
+
+  ul.sub-menu {
+    & li a.active,
+    & li.active > a,
+    & li .nav-link.active,
+    & li.active > .nav-link {
+      color: $app-primary-deep-purple;
+    }
+  }
+
+  & .nav-arrow {
+    & > a:before,
+    & > .nav-link:before {
+      color: $sidebar-text-color;
+    }
+
+    & a:hover,
+    & a:focus,
+    & .nav-link:hover,
+    & .nav-link:focus {
+      &:before {
+        color: $app-primary-deep-purple;
+      }
+    }
+
+    &:hover > a:before,
+    &:focus > a:before,
+    &.active > a:before,
+    &:hover > .nav-link:before,
+    &:focus > .nav-link:before,
+    &.active > .nav-link:before {
+      color: $app-primary-deep-purple;
+    }
+  }
+}
+
+.deep-purple .app-top-nav {
+
+  & .navbar-nav {
+    & li.nav-item > a,
+    & li.nav-item > .nav-link {
+      color: $white;
+    }
+
+    & li.nav-item:hover > a,
+    & li.nav-item:focus > a,
+    & li.nav-item > a:hover,
+    & li.nav-item > a:focus,
+    & li.nav-item.active > a,
+    & li.nav-item:hover > .nav-link,
+    & li.nav-item:focus > .nav-link,
+    & li.nav-item > .nav-link:hover,
+    & li.nav-item > .nav-link:focus,
+    & li.nav-item.active > .nav-link {
+      color: $secondary-deep-purple;
+    }
+  }
+}
+
+.deep-purple .app-header-horizontal {
+  & .app-main-header-top {
+    @include box-shadow(none !important);
+  }
+}
+
+.deep-purple .header-notifications .app-notification {
+  & .jr-list-link {
+
+    @include hover-focus-active {
+      color: $app-primary-deep-purple;
+      border-color: $app-primary-deep-purple;
+    }
+  }
+}
+
+//_app-module.scss
+.deep-purple .module-nav {
+  & li a {
+    &.active {
+      border-color: $app-primary-deep-purple;
+    }
+  }
+}
+
+//_calendar.scss
+.deep-purple .rbc-event {
+  background-color: $app-primary-deep-purple;
+}
+
+.deep-purple .rbc-event.rbc-selected {
+  background-color: darken($app-primary-deep-purple, 10%);
+}
+
+.deep-purple .rbc-slot-selection {
+  background-color: rgba($app-primary-deep-purple, 0.7);
+}
+
+.deep-purple .rbc-toolbar button:active,
+.deep-purple .rbc-toolbar button.rbc-active {
+  background-color: rgba($app-primary-deep-purple, 0.9);
+  border-color: $app-primary-deep-purple;
+}
+
+.deep-purple .rbc-toolbar button:active:hover,
+.deep-purple .rbc-toolbar button.rbc-active:hover,
+.deep-purple .rbc-toolbar button:active:focus,
+.deep-purple .rbc-toolbar button.rbc-active:focus {
+  background-color: rgba($app-primary-deep-purple, 0.9);
+  border-color: $app-primary-deep-purple;
+}
+
+.deep-purple .rbc-toolbar button:focus {
+  background-color: rgba($app-primary-deep-purple, 0.9);
+  border-color: $app-primary-deep-purple;
+}
+
+.deep-purple .rbc-toolbar button:hover {
+  background-color: rgba($app-primary-deep-purple, 0.9);
+  border-color: $app-primary-deep-purple;
+}
+
+//_chat.scss
+.deep-purple .chat-sidenav-title {
+  color: $app-primary-deep-purple;
+}
+
+.deep-purple .chat-user-item {
+  &.active,
+  &:hover {
+    background-color: lighten($app-primary-deep-purple, 45%);
+  }
+}
+
+//_dashboard.scss
+.deep-purple .contact-list {
+  & i {
+    color: $app-primary-deep-purple;
+  }
+}
+
+//The link which when clicked opens the collapsable ChatUserList
+.deep-purple .Collapsible__trigger {
+  background: $app-primary-deep-purple;
+}
+
+.deep-purple .categories-list {
+  & li a:focus,
+  & li a:hover,
+  & li.active a {
+    color: $app-primary-deep-purple;
+  }
+}
+
+//_login.scss
+.deep-purple .login-content .form-control {
+  &:focus {
+    border-color: $app-primary-deep-purple;
+  }
+}
+
+//_portfolio.scss
+.deep-purple .filter-with-bg-color ul li {
+  .jr-link {
+    border-color: $app-primary-deep-purple;
+
+    &:hover,
+    &:focus,
+    &.active {
+      background-color: $app-primary-deep-purple;
+    }
+  }
+}
+
+//_card.scss
+.deep-purple .profile-intro {
+  & .icon {
+    color: $app-primary-deep-purple;
+  }
+}
+
+.deep-purple .social-link {
+  & li.active a,
+  & li a:hover,
+  & li a:focus {
+    color: $secondary-deep-purple;
+  }
+}
+
+//_tables.scss
+.deep-purple .actions {
+  color: $secondary-deep-purple;
+}
+
+.deep-purple .table-hover tbody tr:hover {
+  background-color: rgba($app-primary-deep-purple, 0.075);
+}
+
+//Border Color
+
+.deep-purple .border-primary {
+  border-color: $app-primary-deep-purple !important;
+}
+
+// login page content
+
+.deep-purple .app-logo-content {
+  background-color: $app-primary-deep-purple;
+}
+
+.deep-purple .app-social-block {
+  & .social-link button {
+    border: solid 1px $app-primary-deep-purple;
+    color: $app-primary-deep-purple;
+
+    &:hover,
+    &:focus {
+      color: $white;
+      background-color: $app-primary-deep-purple;
+    }
+  }
+}
+
+/*Button Group Styles*/
+.deep-purple .btn-group,
+.deep-purple .btn-group-vertical {
+  > .jr-btn {
+    &.active {
+      background-color: $app-primary-deep-purple;
+      border-color: $app-primary-deep-purple;
+    }
+
+  }
+
+  > .jr-flat-btn {
+    background-color: transparent;
+    border-color: transparent;
+    &.active {
+      background-color: transparent;
+      color: $app-primary-deep-purple;
+      &:hover,
+      &:focus {
+        background-color: rgba($app-primary-deep-purple, 0.12);
+        color: $app-primary-deep-purple;
+      }
+    }
+  }
+}
+
+/*Classic Dashboard Styles*/
+.deep-purple .jr-fillchart-btn-close,
+.deep-purple .jr-onchart .jr-badge-up,
+.deep-purple .jr-task-list-item:hover .jr-text-hover {
+  color: $app-primary-deep-purple;
+}
+
+.deep-purple .jr-entry-title:before {
+  background-color: $app-primary-deep-purple;
+}
+
+.deep-purple .jr-card-ticketlist {
+  & .jr-task-list-item:hover .jr-task-item-title,
+  .jr-link {
+    color: $app-primary-deep-purple;
+  }
+}
+
+.deep-purple .slick-dots li.slick-active button:before {
+  border-color: $app-primary-deep-purple;
+}
+
+//Nav Styles
+.deep-purple .nav-pills .nav-link.active,
+.deep-purple .nav-pills .show > .nav-link {
+  color: $white !important;
+  background-color: $app-primary-deep-purple;
+}
+
+// Gradient Color Class
+.deep-purple .bg-gradient-primary {
+  @include gradient-directional($app-primary-deep-purple, lighten($app-primary-deep-purple, 16%), 0deg);
+}
+
+.deep-purple .bg-gradient-primary-x {
+  @include gradient-x(darken($app-primary-deep-purple, 10%), lighten($app-primary-deep-purple, 16%), 70%, 100%);
+}
+
+//Profile style
+.deep-purple .jr-profile-banner {
+  background-color: $app-primary-deep-purple;
+  color: $white;
+
+  & .jr-link {
+    color: $white;
+
+    &:hover,
+    &:focus {
+      color: $secondary-deep-purple;
+    }
+  }
+}
+
+.deep-purple .dropdown-item {
+
+  &.active,
+  &:active {
+    background-color: $app-primary-deep-purple;
+    color: $white;
+  }
+
+  &[class*="text-"] {
+
+    &.active,
+    &:active {
+      background-color: transparent;
+    }
+  }
+}

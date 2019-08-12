@@ -1,0 +1,115 @@
+/*Input Styles*/
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  font-size: 12px;
+}
+
+::-moz-placeholder { /* Firefox 19+ */
+  font-size: 12px;
+}
+
+:-ms-input-placeholder { /* IE 10+ */
+  font-size: 12px;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+  font-size: 12px;
+}
+
+.module-box-header ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  font-size: 14px;
+}
+
+.module-box-header ::-moz-placeholder { /* Firefox 19+ */
+  font-size: 14px;
+}
+
+.module-box-header :-ms-input-placeholder { /* IE 10+ */
+  font-size: 14px;
+}
+
+.module-box-header :-moz-placeholder { /* Firefox 18- */
+  font-size: 14px;
+}
+
+// Search Bar Style
+.search-bar {
+  background-color: $white;
+  position: relative;
+  & .form-group {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 0;
+  }
+  & input[type="search"] {
+    padding-right: 50px;
+  }
+
+  & .search-icon {
+    background-color: transparent;
+    border: 0 none;
+    color: lighten($gray-600, 10%);
+    height: 36px;
+    width: 30px;
+  }
+
+  & .form-control {
+    box-shadow: none;
+    &.form-control-lg + .search-icon {
+      position: absolute;
+      right: 14px;
+      top: 6px;
+    }
+  }
+
+  & .search-icon {
+    position: absolute;
+    right: 14px;
+    top: 3px;
+  }
+
+  &.right-side-icon {
+    & input[type="search"] {
+      padding-right: 16px;
+      padding-left: 50px;
+    }
+
+    & .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 2px;
+    }
+
+    & .form-control {
+      box-shadow: none;
+      &.form-control-lg + .search-icon {
+        position: absolute;
+        left: 14px;
+        top: 6px;
+      }
+    }
+  }
+}
+
+.nav-searchbox .search-bar input {
+  & + .search-icon {
+    & i {
+      color: rgba($body-color, 0.8);
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .jr-card .app-main-header {
+    & .search-bar {
+      width: 150px;
+    }
+  }
+}
+
+.form-control.border-0 {
+  @include box-shadow(none);
+
+  &:focus {
+    @include box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 0.2rem rgba(0, 123, 255, 0.25));
+  }
+}

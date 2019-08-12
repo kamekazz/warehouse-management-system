@@ -1,0 +1,618 @@
+/*Theme Dark Pink Styles*/
+$app-primary-dark-pink: #e91e63 !default;
+$secondary-dark-pink: #00BFA5;
+
+$sidebar-dark-pink: #252525 !default;
+$sidebar-text-dark-pink: #a1a1a1 !default;
+$sidebar-darken-pink: darken($sidebar-dark-pink, 3%);
+$sidebar-bg-darken-highlight-pink: $app-primary-dark-pink;
+
+// Links
+$link-hover-dark-pink: $white;
+
+//-Base-scss
+.dark-pink .right-arrow {
+  color: $app-primary-dark-pink;
+  &:after {
+    color: $app-primary-dark-pink;
+  }
+}
+
+//- Bootstrap file Style
+.dark-pink {
+  a,
+  .card-link,
+  .jr-link,
+  .jr-link.text-primary {
+    color: $app-primary-dark-pink;
+    &:focus,
+    &:hover {
+      color: darken($app-primary-dark-pink, 10%);
+    }
+  }
+
+  & .text-primary {
+    color: $app-primary-dark-pink !important;
+  }
+
+  & .page-link {
+    color: $app-primary-dark-pink;
+    &:focus,
+    &:hover {
+      color: $app-primary-dark-pink;
+    }
+  }
+
+  & .page-heading .breadcrumb-item.active {
+    color: $app-primary-dark-pink;
+  }
+
+  & .bg-primary,
+  & .badge-primary {
+    background-color: $app-primary-dark-pink !important;
+    color: $link-hover-dark-pink !important;
+  }
+
+  & .btn-primary {
+    background-color: $app-primary-dark-pink;
+    border-color: $app-primary-dark-pink;
+    color: $link-hover-dark-pink;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: darken($app-primary-dark-pink, 5%) !important;
+      border-color: darken($app-primary-dark-pink, 5%) !important;
+      color: $link-hover-dark-pink !important;
+    }
+  }
+
+  & .bg-primary {
+    &.lighten-4 {
+      background-color: #f8bbd0 !important;
+    }
+
+    &.lighten-3 {
+      background-color: #f48fb1 !important;
+    }
+
+    &.lighten-2 {
+      background-color: #f06292 !important;
+    }
+
+    &.lighten-1 {
+      background-color: #ec407a !important;
+    }
+
+    &.darken-1 {
+      background-color: #d81b60 !important;
+    }
+
+    &.darken-2 {
+      background-color: #c2185b !important;
+    }
+
+    &.darken-3 {
+      background-color: #ad1457 !important;
+    }
+
+    &.darken-4 {
+      background-color: #880e4f !important;
+    }
+
+    &.accent-1 {
+      background-color: #ff80ab !important;
+    }
+
+    &.accent-2 {
+      background-color: #ff4081 !important;
+    }
+
+    &.accent-3 {
+      background-color: #f50057 !important;
+    }
+
+    &.accent-4 {
+      background-color: #c51162 !important;
+    }
+  }
+}
+
+//Secondary
+.dark-pink {
+  .jr-link.text-secondary {
+    color: $secondary-dark-pink;
+    &:focus,
+    &:hover {
+      color: darken($secondary-dark-pink, 10%) !important;
+    }
+  }
+
+  & .text-secondary {
+    color: $secondary-dark-pink !important;
+  }
+
+  & .bg-secondary,
+  & .badge-secondary {
+    background-color: $secondary-dark-pink !important;
+    color: $link-hover-dark-pink !important;
+  }
+
+  & .btn-secondary {
+    background-color: $secondary-dark-pink;
+    border-color: $secondary-dark-pink;
+    color: $link-hover-dark-pink;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: darken($secondary-dark-pink, 5%) !important;
+      border-color: darken($secondary-dark-pink, 5%) !important;
+      color: $link-hover-dark-pink !important;
+    }
+  }
+}
+
+//_header.scss
+.dark-pink .app-main-header {
+  background-color: $app-primary-dark-pink !important;
+
+  & .search-dropdown input {
+    @media screen and (max-width: 991px) {
+      background-color: $white;
+    }
+  }
+}
+
+//_right-sidebar.scss
+.dark-pink .color-theme-header {
+  background-color: $app-primary-dark-pink;
+}
+
+//_sidebar.scss
+.dark-pink .side-nav {
+  background-color: $sidebar-dark-pink !important;
+  color: $sidebar-text-dark-pink !important;
+  @include box-shadow(none);
+
+  & .user-profile {
+    background-color: $sidebar-darken-pink;
+    @include box-shadow(none);
+    position: relative;
+    z-index: 2;
+  }
+
+  & .customizer {
+    border-bottom: 0 none;
+  }
+
+  & .user-detail {
+    & .user-name {
+      color: $link-hover-dark-pink;
+    }
+  }
+}
+
+.dark-pink ul.nav-menu li button,
+.dark-pink ul.nav-menu li a {
+  color: $sidebar-text-dark-pink;
+}
+
+.dark-pink ul.nav-menu {
+  & .nav-header {
+    color: $sidebar-text-dark-pink;
+  }
+}
+
+.dark-pink ul.nav-menu > li.open > button,
+.dark-pink ul.nav-menu > li > button:hover,
+.dark-pink ul.nav-menu > li > button:focus,
+.dark-pink ul.nav-menu > li.open > a,
+.dark-pink ul.nav-menu > li > a:hover,
+.dark-pink ul.nav-menu > li > a:focus {
+  background-color: $sidebar-darken-pink;
+  color: $link-hover-dark-pink;
+}
+
+.dark-pink ul.nav-menu li.menu.open > a {
+  border-color: $app-primary-dark-pink;
+}
+
+.dark-pink ul.nav-menu li.menu > button:focus:before,
+.dark-pink ul.nav-menu li.menu > button:hover:before,
+.dark-pink ul.nav-menu li.menu > a:focus:before,
+.dark-pink ul.nav-menu li.menu > a:hover:before {
+  color: $link-hover-dark-pink;
+}
+
+.dark-pink ul.nav-menu li ul {
+  background-color: $sidebar-darken-pink;
+}
+
+.dark-pink ul.nav-menu li.menu > button:before,
+.dark-pink ul.nav-menu li.menu > a:before {
+  color: $sidebar-text-dark-pink;
+}
+
+.dark-pink ul.nav-menu li.menu.open > a:before,
+.dark-pink ul.nav-menu li.menu > a:focus:before,
+.dark-pink ul.nav-menu li.menu li > a:hover:before {
+  color: $link-hover-dark-pink;
+}
+
+.dark-pink ul.nav-menu li.menu .sub-menu li > a:before {
+  color: $sidebar-text-dark-pink;
+}
+
+.dark-pink ul.nav-menu li.menu.open .sub-menu li > a.active {
+  background-color: $sidebar-bg-darken-highlight-pink;
+  color: $link-hover-dark-pink;
+}
+
+.dark-pink ul.nav-menu li.menu .sub-menu li > a:hover,
+.dark-pink ul.nav-menu li.menu .sub-menu li > a:focus,
+.dark-pink ul.nav-menu li.menu.open .sub-menu li > a.active:before,
+.dark-pink ul.nav-menu li.menu .sub-menu li > a:focus:before,
+.dark-pink ul.nav-menu li.menu .sub-menu li > a:hover:before {
+  background-color: $sidebar-darken-pink;
+  color: $link-hover-dark-pink;
+}
+
+/*Header top Navbar Styles*/
+.dark-pink .navbar-nav {
+  & li {
+    &:hover > a,
+    &:focus > a,
+    &:hover > .nav-link,
+    &:focus > .nav-link {
+      color: $app-primary-dark-pink;
+    }
+
+    & a,
+    & .nav-link {
+      color: $sidebar-text-color;
+    }
+
+    & a:hover,
+    & a:focus,
+    & .nav-link:hover,
+    & .nav-link:focus {
+      color: $app-primary-dark-pink;
+    }
+  }
+
+  & li.nav-item > a,
+  & li.nav-item > .nav-link {
+    color: $white;
+  }
+
+  & li.nav-item:hover > a,
+  & li.nav-item:focus > a,
+  & li.nav-item > a:hover,
+  & li.nav-item > a:focus,
+  & li.nav-item.active > a,
+  & li.nav-item:hover > .nav-link,
+  & li.nav-item:focus > .nav-link,
+  & li.nav-item > .nav-link:hover,
+  & li.nav-item > .nav-link:focus,
+  & li.nav-item.active > .nav-link {
+    color: $secondary-dark-pink;
+  }
+
+  ul.sub-menu {
+    & li a.active,
+    & li.active > a,
+    & li .nav-link.active,
+    & li.active > .nav-link {
+      color: $app-primary-dark-pink;
+    }
+  }
+
+  & .nav-arrow {
+    & > a:before,
+    & > .nav-link:before {
+      color: $sidebar-text-color;
+    }
+
+    & a:hover,
+    & a:focus,
+    & .nav-link:hover,
+    & .nav-link:focus {
+      &:before {
+        color: $app-primary-dark-pink;
+      }
+    }
+
+    &:hover > a:before,
+    &:focus > a:before,
+    &.active > a:before,
+    &:hover > .nav-link:before,
+    &:focus > .nav-link:before,
+    &.active > .nav-link:before {
+      color: $app-primary-dark-pink;
+    }
+  }
+}
+
+.dark-pink .app-top-nav {
+
+  & .navbar-nav {
+    & li.nav-item > a,
+    & li.nav-item > .nav-link {
+      color: $white;
+    }
+
+    & li.nav-item:hover > a,
+    & li.nav-item:focus > a,
+    & li.nav-item > a:hover,
+    & li.nav-item > a:focus,
+    & li.nav-item.active > a,
+    & li.nav-item:hover > .nav-link,
+    & li.nav-item:focus > .nav-link,
+    & li.nav-item > .nav-link:hover,
+    & li.nav-item > .nav-link:focus,
+    & li.nav-item.active > .nav-link {
+      color: $secondary-dark-pink;
+    }
+  }
+}
+
+.dark-pink .app-header-horizontal {
+  & .app-main-header-top {
+    @include box-shadow(none !important);
+  }
+}
+
+.dark-pink .header-notifications .app-notification {
+  & .jr-list-link {
+
+    @include hover-focus-active {
+      color: $app-primary-dark-pink;
+      border-color: $app-primary-dark-pink;
+    }
+  }
+}
+
+//_app-module.scss
+.dark-pink .module-nav {
+  & li a {
+    &.active {
+      border-color: $app-primary-dark-pink;
+    }
+  }
+}
+
+//_calendar.scss
+.dark-pink .rbc-event {
+  background-color: $app-primary-dark-pink;
+}
+
+.dark-pink .rbc-event.rbc-selected {
+  background-color: darken($app-primary-dark-pink, 10%);
+}
+
+.dark-pink .rbc-slot-selection {
+  background-color: rgba($app-primary-dark-pink, 0.7);
+}
+
+.dark-pink .rbc-toolbar button:active,
+.dark-pink .rbc-toolbar button.rbc-active {
+  background-color: rgba($app-primary-dark-pink, 0.9);
+  border-color: $app-primary-dark-pink;
+}
+
+.dark-pink .rbc-toolbar button:active:hover,
+.dark-pink .rbc-toolbar button.rbc-active:hover,
+.dark-pink .rbc-toolbar button:active:focus,
+.dark-pink .rbc-toolbar button.rbc-active:focus {
+  background-color: rgba($app-primary-dark-pink, 0.9);
+  border-color: $app-primary-dark-pink;
+}
+
+.dark-pink .rbc-toolbar button:focus {
+  background-color: rgba($app-primary-dark-pink, 0.9);
+  border-color: $app-primary-dark-pink;
+}
+
+.dark-pink .rbc-toolbar button:hover {
+  background-color: rgba($app-primary-dark-pink, 0.9);
+  border-color: $app-primary-dark-pink;
+}
+
+//_chat.scss
+.dark-pink .chat-sidenav-title {
+  color: $app-primary-dark-pink;
+}
+
+.dark-pink .chat-user-item {
+  &.active,
+  &:hover {
+    background-color: lighten($app-primary-dark-pink, 45%);
+  }
+}
+
+//_dashboard.scss
+.dark-pink .contact-list {
+  & i {
+    color: $app-primary-dark-pink;
+  }
+}
+
+//The link which when clicked opens the collapsable ChatUserList
+.dark-pink .Collapsible__trigger {
+  background: $app-primary-dark-pink;
+}
+
+.dark-pink .categories-list {
+  & li a:focus,
+  & li a:hover,
+  & li.active a {
+    color: $app-primary-dark-pink;
+  }
+}
+
+//_login.scss
+.dark-pink .login-content .form-control {
+  &:focus {
+    border-color: $app-primary-dark-pink;
+  }
+}
+
+//_portfolio.scss
+.dark-pink .filter-with-bg-color ul li {
+  .jr-link {
+    border-color: $app-primary-dark-pink;
+
+    &:hover,
+    &:focus,
+    &.active {
+      background-color: $app-primary-dark-pink;
+    }
+  }
+}
+
+//_card.scss
+.dark-pink .profile-intro {
+  & .icon {
+    color: $app-primary-dark-pink;
+  }
+}
+
+.dark-pink .social-link {
+  & li.active a,
+  & li a:hover,
+  & li a:focus {
+    color: $secondary-dark-pink;
+  }
+}
+
+//_tables.scss
+.dark-pink .actions {
+  color: $secondary-dark-pink;
+}
+
+.dark-pink .table-hover tbody tr:hover {
+  background-color: rgba($app-primary-dark-pink, 0.075);
+}
+
+//Border Color
+
+.dark-pink .border-primary {
+  border-color: $app-primary-dark-pink !important;
+}
+
+// login page content
+
+.dark-pink .app-logo-content {
+  background-color: $app-primary-dark-pink;
+}
+
+.dark-pink .app-social-block {
+  & .social-link button {
+    border: solid 1px $app-primary-dark-pink;
+    color: $app-primary-dark-pink;
+
+    &:hover,
+    &:focus {
+      color: $white;
+      background-color: $app-primary-dark-pink;
+    }
+  }
+}
+
+/*Button Group Styles*/
+.dark-pink .btn-group,
+.dark-pink .btn-group-vertical {
+  > .jr-btn {
+
+    &.active {
+      background-color: $app-primary-dark-pink;
+      border-color: $app-primary-dark-pink;
+    }
+
+  }
+
+  > .jr-flat-btn {
+    background-color: transparent;
+    border-color: transparent;
+    &.active {
+      background-color: transparent;
+      color: $app-primary-dark-pink;
+      &:hover,
+      &:focus {
+        background-color: rgba($app-primary-dark-pink, 0.12);
+        color: $app-primary-dark-pink;
+      }
+    }
+  }
+}
+
+/*Classic Dashboard Styles*/
+.dark-pink .jr-fillchart-btn-close,
+.dark-pink .jr-onchart .jr-badge-up,
+.dark-pink .jr-task-list-item:hover .jr-text-hover {
+  color: $app-primary-dark-pink;
+}
+
+.dark-pink .jr-entry-title:before {
+  background-color: $app-primary-dark-pink;
+}
+
+.dark-pink .jr-card-ticketlist {
+  & .jr-task-list-item:hover .jr-task-item-title,
+  .jr-link {
+    color: $app-primary-dark-pink;
+  }
+}
+
+.dark-pink .slick-dots li.slick-active button:before {
+  border-color: $app-primary-dark-pink;
+}
+
+//Nav Styles
+.dark-pink .nav-pills .nav-link.active,
+.dark-pink .nav-pills .show > .nav-link {
+  color: $white !important;
+  background-color: $app-primary-dark-pink;
+}
+
+// Gradient Color Class
+.dark-pink .bg-gradient-primary {
+  @include gradient-directional($app-primary-dark-pink, lighten($app-primary-dark-pink, 16%), 0deg);
+}
+
+.dark-pink .bg-gradient-primary-x {
+  @include gradient-x(darken($app-primary-dark-pink, 10%), lighten($app-primary-dark-pink, 16%), 70%, 100%);
+}
+
+//Profile style
+.dark-pink .jr-profile-banner {
+  background-color: $app-primary-dark-pink;
+  color: $white;
+
+  & .jr-link {
+    color: $white;
+
+    &:hover,
+    &:focus {
+      color: $secondary-dark-pink;
+    }
+  }
+}
+
+.dark-pink .dropdown-item {
+
+  &.active,
+  &:active {
+    background-color: $app-primary-dark-pink;
+    color: $white;
+  }
+
+  &[class*="text-"] {
+
+    &.active,
+    &:active {
+      background-color: transparent;
+    }
+  }
+}

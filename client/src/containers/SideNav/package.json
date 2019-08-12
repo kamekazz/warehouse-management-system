@@ -1,0 +1,10 @@
+{
+  "name": "SidenavContent",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./SidenavContent.js",
+  "dependencies": {
+    "material-ui": "next",
+    "react-custom-scrollbars": "^4.2.1"
+  }
+}

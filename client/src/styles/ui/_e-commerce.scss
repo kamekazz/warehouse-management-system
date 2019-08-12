@@ -1,0 +1,52 @@
+/*E-commerce Styles*/
+
+.product-item {
+  border: 0 none;
+  @include box-shadow(0 1px 4px 0 rgba(#000, 0.20));
+
+  & .card-header {
+    overflow: hidden;
+  }
+}
+
+.product-item-vertical {
+  @extend .product-item;
+
+  & .card-header:first-child {
+    border-top-left-radius: $border-radius;
+    border-bottom-left-radius: $border-radius;
+    border-top-right-radius: 0;
+
+    @media screen and (max-width: 767px) {
+      border-bottom-left-radius: 0;
+      border-top-right-radius: $border-radius;
+    }
+  }
+
+  & .card-image .grid-thumb-equal {
+    padding-bottom: 110%;
+
+    @media screen and (max-width: 1199px) {
+      padding-bottom: 74%;
+    }
+
+    @media screen and (max-width: 991px) {
+      padding-bottom: 110%;
+    }
+
+    @media screen and (max-width: 829px) {
+      padding-bottom: 120%;
+    }
+
+    @media screen and (max-width: 800px) {
+      padding-bottom: 135%;
+    }
+
+    @media screen and (max-width: 767px) {
+      padding-bottom: 44%;
+    }
+  }
+}
+
+
+

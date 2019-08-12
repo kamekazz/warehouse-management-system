@@ -1,0 +1,121 @@
+/*Contact Page Styles*/
+
+.contact-form {
+  padding: 60px;
+}
+
+.contact-block {
+  & .contact-info {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+    @include display-flex();
+    @include align-items(center);
+    -webkit-align-content: stretch;
+    -ms-flex-align: stretch;
+    align-content: stretch;
+
+    & li {
+      @include flex(1, 1, 0);
+      overflow: hidden;
+      padding: 10px 40px;
+      border-right: 2px solid $body-color;
+      word-wrap: break-word;
+
+      &:last-child {
+        border: 0 none;
+      }
+
+      & > i {
+        float: left;
+        font-size: 16px;
+        margin-right: 5px;
+      }
+
+      & .contact-body {
+        overflow: hidden;
+        & .icons-wrapper {
+          margin-top: 15px;
+          margin-left: 0;
+        }
+
+        & .icon {
+          background-color: map_get($indigo, 'lighten-1');
+          color: $white;
+          @include border-radius(50%);
+          margin-right: 6px;
+          margin-bottom: 6px;
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+
+        & .twitter-icon {
+          background-color: map_get($light-blue, accent-2);
+        }
+
+        & .google-icon {
+          background-color: map_get($red, lighten-1);
+        }
+
+        & .linkedin-icon {
+          background-color: map_get($light-blue, darken-3);
+        }
+      }
+    }
+
+    &.vertical {
+      display: block;
+      margin-bottom: 0;
+      & li {
+        padding: 0 0 24px;
+        border-right: 0 none;
+        border-bottom: 2px solid $body-color;
+        margin-bottom: 24px;
+
+        &:last-child {
+          border: 0 none;
+          margin-bottom: 0;
+          padding-bottom: 0;
+        }
+      }
+    }
+
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .contact-form {
+    padding: 30px;
+  }
+
+  .contact-block {
+    & .contact-info {
+      display: block;
+      margin-bottom: 0;
+      & li {
+        padding: 0 0 24px;
+        border-right: 0 none;
+        border-bottom: 2px solid $body-color;
+        margin-bottom: 24px;
+
+        &:last-child {
+          border: 0 none;
+          margin-bottom: 0;
+          padding-bottom: 0;
+        }
+      }
+    }
+  }
+
+  .content-section {
+    padding: 20px 10px 0;
+    text-align: center;
+    & h2 {
+      font-size: 28px;
+    }
+    & p {
+      font-size: 18px;
+    }
+  }
+}

@@ -1,0 +1,140 @@
+/*Mails Module Styles*/
+
+.module-box-row {
+  @include display-flex();
+  width: 100%;
+}
+
+.module-box-column {
+  @include display-flex(flex, column, nowrap);
+  width: 100%;
+}
+
+.mail-user-info {
+  @include display-flex();
+  @include align-items(center);
+
+  & .avatar {
+    margin: 5px 10px 0;
+  }
+
+  & .time,
+  & button {
+    margin-left: auto;
+  }
+
+  & .badge {
+    margin-bottom: 0;
+  }
+}
+
+.module-list-item.mail-cell {
+  @include display-flex();
+}
+
+.mail-detail {
+  padding: 24px !important;
+}
+
+.mail-header {
+  @include display-flex();
+  @include align-items(center);
+}
+
+.mail-header-content {
+  @include display-flex(flex, column, nowrap);
+
+  & .subject {
+    margin-bottom: 5px;
+  }
+}
+
+.show-detail {
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.text-truncate {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.module-list-content {
+  & .subject {
+    @extend .text-truncate;
+  }
+
+  & .message {
+    @include display-flex(flex, column, nowrap);
+    color: darken($gray-500, 10%);
+    font-size: 13px;
+
+    p {
+      @extend .text-truncate;
+      margin-bottom: 8px;
+    }
+  }
+}
+
+.size {
+  margin: 5px 0;
+}
+
+.sender-name {
+  margin-right: 0;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.mail-header-actions {
+  text-align: right;
+  min-width: 100px;
+
+  & .btn:not(:last-child) {
+    margin-right: 3px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .module-list-item.mail-cell {
+    padding-right: 20px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .mail-list {
+    @include flex(1, 1, auto);
+    max-width: 100%;
+    border-right: 0 none;
+  }
+
+  .mail-detail {
+    @include flex(1, 1, auto);
+    max-width: 100%;
+    padding: 24px;
+  }
+}
+
+@media screen and (max-width: 499px) {
+  .mail-header {
+    display: block;
+    @include align-items(flex-start);
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+  }
+
+  .mail-header-actions {
+    text-align: left;
+    min-width: 10px;
+  }
+
+  .MuiDialog-paperWidthSm-99 {
+    max-width: 250px !important;
+  }
+}

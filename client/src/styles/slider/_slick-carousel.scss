@@ -1,0 +1,82 @@
+/* Slider
+   ========================================================================== */
+.brand-logo {
+  @extend %thumb-equal;
+  border: 1px solid $gray-300;
+  background-color: $white;
+  @include border-radius($border-radius-lg);
+  margin-bottom: 20px;
+  padding-bottom: 75%;
+
+  & .brand-logo-inner {
+    @extend %thumb-cover;
+    text-align: center;
+
+    &:before {
+      content: "";
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+    }
+
+    & img {
+      height: auto;
+      max-height: 100%;
+      max-width: 100%;
+      display: inline-block;
+      vertical-align: middle;
+      width: auto !important;
+    }
+  }
+
+  &:hover {
+    @include box-shadow(0px 8px 10px rgba($black, 0.2));
+    @include transition(all 0.4s ease-in-out 0.1s);
+    background-color: darken($white, 5%);
+  }
+
+  @media screen and (max-width: 575px) {
+    margin-bottom: 15px;
+  }
+}
+
+.slick-app-frame {
+  margin-right: -10px;
+  margin-left: -10px;
+
+  & .slick-slide-item {
+    padding: 0 10px;
+  }
+
+  & .brand-logo {
+    margin-bottom: 0;
+  }
+}
+
+.carousel-item {
+  & img {
+    max-width: 100%;
+  }
+}
+
+.slick-slider-sec {
+  margin-bottom: 50px;
+
+  & .jr-card {
+    margin-bottom: 0;
+  }
+}
+
+.slick-slider-cr {
+  margin-bottom: 50px;
+  margin-right: -10px;
+  margin-left: -10px;
+
+  & .jr-card {
+    margin-bottom: 0;
+  }
+
+  .slick-slide-item {
+    padding: 0 10px;
+  }
+}

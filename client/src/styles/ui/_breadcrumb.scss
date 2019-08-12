@@ -1,0 +1,15 @@
+/*Breadcrumb Styles*/
+.breadcrumb {
+  @include border-radius($border-radius-sm);
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: '\F2FB';
+  font: {
+    family: 'Material-Design-Iconic-Font';
+    size: 16px;
+  }
+  line-height: 1;
+  vertical-align: middle;
+  padding-left: 0;
+}

@@ -1,0 +1,83 @@
+// Nav Style
+.nav-link {
+  cursor: pointer;
+}
+
+.card-header.bg-primary {
+  & .nav-link {
+    color: $white;
+
+    &.active,
+    &:hover,
+    &:focus {
+      color: $black;
+      background-color: $white;
+    }
+
+    &.disabled {
+      color: $gray-100;
+    }
+
+    &.disabled:hover {
+      color: $gray-900;
+    }
+  }
+}
+
+.jr-navbar-nav {
+  list-style: none;
+  padding-left: 0;
+  margin: 0 -5px;
+  @include display-flex(flex, row, wrap);
+
+  & li {
+    padding: 0 5px;
+
+    & a {
+      display: block;;
+      padding: 4px 10px;
+      background-color: $app-primary;
+      color: $white;
+      @include border-radius($border-radius-sm);
+
+      .jr-profile-banner & {
+        background-color: transparent;
+        color: $white;
+        @include border-radius(0);
+        padding: 0;
+      }
+
+      & * {
+        color: $gray-600;
+      }
+    }
+
+    & a:hover,
+    & a:focus {
+      background-color: darken($app-primary, 10%);
+      color: $white;
+
+      .jr-profile-banner & {
+        background-color: transparent;
+        color: $secondary;
+      }
+    }
+
+    .jr-profile-banner & {
+      padding: 0 15px;
+
+      @media screen and (max-width: 575px) {
+        padding: 0 6px;
+      }
+    }
+  }
+
+  .jr-profile-banner & {
+    margin: 0 -15px;
+
+    @media screen and (max-width: 575px) {
+      @include justify-content(center);
+      margin: 0 -6px;
+    }
+  }
+}

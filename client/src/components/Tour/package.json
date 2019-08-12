@@ -1,0 +1,9 @@
+{
+  "name": "Tour",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./index.js",
+  "dependencies": {
+    "react-joyride": "^1.11.0"
+  }
+}

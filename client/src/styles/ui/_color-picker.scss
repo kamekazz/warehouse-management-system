@@ -1,0 +1,41 @@
+/*Color Picker Styles*/
+
+.cp-color {
+  width: 36px;
+  height: 14px;
+  border-radius: 2px;
+}
+
+.cp-swatch {
+  padding: 5px;
+  background: $white;
+  border-radius: 1px;
+  @include box-shadow(0 0 0 1px rgba($black, .1));
+  display: inline-block;
+  cursor: pointer;
+}
+
+.cp-popover {
+  position: absolute;
+  z-index: 2;
+}
+
+.cp-cover {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.photoshop-picker,
+.swatches-picker,
+.alpha-picker,
+.hue-picker {
+  width: 100% !important;
+}
+
+.material-picker {
+  width: 100% !important;
+  height: 100% !important;
+}

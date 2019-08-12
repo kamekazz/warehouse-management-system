@@ -1,0 +1,332 @@
+//Place Holders
+%jr-menu-icon {
+  .menu-icon {
+    position: relative;
+    width: 70%;
+    height: 2px;
+    min-height: 2px;
+    color: inherit;
+    background-color: $white;
+    display: block;
+    @include transition(all 0.4s ease);
+
+    &:after,
+    &:before {
+      position: absolute;
+      display: block;
+      color: inherit;
+      background-color: inherit;
+      left: 0;
+      height: 2px;
+      min-height: 2px;
+      content: "";
+      @include transition(all 0.4s ease);
+    }
+
+    &:after {
+      width: 120%;
+      bottom: -6px;
+    }
+
+    &:before {
+      width: 130%;
+      top: -6px;
+    }
+  }
+  &:hover {
+    & .menu-icon {
+      width: 100%;
+      &:after,
+      &:before {
+        width: 100%;
+      }
+    }
+  }
+}
+
+%size-50 {
+  height: $size-50 !important;
+  width: $size-50 !important;
+  line-height: $size-50;
+}
+
+%size-60 {
+  height: $size-60 !important;
+  width: $size-60 !important;
+  line-height: $size-60;
+}
+
+%size-70 {
+  height: $size-70 !important;
+  width: $size-70 !important;
+  line-height: $size-70;
+}
+
+%size-80 {
+  height: $size-80 !important;
+  width: $size-80 !important;
+  line-height: $size-80;
+}
+
+%size-90 {
+  height: $size-90 !important;
+  width: $size-90 !important;
+  line-height: $size-90;
+}
+
+%size-100 {
+  height: $size-100 !important;
+  width: $size-100 !important;
+  line-height: $size-100;
+}
+
+%size-36 {
+  height: ($size-30 + 6) !important;
+  width: ($size-30 + 6) !important;
+  line-height: ($size-30 + 6);
+}
+
+%size-30 {
+  height: $size-30 !important;
+  width: $size-30 !important;
+  line-height: $size-30;
+}
+
+%size-20 {
+  height: $size-20 !important;
+  width: $size-20 !important;
+  line-height: $size-20;
+}
+
+%size-10 {
+  height: $size-10 !important;
+  width: $size-10 !important;
+  line-height: $size-10;
+}
+
+%size-8 {
+  height: ($size-10 - 2) !important;
+  width: ($size-10 - 2) !important;
+  line-height: ($size-10 - 2);
+}
+
+%size-40 {
+  height: $size-40 !important;
+  width: $size-40 !important;
+  line-height: $size-40;
+}
+
+%size-120 {
+  height: $size-120 !important;
+  width: $size-120 !important;
+  line-height: $size-120;
+}
+
+%icon-addon {
+  display: inline-block;
+  text-align: center;
+  background-color: inherit;
+}
+
+%jr-card-style {
+  padding: $jr-card-padding;
+  @include box-shadow($jr-card-shadow);
+  margin-bottom: $jr-card-margin;
+  background-color: $white;
+  @include border-radius($border-radius);
+  position: relative;
+}
+
+/* Ripple magic */
+%ripple-effect {
+  position: relative;
+  overflow: hidden;
+  &:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba($white, 0.5);
+    opacity: 0;
+    @include border-radius(100%);
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+  }
+
+  &:hover:after {
+    animation: ripple 1s ease-out;
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  20% {
+    transform: scale(60, 60);
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(100, 100);
+  }
+}
+
+@-webkit-keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  20% {
+    transform: scale(60, 60);
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(100, 100);
+  }
+}
+
+//Pulse Effect
+%pulse-effect {
+  display: block;
+  @include box-shadow (0 0 0 rgba($danger, 0.4));
+  animation: pulse 2s infinite;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba($danger, 0.4);
+  }
+  70% {
+    -webkit-box-shadow: 0 0 0 10px rgba($danger, 0);
+  }
+  100% {
+    -webkit-box-shadow: 0 0 0 0 rgba($danger, 0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    -moz-box-shadow: 0 0 0 0 rgba($danger, 0.4);
+    box-shadow: 0 0 0 0 rgba($danger, 0.4);
+  }
+  70% {
+    -moz-box-shadow: 0 0 0 10px rgba($danger, 0);
+    box-shadow: 0 0 0 10px rgba($danger, 0);
+  }
+  100% {
+    -moz-box-shadow: 0 0 0 0 rgba($danger, 0);
+    box-shadow: 0 0 0 0 rgba($danger, 0);
+  }
+}
+
+//Online Effect
+%online-effect {
+  display: block;
+  @include box-shadow (0 0 0 rgba($green, 0.4));
+  animation: online 2s infinite;
+}
+
+@-webkit-keyframes online {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba($green, 0.4);
+  }
+  70% {
+    -webkit-box-shadow: 0 0 0 10px rgba($green, 0);
+  }
+  100% {
+    -webkit-box-shadow: 0 0 0 0 rgba($green, 0);
+  }
+}
+
+@keyframes online {
+  0% {
+    -moz-box-shadow: 0 0 0 0 rgba($green, 0.4);
+    box-shadow: 0 0 0 0 rgba($green, 0.4);
+  }
+  70% {
+    -moz-box-shadow: 0 0 0 10px rgba($green, 0);
+    box-shadow: 0 0 0 10px rgba($green, 0);
+  }
+  100% {
+    -moz-box-shadow: 0 0 0 0 rgba($green, 0);
+    box-shadow: 0 0 0 0 rgba($green, 0);
+  }
+}
+
+//Away Effect
+%away-effect {
+  display: block;
+  @include box-shadow (0 0 0 rgba($yellow, 0.4));
+  animation: away 2s infinite;
+}
+
+@-webkit-keyframes away {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba($yellow, 0.4);
+  }
+  70% {
+    -webkit-box-shadow: 0 0 0 10px rgba($yellow, 0);
+  }
+  100% {
+    -webkit-box-shadow: 0 0 0 0 rgba($yellow, 0);
+  }
+}
+
+@keyframes away {
+  0% {
+    -moz-box-shadow: 0 0 0 0 rgba($yellow, 0.4);
+    box-shadow: 0 0 0 0 rgba($yellow, 0.4);
+  }
+  70% {
+    -moz-box-shadow: 0 0 0 10px rgba($yellow, 0);
+    box-shadow: 0 0 0 10px rgba($yellow, 0);
+  }
+  100% {
+    -moz-box-shadow: 0 0 0 0 rgba($yellow, 0);
+    box-shadow: 0 0 0 0 rgba($yellow, 0);
+  }
+}
+
+/*Different size images set in Equal block height and width*/
+%thumb-equal {
+  position: relative;
+  padding-bottom: 68%;
+  height: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+%thumb-cover {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+%thumb-cover-img {
+  height: auto;
+  max-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+// Hover Effect On Bootstrap Components
+%link-hover {
+  color: $white !important;
+
+  &:hover,
+  &:focus {
+    color: $white !important;
+  }
+}
+
+// Pointer
+%pointer {
+  cursor: pointer;
+}

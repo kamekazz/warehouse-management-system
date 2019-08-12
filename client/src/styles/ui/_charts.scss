@@ -1,0 +1,23 @@
+/*Charts Styles*/
+
+.chart-header {
+  padding: 20px $jr-card-padding;
+
+  & .card-title {
+    h4 {
+      color: $white;
+      margin-bottom: 4px;
+    }
+  }
+
+  & .title h4 {
+    margin-bottom: 4px;
+  }
+  & p {
+    margin-bottom: 4px;
+  }
+}
+
+.recharts-responsive-container {
+  position: relative;
+}

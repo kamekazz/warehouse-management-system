@@ -1,0 +1,84 @@
+/*Testimonial Styles*/
+
+.testimonial-in-bg {
+  background-color: rgba($black, 0.8);
+  box-shadow: 5px 5px 6px rgba($black, 0.06);
+  padding: 30px 30px 30px 150px;
+  overflow: hidden;
+  position: relative;
+  margin-right: 20px;
+
+  @media screen and (max-width: 450px) {
+    padding-left: 100px;
+    margin-right: 10px;
+  }
+
+  & .pic {
+    display: inline-block;
+    width: $size-80;
+    height: $size-80;
+    @include border-radius(50%);
+    overflow: hidden;
+    position: absolute;
+    top: 30px;
+    left: 20px;
+    border: 4px solid map_get($amber, darken-2);
+
+    @media screen and (max-width: 450px) {
+      width: $size-50;
+      height: $size-50;
+    }
+  }
+  & .pic img {
+    width: 100%;
+    height: auto;
+  }
+  & .description {
+    color: map_get($gray, lighten-1);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 25px;
+    margin-bottom: 15px;
+    position: relative;
+
+    &:before {
+      content: "\f1b2";
+      font: {
+        family: 'Material-Design-Iconic-Font';
+        size: 24px;
+      }
+      -moz-transform: scaleX(-1);
+      -webkit-transform: scaleX(-1);
+      -o-transform: scaleX(-1);
+      transform: scaleX(-1);
+      position: absolute;
+      left: -24px;
+    }
+  }
+  & .title {
+    color: map_get($amber, darken-2);
+    margin-bottom: 2px;
+  }
+}
+
+// Testimonials Simple
+.classic-testimonial {
+  text-align: center;
+  padding: 0 10px;
+
+  & .pic {
+    margin: 0 auto;
+    margin-bottom: 30px;
+    width: $size-120;
+    height: $size-120;
+
+    @media screen and (max-width: 500px) {
+      width: $size-80;
+      height: $size-80;
+    }
+  }
+  & .pic img {
+    width: 100%;
+    height: 100%;
+  }
+}

@@ -1,0 +1,1133 @@
+/*Classic Dashboard Styles*/
+.jr-tag {
+  padding: 2px 10px;
+  @include border-radius($border-radius-sm);
+  background-color: $gray-500;
+  color: $white;
+  margin-bottom: 6px;
+  font-size: $font-size-sm;
+
+  &.text-uppercase {
+    padding: 3px 10px 1px;
+  }
+}
+
+.jr-chart-up {
+  color: map-get($green, base);
+
+  & .zmdi {
+    font-size: 2*$font-size-base;
+    line-height: 10px;
+    vertical-align: bottom;
+    padding-bottom: 2px;
+  }
+
+  .jr-bg-primary & {
+    color: $white;
+  }
+}
+
+.jr-chart-down {
+  color: $danger;
+
+  & .zmdi {
+    font-size: 2*$font-size-base;
+    line-height: 10px;
+    vertical-align: bottom;
+    @include rotate(180deg);
+    display: inline-block;
+    padding-bottom: 2px;
+  }
+}
+
+.jr-fillchart {
+  position: relative;
+  color: $white;
+  min-height: 122px;
+  @include display-flex();
+  @include align-items(flex-end);
+  @include transition(all 0.7s ease-out);
+  @include border-radius($border-radius);
+  overflow: hidden;
+
+  & .card-title,
+  & h2,
+  & .jr-chart-up,
+  & .jr-chart-down {
+    color: $white;
+  }
+
+  & .card-title {
+    font-size: $font-size-base - 0.125rem;
+    text-transform: uppercase;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  & .jr-chart-up,
+  & .jr-chart-down {
+    margin-right: 6px;
+  }
+
+  &-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    padding: 15px 20px;
+
+    .jr-overlay-fillchart & {
+      background-color: rgba($black, 0.20);
+    }
+
+    & .card-title {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &-btn {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    z-index: 1;
+    opacity: 0;
+    visibility: hidden;
+    cursor: pointer;
+    @include transition(all 0.3s ease-out);
+    border: solid 2*$border-width $white;
+    @include border-radius($border-radius-circle);
+    width: $size-30;
+    height: $size-30;
+    text-align: center;
+    line-height: $size-30;
+
+    & .icon:before {
+      line-height: $size-30;
+    }
+
+    &-close {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      color: $app-primary;
+      background-color: $white;
+      width: $size-30;
+      height: $size-30;
+      line-height: $size-30;
+      text-align: center;
+      opacity: 0;
+      visibility: hidden;
+      cursor: pointer;
+      @include transition(all 0.3s ease-out);
+      @include display-flex(flex, column, nowrap);
+      font-size: $font-size-lg;
+      @include border-radius($border-radius-circle);
+
+      & .zmdi {
+        font-size: $font-size-lg;
+        width: $size-30;
+        height: $size-30;
+        line-height: $size-30;
+      }
+    }
+  }
+
+  &:hover .jr-fillchart-btn {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &:hover {
+    @include box-shadow(0 10px 23px rgba($black, 0.43));
+  }
+
+  &-nocontent {
+    & .jr-fillchart-content,
+    & .jr-fillchart-btn,
+    &:hover .jr-fillchart-btn {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    & .jr-fillchart-btn-close {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .card-title {
+      position: absolute;
+      left: 20px;
+      top: 15px;
+      z-index: 1;
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+.jr-profileon {
+  margin-bottom: 20px;
+  position: relative;
+  @include border-radius($border-radius-lg);
+  overflow: hidden;
+
+  &-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px 20px;
+    z-index: 2;
+    @include gradient-y(rgba($black, 0), rgba($black, 0.9));
+
+    & * {
+      color: $white;
+    }
+
+    .jr-agents-list & {
+      padding: 5px 10px;
+    }
+  }
+
+  &-thumb {
+    position: relative;
+    max-height: 120px;
+
+    & > img {
+      width: 100%;
+    }
+  }
+
+  &-title {
+    margin-bottom: 5px;
+  }
+
+  .jr-agents-list & {
+    margin-bottom: 0;
+  }
+}
+
+.jr-agents-list {
+  @include display-flex();
+  margin: 0 -15px;
+  list-style: none;
+  padding-left: 0;
+
+  & li {
+    width: 20%;
+    padding: 0 15px;
+    margin-bottom: 30px;
+
+    @media screen and (max-width: 575px) {
+      width: 33.33%;
+      padding: 0 10px;
+      margin-bottom: 20px;
+    }
+  }
+
+  @media screen and (max-width: 575px) {
+    margin: 0 -10px;
+  }
+}
+
+.jr-entry {
+  &-sec {
+    position: relative;
+    margin-bottom: 20px;
+
+    .card &,
+    .jr-card & {
+      margin-bottom: 0;
+    }
+  }
+
+  &-title {
+    border-bottom: solid $border-width $border-color;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    font-size: $h3-font-size;
+    position: relative;
+
+    &:before {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      z-index: 1;
+      height: 3px;
+      width: 42px;
+      background-color: $app-primary;
+
+      .card &,
+      .jr-card & {
+        display: none;
+      }
+    }
+
+    .card &,
+    .jr-card & {
+      border-bottom: 0 none;
+      margin-bottom: 15px;
+      padding-bottom: 0;
+    }
+  }
+}
+
+.jr-timeline-info {
+  position: relative;
+
+  &:not(:last-child) {
+    padding-bottom: 20px;
+  }
+
+  &-day {
+    margin-bottom: 10px;
+    font-size: $font-size-sm;
+  }
+}
+
+.jr-img-more {
+  width: $size-70;
+  height: $size-40;
+  background-color: $white;
+  @include display-flex(flex, column, nowrap);
+  @include align-items(center);
+  @include justify-content(center);
+  border: solid $border-width $gray-400;
+  @include border-radius($border-radius);
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+}
+
+.jr-currentplan {
+  &-row {
+    @include display-flex(flex, row, wrap);
+    margin: 0 -5px;
+  }
+
+  &-col {
+    width: 50%;
+    padding: 0 5px;
+
+    @media screen and (max-width: 1366px) {
+      width: 100%;
+    }
+
+    @media screen and (max-width: 991px) {
+      width: 50%;
+    }
+
+    @media screen and (max-width: 575px) {
+      width: 100%;
+    }
+  }
+
+  &-right {
+    border-left: solid $border-width $border-color;
+
+    @media screen and (max-width: 1366px) {
+      border-left: 0 none !important;
+      border-top: solid $border-width $border-color;
+      padding-top: 10px;
+    }
+
+    @media screen and (max-width: 991px) {
+      border-left: solid $border-width $border-color !important;
+      border-top: 0 none;
+      padding-top: 0;
+    }
+
+    @media screen and (max-width: 575px) {
+      border-left: 0 none !important;
+      border-top: solid $border-width $border-color;
+      padding-top: 10px;
+    }
+
+    &-content {
+      @include display-flex(flex, column, nowrap);
+      @include justify-content(flex-end);
+      @include align-items(flex-end);
+      height: 100%;
+      text-align: right;
+
+      @media screen and (max-width: 1366px) {
+        @include justify-content(flex-start);
+        @include align-items(flex-start);
+        text-align: left;
+      }
+
+      @media screen and (max-width: 991px) {
+        @include justify-content(flex-end);
+        @include align-items(flex-end);
+        text-align: right;
+      }
+
+      @media screen and (max-width: 575px) {
+        @include justify-content(flex-start);
+        @include align-items(flex-start);
+        text-align: left;
+      }
+    }
+  }
+}
+
+.jr-oth-plans-down {
+  display: none;
+
+  @media (max-width: 1366px) {
+    display: block;
+    margin-top: 15px;
+  }
+
+  @media (max-width: 991px) {
+    display: none;
+    margin-top: 0;
+  }
+
+  @media (max-width: 575px) {
+    display: block;
+    margin-top: 15px;
+  }
+}
+
+.jr-oth-plans-up {
+  @media (max-width: 1366px) {
+    display: none;
+  }
+
+  @media (max-width: 991px) {
+    display: block;
+  }
+
+  @media (max-width: 575px) {
+    display: none;
+  }
+}
+
+.jr-dealclose-header {
+  @include display-flex();
+
+  &-right {
+    margin-left: auto;
+    @include display-flex();
+
+    @media (max-width: 1366px) {
+      margin-left: 0;
+      margin-bottom: 20px;
+      margin-top: 15px;
+    }
+
+    @media (max-width: 991px) {
+      margin-left: auto;
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+
+    @media (max-width: 575px) {
+      margin-left: 0;
+    }
+  }
+
+  @media (max-width: 1366px) {
+    @include display-flex(flex, column, nowrap);
+  }
+
+  @media (max-width: 991px) {
+    @include display-flex();
+  }
+
+  @media (max-width: 575px) {
+    @include display-flex(flex, column, nowrap);
+  }
+}
+
+.jr-featured-action,
+.jr-news-action {
+  position: relative;
+}
+
+.jr-featured {
+  &-item:not(:last-child) {
+    border-bottom: solid $border-width $border-color;
+    padding-bottom: 10px;
+    margin-bottom: $size-30;
+
+    .jr-card-profile & {
+      padding-bottom: 8px;
+      margin-bottom: 25px;
+    }
+  }
+
+  &-item {
+    @media (max-width: 575px) {
+      @include display-flex(flex, column, nowrap);
+      @include align-items(normal);
+    }
+  }
+
+  &-thumb {
+    position: relative;
+    margin-right: $size-20 + 5px;
+    margin-bottom: 10px;
+    max-width: 175px;
+
+    .jr-card-profile & {
+      max-width: ($size-120 + 10);
+
+      @media (max-width: 575px) {
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 575px) {
+      margin-right: 0;
+      margin-bottom: 15px;
+      max-width: none;
+    }
+
+    & .jr-tag {
+      position: absolute;
+      left: 15px;
+      top: 15px;
+      z-index: 1;
+      background-color: $warning;
+      color: $white;
+    }
+
+    & > img {
+      max-width: 100%;
+    }
+  }
+
+  &-content {
+    @include display-flex(flex, row, nowrap);
+    margin-right: 6px;
+
+    @media (max-width: 1366px) {
+      font-size: $font-size-sm;
+    }
+
+    @media (max-width: 991px) {
+
+      .jr-card-profile & {
+        @include display-flex(flex, column, nowrap);
+      }
+    }
+
+    @media (max-width: 767px) {
+      @include display-flex(flex, column, nowrap);
+      margin-right: 0;
+    }
+
+    &-right {
+      @include display-flex(flex, column, nowrap);
+      margin-left: auto;
+      text-align: right;
+
+      .jr-card-profile & {
+        font-size: $font-size-base;
+      }
+
+      @media (max-width: 991px) {
+        .jr-card-profile & {
+          text-align: left;
+          margin-left: 0;
+
+          & h2 {
+            font-size: $h4-font-size;
+
+            & .jr-fs-lg {
+              font-size: $font-size-base;
+            }
+          }
+        }
+      }
+
+      @media (max-width: 767px) {
+        margin-left: 0;
+        margin-top: 10px;
+        text-align: left;
+      }
+
+      @media (max-width: 575px) {
+        .jr-card-profile & {
+
+          & h2 {
+            font-size: $font-size-base;
+          }
+        }
+      }
+    }
+  }
+}
+
+.jr-featured-tabs {
+  margin-bottom: 20px;
+}
+
+.jr-news {
+  &-item {
+    @include display-flex(flex, row, nowrap);
+
+    &:not(:last-child) {
+      margin-bottom: $size-30;
+
+      @media (max-width: 767px) {
+        margin-bottom: $size-20;
+      }
+
+      @media (max-width: 575px) {
+        margin-bottom: $size-10;
+      }
+    }
+
+    @media (max-width: 575px) {
+      @include display-flex(flex, column, nowrap);
+      @include align-items(normal);
+    }
+  }
+
+  &-thumb {
+    position: relative;
+    margin-right: ($size-20 + 5);
+    max-width: 175px;
+
+    @media (max-width: 1366px) {
+      margin-right: 15px;
+    }
+
+    @media (max-width: 575px) {
+      margin-right: 0;
+      margin-bottom: 15px;
+      max-width: none;
+    }
+
+    & > img {
+      max-width: 100%;
+    }
+  }
+
+  &-content {
+    color: lighten($body-color, 8%);
+    width: calc(100% - 200px);
+
+    @media (max-width: 1366px) {
+      width: calc(100% - 190px);
+    }
+
+    @media (max-width: 575px) {
+      width: 100%;
+    }
+  }
+
+  &-tags {
+    &-row {
+      @include display-flex(flex, row, nowrap);
+
+      @media (max-width: 1366px) {
+        font-size: $font-size-sm;
+      }
+    }
+
+    &-left {
+      width: calc(100% - 180px);
+
+      @media (max-width: 1366px) {
+        width: calc(100% - 130px);
+      }
+    }
+
+    &-right {
+      width: 180px;
+      padding-left: 8px;
+      text-align: right;
+
+      @media (max-width: 1366px) {
+        width: 130px;
+      }
+    }
+  }
+}
+
+.jr-actchart {
+  margin-bottom: -4px;
+}
+
+.jr-line-indicator {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+
+  & li {
+    &:not(:last-child) {
+      margin-bottom: 6px;
+    }
+
+    & p {
+      margin-bottom: 0;
+    }
+  }
+
+  &-half {
+    @include display-flex(flex, row, wrap);
+    margin: 0 -12px;
+
+    & li {
+      width: 50%;
+      padding: 0 12px;
+    }
+  }
+
+  &-col {
+    width: 25%;
+    padding-right: 10px;
+
+    @media screen and (max-width: 767px) {
+      width: 100%;
+      padding-right: 0;
+    }
+  }
+}
+
+.jr-line-indi {
+  height: 3px;
+
+  &-info {
+    @include display-flex(flex, row, nowrap);
+    @include align-items(center);
+  }
+}
+
+.jr-pink-purple-gradient {
+  @include gradient-x($app-primary, $secondary);
+
+  &-reverse {
+    @include gradient-x-three-colors(#872776, #4f257a, 50%, #352883);
+  }
+}
+
+.jr-blue-cyan-gradient {
+  @include gradient-x(#3f51b5, #1fb6fc);
+}
+
+.jr-orange-yellow-gradient {
+  @include gradient-x(#aa3c6d, #ff9800);
+}
+
+.jr-app-thumb {
+  display: inline-block;
+}
+
+.jr-visit-col {
+  order: 1;
+
+  @media screen and (max-width: 991px) {
+    order: 2;
+    margin-top: 20px;
+  }
+}
+
+.jr-audi-col {
+  order: 2;
+
+  @media screen and (max-width: 991px) {
+    order: 1;
+  }
+
+  @media screen and (max-width: 575px) {
+    margin-top: 20px;
+  }
+}
+
+.jr-wel-ema {
+  position: relative;
+}
+
+.jr-task-list {
+  position: relative;
+}
+
+.jr-task-list-item {
+  position: relative;
+
+  &:not(:last-child) {
+    margin-bottom: 15px;
+
+    .jr-card-ticketlist & {
+      margin-bottom: 20px;
+    }
+  }
+
+  .jr-card-ticketlist & {
+
+    .jr-hover {
+      display: none;
+
+      @media screen and (max-width: 575px) {
+        display: block;
+      }
+    }
+
+    .jr-nonhover {
+      @media screen and (max-width: 575px) {
+        display: none;
+      }
+    }
+
+    &:hover {
+      .jr-hover {
+        display: inline-block;
+      }
+
+      .jr-nonhover {
+        display: none;
+      }
+
+      & .jr-task-item-title {
+        color: $app-primary;
+      }
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+    & .jr-text-hover {
+      color: $app-primary;
+    }
+  }
+}
+
+.jr-task-item-content {
+  @include display-flex(flex, row, nowrap);
+  @include align-items(center);
+  max-width: calc(100% - 40px);
+
+  &-left {
+    width: calc(100% - 250px);
+
+    @media screen and (max-width: 575px) {
+      width: 100%;
+      margin-bottom: 10px;
+      padding-right: 0;
+      padding-right: $size-50;
+    }
+
+    .jr-card-ticketlist & {
+      width: calc(100% - 60px);
+
+      @media screen and (max-width: 575px) {
+        width: 100%;
+      }
+    }
+  }
+
+  &-right {
+    width: 250px;
+    @include display-flex(flex, row, nowrap);
+    @include justify-content(flex-end);
+    @include align-items(center);
+    padding-left: 10px;
+
+    @media screen and (max-width: 575px) {
+      width: 100%;
+      padding-left: 0;
+      @include justify-content(flex-start);
+      margin-left: -70px;
+
+      .jr-card-ticketlist & {
+        margin-left: 0;
+      }
+    }
+
+    .jr-card-ticketlist & {
+      padding-top: 8px;
+      width: 60px;
+
+      @media screen and (max-width: 575px) {
+        width: 100%;
+      }
+    }
+  }
+
+  .jr-card-ticketlist & {
+    max-width: calc(100% - 58px);
+  }
+
+  @media screen and (max-width: 575px) {
+    flex-direction: column;
+    position: relative;
+
+    & .jr-task-date {
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 1;
+    }
+
+    .jr-card-ticketlist & {
+      padding-right: 0;
+    }
+  }
+}
+
+.jr-card-ticketlist {
+  .jr-link {
+    color: $app-primary;
+  }
+}
+
+.jr-overview-row {
+  @include display-flex(flex, row, nowrap);
+
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+  }
+}
+
+.jr-overview-description {
+  width: 32%;
+  color: $gray-700;
+  @include display-flex(flex, column, nowrap);
+  margin-top: -30px;
+  margin-right: -$jr-card-margin;
+  margin-bottom: -30px;
+  border-left: solid $border-width $border-color;
+  order: 2;
+
+  @media screen and (max-width: 767px) {
+    order: 1;
+    width: 100%;
+    border-left: 0 none !important;
+    border-top: solid $border-width $border-color;
+    border-bottom: solid $border-width $border-color;
+    margin: 15px 0 0;
+  }
+}
+
+.jr-map-col {
+  flex: 1;
+  padding: 50px 0 10px;
+  order: 1;
+
+  @media screen and (max-width: 767px) {
+    order: 2;
+    padding: 15px 0 0;
+  }
+}
+
+.jr-revenu {
+  flex: 1;
+  padding: 15px;
+  @include display-flex(flex, column, nowrap);
+  @include justify-content(center);
+  @include align-items(center);
+
+  &-total {
+    border-bottom: solid $border-width $border-color;
+
+    & h1 {
+      font-size: $h1-font-size + $h6-font-size;
+      font-weight: $font-weight-medium;
+      margin-bottom: 4px;
+
+      @media screen and (max-width: 767px) {
+        font-size: $h1-font-size;
+      }
+    }
+  }
+
+  &-row {
+    @include display-flex(flex, row, wrap);
+    width: 100%;
+  }
+
+  &-col {
+    width: 50%;
+    padding: 0 15px;
+    text-align: center;
+
+    &:not(:last-child) {
+      border-right: solid $border-width $border-color;
+    }
+  }
+
+  & h3 {
+    font-size: ($h1-font-size - 0.125rem);
+    margin-bottom: 0;
+    font-weight: $font-weight-medium;
+  }
+}
+
+.jr-rechart {
+  position: relative;
+
+  &-prod {
+    position: absolute;
+    left: 30px;
+    top: 0;
+    z-index: 1;
+
+    @media screen and (max-width: 1366px) {
+      left: 20px;
+    }
+
+    & .zmdi {
+      font-size: 2*$font-size-base;
+      line-height: 10px;
+      vertical-align: bottom;
+    }
+  }
+}
+
+.jr-widget-bg {
+  color: $white;
+  position: relative;
+}
+
+.jr-widget-badge {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+  background-color: darken(map-get($pink, base), 5%);
+  color: $white;
+  padding: 5px 12px;
+  @include border-radius(0 $border-radius 0 $border-radius);
+}
+
+.jr-onchart {
+  position: relative;
+
+  & .jr-onchart-title {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 8px;
+    z-index: 1;
+    text-align: center;
+    font-weight: $font-weight-bold;
+    font-size: 2*$font-size-sm;
+    color: $white;
+
+    & .zmdi {
+      font-size: 2*$font-size-base;
+    }
+  }
+
+  & .jr-badge-up {
+    position: absolute;
+    right: 60px;
+    bottom: -20px;
+    z-index: 1;
+    padding: 5px;
+    margin: 0;
+    @include border-radius($border-radius-circle);
+    height: $size-40;
+    width: $size-40;
+    line-height: 36px;
+    text-align: center;
+    background-color: $white;
+    color: $app-primary;
+    @include display-flex(flex, row, wrap);
+    @include align-items(center);
+    @include justify-content(center);
+
+    &-right {
+      right: 10px;
+      bottom: -15px;
+      height: $size-30;
+      min-height: $size-30;
+      width: $size-30;
+      @include box-shadow(0 .5rem 1rem rgba($black, .15));
+      line-height: ($size-30 - 5) !important;
+    }
+  }
+}
+
+.jr-dot-arrow {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  padding-right: 15px;
+  cursor: pointer;
+  @include display-flex(flex, column, nowrap);
+  @include justify-content(center);
+
+  .jr-dot {
+    cursor: pointer;
+    @include transition(all 0.3s ease-out);
+    font-size: 2*$font-size-sm;
+    @include display-flex(flex, column, nowrap);
+    @include justify-content(center);
+  }
+}
+
+.jr-hover-arrow {
+  @include transition(all 0.3s ease-out);
+  @include border-radius($border-radius-circle 0 0 $border-radius-circle);
+  @include display-flex(flex, row, wrap);
+  @include justify-content(flex-start);
+  @include align-items(center);
+  width: ($size-100 + 7);
+  height: ($size-100 + 7);
+  position: absolute;
+  left: 10px;
+  padding: 15px;
+  font-size: ($font-size-lg + 0.25rem);
+}
+
+.jr-dot-arrow-hover {
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    & .jr-hover-arrow {
+      left: -25px;
+    }
+  }
+}
+
+.jr-user-wid {
+  width: $size-80;
+  height: ($size-100 - 10);
+}
+
+.jr-build-box-lay {
+  &-content {
+    max-width: calc(100% - 70px);
+  }
+
+  @media (max-width: 1366px) {
+    padding: 0 10px !important;
+
+    & img {
+      width: $size-50;
+    }
+  }
+}
+
+.jr-fnd-content {
+  @media screen and (max-width: 575px) {
+    margin-top: 20px;
+  }
+}
+
+.jr-fnd-gallery-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0 -10px;
+  @include display-flex(flex, row, wrap);
+
+  & li {
+    padding: 0 10px;
+    width: 33.33%;
+  }
+}

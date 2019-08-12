@@ -1,0 +1,434 @@
+/* App Module Style */
+
+.app-wrapper-module {
+  @include display-flex(flex, column, nowrap);
+  @include align-items(stretch);
+  height: 100%;
+}
+
+.app-module {
+  position: relative;
+  @include display-flex(flex, row, nowrap);
+  margin: -20px;
+
+  @media screen and (min-width: 576px) {
+    margin: -30px;
+  }
+}
+
+.module-side {
+  position: relative;
+  z-index: 2;
+  @include display-flex(flex, column, nowrap);
+  @include flex(0, 1, 230px);
+  max-width: 230px;
+  min-width: 230px;
+}
+
+.module-side-header {
+  border-bottom: solid 1px $gray-200;
+  @include display-flex(flex, column, nowrap);
+
+  & .user-detail {
+    padding: 15px 10px;
+    text-align: center;
+  }
+}
+
+.module-logo {
+  padding: 10px;
+  @include display-flex();
+  @include align-items(center);
+  @include justify-content(center);
+  min-height: 78px;
+  font-size: 20px;
+  background-color: lighten($gray-100, 0.5%);
+  color: darken($gray-800, 2%);
+  & .zmdi {
+    font-size: 28px;
+  }
+}
+
+.module-user-info {
+  @include display-flex(flex, column, nowrap);
+}
+
+.module-user-detail {
+  font-size: 12px;
+}
+
+.module-side-content {
+  @extend .module-user-info;
+}
+
+.module-add-task {
+  @include display-flex();
+  padding: 24px;
+}
+
+.module-nav {
+  list-style: none;
+  padding-left: 0;
+  @include display-flex(flex, column, nowrap);
+  @include justify-content(center);
+
+  & li {
+    @include display-flex(flex, column, nowrap);
+  }
+
+  & li .jr-link {
+    padding: 12px 29px;
+    color: lighten($light-gray, 15%);
+    @include display-flex();
+    @include align-items(center);
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      color: $body-color;
+      outline: none;
+    }
+
+    &.active {
+      color: $app-primary;
+    }
+  }
+
+  & li i {
+    margin-right: 16px;
+    font-size: 16px;
+  }
+
+  & li span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  & li.module-nav-label {
+    padding: 12px 29px;
+  }
+}
+
+.module-box {
+  position: relative;
+  z-index: 2;
+  @include display-flex(flex, column, nowrap);
+  @include flex(1, 1, auto);
+  max-width: calc(100% - 231px);
+}
+
+.module-box-header {
+  padding: 10px 26px;
+  min-height: 79px;
+  @include display-flex(flex, column, nowrap);
+  @include justify-content(center);
+  background-color: $white;
+  border-bottom: solid 1px $gray-200;
+
+  & .search-bar.right-side-icon {
+    min-width: 350px;
+
+    & .form-control {
+      @include border-radius(0);
+      height: 46px;
+      padding: 10px 18px 10px 40px;
+
+      &:focus {
+        background-color: $gray-100;
+      }
+    }
+
+    & .search-icon {
+      width: 25px;
+      height: 46px;
+      font-size: 16px;
+      left: 10px;
+      top: 0;
+      padding: 0;
+    }
+  }
+}
+
+.module-box-header-inner {
+  @include display-flex();
+  @include align-items(center);
+  @include justify-content(space-between);
+}
+
+.module-box-content {
+  background-color: $white;
+  @include display-flex(flex, column, nowrap);
+}
+
+.module-box-topbar {
+  padding: 8px 12px;
+  @include display-flex();
+  border-bottom: solid 1px $gray-200;
+
+  & button + button {
+    @include border-radius(0);
+  }
+}
+
+.module-box-topbar-todo {
+  padding-left: 64px;
+
+  @media screen and (max-width: 575px) {
+    padding-left: 27px;
+  }
+}
+
+.module-list-icon {
+  @include display-flex();
+  @include align-items(center);
+  padding-right: 10px;
+}
+
+.bar-icon {
+  margin-right: 15px;
+}
+
+.toolbar-separator {
+  display: inline-block;
+  background-color: $gray-600;
+  height: 14px;
+  width: 2px;
+  margin: 0 12px;
+}
+
+.toolbar-left {
+  margin-left: auto;
+}
+
+.module-list {
+  @include display-flex(flex, column, nowrap);
+  @include justify-content(center);
+}
+
+.module-list-item {
+  @include display-flex();
+  @include align-items(center);
+  padding: 15px 28px;
+  border-bottom: solid 1px $gray-200;
+  z-index: 5;
+  position: relative;
+  cursor: pointer;
+
+  & > .check-label {
+    margin-left: 0;
+    margin-bottom: 0;
+  }
+
+  &.mail-cell {
+    padding-left: 12px;
+    @include align-items(start);
+  }
+}
+
+.module-detail-header {
+  margin-bottom: 10px;
+
+  & > .check-label {
+    margin-right: auto;
+  }
+}
+
+.module-list-info {
+  padding-left: 10px;
+  @include flex(1, 1, 0);
+  @include display-flex(flex, column, nowrap);
+  max-width: calc(100% - 170px);
+}
+
+.module-todo-content {
+  position: relative;
+
+  & .subject {
+    margin-bottom: 5px;
+  }
+}
+
+.module-list-actions {
+  text-align: right;
+}
+
+.app-module-sidenav {
+  background-color: $white;
+  border-right: solid 1px $gray-200;
+  position: relative;
+  z-index: 9;
+
+  & .chat-sidenav-main {
+    max-width: 300px;
+    min-width: 300px;
+    width: 90%;
+  }
+}
+
+.module-date {
+  max-width: 160px;
+
+  & > div:before {
+    display: none;
+  }
+}
+
+.module-detail-item {
+  padding: 10px 28px;
+}
+
+.task-title {
+  font-size: 18px;
+}
+
+.chat-todo-avatar {
+  margin-right: 15px;
+}
+
+.modal-title {
+  @include display-flex();
+  @include justify-content(space-between);
+  @include align-items(center);
+  width: 100%;
+  font-size: 18px;
+}
+
+.loader-view-block {
+  @include display-flex(flex, column, nowrap);
+  @include justify-content(center);
+  @include align-items(center);
+
+  & .slimScrollBar {
+    display: none !important;
+  }
+}
+
+.loader-view {
+  @extend .loader-view-block;
+}
+
+.module-date > div {
+  @include align-items(center);
+}
+
+@media screen and (max-width: 1199px) {
+  .module-side {
+    @include display-flex(block, row, nowrap);
+    @include flex(1);
+    max-width: $side-nav-width;
+    min-width: $side-nav-width;
+  }
+
+  .module-box-header {
+    position: relative;
+    min-height: 58px;
+    padding: 5px 26px 5px 75px;
+
+    & .drawer-btn {
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 1;
+      border-right: solid 1px $gray-200;
+      height: 58px;
+      width: 56px;
+      @include border-radius(0);
+      font-size: 22px;
+    }
+
+    & .search-bar.right-side-icon .form-control {
+      height: 38px;
+      padding: 5px 18px 5px 40px;
+    }
+
+    & .search-bar.right-side-icon .search-icon {
+      height: 38px;
+    }
+  }
+
+  .chat-loader-view {
+    height: calc(100vh - 120px);
+  }
+
+  .module-box {
+    max-width: 100%;
+  }
+}
+
+@media screen and (min-width: 991px) {
+  .modal-dialog {
+    max-width: 750px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .app-module {
+    padding-top: 0;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .module-box-header .search-bar {
+    margin-left: 0;
+    max-width: none;
+
+    &.right-side-icon {
+      min-width: 250px;
+    }
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .module-list-item {
+    padding: 10px 12px;
+  }
+
+  .module-list-info {
+    max-width: 100%;
+  }
+
+  .module-box-header {
+    & .nav-searchbox.quick-menu .dropdown-menu {
+      right: auto !important;
+      left: 0 !important;
+    }
+
+    & .search-bar.right-side-icon {
+      min-width: 200px;
+
+      & .form-control {
+        @include border-radius(0.25rem);
+      }
+    }
+
+    & .nav-searchbox.quick-menu .dropdown-menu {
+      &:after {
+        right: auto;
+        left: 9px;
+      }
+
+      &:before {
+        right: auto;
+        left: 9px;
+      }
+    }
+
+    & .search-bar {
+      padding-right: 2px;
+    }
+  }
+}
+
+@media screen and (max-width: 399px) {
+  .module-box-header {
+    & .search-bar.right-side-icon {
+      min-width: 100px;
+    }
+  }
+}
+
+@media screen and (min-width: 399px) {
+  .d-xs-flex {
+    display: flex !important;
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "MediaControlCard",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./MediaControlCard.js",
+  "dependencies": {
+    "material-ui": "next",
+    "@material-ui/icons": "next"
+  }
+}

@@ -1,0 +1,157 @@
+/*Pricing Tables Styles*/
+.pt-classic,
+.pt-default,
+.pt-dark,
+.pt-circle {
+
+  & .package {
+    position: relative;
+    padding: 0;
+    overflow: hidden;
+    border: 0 none;
+    @include border-radius(10px);
+    @include transition(all 0.5s ease-in-out);
+
+    &:hover,
+    &:focus,
+    &:active {
+      @include box-shadow (0 0 16px rgba(#666666, 0.5));
+      -webkit-transform: scale(1.05);
+      -ms-transform: scale(1.05);
+      transform: scale(1.05);
+    }
+    &.highlight {
+      -webkit-transform: scale(1.05);
+      -ms-transform: scale(1.05); // IE9 only
+      -o-transform: scale(1.05);
+      transform: scale(1.05);
+      z-index: 2;
+    }
+  }
+  & .package-header {
+    padding: 35px;
+    text-align: center;
+
+    & > .price {
+      display: inline-block;
+      font-size: 36px;
+      font-weight: 700;
+      margin-left: 0;
+      margin-bottom: 12px;
+      & > i {
+        display: inline-block;
+        margin-right: 6px;
+        font-weight: bold;
+      }
+    }
+
+    & h5 {
+      color: inherit;
+    }
+  }
+
+  & .package-items {
+    list-style: none;
+    font-size: 14px;
+    margin: 0;
+    padding: 50px 50px 120px;
+
+    & li {
+      margin-bottom: 16px;
+      @include clearfix();
+      line-height: inherit;
+      & i {
+        float: left;
+        min-width: 20px;
+        margin-right: 16px;
+        line-height: inherit;
+      }
+
+      & span {
+        display: block;
+        overflow: hidden;
+      }
+    }
+  }
+
+  & .package-footer {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    padding: 40px 50px;
+    text-align: center;
+
+    & .btn {
+      color: inherit;
+      padding: 10px 30px;
+      border: 0 none;
+    }
+  }
+}
+
+.pt-classic .package {
+  border: 0 none;
+  @include border-radius(0);
+}
+
+.pt-dark {
+  & .package {
+    &:hover {
+      @include border-radius(20px);
+    }
+  }
+}
+
+.pt-circle {
+  & .package-header {
+    @include border-radius(50%);
+    height: 224px;
+    width: 224px;
+    margin: 40px auto 0;
+    @include align-items(center);
+
+    & .price {
+      margin-top: 30px;
+    }
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .pt-classic,
+  .pt-default,
+  .pt-dark,
+  .pt-circle {
+    & .package-header {
+      padding: 30px 20px;
+    }
+    & .package-items {
+      padding: 30px 20px 120px;
+    }
+  }
+
+  .pt-circle {
+    & .package-header {
+      height: 204px;
+      width: 204px;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .pt-classic,
+  .pt-default,
+  .pt-dark,
+  .pt-circle {
+    & .package {
+      &:hover,
+      &:focus,
+      &:active,
+      &.highlight {
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+/*Badges Styles*/
+.badge {
+  font-weight: 400;
+  padding: 3px 8px;
+  line-height: inherit;
+  margin-bottom: 6px;
+  @include border-radius($border-radius-sm);
+
+  &:not(:last-child) {
+    margin-right: 15px;
+  }
+
+  table & {
+    margin-bottom: 0;
+  }
+}
+
+a.badge {
+  @include hover-focus {
+    text-decoration: none;
+  }
+}
+
+.badge-pill {
+  @include border-radius(20px);
+}
+
+.badge-border {
+  border: 2px solid !important;
+}

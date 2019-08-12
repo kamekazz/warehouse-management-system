@@ -3,10 +3,13 @@ const router = express.Router();
 const Ticket = require('../model/Ticket');
 
 //SCEND TICK EN GET PRODUCT
-router.post('/', async (req, res) => {
-  const { id } = req.body;
+router.post('/start_picker', async (req, res) => {
+  const { ticketId, productId, productValue } = req.body;
   try {
-    const ticket = await Ticket.findOne({ _id: id });
+    const ticket = await Ticket.findOne({ _id: ticketId }).populate({
+      path: 'products',
+      model: 'products'
+    });
     if (!ticket) {
       res.json({
         success: false,
@@ -14,8 +17,8 @@ router.post('/', async (req, res) => {
       });
     } else {
       if (ticket.status === 'plash') {
-        ticket.status = 'picking';
-        await ticket.save();
+        ticket['status'] = 'start';
+        // await ticket.save();
         res.json({
           success: true,
           message: 'Ticket',

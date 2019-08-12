@@ -1,0 +1,36 @@
+/*Alert Styles*/
+.alert {
+  border: 0 none;
+}
+
+.alert {
+  padding: 20px 24px;
+  @include border-radius($border-radius-sm);
+  position: relative;
+
+  & .close {
+    line-height: inherit;
+    font-weight: $font-weight-light;
+  }
+
+  & .alert-addon {
+    width: $size-60;
+    background-color: rgba($black, 0.2);
+    @include display-flex(flex, column, nowrap);
+    @include justify-content(center);
+    @include align-items(center);
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+}
+
+.alert-dismissible {
+  padding-right: $size-60;
+}
+
+.alert-addon-card {
+  padding-left: $size-80;
+}

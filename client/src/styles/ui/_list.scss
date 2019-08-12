@@ -1,0 +1,66 @@
+/*List Styles*/
+
+.pinned-list {
+  position: relative;
+  height: 370px;
+  overflow: auto;
+  width: auto;
+}
+
+.user-list {
+  width: 100%;
+  padding: 20px 15px 10px;
+
+  & .user-avatar {
+    margin-right: 20px;
+    @extend %size-100;
+
+    @media screen and (max-width: 575px) {
+      height: 80px !important;
+      width: 80px !important;
+      line-height: 80px;
+    }
+  }
+  & h6 {
+    color: lighten($body-color, 40%);
+  }
+}
+
+.list-inline {
+  margin-left: -5px;
+  margin-right: -5px;
+
+  & li {
+    padding: 0 5px;
+  }
+
+  &-3 {
+    padding-left: 3px;
+    padding-right: 3px;
+  }
+}
+
+.card-strip {
+  border-bottom: solid 1px $gray-300;
+  margin-bottom: 10px;
+}
+
+.jr-mbtn-list {
+  margin-left: -20px;
+}
+
+.jr-dot-list {
+  list-style: none;
+  margin: 0 -3px 10px;
+  padding-left: 0;
+
+  & li {
+    display: inline-block;
+    vertical-align: top;
+    padding: 0 3px;
+  }
+
+  @media screen and (max-width: 575px) {
+    margin-bottom: 5px;
+  }
+}

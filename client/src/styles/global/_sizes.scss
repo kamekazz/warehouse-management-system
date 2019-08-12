@@ -1,0 +1,9 @@
+// Width and height Styles
+
+@each $prop, $abbrev in (width: w, height: h, max-width: mw, max-height: mh) {
+  @each $size, $length in $sizes {
+    .#{$abbrev}-#{$size} {
+      #{$prop}: $length !important;
+    }
+  }
+}

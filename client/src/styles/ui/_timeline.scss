@@ -1,0 +1,398 @@
+/*Time Lines Style*/
+
+.timeline-left {
+  float: left;
+  margin-right: 20px;
+}
+
+.timeline-right {
+  float: right;
+  margin-left: 20px;
+}
+
+.timeline-circle {
+  @include border-radius(50%);
+}
+
+.timeline-section {
+  margin-bottom: 25px;
+}
+
+.timeline-item {
+  padding-bottom: 25px;
+  padding-left: 80px;
+  position: relative;
+
+  &:before {
+    border-left: solid 2px $gray-300;
+    content: "";
+    left: 25px;
+    position: absolute;
+    top: 25px;
+    bottom: -20px;
+    width: 2px;
+    z-index: 1;
+  }
+  &:first-child:before {
+    border-left-style: dashed;
+  }
+  &:last-child:before {
+    border-left-style: dashed;
+    bottom: 25px;
+  }
+}
+
+.timeline-badge {
+  background-color: $gray-300;
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+  position: absolute;
+  left: 0;
+  top: 16px;
+  z-index: 2;
+  font-size: 16px;
+  color: $white;
+  text-align: center;
+  @include border-radius(50%);
+
+  &.timeline-img {
+    background-color: transparent;
+  }
+  & svg {
+    vertical-align: calc(100% - 56px);
+  }
+}
+
+.timeline-img > img,
+.timeline-header-img > img {
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+}
+
+.timeline-panel {
+  padding: 20px 30px;
+  position: relative;
+  background-color: $white;
+  @include border-radius(6px);
+  @include box-shadow($box-shadow-lg);
+
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    border-style: solid;
+    display: inline-block;
+  }
+
+  &:before {
+    border-color: transparent $gray-300;
+    border-width: 15px 15px 15px 0;
+    left: -15px;
+    top: 27px;
+  }
+
+  &:after {
+    border-color: transparent $white;
+    border-width: 14px 14px 14px 0;
+    left: -14px;
+    top: 27px;
+  }
+}
+
+.timeline-no-padding {
+  padding: 0;
+}
+
+.timeline-no-shadow {
+  @include box-shadow(none);
+  &:before,
+  &:after {
+    display: none;
+  }
+}
+
+.timeline-panel-header, .timeline-header-img {
+  margin-bottom: 10px;
+}
+
+.timeline-inverted {
+  & .timeline-left {
+    float: right;
+    margin-right: 0;
+    margin-left: 20px;
+  }
+}
+
+.timeline-heading {
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.timeline-body {
+  clear: both;
+}
+
+/*Gxtl Center Style*/
+.timeline-center {
+  & .timeline-item {
+    clear: both;
+    float: right;
+    width: 50%;
+    padding-left: 55px;
+
+    &:before {
+      left: 0;
+    }
+  }
+
+  & .timeline-badge {
+    left: -25px;
+    right: auto;
+  }
+
+  & .timeline-time {
+    position: absolute;
+    top: 32px;
+    left: -150px;
+    right: auto;
+    z-index: 2;
+  }
+
+  & .timeline-inverted {
+    float: left;
+    text-align: right;
+    padding-left: 0;
+    padding-right: 55px;
+
+    &:before {
+      border-left: 0 none;
+      border-right: solid 2px $gray-300;
+      left: auto;
+      right: -2px;
+    }
+    & .timeline-badge {
+      left: auto;
+      right: -25px;
+    }
+
+    & .timeline-panel {
+      &:before {
+        border-width: 15px 0 15px 15px;
+        left: auto;
+        right: -15px;
+      }
+      &:after {
+        border-width: 14px 0 14px 14px;
+        left: auto;
+        right: -14px;
+      }
+    }
+
+    & .timeline-time {
+      position: absolute;
+      top: 32px;
+      right: -150px;
+      left: auto;
+      z-index: 2;
+    }
+  }
+}
+
+/*Gxtl Zigzag Style*/
+.timeline-zigzag {
+  & .timeline-item {
+    padding-left: 150px;
+
+    & + .timeline-item {
+      margin-top: -80px;
+    }
+  }
+
+  & .timeline-img {
+    width: 90px;
+    height: 90px;
+    left: 5px;
+    & > img {
+      width: 100%;
+    }
+  }
+
+  & .timeline-inverted .timeline-img {
+    right: 5px !important;
+  }
+
+  & .timeline-item:before {
+    @include rotate(35deg);
+    top: 20px;
+    bottom: 20px;
+  }
+
+  & .timeline-inverted {
+    padding-left: 0;
+    padding-right: 150px;
+    &:before {
+      @include rotate(-35deg);
+    }
+  }
+
+  & .timeline-item:first-child:before {
+    border-left-style: solid;
+  }
+
+  & .timeline-item:last-child:before {
+    display: none;
+  }
+}
+
+.timeline-item:last-child:before {
+  bottom: 25px;
+}
+
+@media screen and (max-width: 991px) {
+  .timeline-zigzag .timeline-item + .timeline-item {
+    margin-top: -60px;
+  }
+
+  .timeline-zigzag .timeline-item:before {
+    bottom: 0;
+  }
+
+  .timeline-zigzag {
+    & .timeline-item {
+      padding-left: 120px;
+    }
+
+    & .timeline-inverted {
+      padding-right: 120px;
+      padding-left: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .timeline-center {
+    & .timeline-item {
+      float: none;
+      padding-left: 80px;
+      width: auto;
+      &:before {
+        left: 25px;
+      }
+    }
+
+    & .timeline-badge {
+      left: 0;
+    }
+
+    & .timeline-inverted {
+      float: none;
+      text-align: left;
+      padding-right: 0;
+
+      &:before {
+        border-left: solid 2px $gray-300;
+        border-right: 0 none;
+        left: 24px;
+        right: auto;
+      }
+      & .timeline-badge {
+        right: auto;
+        left: 0;
+      }
+
+      & .timeline-panel {
+        &:before {
+          border-width: 15px 15px 15px 0;
+          left: -15px;
+          right: auto;
+        }
+        &:after {
+          border-width: 14px 14px 14px 0;
+          left: -14px;
+          right: auto;
+        }
+      }
+    }
+  }
+
+  .timeline-inverted {
+    & .timeline-panel-header {
+      float: none;
+    }
+
+    & .timeline-left {
+      float: left;
+      margin-left: 0;
+      margin-right: 20px;
+    }
+  }
+
+  .timeline-zigzag {
+    & .timeline-panel {
+      max-height: none;
+      min-height: 10px;
+      overflow-y: visible;
+    }
+
+    & .timeline-item {
+      padding-left: 100px;
+      & + .timeline-item {
+        margin-top: 0;
+      }
+
+      &:before {
+        transform: none;
+        top: 25px;
+        bottom: -25px;
+        left: 45px;
+      }
+
+      &:last-child:before {
+        bottom: 0;
+      }
+    }
+    & .timeline-inverted:before {
+      transform: none;
+    }
+  }
+
+  .timeline-center {
+    & .timeline-time,
+    & .timeline-inverted .timeline-time {
+      position: relative;
+      top: auto;
+      left: auto;
+      right: auto;
+      margin-bottom: 6px;
+    }
+
+    .timeline-time-item .timeline-panel::before {
+      top: 10px;
+    }
+
+    .timeline-time-item .timeline-panel::after {
+      top: 11px;
+    }
+  }
+}
+
+@media screen and (max-width: 399px) {
+  .timeline-left {
+    float: none;
+    margin-right: 0;
+  }
+
+  .timeline-right {
+    float: none;
+    margin-left: 0;
+  }
+
+  .timeline-inverted {
+    & .timeline-left {
+      float: none;
+      margin-right: 0;
+    }
+  }
+}

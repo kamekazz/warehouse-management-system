@@ -1,0 +1,101 @@
+/*
+Author         : G-axon
+Template Name  : Jumbo React - Admin Template
+Version        : 1.0
+*/
+/*=============================================================
+    Table of Contents:
+    =============================
+    A. Globals
+        01. Custom Animation
+    B. Base
+        01. Base Styles
+        02. Typography Styles
+    C. Layouts
+        01. App Layout Styles
+        02. Sidebar Styles
+        03. Header Styles
+        04. Main Content Styles
+        05. Footer Styles
+        06. Right Sidebar Styles
+        07. Navbar Styles
+    D. UI Components
+        01. Alert Styles
+        02. Avatar Styles
+        03. Badges Styles
+        04. Blockquotes Styles
+        05. Bottom Navigation Styles
+        06. Breadcrumb Styles
+        07. Button Styles
+        08. Button Group Styles
+        09. Callout Styles
+        10. Cards Styles
+        11. Carousel Styles
+        12. Charts Styles
+        13. Chips Styles
+        14. Color Picker Styles
+        15. Drawer Styles
+        16. E-commerce Styles
+        17. Form Styles
+        18. Grids List Styles
+        19. Icons Styles
+        20. Input Styles
+        21. Label Styles
+        22. List Styles
+        23. Nav Style
+        24. Popover Styles
+        25. Pricing Tables Styles
+        26. Progressbar Styles
+        27. React Joyride Styles
+        28. Tables Styles
+        29. Tabs Styles
+        30. Testimonial Styles
+        31. Time Lines Style
+        32. Joyride Tour Styles
+    E. Pages
+        01. Login Styles
+        02. Error Styles
+        03. Editor Styles
+        04. Contact Page Styles
+        05. Portfolio Styles
+        06. Faqs Styles
+        07. Dashboard Styles
+        08. Classic Dashboard Style
+        09. Dropzone Style
+    F. Slider
+        01. Owl Carousel Style
+    G. Modules
+        01. App Module Style
+        02. Chat Module Styles
+        03. Mails Module Styles
+        04. Contact Module Styles
+        05. Calendar Module Style
+    H. Color Theme
+        01. Theme Indigo Styles
+        02. Theme Cyan Styles
+        03. Theme Amber Styles
+        04. Theme Deep Orange Styles
+        05. Theme Pink Styles
+        06. Theme Blue Styles
+        07. Theme Deep Purple Styles
+        08. Theme Green Styles
+        09. Theme Dark Indigo Styles
+        10. Theme Dark Cyan Styles
+        11. Theme Dark Amber Styles
+        12. Theme Dark Deep Orange Styles
+        13. Theme Dark Pink Styles
+        14. Theme Dark Blue Styles
+        15. Theme Dark Deep Purple Styles
+        16. Theme Dark Green Styles
+        17. Theme Dark Amber Styles
+  =============================================================*/
+//Custom Variables
+@import "global/_global-dir";
+//Custom Files
+@import "base/_base-dir";
+@import "layout/_layout-dir";
+@import "ui/_ui-dir";
+@import "pages/_pages-dir";
+@import "slider/slick-carousel";
+@import "module/_module-dir";
+@import "colorTheme/_color-theme-dir";

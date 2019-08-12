@@ -1,0 +1,126 @@
+/*Contact Module Styles*/
+
+.contact-item {
+  @include align-items(center);
+  @include display-flex();
+  border-bottom: solid 1px $gray-200;
+  padding: 8px 12px;
+}
+
+.contact-name {
+  font-size: 15px;
+}
+
+.modal-box {
+  position: relative;
+}
+
+.modal-w {
+  max-width: 400px;
+  min-width: 350px;
+
+  .modal-box-mail & {
+    min-width: 600px;
+  }
+}
+
+.modal-box-header {
+  color: $white;
+  @include border-top-radius(4px);
+}
+
+.modal-box-header h2 {
+  color: $white;
+  position: relative;
+
+  & button {
+    position: absolute;
+    right: 0;
+    top: -10px;
+    z-index: 1;
+    color: $white;
+  }
+}
+
+.modal-box-content {
+  padding: 24px;
+
+  & .avatar {
+    margin: 0 auto;
+  }
+}
+
+.modal-box-footer {
+  padding: 0 24px 24px;
+
+  & .attach-file {
+    @include display-flex();
+    @include align-items(center);
+    margin-bottom: 15px;
+  }
+}
+
+.btn-fixed {
+  position: fixed !important;
+  right: 40px;
+  bottom: 60px;
+  z-index: 100;
+}
+
+.draggable-icon {
+  cursor: all-scroll;
+  color: $gray-600;
+
+  &:hover,
+  &:focus,
+  &:active {
+    cursor: all-scroll;
+    color: $gray-900;
+  }
+}
+
+.module-side-nav {
+  padding: 20px 0;
+}
+
+@media screen and (max-width: 767px) {
+  .modal-w {
+    .modal-box-mail & {
+      min-width: 500px;
+    }
+  }
+
+  .modal-box-header h2 {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .modal-w {
+    min-width: 300px;
+
+    .modal-box-mail & {
+      min-width: 400px;
+    }
+  }
+
+  .modal-box-header h2 {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 419px) {
+  .modal-w {
+    min-width: 250px;
+
+    .modal-box-mail & {
+      min-width: 250px;
+    }
+  }
+}
+
+@media screen and (max-width: 399px) {
+  .con-inf-mw-100 {
+    min-width: 100% !important;
+  }
+}

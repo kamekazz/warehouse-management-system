@@ -1,0 +1,37 @@
+/*Form Styles*/
+@media screen and (max-width: 575px) {
+  .horizontal-stepper {
+    & p,
+    & span {
+      opacity: 0;
+      visibility: hidden;
+      font-size: 12px;
+    }
+
+    &.active {
+      & p,
+      & span {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    & > *,
+    & > button > * {
+      @include display-flex(flex, column, nowrap);
+    }
+
+    & .stepperlabel,
+    & .stepperbutton,
+    & .stepperlabel span:first-child,
+    & .stepperbutton span:first-child {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  .horizontal-stepper-linear {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}

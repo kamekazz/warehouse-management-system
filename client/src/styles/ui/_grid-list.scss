@@ -1,0 +1,38 @@
+/*Grids List Styles*/
+
+.gl-image,
+.gl-list,
+.gl-advanced,
+.gl-single-line {
+  @include display-flex();
+  @include justify-content(space-around);
+  overflow: hidden;
+}
+
+.gl {
+  max-width: 100%;
+  max-height: 360px;
+  // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
+  transform: translateZ(0);
+}
+
+.gl-single-line {
+  & .slg {
+    -ms-flex-wrap: nowrap;
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    max-width: 100%;
+  }
+}
+
+.title-gradient {
+  background: -webkit-linear-gradient(to bottom, rgba($black, 0.7) 0%, rgba($black, 0.3) 70%, rgba($black, 0) 100%) !important;
+  background: -o-linear-gradient(to bottom, rgba($black, 0.7) 0%, rgba($black, 0.3) 70%, rgba($black, 0) 100%) !important;
+  background: linear-gradient(to bottom, rgba($black, 0.7) 0%, rgba($black, 0.3) 70%, rgba($black, 0) 100%) !important;
+}
+
+.title-gradient-bottom {
+  background: -webkit-linear-gradient(to top, rgba($black, 0.7) 0%, rgba($black, 0.3) 70%, rgba($black, 0) 100%) !important;
+  background: -o-linear-gradient(to top, rgba($black, 0.7) 0%, rgba($black, 0.3) 70%, rgba($black, 0) 100%) !important;
+  background: linear-gradient(to top, rgba($black, 0.7) 0%, rgba($black, 0.3) 70%, rgba($black, 0) 100%) !important;
+}

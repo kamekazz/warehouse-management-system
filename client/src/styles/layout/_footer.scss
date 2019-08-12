@@ -1,0 +1,26 @@
+/*Footer Styles*/
+
+.app-footer {
+  padding: 0 32px;
+  @include display-flex();
+  @include align-items(center);
+  @include justify-content(space-between);
+  @include box-shadow(0 0px 5px 0 rgba($black, 0.26));
+  background-color: $white;
+  color: $light-gray;
+  min-height: $footer-height;
+  height: $footer-height;
+  max-height: $footer-height;
+
+  .jr-link {
+    color: $sidebar-text-color;
+    &:hover {
+      color: $sidebar-hover-color;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    font-size: 12px;
+    padding: 0 20px;
+  }
+}

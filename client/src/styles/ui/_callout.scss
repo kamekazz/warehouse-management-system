@@ -1,0 +1,125 @@
+/*Callout Styles*/
+
+.grid-thumb-equal {
+  @extend %thumb-equal;
+
+  .card-image & {
+    padding-bottom: 82%;
+  }
+}
+
+.grid-thumb-cover {
+  @extend %thumb-cover;
+}
+
+.grid-thumb-cover img {
+  @extend %thumb-cover-img;
+}
+
+.grid-art-thumb-equal {
+  padding-bottom: 90%;
+
+  @media screen and (max-width: 575px) {
+    padding-bottom: 60%;
+  }
+
+  @media screen and (max-width: 400px) {
+    padding-bottom: 90%;
+  }
+}
+
+/*Product listing page style*/
+
+.product-row {
+  position: relative;
+  overflow: hidden;
+  @include display-flex();
+  @include align-items(center);
+  @include justify-content(center);
+  text-align: right;
+
+  &.even {
+    text-align: left;
+  }
+}
+
+.product-col {
+  order: 1;
+  width: 50%;
+}
+
+.odd .product-thumb {
+  order: 2;
+}
+
+.product-content {
+  padding: 20px 55px;
+}
+
+.product-row .grid-thumb-equal {
+  padding-bottom: 69%;
+}
+
+.product-thumb img {
+  width: 100%;
+}
+
+.product-content h4 {
+  margin-bottom: 25px;
+}
+
+@media screen and (max-width: 1230px) {
+  .product-row .grid-thumb-equal {
+    padding-bottom: 71%;
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .product-content h4 {
+    margin-bottom: 10px;
+  }
+  .product-content {
+    padding: 20px 35px;
+  }
+  .product-row .grid-thumb-equal {
+    padding-bottom: 85%;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .grid-thumb-equal {
+    .card-image & {
+      padding-bottom: 120%;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .product-row {
+    @include display-flex(flex, column);
+    text-align: center;
+
+    &.even {
+      text-align: center;
+    }
+  }
+
+  .product-content {
+    padding: 20px 0;
+  }
+
+  .product-col,
+  .odd .product-thumb {
+    order: 1;
+    width: 100%;
+  }
+  .product-row .grid-thumb-equal {
+    padding-bottom: 44%;
+  }
+
+  .grid-thumb-equal {
+    .card-image & {
+      padding-bottom: 44%;
+    }
+  }
+}

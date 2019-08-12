@@ -1,0 +1,631 @@
+/*Theme Cyan Styles*/
+$app-primary-cyan: #00bcd4 !default;
+$secondary-cyan: #69F0AE;
+
+$sidebar-cyan: rgba($app-primary-cyan, 0.25) !default;
+$sidebar-text-cyan: #868e96 !default;
+
+// Links
+$link-color: $sidebar-text-color;
+$link-hover-color: $app-primary;
+
+//-Base-scss
+.cyan .right-arrow {
+  color: $app-primary-cyan;
+  &:after {
+    color: $app-primary-cyan;
+  }
+}
+
+//Bootstrap file Style
+.cyan {
+  a,
+  .card-link,
+  .jr-link,
+  .jr-link.text-primary {
+    color: $app-primary-cyan;
+    &:focus,
+    &:hover {
+      color: darken($app-primary-cyan, 10%);
+    }
+  }
+
+  & .text-primary {
+    color: $app-primary-cyan !important;
+  }
+
+  & .page-link {
+    color: $app-primary-cyan;
+    &:focus,
+    &:hover {
+      color: $app-primary-cyan;
+    }
+  }
+
+  & .page-heading .breadcrumb-item.active {
+    color: $app-primary-cyan;
+  }
+
+  & .bg-primary,
+  & .badge-primary {
+    background-color: $app-primary-cyan !important;
+    color: $white !important;
+  }
+
+  & .btn-primary {
+    background-color: $app-primary-cyan;
+    border-color: $app-primary-cyan;
+    color: $white !important;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: darken($app-primary-cyan, 5%) !important;
+      border-color: darken($app-primary-cyan, 5%) !important;
+      color: $white !important;
+    }
+  }
+
+  & .bg-primary {
+    &.lighten-4 {
+      background-color: #b2ebf2 !important;
+    }
+
+    &.lighten-3 {
+      background-color: #80deea !important;
+    }
+
+    &.lighten-2 {
+      background-color: #4dd0e1 !important;
+    }
+
+    &.lighten-1 {
+      background-color: #26c6da !important;
+    }
+
+    &.darken-1 {
+      background-color: #00acc1 !important;
+    }
+
+    &.darken-2 {
+      background-color: #0097a7 !important;
+    }
+
+    &.darken-3 {
+      background-color: #00838f !important;
+    }
+
+    &.darken-4 {
+      background-color: #006064 !important;
+    }
+
+    &.accent-1 {
+      background-color: #84ffff !important;
+    }
+
+    &.accent-2 {
+      background-color: #18ffff !important;
+    }
+
+    &.accent-3 {
+      background-color: #00e5ff !important;
+    }
+
+    &.accent-4 {
+      background-color: #00b8d4 !important;
+    }
+  }
+}
+
+//Secondary
+.cyan {
+  .jr-link.text-secondary {
+    color: $secondary-cyan;
+    &:focus,
+    &:hover {
+      color: darken($secondary-cyan, 10%) !important;
+    }
+  }
+
+  & .text-secondary {
+    color: $secondary-cyan !important;
+  }
+
+  & .bg-secondary,
+  & .badge-secondary {
+    background-color: $secondary-cyan !important;
+    color: $white !important;
+  }
+
+  & .btn-secondary {
+    background-color: $secondary-cyan;
+    border-color: $secondary-cyan;
+    color: $white;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: darken($secondary-cyan, 5%) !important;
+      border-color: darken($secondary-cyan, 5%) !important;
+      color: $white !important;
+    }
+  }
+}
+
+//_header.scss
+.cyan .app-main-header {
+  background-color: $app-primary-cyan !important;
+
+  & .search-dropdown input {
+    @media screen and (max-width: 991px) {
+      background-color: $white;
+    }
+  }
+}
+
+//_right-sidebar.scss
+.cyan .color-theme-header {
+  background-color: $app-primary-cyan;
+}
+
+//_sidebar.scss
+.cyan .side-nav {
+  background-color: $white !important;
+  color: $sidebar-text-cyan !important;
+  @include box-shadow(0 1px 4px 0 rgba(0, 0, 0, 0.15));
+
+  & .user-profile {
+    background-color: $white;
+    margin-right: 20px;
+    margin-left: 20px;
+    padding-left: 0;
+    padding-right: 0;
+    border-bottom: $jr-border;
+    position: relative;
+    z-index: 2;
+  }
+
+  & .customizer {
+    border-bottom: solid 1px lighten($sidebar-text-cyan, 35%);
+  }
+
+  & .user-detail {
+    & .user-name {
+      color: $app-primary-cyan;
+    }
+  }
+}
+
+.cyan ul.nav-menu li button,
+.cyan ul.nav-menu li a {
+  color: $sidebar-text-cyan;
+}
+
+.cyan ul.nav-menu {
+  & .nav-header {
+    color: $sidebar-text-cyan;
+  }
+
+  & li.menu + .nav-header {
+    border-color: $gray-400;
+  }
+}
+
+.cyan ul.nav-menu > li.open > button,
+.cyan ul.nav-menu > li > button:hover,
+.cyan ul.nav-menu > li > button:focus,
+.cyan ul.nav-menu > li.open > a,
+.cyan ul.nav-menu > li > a:hover,
+.cyan ul.nav-menu > li > a:focus {
+  background-color: $white;
+  color: $app-primary-cyan;
+}
+
+.cyan ul.nav-menu li.menu.open > a {
+  border-color: $app-primary-cyan;
+}
+
+.cyan ul.nav-menu li.menu > button:focus:before,
+.cyan ul.nav-menu li.menu > button:hover:before,
+.cyan ul.nav-menu li.menu > a:focus:before,
+.cyan ul.nav-menu li.menu > a:hover:before {
+  color: $app-primary-cyan;
+}
+
+.cyan ul.nav-menu li ul {
+  background-color: $white;
+}
+
+.cyan ul.nav-menu li.menu > button:before,
+.cyan ul.nav-menu li.menu > a:before {
+  color: $sidebar-text-cyan;
+}
+
+.cyan ul.nav-menu li.menu.open > a:before,
+.cyan ul.nav-menu li.menu > a:focus:before,
+.cyan ul.nav-menu li.menu li > a:hover:before,
+.cyan ul.nav-menu li.menu.open > button:before,
+.cyan ul.nav-menu li.menu > button:focus:before,
+.cyan ul.nav-menu li.menu li > button:hover:before {
+  color: $app-primary-cyan;
+}
+
+.cyan ul.nav-menu li.menu .sub-menu li > a:before {
+  color: $sidebar-text-cyan;
+}
+
+.cyan ul.nav-menu li.menu.open .sub-menu li > a:after {
+  background-color: $app-primary-cyan;
+}
+
+.cyan ul.nav-menu li.menu.open .sub-menu li > a.active {
+  background-color: $sidebar-cyan;
+  color: $app-primary-cyan;
+}
+
+.cyan ul.nav-menu li.menu .sub-menu li > a:hover,
+.cyan ul.nav-menu li.menu .sub-menu li > a:focus,
+.cyan ul.nav-menu li.menu.open .sub-menu li > a.active:before,
+.cyan ul.nav-menu li.menu .sub-menu li > a:focus:before,
+.cyan ul.nav-menu li.menu .sub-menu li > a:hover:before {
+  background-color: $white;
+  color: $app-primary-cyan;
+}
+
+/*Header top Navbar Styles*/
+.cyan .navbar-nav {
+  & li {
+    &:hover > a,
+    &:focus > a,
+    &:hover > .nav-link,
+    &:focus > .nav-link {
+      color: $app-primary-cyan;
+    }
+
+    & a,
+    & .nav-link {
+      color: $sidebar-text-color;
+    }
+
+    & a:hover,
+    & a:focus,
+    & .nav-link:hover,
+    & .nav-link:focus {
+      color: $app-primary-cyan;
+    }
+  }
+
+  & li.nav-item > a,
+  & li.nav-item > .nav-link {
+    color: $white;
+  }
+
+  & li.nav-item:hover > a,
+  & li.nav-item:focus > a,
+  & li.nav-item > a:hover,
+  & li.nav-item > a:focus,
+  & li.nav-item.active > a,
+  & li.nav-item:hover > .nav-link,
+  & li.nav-item:focus > .nav-link,
+  & li.nav-item > .nav-link:hover,
+  & li.nav-item > .nav-link:focus,
+  & li.nav-item.active > .nav-link {
+    color: $secondary-cyan;
+  }
+
+  ul.sub-menu {
+    & li a.active,
+    & li.active > a,
+    & li .nav-link.active,
+    & li.active > .nav-link {
+      color: $app-primary-cyan;
+    }
+  }
+
+  & .nav-arrow {
+    & > a:before,
+    & > .nav-link:before {
+      color: $sidebar-text-color;
+    }
+
+    & a:hover,
+    & a:focus,
+    & .nav-link:hover,
+    & .nav-link:focus {
+      &:before {
+        color: $app-primary-cyan;
+      }
+    }
+
+    &:hover > a:before,
+    &:focus > a:before,
+    &.active > a:before,
+    &:hover > .nav-link:before,
+    &:focus > .nav-link:before,
+    &.active > .nav-link:before {
+      color: $app-primary-cyan;
+    }
+  }
+}
+
+.cyan .app-top-nav {
+
+  & .navbar-nav {
+    & li.nav-item > a,
+    & li.nav-item > .nav-link {
+      color: $white;
+    }
+
+    & li.nav-item:hover > a,
+    & li.nav-item:focus > a,
+    & li.nav-item > a:hover,
+    & li.nav-item > a:focus,
+    & li.nav-item.active > a,
+    & li.nav-item:hover > .nav-link,
+    & li.nav-item:focus > .nav-link,
+    & li.nav-item > .nav-link:hover,
+    & li.nav-item > .nav-link:focus,
+    & li.nav-item.active > .nav-link {
+      color: $secondary-cyan;
+    }
+  }
+}
+
+.cyan .app-header-horizontal {
+  & .app-main-header-top {
+    @include box-shadow(none !important);
+  }
+}
+
+.cyan .header-notifications .app-notification {
+  & .jr-list-link {
+
+    @include hover-focus-active {
+      color: $app-primary-cyan;
+      border-color: $app-primary-cyan;
+    }
+  }
+}
+
+//_app-module.scss
+.cyan .module-nav {
+  & li a {
+    &.active {
+      border-color: $app-primary-cyan;
+    }
+  }
+}
+
+//_calendar.scss
+.cyan .rbc-event {
+  background-color: $app-primary-cyan;
+}
+
+.cyan .rbc-event.rbc-selected {
+  background-color: darken($app-primary-cyan, 10%);
+}
+
+.cyan .rbc-slot-selection {
+  background-color: rgba($app-primary-cyan, 0.7);
+}
+
+.cyan .rbc-toolbar button:active,
+.cyan .rbc-toolbar button.rbc-active {
+  background-color: rgba($app-primary-cyan, 0.9);
+  border-color: $app-primary-cyan;
+}
+
+.cyan .rbc-toolbar button:active:hover,
+.cyan .rbc-toolbar button.rbc-active:hover,
+.cyan .rbc-toolbar button:active:focus,
+.cyan .rbc-toolbar button.rbc-active:focus {
+  background-color: rgba($app-primary-cyan, 0.9);
+  border-color: $app-primary-cyan;
+}
+
+.cyan .rbc-toolbar button:focus {
+  background-color: rgba($app-primary-cyan, 0.9);
+  border-color: $app-primary-cyan;
+}
+
+.cyan .rbc-toolbar button:hover {
+  background-color: rgba($app-primary-cyan, 0.9);
+  border-color: $app-primary-cyan;
+}
+
+//_chat.scss
+.cyan .chat-sidenav-title {
+  color: $app-primary-cyan;
+}
+
+.cyan .chat-user-item {
+  &.active,
+  &:hover {
+    background-color: lighten($app-primary-cyan, 45%);
+  }
+}
+
+//_dashboard.scss
+.cyan .contact-list {
+  & i {
+    color: $app-primary-cyan;
+  }
+}
+
+//The link which when clicked opens the collapsable ChatUserList
+.cyan .Collapsible__trigger {
+  background: $app-primary-cyan;
+}
+
+.cyan .categories-list {
+  & li a:focus,
+  & li a:hover,
+  & li.active a {
+    color: $app-primary-cyan;
+  }
+}
+
+//_login.scss
+.cyan .login-content .form-control {
+  &:focus {
+    border-color: $app-primary-cyan;
+  }
+}
+
+//_portfolio.scss
+.cyan .filter-with-bg-color ul li {
+  .jr-link {
+    border-color: $app-primary-cyan;
+
+    &:hover,
+    &:focus,
+    &.active {
+      background-color: $app-primary-cyan;
+    }
+  }
+}
+
+//_card.scss
+.cyan .profile-intro {
+  & .icon {
+    color: $app-primary-cyan;
+  }
+}
+
+.cyan .social-link {
+  & li.active a,
+  & li a:hover,
+  & li a:focus {
+    color: $secondary-cyan;
+  }
+}
+
+//_tables.scss
+.cyan .actions {
+  color: $secondary-cyan;
+}
+
+.cyan .table-hover tbody tr:hover {
+  background-color: rgba($app-primary-cyan, 0.075);
+}
+
+//Border Color
+
+.cyan .border-primary {
+  border-color: $app-primary-cyan !important;
+}
+
+// login page content
+
+.cyan .app-logo-content {
+  background-color: $app-primary-cyan;
+}
+
+.cyan .app-social-block {
+  & .social-link button {
+    border: solid 1px $app-primary-cyan;
+    color: $app-primary-cyan;
+
+    &:hover,
+    &:focus {
+      color: $white;
+      background-color: $app-primary-cyan;
+    }
+  }
+}
+
+/*Button Group Styles*/
+.cyan .btn-group,
+.cyan .btn-group-vertical {
+  > .jr-btn {
+    &.active {
+      background-color: $app-primary-cyan;
+      border-color: $app-primary-cyan;
+    }
+
+  }
+
+  > .jr-flat-btn {
+    background-color: transparent;
+    border-color: transparent;
+    &.active {
+      background-color: transparent;
+      color: $app-primary-cyan;
+      &:hover,
+      &:focus {
+        background-color: rgba($app-primary-cyan, 0.12);
+        color: $app-primary-cyan;
+      }
+    }
+  }
+}
+
+/*Classic Dashboard Styles*/
+.cyan .jr-fillchart-btn-close,
+.cyan .jr-onchart .jr-badge-up,
+.cyan .jr-task-list-item:hover .jr-text-hover {
+  color: $app-primary-cyan;
+}
+
+.cyan .jr-entry-title:before {
+  background-color: $app-primary-cyan;
+}
+
+.cyan .jr-card-ticketlist {
+  & .jr-task-list-item:hover .jr-task-item-title,
+  .jr-link {
+    color: $app-primary-cyan;
+  }
+}
+
+.cyan .slick-dots li.slick-active button:before {
+  border-color: $app-primary-cyan;
+}
+
+//Nav Styles
+.cyan .nav-pills .nav-link.active,
+.cyan .nav-pills .show > .nav-link {
+  color: $white !important;
+  background-color: $app-primary-cyan;
+}
+
+// Gradient Color Class
+.cyan .bg-gradient-primary {
+  @include gradient-directional($app-primary-cyan, lighten($app-primary-cyan, 16%), 0deg);
+}
+
+.cyan .bg-gradient-primary-x {
+  @include gradient-x(darken($app-primary-cyan, 10%), lighten($app-primary-cyan, 16%), 70%, 100%);
+}
+
+//Profile style
+.cyan .jr-profile-banner {
+  background-color: $app-primary-cyan;
+  color: $white;
+
+  & .jr-link {
+    color: $white;
+
+    &:hover,
+    &:focus {
+      color: $secondary-cyan;
+    }
+  }
+}
+
+.cyan .dropdown-item {
+
+  &.active,
+  &:active {
+    background-color: $app-primary-cyan;
+    color: $white;
+  }
+
+  &[class*="text-"] {
+
+    &.active,
+    &:active {
+      background-color: transparent;
+    }
+  }
+}

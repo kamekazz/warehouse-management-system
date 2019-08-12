@@ -1,0 +1,57 @@
+/*Portfolio Styles*/
+
+.portfolio-section {
+  & .card-image {
+    margin-bottom: 20px;
+    & img {
+      width: 100%;
+      @include transition(all 1200ms ease);
+    }
+    &:hover {
+      & img {
+        @include box-shadow(0 2px 8px -2px rgba($black, 0.6));
+        -webkit-transform: scale(1.08);
+        -ms-transform: scale(1.08);
+        transform: scale(1.08);
+      }
+    }
+  }
+}
+
+.filter-with-bg-color {
+  & ul {
+    padding-left: 0;
+    margin: 0 -10px 45px;
+    & li {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 0 10px;
+    }
+
+    & li a,
+    & li .jr-link {
+      text-transform: uppercase;
+      font-size: 12px;
+      padding: 10px 24px;
+      border: 1px solid $app-primary;
+      display: block;
+      text-decoration: none;
+    }
+
+    & li a:hover,
+    & li a:focus,
+    & li a.active,
+    & li .jr-link:hover,
+    & li .jr-link:focus,
+    & li .jr-link.active {
+      cursor: pointer;
+      background-color: $app-primary;
+      border-color: $app-primary;
+      color: $white;
+    }
+
+    @media screen and (max-width: 575px) {
+      margin-bottom: 15px;
+    }
+  }
+}

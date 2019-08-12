@@ -1,0 +1,627 @@
+/*Theme Deep Orange Styles*/
+$app-primary-deep-orange: #ff5722 !default;
+$secondary-deep-orange: #40C4FF;
+
+$sidebar-deep-orange: rgba($app-primary-deep-orange, 0.25) !default;
+$sidebar-text-deep-orange: #868e96 !default;
+
+//-Base-scss
+.deep-orange .right-arrow {
+  color: $app-primary-deep-orange;
+  &:after {
+    color: $app-primary-deep-orange;
+  }
+}
+
+//- Bootstrap file Style
+.deep-orange {
+  a,
+  .card-link,
+  .jr-link,
+  .jr-link.text-primary {
+    color: $app-primary-deep-orange;
+    &:focus,
+    &:hover {
+      color: darken($app-primary-deep-orange, 10%);
+    }
+  }
+
+  & .text-primary {
+    color: $app-primary-deep-orange !important;
+  }
+
+  & .page-link {
+    color: $app-primary-deep-orange;
+    &:focus,
+    &:hover {
+      color: $app-primary-deep-orange;
+    }
+  }
+
+  & .page-heading .breadcrumb-item.active {
+    color: $app-primary-deep-orange;
+  }
+
+  & .bg-primary,
+  & .badge-primary {
+    background-color: $app-primary-deep-orange !important;
+    color: $white !important;
+  }
+
+  & .btn-primary {
+    background-color: $app-primary-deep-orange;
+    border-color: $app-primary-deep-orange;
+    color: $white;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: darken($app-primary-deep-orange, 5%) !important;
+      border-color: darken($app-primary-deep-orange, 5%) !important;
+      color: $white !important;
+    }
+  }
+
+  & .bg-primary {
+    &.lighten-4 {
+      background-color: #ffccbc !important;
+    }
+
+    &.lighten-3 {
+      background-color: #ffab91 !important;
+    }
+
+    &.lighten-2 {
+      background-color: #ff8a65 !important;
+    }
+
+    &.lighten-1 {
+      background-color: #ff7043 !important;
+    }
+
+    &.darken-1 {
+      background-color: #f4511e !important;
+    }
+
+    &.darken-2 {
+      background-color: #e64a19 !important;
+    }
+
+    &.darken-3 {
+      background-color: #d84315 !important;
+    }
+
+    &.darken-4 {
+      background-color: #bf360c !important;
+    }
+
+    &.accent-1 {
+      background-color: #ff9e80 !important;
+    }
+
+    &.accent-2 {
+      background-color: #ff6e40 !important;
+    }
+
+    &.accent-3 {
+      background-color: #ff3d00 !important;
+    }
+
+    &.accent-4 {
+      background-color: #dd2c00 !important;
+    }
+  }
+}
+
+//Secondary
+.deep-orange {
+  .jr-link.text-secondary {
+    color: $secondary-deep-orange;
+    &:focus,
+    &:hover {
+      color: darken($secondary-deep-orange, 10%) !important;
+    }
+  }
+
+  & .text-secondary {
+    color: $secondary-deep-orange !important;
+  }
+
+  & .bg-secondary,
+  & .badge-secondary {
+    background-color: $secondary-deep-orange !important;
+    color: $white !important;
+  }
+
+  & .btn-secondary {
+    background-color: $secondary-deep-orange;
+    border-color: $secondary-deep-orange;
+    color: $white;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: darken($secondary-deep-orange, 5%) !important;
+      border-color: darken($secondary-deep-orange, 5%) !important;
+      color: $white !important;
+    }
+  }
+}
+
+//_header.scss
+.deep-orange .app-main-header {
+  background-color: $app-primary-deep-orange !important;
+
+  & .search-dropdown input {
+    @media screen and (max-width: 991px) {
+      background-color: $white;
+    }
+  }
+}
+
+//_right-sidebar.scss
+.deep-orange .color-theme-header {
+  background-color: $app-primary-deep-orange;
+}
+
+//_sidebar.scss
+.deep-orange .side-nav {
+  background-color: $white !important;
+  color: $sidebar-text-deep-orange !important;
+  @include box-shadow(0 1px 4px 0 rgba(0, 0, 0, 0.15));
+
+  & .user-profile {
+    background-color: $white;
+    margin-right: 20px;
+    margin-left: 20px;
+    padding-left: 0;
+    padding-right: 0;
+    border-bottom: $jr-border;
+    position: relative;
+    z-index: 2;
+  }
+
+  & .customizer {
+    border-bottom: solid 1px lighten($sidebar-text-deep-orange, 35%);
+  }
+
+  & .user-detail {
+    & .user-name {
+      color: $app-primary-deep-orange;
+    }
+  }
+}
+
+.deep-orange ul.nav-menu li button,
+.deep-orange ul.nav-menu li a {
+  color: $sidebar-text-deep-orange;
+}
+
+.deep-orange ul.nav-menu {
+  & .nav-header {
+    color: $sidebar-text-deep-orange;
+  }
+
+  & li.menu + .nav-header {
+    border-color: $gray-400;
+  }
+}
+
+.deep-orange ul.nav-menu > li.open > button,
+.deep-orange ul.nav-menu > li > button:hover,
+.deep-orange ul.nav-menu > li > button:focus,
+.deep-orange ul.nav-menu > li.open > a,
+.deep-orange ul.nav-menu > li > a:hover,
+.deep-orange ul.nav-menu > li > a:focus {
+  background-color: $white;
+  color: $app-primary-deep-orange;
+}
+
+.deep-orange ul.nav-menu li.menu.open > a {
+  border-color: $app-primary-deep-orange;
+}
+
+.deep-orange ul.nav-menu li.menu > button:focus:before,
+.deep-orange ul.nav-menu li.menu > button:hover:before,
+.deep-orange ul.nav-menu li.menu > a:focus:before,
+.deep-orange ul.nav-menu li.menu > a:hover:before {
+  color: $app-primary-deep-orange;
+}
+
+.deep-orange ul.nav-menu li ul {
+  background-color: $white;
+}
+
+.deep-orange ul.nav-menu li.menu > button:before,
+.deep-orange ul.nav-menu li.menu > a:before {
+  color: $sidebar-text-deep-orange;
+}
+
+.deep-orange ul.nav-menu li.menu.open > a:before,
+.deep-orange ul.nav-menu li.menu > a:focus:before,
+.deep-orange ul.nav-menu li.menu li > a:hover:before,
+.deep-orange ul.nav-menu li.menu.open > button:before,
+.deep-orange ul.nav-menu li.menu > button:focus:before,
+.deep-orange ul.nav-menu li.menu li > button:hover:before {
+  color: $app-primary-deep-orange;
+}
+
+.deep-orange ul.nav-menu li.menu .sub-menu li > a:before {
+  color: $sidebar-text-deep-orange;
+}
+
+.deep-orange ul.nav-menu li.menu.open .sub-menu li > a:after {
+  background-color: $app-primary-deep-orange;
+}
+
+.deep-orange ul.nav-menu li.menu.open .sub-menu li > a.active {
+  background-color: $sidebar-deep-orange;
+  color: $app-primary-deep-orange;
+}
+
+.deep-orange ul.nav-menu li.menu .sub-menu li > a:hover,
+.deep-orange ul.nav-menu li.menu .sub-menu li > a:focus,
+.deep-orange ul.nav-menu li.menu.open .sub-menu li > a.active:before,
+.deep-orange ul.nav-menu li.menu .sub-menu li > a:focus:before,
+.deep-orange ul.nav-menu li.menu .sub-menu li > a:hover:before {
+  background-color: $white;
+  color: $app-primary-deep-orange;
+}
+
+/*Header top Navbar Styles*/
+.deep-orange .navbar-nav {
+  & li {
+    &:hover > a,
+    &:focus > a,
+    &:hover > .nav-link,
+    &:focus > .nav-link {
+      color: $app-primary-deep-orange;
+    }
+
+    & a,
+    & .nav-link {
+      color: $sidebar-text-color;
+    }
+
+    & a:hover,
+    & a:focus,
+    & .nav-link:hover,
+    & .nav-link:focus {
+      color: $app-primary-deep-orange;
+    }
+  }
+
+  & li.nav-item > a,
+  & li.nav-item > .nav-link {
+    color: $white;
+  }
+
+  & li.nav-item:hover > a,
+  & li.nav-item:focus > a,
+  & li.nav-item > a:hover,
+  & li.nav-item > a:focus,
+  & li.nav-item.active > a,
+  & li.nav-item:hover > .nav-link,
+  & li.nav-item:focus > .nav-link,
+  & li.nav-item > .nav-link:hover,
+  & li.nav-item > .nav-link:focus,
+  & li.nav-item.active > .nav-link {
+    color: $secondary-deep-orange;
+  }
+
+  ul.sub-menu {
+    & li a.active,
+    & li.active > a,
+    & li .nav-link.active,
+    & li.active > .nav-link {
+      color: $app-primary-deep-orange;
+    }
+  }
+
+  & .nav-arrow {
+    & > a:before,
+    & > .nav-link:before {
+      color: $sidebar-text-color;
+    }
+
+    & a:hover,
+    & a:focus,
+    & .nav-link:hover,
+    & .nav-link:focus {
+      &:before {
+        color: $app-primary-deep-orange;
+      }
+    }
+
+    &:hover > a:before,
+    &:focus > a:before,
+    &.active > a:before,
+    &:hover > .nav-link:before,
+    &:focus > .nav-link:before,
+    &.active > .nav-link:before {
+      color: $app-primary-deep-orange;
+    }
+  }
+}
+
+.deep-orange .app-top-nav {
+
+  & .navbar-nav {
+    & li.nav-item > a,
+    & li.nav-item > .nav-link {
+      color: $white;
+    }
+
+    & li.nav-item:hover > a,
+    & li.nav-item:focus > a,
+    & li.nav-item > a:hover,
+    & li.nav-item > a:focus,
+    & li.nav-item.active > a,
+    & li.nav-item:hover > .nav-link,
+    & li.nav-item:focus > .nav-link,
+    & li.nav-item > .nav-link:hover,
+    & li.nav-item > .nav-link:focus,
+    & li.nav-item.active > .nav-link {
+      color: $secondary-deep-orange;
+    }
+  }
+}
+
+.deep-orange .app-header-horizontal {
+  & .app-main-header-top {
+    @include box-shadow(none !important);
+  }
+}
+
+.deep-orange .header-notifications .app-notification {
+  & .jr-list-link {
+
+    @include hover-focus-active {
+      color: $app-primary-deep-orange;
+      border-color: $app-primary-deep-orange;
+    }
+  }
+}
+
+//_app-module.scss
+.deep-orange .module-nav {
+  & li a {
+    &.active {
+      border-color: $app-primary-deep-orange;
+    }
+  }
+}
+
+//_calendar.scss
+.deep-orange .rbc-event {
+  background-color: $app-primary-deep-orange;
+}
+
+.deep-orange .rbc-event.rbc-selected {
+  background-color: darken($app-primary-deep-orange, 10%);
+}
+
+.deep-orange .rbc-slot-selection {
+  background-color: rgba($app-primary-deep-orange, 0.7);
+}
+
+.deep-orange .rbc-toolbar button:active,
+.deep-orange .rbc-toolbar button.rbc-active {
+  background-color: rgba($app-primary-deep-orange, 0.9);
+  border-color: $app-primary-deep-orange;
+}
+
+.deep-orange .rbc-toolbar button:active:hover,
+.deep-orange .rbc-toolbar button.rbc-active:hover,
+.deep-orange .rbc-toolbar button:active:focus,
+.deep-orange .rbc-toolbar button.rbc-active:focus {
+  background-color: rgba($app-primary-deep-orange, 0.9);
+  border-color: $app-primary-deep-orange;
+}
+
+.deep-orange .rbc-toolbar button:focus {
+  background-color: rgba($app-primary-deep-orange, 0.9);
+  border-color: $app-primary-deep-orange;
+}
+
+.deep-orange .rbc-toolbar button:hover {
+  background-color: rgba($app-primary-deep-orange, 0.9);
+  border-color: $app-primary-deep-orange;
+}
+
+//_chat.scss
+.deep-orange .chat-sidenav-title {
+  color: $app-primary-deep-orange;
+}
+
+.deep-orange .chat-user-item {
+  &.active,
+  &:hover {
+    background-color: lighten($app-primary-deep-orange, 45%);
+  }
+}
+
+//_dashboard.scss
+.deep-orange .contact-list {
+  & i {
+    color: $app-primary-deep-orange;
+  }
+}
+
+//The link which when clicked opens the collapsable ChatUserList
+.deep-orange .Collapsible__trigger {
+  background: $app-primary-deep-orange;
+}
+
+.deep-orange .categories-list {
+  & li a:focus,
+  & li a:hover,
+  & li.active a {
+    color: $app-primary-deep-orange;
+  }
+}
+
+//_login.scss
+.deep-orange .login-content .form-control {
+  &:focus {
+    border-color: $app-primary-deep-orange;
+  }
+}
+
+//_portfolio.scss
+.deep-orange .filter-with-bg-color ul li {
+  .jr-link {
+    border-color: $app-primary-deep-orange;
+
+    &:hover,
+    &:focus,
+    &.active {
+      background-color: $app-primary-deep-orange;
+    }
+  }
+}
+
+//_card.scss
+.deep-orange .profile-intro {
+  & .icon {
+    color: $app-primary-deep-orange;
+  }
+}
+
+.deep-orange .social-link {
+  & li.active a,
+  & li a:hover,
+  & li a:focus {
+    color: $secondary-deep-orange;
+  }
+}
+
+//_tables.scss
+.deep-orange .actions {
+  color: $secondary-deep-orange;
+}
+
+.deep-orange .table-hover tbody tr:hover {
+  background-color: rgba($app-primary-deep-orange, 0.075);
+}
+
+//Border Color
+
+.deep-orange .border-primary {
+  border-color: $app-primary-deep-orange !important;
+}
+
+// login page content
+
+.deep-orange .app-logo-content {
+  background-color: $app-primary-deep-orange;
+}
+
+.deep-orange .app-social-block {
+  & .social-link button {
+    border: solid 1px $app-primary-deep-orange;
+    color: $app-primary-deep-orange;
+
+    &:hover,
+    &:focus {
+      color: $white;
+      background-color: $app-primary-deep-orange;
+    }
+  }
+}
+
+/*Button Group Styles*/
+.deep-orange .btn-group,
+.deep-orange .btn-group-vertical {
+  > .jr-btn {
+    &.active {
+      background-color: $app-primary-deep-orange;
+      border-color: $app-primary-deep-orange;
+    }
+
+  }
+
+  > .jr-flat-btn {
+    background-color: transparent;
+    border-color: transparent;
+    &.active {
+      background-color: transparent;
+      color: $app-primary-deep-orange;
+      &:hover,
+      &:focus {
+        background-color: rgba($app-primary-deep-orange, 0.12);
+        color: $app-primary-deep-orange;
+      }
+    }
+  }
+}
+
+/*Classic Dashboard Styles*/
+.deep-orange .jr-fillchart-btn-close,
+.deep-orange .jr-onchart .jr-badge-up,
+.deep-orange .jr-task-list-item:hover .jr-text-hover {
+  color: $app-primary-deep-orange;
+}
+
+.deep-orange .jr-entry-title:before {
+  background-color: $app-primary-deep-orange;
+}
+
+.deep-orange .jr-card-ticketlist {
+  & .jr-task-list-item:hover .jr-task-item-title,
+  .jr-link {
+    color: $app-primary-deep-orange;
+  }
+}
+
+.deep-orange .slick-dots li.slick-active button:before {
+  border-color: $app-primary-deep-orange;
+}
+
+//Nav Styles
+.deep-orange .nav-pills .nav-link.active,
+.deep-orange .nav-pills .show > .nav-link {
+  color: $white !important;
+  background-color: $app-primary-deep-orange;
+}
+
+// Gradient Color Class
+.deep-orange .bg-gradient-primary {
+  @include gradient-directional($app-primary-deep-orange, lighten($app-primary-deep-orange, 16%), 0deg);
+}
+
+.deep-orange .bg-gradient-primary-x {
+  @include gradient-x(darken($app-primary-deep-orange, 10%), lighten($app-primary-deep-orange, 16%), 70%, 100%);
+}
+
+//Profile style
+.deep-orange .jr-profile-banner {
+  background-color: $app-primary-deep-orange;
+  color: $white;
+
+  & .jr-link {
+    color: $white;
+
+    &:hover,
+    &:focus {
+      color: $secondary-deep-orange;
+    }
+  }
+}
+
+.deep-orange .dropdown-item {
+
+  &.active,
+  &:active {
+    background-color: $app-primary-deep-orange;
+    color: $white;
+  }
+
+  &[class*="text-"] {
+
+    &.active,
+    &:active {
+      background-color: transparent;
+    }
+  }
+}

@@ -1,0 +1,209 @@
+/*Tables Styles*/
+
+.table-header {
+  padding-right: 2px !important;
+  &.highlight-light {
+    color: map_get($gray, darken-2);
+    background-color: map_get($gray, lighten-2);
+  }
+  &.highlight-dark {
+    color: $white;
+    background-color: map_get($gray, darken-2);
+  }
+}
+
+.spacer {
+  @include flex(1, 1, 100%);
+}
+
+.actions {
+  color: map_get($red, base);
+}
+
+.title {
+  @include flex(0, 0, auto);
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba($app-primary, 0.075);
+}
+
+.table-material {
+  width: 100% !important;
+  max-width: 100% !important;
+  background-color: $table-bg !important; // Reset for nesting within parents with `background-color`.
+
+  th,
+  td {
+    padding: $table-cell-padding !important;
+    vertical-align: top !important;
+    border-top: $table-border-width solid $table-border-color !important;
+  }
+
+  thead th {
+    vertical-align: bottom !important;
+    border-bottom: (2 * $table-border-width) solid $table-border-color !important;
+  }
+
+  tbody + tbody {
+    border-top: (2 * $table-border-width) solid $table-border-color !important;
+  }
+
+  .table-material {
+    background-color: $body-bg !important;
+  }
+}
+
+.d-flex-stretch {
+  @include align-items(stretch);
+  display: -webkit-flex;
+  display: -webkit-box;
+  display: -moz-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.default-table {
+  margin-bottom: 0;
+  & thead th {
+    font-weight: 400;
+    font-size: 16px;
+  }
+
+  & thead.table-head-sm th {
+    font-size: 13px;
+  }
+  & td {
+    vertical-align: middle;
+  }
+}
+
+.project-list-table {
+  & thead th {
+    font-weight: 500;
+    font-size: 13px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-bottom-width: 1px;
+  }
+
+  & thead th,
+  & td {
+    padding: 7px 6px;
+    vertical-align: middle;
+
+    &:first-child {
+      padding-left: 0;
+    }
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+
+  & tr:first-child td {
+    padding-top: 15px;
+  }
+}
+
+.table-unbordered {
+  & th,
+  & td {
+    border: 0 none !important;
+  }
+
+  & .th-border-b th {
+    border-bottom: 2px solid $gray-400 !important;
+  }
+}
+
+.table-responsive-material {
+  min-height: .01%;
+  overflow-x: auto;
+}
+
+@media screen and (max-width: 767px) {
+  .table-responsive-material {
+    width: 100%;
+    margin-bottom: 15px;
+    overflow-y: hidden;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    border: 1px solid #ddd;
+  }
+  .table-responsive-material > .table {
+    margin-bottom: 0;
+  }
+  .table-responsive-material > .table > thead > tr > th,
+  .table-responsive-material > .table > tbody > tr > th,
+  .table-responsive-material > .table > tfoot > tr > th,
+  .table-responsive-material > .table > thead > tr > td,
+  .table-responsive-material > .table > tbody > tr > td,
+  .table-responsive-material > .table > tfoot > tr > td {
+    white-space: nowrap;
+  }
+  .table-responsive-material > .table-bordered {
+    border: 0;
+  }
+  .table-responsive-material > .table-bordered > thead > tr > th:first-child,
+  .table-responsive-material > .table-bordered > tbody > tr > th:first-child,
+  .table-responsive-material > .table-bordered > tfoot > tr > th:first-child,
+  .table-responsive-material > .table-bordered > thead > tr > td:first-child,
+  .table-responsive-material > .table-bordered > tbody > tr > td:first-child,
+  .table-responsive-material > .table-bordered > tfoot > tr > td:first-child {
+    border-left: 0;
+  }
+  .table-responsive-material > .table-bordered > thead > tr > th:last-child,
+  .table-responsive-material > .table-bordered > tbody > tr > th:last-child,
+  .table-responsive-material > .table-bordered > tfoot > tr > th:last-child,
+  .table-responsive-material > .table-bordered > thead > tr > td:last-child,
+  .table-responsive-material > .table-bordered > tbody > tr > td:last-child,
+  .table-responsive-material > .table-bordered > tfoot > tr > td:last-child {
+    border-right: 0;
+  }
+  .table-responsive-material > .table-bordered > tbody > tr:last-child > th,
+  .table-responsive-material > .table-bordered > tfoot > tr:last-child > th,
+  .table-responsive-material > .table-bordered > tbody > tr:last-child > td,
+  .table-responsive-material > .table-bordered > tfoot > tr:last-child > td {
+    border-bottom: 0;
+  }
+}
+
+.table-nowrap {
+  & th,
+  & td {
+    white-space: nowrap;
+  }
+}
+
+.table-fs-13 {
+  font-size: ($font-size-base - 1);
+}
+
+.full-table-border {
+  & td {
+    border-top: 0 none;
+  }
+
+  & tr:not(:last-child) td {
+    border-bottom: 1px solid $gray-400;
+  }
+}
+
+.full-table {
+  & td:first-child {
+    padding-left: $jr-card-margin;
+  }
+
+  & td:last-child {
+    padding-right: 24px;
+  }
+}
+
+.full-table-last-sm {
+  & td:last-child {
+    padding-right: ($jr-card-padding - 14);
+  }
+}

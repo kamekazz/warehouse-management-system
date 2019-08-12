@@ -1,0 +1,618 @@
+/*Theme Dark Blue Styles*/
+$app-primary-dark-blue: #2196F3 !default;
+$secondary-dark-blue: #FF6E40;
+
+$sidebar-dark-blue: #252525 !default;
+$sidebar-text-dark-blue: #a1a1a1 !default;
+$sidebar-darken-blue: darken($sidebar-dark-blue, 3%);
+$sidebar-bg-darken-highlight-blue: $app-primary-dark-blue;
+
+// Links
+$link-hover-dark-blue: $white;
+
+//-Base-scss
+.dark-blue .right-arrow {
+  color: $app-primary-dark-blue;
+  &:after {
+    color: $app-primary-dark-blue;
+  }
+}
+
+//- Bootstrap file Style
+.dark-blue {
+  a,
+  .card-link,
+  .jr-link,
+  .jr-link.text-primary {
+    color: $app-primary-dark-blue;
+    &:focus,
+    &:hover {
+      color: darken($app-primary-dark-blue, 10%);
+    }
+  }
+
+  & .text-primary {
+    color: $app-primary-dark-blue !important;
+  }
+
+  & .page-link {
+    color: $app-primary-dark-blue;
+    &:focus,
+    &:hover {
+      color: $app-primary-dark-blue;
+    }
+  }
+
+  & .page-heading .breadcrumb-item.active {
+    color: $app-primary-dark-blue;
+  }
+
+  & .bg-primary,
+  & .badge-primary {
+    background-color: $app-primary-dark-blue !important;
+    color: $link-hover-dark-blue !important;
+  }
+
+  & .btn-primary {
+    background-color: $app-primary-dark-blue;
+    border-color: $app-primary-dark-blue;
+    color: $link-hover-dark-blue;
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: darken($app-primary-dark-blue, 5%) !important;
+      border-color: darken($app-primary-dark-blue, 5%) !important;
+      color: $link-hover-dark-blue !important;
+    }
+  }
+
+  & .bg-primary {
+    &.lighten-4 {
+      background-color: #BBDEFB !important;
+    }
+
+    &.lighten-3 {
+      background-color: #90CAF9 !important;
+    }
+
+    &.lighten-2 {
+      background-color: #64B5F6 !important;
+    }
+
+    &.lighten-1 {
+      background-color: #42A5F5 !important;
+    }
+
+    &.darken-1 {
+      background-color: #1E88E5 !important;
+    }
+
+    &.darken-2 {
+      background-color: #1976D2 !important;
+    }
+
+    &.darken-3 {
+      background-color: #1565C0 !important;
+    }
+
+    &.darken-4 {
+      background-color: #0D47A1 !important;
+    }
+
+    &.accent-1 {
+      background-color: #82B1FF !important;
+    }
+
+    &.accent-2 {
+      background-color: #448AFF !important;
+    }
+
+    &.accent-3 {
+      background-color: #2979FF !important;
+    }
+
+    &.accent-4 {
+      background-color: #2962FF !important;
+    }
+  }
+}
+
+//Secondary
+.dark-blue {
+  .jr-link.text-secondary {
+    color: $secondary-dark-blue;
+    &:focus,
+    &:hover {
+      color: darken($secondary-dark-blue, 10%) !important;
+    }
+  }
+
+  & .text-secondary {
+    color: $secondary-dark-blue !important;
+  }
+
+  & .bg-secondary,
+  & .badge-secondary {
+    background-color: $secondary-dark-blue !important;
+    color: $link-hover-dark-blue !important;
+  }
+
+  & .btn-secondary {
+    background-color: $secondary-dark-blue;
+    border-color: $secondary-dark-blue;
+    color: $link-hover-dark-blue;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: darken($secondary-dark-blue, 5%) !important;
+      border-color: darken($secondary-dark-blue, 5%) !important;
+      color: $link-hover-dark-blue !important;
+    }
+  }
+}
+
+//_header.scss
+.dark-blue .app-main-header {
+  background-color: $app-primary-dark-blue !important;
+
+  & .search-dropdown input {
+    @media screen and (max-width: 991px) {
+      background-color: $white;
+    }
+  }
+}
+
+//_right-sidebar.scss
+.dark-blue .color-theme-header {
+  background-color: $app-primary-dark-blue;
+
+}
+
+//_sidebar.scss
+.dark-blue .side-nav {
+  background-color: $sidebar-dark-blue !important;
+  color: $sidebar-text-dark-blue !important;
+  @include box-shadow(none);
+
+  & .user-profile {
+    background-color: $sidebar-darken-blue;
+    @include box-shadow(none);
+    position: relative;
+    z-index: 2;
+  }
+
+  & .customizer {
+    border-bottom: 0 none;
+  }
+
+  & .user-detail {
+    & .user-name {
+      color: $link-hover-dark-blue;
+    }
+  }
+}
+
+.dark-blue ul.nav-menu li button,
+.dark-blue ul.nav-menu li a {
+  color: $sidebar-text-dark-blue;
+}
+
+.dark-blue ul.nav-menu {
+  & .nav-header {
+    color: $sidebar-text-dark-blue;
+  }
+}
+
+.dark-blue ul.nav-menu > li.open > button,
+.dark-blue ul.nav-menu > li > button:hover,
+.dark-blue ul.nav-menu > li > button:focus,
+.dark-blue ul.nav-menu > li.open > a,
+.dark-blue ul.nav-menu > li > a:hover,
+.dark-blue ul.nav-menu > li > a:focus {
+  background-color: $sidebar-darken-blue;
+  color: $link-hover-dark-blue;
+}
+
+.dark-blue ul.nav-menu li.menu.open > a {
+  border-color: $app-primary-dark-blue;
+}
+
+.dark-blue ul.nav-menu li.menu > button:focus:before,
+.dark-blue ul.nav-menu li.menu > button:hover:before,
+.dark-blue ul.nav-menu li.menu > a:focus:before,
+.dark-blue ul.nav-menu li.menu > a:hover:before {
+  color: $link-hover-dark-blue;
+}
+
+.dark-blue ul.nav-menu li ul {
+  background-color: $sidebar-darken-blue;
+}
+
+.dark-blue ul.nav-menu li.menu > button:before,
+.dark-blue ul.nav-menu li.menu > a:before {
+  color: $sidebar-text-dark-blue;
+}
+
+.dark-blue ul.nav-menu li.menu.open > a:before,
+.dark-blue ul.nav-menu li.menu > a:focus:before,
+.dark-blue ul.nav-menu li.menu li > a:hover:before {
+  color: $link-hover-dark-blue;
+}
+
+.dark-blue ul.nav-menu li.menu .sub-menu li > a:before {
+  color: $sidebar-text-dark-blue;
+}
+
+.dark-blue ul.nav-menu li.menu.open .sub-menu li > a.active {
+  background-color: $sidebar-bg-darken-highlight-blue;
+  color: $link-hover-dark-blue;
+}
+
+.dark-blue ul.nav-menu li.menu .sub-menu li > a:hover,
+.dark-blue ul.nav-menu li.menu .sub-menu li > a:focus,
+.dark-blue ul.nav-menu li.menu.open .sub-menu li > a.active:before,
+.dark-blue ul.nav-menu li.menu .sub-menu li > a:focus:before,
+.dark-blue ul.nav-menu li.menu .sub-menu li > a:hover:before {
+  background-color: $sidebar-darken-blue;
+  color: $link-hover-dark-blue;
+}
+
+/*Header top Navbar Styles*/
+.dark-blue .navbar-nav {
+  & li {
+    &:hover > a,
+    &:focus > a,
+    &:hover > .nav-link,
+    &:focus > .nav-link {
+      color: $app-primary-dark-blue;
+    }
+
+    & a,
+    & .nav-link {
+      color: $sidebar-text-color;
+    }
+
+    & a:hover,
+    & a:focus,
+    & .nav-link:hover,
+    & .nav-link:focus {
+      color: $app-primary-dark-blue;
+    }
+  }
+
+  & li.nav-item > a,
+  & li.nav-item > .nav-link {
+    color: $white;
+  }
+
+  & li.nav-item:hover > a,
+  & li.nav-item:focus > a,
+  & li.nav-item > a:hover,
+  & li.nav-item > a:focus,
+  & li.nav-item.active > a,
+  & li.nav-item:hover > .nav-link,
+  & li.nav-item:focus > .nav-link,
+  & li.nav-item > .nav-link:hover,
+  & li.nav-item > .nav-link:focus,
+  & li.nav-item.active > .nav-link {
+    color: $secondary-dark-blue;
+  }
+
+  ul.sub-menu {
+    & li a.active,
+    & li.active > a,
+    & li .nav-link.active,
+    & li.active > .nav-link {
+      color: $app-primary-dark-blue;
+    }
+  }
+
+  & .nav-arrow {
+    & > a:before,
+    & > .nav-link:before {
+      color: $sidebar-text-color;
+    }
+
+    & a:hover,
+    & a:focus,
+    & .nav-link:hover,
+    & .nav-link:focus {
+      &:before {
+        color: $app-primary-dark-blue;
+      }
+    }
+
+    &:hover > a:before,
+    &:focus > a:before,
+    &.active > a:before,
+    &:hover > .nav-link:before,
+    &:focus > .nav-link:before,
+    &.active > .nav-link:before {
+      color: $app-primary-dark-blue;
+    }
+  }
+}
+
+.dark-blue .app-top-nav {
+
+  & .navbar-nav {
+    & li.nav-item > a,
+    & li.nav-item > .nav-link {
+      color: $white;
+    }
+
+    & li.nav-item:hover > a,
+    & li.nav-item:focus > a,
+    & li.nav-item > a:hover,
+    & li.nav-item > a:focus,
+    & li.nav-item.active > a,
+    & li.nav-item:hover > .nav-link,
+    & li.nav-item:focus > .nav-link,
+    & li.nav-item > .nav-link:hover,
+    & li.nav-item > .nav-link:focus,
+    & li.nav-item.active > .nav-link {
+      color: $secondary-dark-blue;
+    }
+  }
+}
+
+.dark-blue .app-header-horizontal {
+  & .app-main-header-top {
+    @include box-shadow(none !important);
+  }
+}
+
+.dark-blue .header-notifications .app-notification {
+  & .jr-list-link {
+
+    @include hover-focus-active {
+      color: $app-primary-dark-blue;
+      border-color: $app-primary-dark-blue;
+    }
+  }
+}
+
+//_app-module.scss
+.dark-blue .module-nav {
+  & li a {
+    &.active {
+      border-color: $app-primary-dark-blue;
+    }
+  }
+}
+
+//_calendar.scss
+.dark-blue .rbc-event {
+  background-color: $app-primary-dark-blue;
+}
+
+.dark-blue .rbc-event.rbc-selected {
+  background-color: darken($app-primary-dark-blue, 10%);
+}
+
+.dark-blue .rbc-slot-selection {
+  background-color: rgba($app-primary-dark-blue, 0.7);
+}
+
+.dark-blue .rbc-toolbar button:active,
+.dark-blue .rbc-toolbar button.rbc-active {
+  background-color: rgba($app-primary-dark-blue, 0.9);
+  border-color: $app-primary-dark-blue;
+}
+
+.dark-blue .rbc-toolbar button:active:hover,
+.dark-blue .rbc-toolbar button.rbc-active:hover,
+.dark-blue .rbc-toolbar button:active:focus,
+.dark-blue .rbc-toolbar button.rbc-active:focus {
+  background-color: rgba($app-primary-dark-blue, 0.9);
+  border-color: $app-primary-dark-blue;
+}
+
+.dark-blue .rbc-toolbar button:focus {
+  background-color: rgba($app-primary-dark-blue, 0.9);
+  border-color: $app-primary-dark-blue;
+}
+
+.dark-blue .rbc-toolbar button:hover {
+  background-color: rgba($app-primary-dark-blue, 0.9);
+  border-color: $app-primary-dark-blue;
+}
+
+//_chat.scss
+.dark-blue .chat-sidenav-title {
+  color: $app-primary-dark-blue;
+}
+
+.dark-blue .chat-user-item {
+  &.active,
+  &:hover {
+    background-color: lighten($app-primary-dark-blue, 45%);
+  }
+}
+
+//_dashboard.scss
+.dark-blue .contact-list {
+  & i {
+    color: $app-primary-dark-blue;
+  }
+}
+
+//The link which when clicked opens the collapsable ChatUserList
+.dark-blue .Collapsible__trigger {
+  background: $app-primary-dark-blue;
+}
+
+.dark-blue .categories-list {
+  & li a:focus,
+  & li a:hover,
+  & li.active a {
+    color: $app-primary-dark-blue;
+  }
+}
+
+//_login.scss
+
+.dark-blue .login-content .form-control {
+  &:focus {
+    border-color: $app-primary-dark-blue;
+  }
+}
+
+//_portfolio.scss
+.dark-blue .filter-with-bg-color ul li {
+  .jr-link {
+    border-color: $app-primary-dark-blue;
+
+    &:hover,
+    &:focus,
+    &.active {
+      background-color: $app-primary-dark-blue;
+    }
+  }
+}
+
+//_card.scss
+.dark-blue .profile-intro {
+  & .icon {
+    color: $app-primary-dark-blue;
+  }
+}
+
+.dark-blue .social-link {
+  & li.active a,
+  & li a:hover,
+  & li a:focus {
+    color: $secondary-dark-blue;
+  }
+}
+
+//_tables.scss
+.dark-blue .actions {
+  color: $secondary-dark-blue;
+}
+
+.dark-blue .table-hover tbody tr:hover {
+  background-color: rgba($app-primary-dark-blue, 0.075);
+}
+
+//Border Color
+
+.dark-blue .border-primary {
+  border-color: $app-primary-dark-blue !important;
+}
+
+// login page content
+
+.dark-blue .app-logo-content {
+  background-color: $app-primary-dark-blue;
+}
+
+.dark-blue .app-social-block {
+  & .social-link button {
+    border: solid 1px $app-primary-dark-blue;
+    color: $app-primary-dark-blue;
+
+    &:hover,
+    &:focus {
+      color: $white;
+      background-color: $app-primary-dark-blue;
+    }
+  }
+}
+
+/*Button Group Styles*/
+.dark-blue .btn-group,
+.dark-blue .btn-group-vertical {
+  > .jr-btn {
+    &.active {
+      background-color: $app-primary-dark-blue;
+      border-color: $app-primary-dark-blue;
+    }
+
+  }
+
+  > .jr-flat-btn {
+    background-color: transparent;
+    border-color: transparent;
+    &.active {
+      background-color: transparent;
+      color: $app-primary-dark-blue;
+      &:hover,
+      &:focus {
+        background-color: rgba($app-primary-dark-blue, 0.12);
+        color: $app-primary-dark-blue;
+      }
+    }
+  }
+}
+
+/*Classic Dashboard Styles*/
+.dark-blue .jr-fillchart-btn-close,
+.dark-blue .jr-onchart .jr-badge-up,
+.dark-blue .jr-task-list-item:hover .jr-text-hover {
+  color: $app-primary-dark-blue;
+}
+
+.dark-blue .jr-entry-title:before {
+  background-color: $app-primary-dark-blue;
+}
+
+.dark-blue .jr-card-ticketlist {
+  & .jr-task-list-item:hover .jr-task-item-title,
+  .jr-link {
+    color: $app-primary-dark-blue;
+  }
+}
+
+.dark-blue .slick-dots li.slick-active button:before {
+  border-color: $app-primary-dark-blue;
+}
+
+//Nav Styles
+.dark-blue .nav-pills .nav-link.active,
+.dark-blue .nav-pills .show > .nav-link {
+  color: $white !important;
+  background-color: $app-primary-dark-blue;
+}
+
+// Gradient Color Class
+.dark-blue .bg-gradient-primary {
+  @include gradient-directional($app-primary-dark-blue, lighten($app-primary-dark-blue, 16%), 0deg);
+}
+
+.dark-blue .bg-gradient-primary-x {
+  @include gradient-x(darken($app-primary-dark-blue, 10%), lighten($app-primary-dark-blue, 16%), 70%, 100%);
+}
+
+//Profile style
+.dark-blue .jr-profile-banner {
+  background-color: $app-primary-dark-blue;
+  color: $white;
+
+  & .jr-link {
+    color: $white;
+
+    &:hover,
+    &:focus {
+      color: $secondary-dark-blue;
+    }
+  }
+}
+
+.dark-blue .dropdown-item {
+
+  &.active,
+  &:active {
+    background-color: $app-primary-dark-blue;
+    color: $white;
+  }
+
+  &[class*="text-"] {
+
+    &.active,
+    &:active {
+      background-color: transparent;
+    }
+  }
+}

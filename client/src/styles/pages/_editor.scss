@@ -1,0 +1,8 @@
+/*Editor Styles*/
+.rdw-inline-wrapper {
+  @include display-flex();
+}
+
+.rdw-option-wrapper {
+  margin-bottom: 6px;
+}

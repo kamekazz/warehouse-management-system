@@ -1,0 +1,54 @@
+/*Error Styles*/
+
+.page-error-container {
+  padding: 30px 0;
+  position: relative;
+
+  @media screen and (max-width: 575px) {
+    padding: 15px 0;
+  }
+}
+
+.page-error-content {
+  margin: 0 auto;
+  padding: 40px 0;
+  width: 380px;
+  max-width: 94%;
+
+  @media screen and (max-width: 767px) {
+    padding: 15px 0;
+  }
+
+  @media screen and (max-width: 575px) {
+    padding: 0;
+  }
+}
+
+.error-code {
+  color: $gray-900;
+  font-size: 160px;
+  text-align: center;
+  line-height: 1;
+  font-weight: 600;
+  text-shadow: 10px 6px 8px rgba(117, 117, 117, 0.8);
+
+  @media screen and (max-width: 991px) {
+    font-size: 130px;
+  }
+
+  @media screen and (max-width: 767px) {
+    font-size: 100px;
+  }
+
+  @media screen and (max-width: 575px) {
+    font-size: 80px;
+  }
+}
+
+.page-error-content h2 {
+  margin-bottom: $size-50;
+
+  @media screen and (max-width: 767px) {
+    margin-bottom: 20px;
+  }
+}
