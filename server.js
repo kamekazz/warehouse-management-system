@@ -13,9 +13,12 @@ const receivingRoutes = require('./routes/receiving.routes');
 const orderRoutes = require('./routes/order.routes');
 const ticketRoutes = require('./routes/ticket.routes');
 const pickerRoutes = require('./routes/picker.routes');
+const cors = require('cors');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use(express.json({ extended: false }));
 
 // Connect Database
 mongoose
