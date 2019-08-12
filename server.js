@@ -23,7 +23,7 @@ mongoose
   .then(() => console.log(`mongodb connected`))
   .catch(err => console.log(err));
 
-app.use('/api/users', usersRoutes);
+app.use('/api/auth', usersRoutes);
 app.use('/api/location', locationRoutes);
 app.use('/api/item', itemRoutes);
 app.use('/api/pallet', palletRoutes);

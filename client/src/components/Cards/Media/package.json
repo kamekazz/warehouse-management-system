@@ -1,9 +1,0 @@
-{
-  "name": "MediaCard",
-  "version": "0.0.0",
-  "private": true,
-  "main": "./MediaCard.js",
-  "dependencies": {
-    "material-ui": "next"
-  }
-}

@@ -25,7 +25,7 @@ router.get('/', auth, async (req, res) => {
 // @desc     Register user
 // @access   Public
 router.post(
-  '/',
+  '/register',
   [
     check('name', 'Name is required')
       .not()

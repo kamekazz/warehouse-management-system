@@ -1,6 +1,0 @@
-{
-  "name": "UserProfileCard",
-  "version": "0.0.0",
-  "private": true,
-  "main": "./UserProfileCard.js"
-}
