@@ -18,9 +18,12 @@ const UserSchema = new Schema({
   avatar: {
     type: String
   },
-  status: {
-    type: String
-  },
+  clearance: [
+    {
+      type: String
+    }
+  ],
+  status: { type: String },
   date: {
     type: Date,
     default: Date.now
