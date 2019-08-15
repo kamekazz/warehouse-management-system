@@ -1,22 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-const jwt = require('jwt-simple');
 const gravatar = require('gravatar');
+const jwt = require('jsonwebtoken');
 
 // User Model
 const User = require('../model/User');
 
-// helpers Function
-function tokenForUser(user) {
-  let timestamp = new Date().getTime();
-  return jwt.encode(
-    { sub: user.id, iat: timestamp },
-    process.env.SECRET_OR_KEY
-  );
-}
-
-// @route   POST api/users
+// @route   POST api/user
 // @desc    Register new user
 // @access  Public
 router.post('/', (req, res) => {
@@ -26,7 +17,7 @@ router.post('/', (req, res) => {
   if (!name || !email || !password) {
     return res.json({
       success: false,
-      message: 'Please enter all fields'
+      error: 'Please enter all fields'
     });
   }
 
@@ -35,7 +26,7 @@ router.post('/', (req, res) => {
     if (user)
       return res.json({
         success: false,
-        message: 'User already exists'
+        error: 'User already exists'
       });
 
     const avatar = gravatar.url(email, {
@@ -61,8 +52,13 @@ router.post('/', (req, res) => {
         if (err) throw err;
         newUser.password = hash;
         newUser.save().then(user => {
-          res.json({
-            token: tokenForUser(user)
+          jwt.sign({ user: user }, 'kk', (err, token) => {
+            res.json({
+              success: true,
+              message: 'auth',
+              token,
+              user
+            });
           });
         });
       });

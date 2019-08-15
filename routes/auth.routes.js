@@ -1,19 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-const jwt = require('jwt-simple');
-const passport = require('passport');
 // User Model
 const User = require('../model/User');
-const requireAuth = require('../middleware/services/passport');
 
-function tokenForUser(user) {
-  let timestamp = new Date().getTime();
-  return jwt.encode(
-    { sub: user.id, iat: timestamp },
-    process.env.SECRET_OR_KEY
-  );
-}
+const jwt = require('jsonwebtoken');
+const auth = require('../middleware/auth');
 
 // @route   POST api/auth
 // @desc    Auth user
@@ -25,7 +17,7 @@ router.post('/', (req, res) => {
   if (!email || !password) {
     return res.json({
       success: false,
-      message: 'Please enter all fields'
+      error: 'Please enter all fields'
     });
   }
 
@@ -34,7 +26,7 @@ router.post('/', (req, res) => {
     if (!user)
       return res.json({
         success: false,
-        message: 'User Does not exist'
+        error: 'User Does not exist'
       });
 
     // Validate password
@@ -42,13 +34,15 @@ router.post('/', (req, res) => {
       if (!isMatch)
         return res.json({
           success: false,
-          message: 'Invalid credentials'
+          error: 'Invalid credentials'
         });
-      res.json({
-        success: true,
-        message: 'auth',
-        token: tokenForUser(user),
-        user
+      jwt.sign({ user: user }, 'kk', (err, token) => {
+        res.json({
+          success: true,
+          message: 'auth',
+          token,
+          user
+        });
       });
     });
   });
@@ -57,12 +51,36 @@ router.post('/', (req, res) => {
 // @route   GET api/auth/user
 // @desc    Get user data
 // @access  Private
-router.get('/user', requireAuth, (req, res) => {
-  res.json({
-    success: true,
-    message: 'auth',
-    user: req.user
-  });
+router.get('/user', auth, async (req, res) => {
+  try {
+    const user = await User.findOne({ _id: req.user._id });
+    if (!user)
+      return res.json({ success: false, error: 'user token not valid' });
+    res.json({
+      success: true,
+      message: 'auth',
+      user: req.user
+    });
+  } catch (error) {
+    res.json({ success: false, error });
+  }
+});
+
+// @route   GET api/auth/logout
+// @desc    logout
+// @access  Private
+router.get('/logout', auth, async (req, res) => {
+  try {
+    const user = await User.findOne({ _id: req.user._id });
+    if (!user)
+      return res.json({ success: false, error: 'user token not valid' });
+    res.json({
+      success: true,
+      message: 'logout'
+    });
+  } catch (error) {
+    res.json({ success: false, error });
+  }
 });
 
 module.exports = router;
