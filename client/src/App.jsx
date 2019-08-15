@@ -13,6 +13,8 @@ import SignUpPage from './pages/auth/SignUpPage';
 import Error404Page from './pages/Error404Page';
 import AppMainRoute from './pages/app/App';
 import setAuthToken from './util/setAuthToken';
+import PrivateRoute from './components/PrivateRoute';
+import LandingPage from './pages/LandingPage';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -25,7 +27,8 @@ const App = props => {
 
   return (
     <Switch>
-      <Route path="/app" component={AppMainRoute} />
+      <Route exact path="/" component={LandingPage} />
+      <PrivateRoute path="/app" component={AppMainRoute} />
       <Route path="/signin" component={SignInPage} />
       <Route path="/signup" component={SignUpPage} />
       <Route component={Error404Page} />
