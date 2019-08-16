@@ -1,19 +1,19 @@
 export const styleColor = {
   primary: {
-    lite: '#99b8ee',
-    main: '#aa3e3e',
-    dark: '#742929;'
+    lite: '#8b8ae7',
+    main: '#5654df',
+    dark: '#3b39ac;'
   },
   secondary: {
-    lite: '#99b8ee',
-    main: '#4D658D',
-    dark: '#3a4a66'
+    lite: '#39fae0',
+    main: '#13d7bc',
+    dark: '#01a790'
   },
-  error: { main: '#D4CC6A' },
+  error: { main: '#ff6a9c' },
   color: {
     white: '#fff',
     whiteD2: '#d3d3d3;',
-    greyDark: '#777',
+    greyDark: '#3e4554',
     greyDark2: '#999',
     greyDark3: '#333',
     listedBlue: '#cee7fd'
