@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { HepperLink } from '../../../components/HepperLink';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import { userSignUp } from '../../../redux/Auth/user.actions';
 
 export class RegistrationForm extends Component {
   state = {
@@ -26,6 +27,7 @@ export class RegistrationForm extends Component {
       email: '',
       disable: true
     });
+    this.props.userSignUp(this.state);
   };
 
   handleInputChange = event => {
@@ -148,12 +150,16 @@ export class RegistrationForm extends Component {
 
 const mapStateToProps = state => ({});
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  userSignUp
+};
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(RegistrationForm);
+
+//styled
 
 const FormEl = styled.form`
   width: 100%;

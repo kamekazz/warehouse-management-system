@@ -1,10 +1,11 @@
 const jwt = require('jsonwebtoken');
 
  function auth(req, res, next) {
-  // Get auth header value
-  const bearerHeader = req.headers['authorization'];
-  // Check if bearer is undefined
-  if (typeof bearerHeader !== 'undefined') {
+   // Get auth header value
+   const bearerHeader = req.headers['authorization'];
+   // Check if bearer is undefined
+   if (typeof bearerHeader !== 'undefined') {
+    console.log('token')
     // Split at the space
     const bearer = bearerHeader.split(' ');
     // Get token from array
@@ -33,7 +34,10 @@ const jwt = require('jsonwebtoken');
   }
   } else {
     // Forbidden
-    res.sendStatus(403);
+    res.json({
+      success:false,
+      error:"Forbidden"
+    })
   }
 }
 

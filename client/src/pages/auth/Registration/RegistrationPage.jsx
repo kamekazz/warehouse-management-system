@@ -1,7 +1,5 @@
 import React from 'react';
 
-function RegistrationPage() {
+export default function RegistrationPage() {
   return <div>RegistrationPage</div>;
 }
-
-export default RegistrationPage;

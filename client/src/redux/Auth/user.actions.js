@@ -8,7 +8,7 @@ import {
   USER_TOKEN_SET
 } from './user.types';
 import axios from '../../util/Api';
-
+import history from '../history';
 export const setInitUrl = url => {
   return {
     type: INIT_URL,
@@ -16,8 +16,8 @@ export const setInitUrl = url => {
   };
 };
 
-export const userSignUp = ({ name, email, password }) => {
-  console.log(name, email, password);
+export const userSignUp = ({ firstName, lastName, email, password }) => {
+  const name = firstName + ' ' + lastName;
   return dispatch => {
     dispatch({ type: FETCH_START });
     axios
@@ -35,6 +35,7 @@ export const userSignUp = ({ name, email, password }) => {
           dispatch({ type: FETCH_SUCCESS });
           dispatch({ type: USER_TOKEN_SET, payload: data.token });
           dispatch({ type: USER_DATA, payload: data.user });
+          history.push('/registration');
         } else {
           console.log('payload: data.error', data.error);
           dispatch({ type: FETCH_ERROR, payload: data.error });
@@ -64,6 +65,7 @@ export const userSignIn = ({ email, password }) => {
           dispatch({ type: FETCH_SUCCESS });
           dispatch({ type: USER_TOKEN_SET, payload: data.token });
           dispatch({ type: USER_DATA, payload: data.user });
+          history.push('/app');
         } else {
           dispatch({ type: FETCH_ERROR, payload: data.error });
         }
@@ -81,7 +83,7 @@ export const getUser = () => {
     axios
       .get('/auth/user')
       .then(({ data }) => {
-        console.log('userSignIn: ', data);
+        console.log('getUser: ', data);
         if (data.success) {
           dispatch({ type: FETCH_SUCCESS });
           dispatch({ type: USER_DATA, payload: data.user });

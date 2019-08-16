@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,9 +12,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { HepperLink } from '../../components/HepperLink';
-
-// import styled from 'styled-components';
-// import { styleColor } from '../../Styles/styleThem';
+import { connect } from 'react-redux';
+import { userSignIn } from '../../redux/Auth/user.actions';
 
 function Copyright() {
   return (
@@ -50,7 +49,9 @@ const useStyles = makeStyles(theme => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.secondary.main,
+    transform: 'scale(2)',
+    marginBottom: '24px'
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -61,8 +62,33 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function SignInSide() {
+function SignInSide(props) {
   const classes = useStyles();
+  const [email, setemail] = useState('');
+  const [password, setPassword] = useState('');
+  const [disable, setDisable] = useState(true);
+
+  const handleDisableButton = () => {
+    if (email.length >= 4) {
+      if (password.length >= 3) {
+        setDisable(false);
+      } else {
+        setDisable(true);
+      }
+    } else {
+      setDisable(true);
+    }
+  };
+
+  useEffect(() => {
+    handleDisableButton();
+  }, [email, password]);
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    const payload = { email, password };
+    props.userSignIn(payload);
+  };
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -76,7 +102,7 @@ function SignInSide() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} onSubmit={handleSubmit}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -87,6 +113,8 @@ function SignInSide() {
               name="email"
               autoComplete="email"
               autoFocus
+              value={email}
+              onChange={e => setemail(e.target.value)}
             />
             <TextField
               variant="outlined"
@@ -98,6 +126,8 @@ function SignInSide() {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -109,6 +139,7 @@ function SignInSide() {
               variant="contained"
               color="primary"
               className={classes.submit}
+              disabled={disable}
             >
               Sign In
             </Button>
@@ -132,4 +163,11 @@ function SignInSide() {
   );
 }
 
-export default SignInSide;
+const mapDispatchToProps = {
+  userSignIn
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(SignInSide);
