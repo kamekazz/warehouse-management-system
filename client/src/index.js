@@ -14,6 +14,7 @@ import { styleColor } from './Styles/styleThem';
 import App from './App';
 import GlobalStyle from './Styles/global.styles';
 import history from './redux/history';
+import MessageBar from './components/MessugeBar';
 
 const theme = createMuiTheme({
   palette: {
@@ -31,6 +32,7 @@ ReactDOM.render(
         <Router history={history}>
           <App />
         </Router>
+        <MessageBar />
       </BrowserRouter>
     </MuiThemeProvider>
   </Provider>,

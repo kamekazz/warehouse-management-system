@@ -68,19 +68,18 @@ function SignInSide(props) {
   const [password, setPassword] = useState('');
   const [disable, setDisable] = useState(true);
 
-  const handleDisableButton = () => {
-    if (email.length >= 4) {
-      if (password.length >= 3) {
-        setDisable(false);
+  useEffect(() => {
+    const handleDisableButton = () => {
+      if (email.length >= 4) {
+        if (password.length >= 3) {
+          setDisable(false);
+        } else {
+          setDisable(true);
+        }
       } else {
         setDisable(true);
       }
-    } else {
-      setDisable(true);
-    }
-  };
-
-  useEffect(() => {
+    };
     handleDisableButton();
   }, [email, password]);
 
