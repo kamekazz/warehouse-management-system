@@ -11,11 +11,10 @@ module.exports = function(req, res, next) {
       message: 'No token, authorization denied'
     });
   }
-
   // Verify token
   try {
     const decoded = jwt.verify(token, process.env.SECRET_OR_KEY);
-    req.user = decoded.user;
+    req.id = decoded.id;
     next();
   } catch (err) {
     res.json({ success: false, message: 'Token is not valid' });

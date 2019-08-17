@@ -12,8 +12,7 @@ const auth = require('../middleware/auth');
 // @access  Public
 router.post('/', (req, res) => {
   const { email, password } = req.body;
-
-  // Simple validation
+  //  Simple validation
   if (!email || !password) {
     return res.json({
       success: false,
@@ -58,13 +57,14 @@ router.post('/', (req, res) => {
 // @access  Private
 router.get('/user', auth, async (req, res) => {
   try {
-    const user = await User.findOne({ _id: req.user._id });
+    // console.log(req.user);
+    const user = await User.findOne({ _id: req.id });
     if (!user)
       return res.json({ success: false, error: 'user token not valid' });
     res.json({
       success: true,
       message: 'auth',
-      user: req.user
+      user: user
     });
   } catch (error) {
     res.json({ success: false, error });

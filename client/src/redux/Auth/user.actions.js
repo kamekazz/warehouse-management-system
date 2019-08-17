@@ -63,11 +63,10 @@ export const userSignUp = ({
   }
 };
 // Login User
-export const userSignIn = (email, password) => async dispatch => {
-  const body = JSON.stringify({ email, password });
+export const userSignIn = body => async dispatch => {
   try {
     const res = await axios.post('/auth', body);
-    console.log('login user', res);
+    console.log('res', res);
     if (res.data.success) {
       dispatch({
         type: LOGIN_SUCCESS,
