@@ -1,46 +1,52 @@
 import {
-  INIT_URL,
-  SIGNOUT_USER_SUCCESS,
-  USER_DATA,
-  USER_TOKEN_SET
-} from './user.types';
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
+  USER_LOADED,
+  AUTH_ERROR,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  LOGOUT
+} from '../types';
 
-const INIT_STATE = {
-  token: JSON.parse(localStorage.getItem('token')),
-  initURL: '',
-  authUser: JSON.parse(localStorage.getItem('user'))
+const initialState = {
+  token: localStorage.getItem('token'),
+  isAuthenticated: null,
+  loading: true,
+  user: null
 };
 
-export default (state = INIT_STATE, action) => {
-  switch (action.type) {
-    case INIT_URL: {
-      return { ...state, initURL: action.payload };
-    }
+export default function(state = initialState, action) {
+  const { type, payload } = action;
 
-    case SIGNOUT_USER_SUCCESS: {
+  switch (type) {
+    case USER_LOADED:
+      return {
+        ...state,
+        isAuthenticated: true,
+        loading: false,
+        user: payload
+      };
+    case REGISTER_SUCCESS:
+    case LOGIN_SUCCESS:
+      localStorage.setItem('token', payload.token);
+      return {
+        ...state,
+        ...payload,
+        isAuthenticated: true,
+        loading: false
+      };
+    case REGISTER_FAIL:
+    case AUTH_ERROR:
+    case LOGIN_FAIL:
+    case LOGOUT:
+      localStorage.removeItem('token');
       return {
         ...state,
         token: null,
-        authUser: null,
-        initURL: ''
+        isAuthenticated: false,
+        loading: false
       };
-    }
-
-    case USER_DATA: {
-      return {
-        ...state,
-        authUser: action.payload
-      };
-    }
-
-    case USER_TOKEN_SET: {
-      return {
-        ...state,
-        token: action.payload
-      };
-    }
-
     default:
       return state;
   }
-};
+}

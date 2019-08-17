@@ -9,12 +9,18 @@ import SignUpPage from './pages/auth/SignUpPage';
 import RegistrationPage from './pages/auth/Registration/RegistrationPage';
 import Error404Page from './pages/Error404Page';
 import AppMainRoute from './pages/app/App';
-import setAuthToken from './util/setAuthToken';
+
 import PrivateRoute from './components/PrivateRoute';
 import LandingPage from './pages/LandingPage';
+import setAuthToken from './util/setAuthToken';
+
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 
 const App = props => {
-  const { authUser } = props.auth;
+  const { isAuthenticated } = props.auth;
+
   useEffect(() => {
     props.getUser();
   }, []);
@@ -26,13 +32,21 @@ const App = props => {
       <Route
         path="/signin"
         render={routeProps =>
-          authUser ? <Redirect to="/app" /> : <SignInPage {...routeProps} />
+          isAuthenticated ? (
+            <Redirect to="/app" />
+          ) : (
+            <SignInPage {...routeProps} />
+          )
         }
       />
       <Route
         path="/signup"
         render={routeProps =>
-          authUser ? <Redirect to="/app" /> : <SignUpPage {...routeProps} />
+          isAuthenticated ? (
+            <Redirect to="/app" />
+          ) : (
+            <SignUpPage {...routeProps} />
+          )
         }
       />
       <Route path="/registration" component={RegistrationPage} />

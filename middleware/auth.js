@@ -1,47 +1,23 @@
 const jwt = require('jsonwebtoken');
 
- function auth(req, res, next) {
-   // Get auth header value
-   const bearerHeader = req.headers['authorization'];
-   // Check if bearer is undefined
-   if (typeof bearerHeader !== 'undefined') {
-    console.log('token')
-    // Split at the space
-    const bearer = bearerHeader.split(' ');
-    // Get token from array
-    const bearerToken = bearer[1];
-    // Set the token
-    let = token = bearerToken;
-    if (!token) {
-      return res.json({
-        success: false,
-        error: 'No token, authorization denied'
-        });
-    }
+module.exports = function(req, res, next) {
+  // Get token from header
+  const token = req.header('x-auth-token');
 
+  // Check if not token
+  if (!token) {
+    return res.json({
+      success: false,
+      message: 'No token, authorization denied'
+    });
+  }
 
-    // Next middleware
-   // Verify token
-   try {
-    const decoded = jwt.verify(token, 'kk');
+  // Verify token
+  try {
+    const decoded = jwt.verify(token, process.env.SECRET_OR_KEY);
     req.user = decoded.user;
     next();
   } catch (err) {
-    res.json({
-      success: false,
-      error: 'Token is not valid'
-    });
+    res.json({ success: false, message: 'Token is not valid' });
   }
-  } else {
-    // Forbidden
-    res.json({
-      success:false,
-      error:"Forbidden"
-    })
-  }
-}
-
-
-
-
-module.exports = auth;
+};

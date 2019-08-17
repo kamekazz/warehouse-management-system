@@ -52,7 +52,7 @@ router.post('/', (req, res) => {
         if (err) throw err;
         newUser.password = hash;
         newUser.save().then(user => {
-          jwt.sign({ user: user }, 'kk', (err, token) => {
+          jwt.sign({ user: user }, process.env.SECRET_OR_KEY, (err, token) => {
             res.json({
               success: true,
               message: 'auth',

@@ -36,14 +36,19 @@ router.post('/', (req, res) => {
           success: false,
           error: 'Invalid credentials'
         });
-      jwt.sign({ user: user }, 'kk', (err, token) => {
-        res.json({
-          success: true,
-          message: 'auth',
-          token,
-          user
-        });
-      });
+      jwt.sign(
+        { id: user._id },
+        process.env.SECRET_OR_KEY,
+        { expiresIn: '7d' },
+        (err, token) => {
+          res.json({
+            success: true,
+            message: 'auth',
+            token,
+            user
+          });
+        }
+      );
     });
   });
 });
