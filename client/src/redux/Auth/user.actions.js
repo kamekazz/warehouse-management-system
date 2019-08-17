@@ -8,7 +8,6 @@ import {
   LOGOUT
 } from '../types';
 import axios from '../../util/Api';
-import history from '../history';
 import setAuthToken from '../../util/setAuthToken';
 
 // Load User
@@ -18,7 +17,6 @@ export const getUser = () => async dispatch => {
   }
   try {
     const res = await axios.get('/auth/user');
-    console.log('load user', res);
     if (res.data.success) {
       dispatch({
         type: USER_LOADED,
@@ -82,6 +80,16 @@ export const userSignIn = body => async dispatch => {
 };
 
 // Logout / Clear Profile
-export const userSignOut = () => dispatch => {
+export const userSignOut = body => async dispatch => {
   dispatch({ type: LOGOUT });
+  try {
+    const { data } = await axios.post('/auth/logout');
+    if (data.success) {
+      console.log('data.message', data.message);
+    } else {
+      console.log('object');
+    }
+  } catch (error) {
+    console.log('error', error);
+  }
 };

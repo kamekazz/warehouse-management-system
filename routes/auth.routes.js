@@ -57,14 +57,10 @@ router.post('/', (req, res) => {
 // @access  Private
 router.get('/user', auth, async (req, res) => {
   try {
-    // console.log(req.user);
-    const user = await User.findOne({ _id: req.id });
-    if (!user)
-      return res.json({ success: false, error: 'user token not valid' });
     res.json({
       success: true,
       message: 'auth',
-      user: user
+      user: req.user
     });
   } catch (error) {
     res.json({ success: false, error });
@@ -74,11 +70,10 @@ router.get('/user', auth, async (req, res) => {
 // @route   GET api/auth/logout
 // @desc    logout
 // @access  Private
-router.get('/logout', auth, async (req, res) => {
+router.post('/logout', auth, async (req, res) => {
   try {
-    const user = await User.findOne({ _id: req.user._id });
-    if (!user)
-      return res.json({ success: false, error: 'user token not valid' });
+    req.user['status'] = 'off';
+    req.user.save();
     res.json({
       success: true,
       message: 'logout'
