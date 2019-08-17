@@ -55,7 +55,7 @@ router.post('/', (req, res) => {
           jwt.sign({ user: user }, process.env.SECRET_OR_KEY, (err, token) => {
             res.json({
               success: true,
-              message: 'auth',
+              message: 'new user created',
               token,
               user
             });

@@ -77,12 +77,6 @@ function MySnackbarContentWrapper(props) {
   );
 }
 
-const useStyles2 = makeStyles(theme => ({
-  margin: {
-    margin: theme.spacing(1)
-  }
-}));
-
 function CustomizedSnackbar({ openSk, closeMsgBar, message, status }) {
   function handleClose(event, reason) {
     if (reason === 'clickaway') {
