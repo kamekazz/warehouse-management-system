@@ -50,9 +50,9 @@ export default function MediaCard() {
               Go To Home Page
             </Button>
           </RemoveLickLine>
-          <RemoveLickLine to="/">
+          <RemoveLickLine to="/signin">
             <Button size="small" color="secondary">
-              Learn More
+              Sign In
             </Button>
           </RemoveLickLine>
         </CardActions>

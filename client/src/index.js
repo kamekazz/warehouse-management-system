@@ -18,6 +18,7 @@ import MessageBar from './components/MessugeBar';
 
 const theme = createMuiTheme({
   palette: {
+    type: 'dark',
     primary: { main: styleColor.primary.main },
     secondary: { main: styleColor.secondary.main },
     error: { main: styleColor.error.main }

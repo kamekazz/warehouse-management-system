@@ -23,16 +23,20 @@ const variantIcon = {
 
 const useStyles1 = makeStyles(theme => ({
   success: {
-    backgroundColor: green[600]
+    backgroundColor: green[600],
+    color: 'white'
   },
   error: {
-    backgroundColor: theme.palette.error.main
+    backgroundColor: theme.palette.error.main,
+    color: 'white'
   },
   info: {
-    backgroundColor: theme.palette.primary.main
+    backgroundColor: theme.palette.primary.main,
+    color: 'white'
   },
   warning: {
-    backgroundColor: amber[700]
+    backgroundColor: amber[700],
+    color: 'white'
   },
   icon: {
     fontSize: 20
@@ -66,7 +70,7 @@ function MySnackbarContentWrapper(props) {
         <IconButton
           key="close"
           aria-label="close"
-          color="inherit"
+          color="default"
           onClick={onClose}
         >
           <CloseIcon className={classes.icon} />
