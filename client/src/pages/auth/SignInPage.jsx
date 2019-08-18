@@ -20,7 +20,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <HepperLink color="inherit" to="/">
-        Your Website
+        ez-wms.com
       </HepperLink>{' '}
       {new Date().getFullYear()}
       {'. Built with '}

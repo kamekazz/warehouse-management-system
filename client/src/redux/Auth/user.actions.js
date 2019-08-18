@@ -1,5 +1,4 @@
 import {
-  REGISTER_SUCCESS,
   REGISTER_FAIL,
   USER_LOADED,
   AUTH_ERROR,
@@ -13,6 +12,7 @@ import {
 } from '../types';
 import axios from '../../util/Api';
 import setAuthToken from '../../util/setAuthToken';
+import history from '../history';
 
 // Load User
 export const getUser = () => async dispatch => {
@@ -45,9 +45,8 @@ export const userSignUp = ({
   try {
     const res = await axios.post('/user', body);
     if (res.data.success) {
-      dispatch({ type: REGISTER_SUCCESS, payload: res.data });
+      history.push('/registration');
       dispatch({ type: MSG_SUCCESS, payload: res.data.message });
-      dispatch(getUser());
     } else {
       dispatch({ type: REGISTER_FAIL });
       dispatch({ type: MSG_ERROR, payload: res.data.error });
