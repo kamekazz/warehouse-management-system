@@ -6,11 +6,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
 
+import LibraryIcon from '@material-ui/icons/LibraryAdd';
 import LocationIcon from '@material-ui/icons/GpsFixed';
 import RedeemIcon from '@material-ui/icons/Redeem';
 
@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
 function NestedList(props) {
   const { handleDrawerToggle, activeUrl } = props;
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
 
   function handleClick() {
     setOpen(!open);
@@ -52,23 +52,12 @@ function NestedList(props) {
           component="div"
           id="nested-list-subheader"
         >
-          Maintenance
+          Inventory
         </ListSubheader>
       }
       className={classes.root}
     >
-      <ListItem button onClick={() => NavPush('/app/location')}>
-        <ListItemIcon>
-          <LocationIcon
-            color={activeUrl === '/app/location' ? 'secondary' : 'inherit'}
-          />
-        </ListItemIcon>
-        <ListItemTextEl
-          inputcolor={activeUrl === '/app/location' ? true : false}
-          primary="Location"
-        />
-      </ListItem>
-
+      {/* itemList */}
       <ListItem button onClick={() => NavPush('/app/product')}>
         <ListItemIcon>
           <RedeemIcon
@@ -80,21 +69,39 @@ function NestedList(props) {
           primary="Product"
         />
       </ListItem>
+      {/* itemList */}
 
       <ListItem button onClick={handleClick}>
         <ListItemIcon>
-          <InboxIcon />
+          <LocationIcon
+            color={activeUrl === '/app/location' ? 'secondary' : 'inherit'}
+          />
         </ListItemIcon>
-        <ListItemText primary="Inbox" />
-        {open ? <ExpandLess /> : <ExpandMore />}
+        <ListItemTextEl
+          inputcolor={activeUrl === '/app/location' ? true : false}
+          onClick={() => NavPush('/app/location')}
+          primary="Location"
+        />
+        {open ? <ExpandLessEl /> : <ExpandMoreEl />}
       </ListItem>
       <CollapseEl in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          <ListItem button className={classes.nested}>
+          <ListItem
+            button
+            className={classes.nested}
+            onClick={() => NavPush('/app/location/create')}
+          >
             <ListItemIcon>
-              <StarBorder />
+              <LibraryIcon
+                color={
+                  activeUrl === '/app/location/create' ? 'secondary' : 'inherit'
+                }
+              />
             </ListItemIcon>
-            <ListItemText primary="Starred" />
+            <ListItemTextEl
+              inputcolor={activeUrl === '/app/location/create' ? true : false}
+              primary="Create"
+            />
           </ListItem>
         </List>
       </CollapseEl>
@@ -119,8 +126,28 @@ export default connect(mapStateToProps)(NestedList);
 
 const ListItemTextEl = styled(ListItemText)`
   color: ${props => (props.inputcolor ? styleColor.secondary.dark : 'white')};
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    color: ${styleColor.secondary.lite};
+  }
 `;
 
 const CollapseEl = styled(Collapse)`
   background: ${styleColor.color.black1};
+`;
+
+const ExpandLessEl = styled(ExpandLess)`
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    color: ${styleColor.error.main};
+  }
+`;
+
+const ExpandMoreEl = styled(ExpandMore)`
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    color: ${styleColor.secondary.lite};
+  }
 `;
