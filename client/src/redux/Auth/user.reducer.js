@@ -4,14 +4,16 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  LOGOUT
+  LOGOUT,
+  SET_URL
 } from '../types';
 
 const initialState = {
   token: localStorage.getItem('token'),
   isAuthenticated: null,
   loading: true,
-  user: null
+  user: null,
+  liveUrl: null
 };
 
 export default function(state = initialState, action) {
@@ -43,6 +45,11 @@ export default function(state = initialState, action) {
         token: null,
         isAuthenticated: false,
         loading: false
+      };
+    case SET_URL:
+      return {
+        ...state,
+        liveUrl: payload
       };
     default:
       return state;

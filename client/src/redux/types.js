@@ -16,3 +16,6 @@ export const MSG_INFO = 'info';
 export const MSG_WARNING = 'warning';
 export const MSG_OPEN = 'MSG_OPEN';
 export const MSG_CLOSE = 'MSG_CLOSE';
+
+//url
+export const SET_URL = 'SET_URL';

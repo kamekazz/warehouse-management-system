@@ -16,6 +16,7 @@ export const styleColor = {
     greyDark: '#3e4554',
     greyDark2: '#999',
     greyDark3: '#333',
-    listedBlue: '#f0f8ff'
+    listedBlue: '#f0f8ff',
+    black1: '#202020'
   }
 };

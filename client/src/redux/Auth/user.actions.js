@@ -8,7 +8,8 @@ import {
   MSG_ERROR,
   MSG_INFO,
   MSG_SUCCESS,
-  MSG_WARNING
+  MSG_WARNING,
+  SET_URL
 } from '../types';
 import axios from '../../util/Api';
 import setAuthToken from '../../util/setAuthToken';
@@ -89,4 +90,8 @@ export const userSignOut = body => async dispatch => {
     console.log('error', error);
     dispatch({ type: MSG_WARNING, payload: error });
   }
+};
+
+export const setUrl = url => dispatch => {
+  dispatch({ type: SET_URL, payload: url });
 };

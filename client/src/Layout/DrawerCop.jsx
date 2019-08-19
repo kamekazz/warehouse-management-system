@@ -7,54 +7,80 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
 
+import LocationIcon from '@material-ui/icons/GpsFixed';
+import RedeemIcon from '@material-ui/icons/Redeem';
+
+import history from '../redux/history';
+import styled from 'styled-components';
+import { styleColor } from '../Styles/styleThem';
+import { connect } from 'react-redux';
+
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
-    maxWidth: 360,
-    height: '100vh'
+    maxWidth: 360
   },
   nested: {
     paddingLeft: theme.spacing(4)
   }
 }));
 
-export default function NestedList({ toggleDrawer }) {
+function NestedList(props) {
+  const { handleDrawerToggle, activeUrl } = props;
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
 
   function handleClick() {
     setOpen(!open);
   }
+  function NavPush(url) {
+    handleDrawerToggle();
+    history.push(url);
+  }
 
-  return (
+  const rdMaintenanceList = () => (
     <List
       component="nav"
       aria-labelledby="nested-list-subheader"
       subheader={
-        <ListSubheader component="div" id="nested-list-subheader">
-          Nested List Items
+        <ListSubheader
+          color="primary"
+          component="div"
+          id="nested-list-subheader"
+        >
+          Maintenance
         </ListSubheader>
       }
       className={classes.root}
     >
-      <ListItem button>
+      <ListItem button onClick={() => NavPush('/app/location')}>
         <ListItemIcon>
-          <SendIcon />
+          <LocationIcon
+            color={activeUrl === '/app/location' ? 'secondary' : 'inherit'}
+          />
         </ListItemIcon>
-        <ListItemText primary="Sent mail" />
+        <ListItemTextEl
+          inputcolor={activeUrl === '/app/location' ? true : false}
+          primary="Location"
+        />
       </ListItem>
-      <ListItem button>
+
+      <ListItem button onClick={() => NavPush('/app/product')}>
         <ListItemIcon>
-          <DraftsIcon />
+          <RedeemIcon
+            color={activeUrl === '/app/product' ? 'secondary' : 'inherit'}
+          />
         </ListItemIcon>
-        <ListItemText primary="Drafts" />
+        <ListItemTextEl
+          inputcolor={activeUrl === '/app/product' ? true : false}
+          primary="Product"
+        />
       </ListItem>
+
       <ListItem button onClick={handleClick}>
         <ListItemIcon>
           <InboxIcon />
@@ -62,7 +88,7 @@ export default function NestedList({ toggleDrawer }) {
         <ListItemText primary="Inbox" />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
-      <Collapse in={open} timeout="auto" unmountOnExit>
+      <CollapseEl in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           <ListItem button className={classes.nested}>
             <ListItemIcon>
@@ -71,7 +97,30 @@ export default function NestedList({ toggleDrawer }) {
             <ListItemText primary="Starred" />
           </ListItem>
         </List>
-      </Collapse>
+      </CollapseEl>
     </List>
   );
+
+  return (
+    <>
+      <ListItem style={{ height: '90px', background: styleColor.color.black1 }}>
+        <img src="/img/1f087f06-5b76-468d-8d3b-57c236755776_200x200.png" />
+      </ListItem>
+      {rdMaintenanceList()}
+    </>
+  );
 }
+
+const mapStateToProps = state => ({
+  activeUrl: state.auth.liveUrl
+});
+
+export default connect(mapStateToProps)(NestedList);
+
+const ListItemTextEl = styled(ListItemText)`
+  color: ${props => (props.inputcolor ? styleColor.secondary.dark : 'white')};
+`;
+
+const CollapseEl = styled(Collapse)`
+  background: ${styleColor.color.black1};
+`;
