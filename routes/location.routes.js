@@ -31,22 +31,46 @@ router.get('/available/all', async (req, res) => {
   }
 });
 
+router.get('/create', async (req, res) => {
+  try {
+    const lastLocationAdded = await Location.find()
+      .sort({ date: -1 })
+      .limit(20);
+    if (!lastLocationAdded) return res.json({ message: 'no location found' });
+    res.json({
+      success: true,
+      message: 'all create',
+      allNewLocation: lastLocationAdded
+    });
+  } catch (err) {
+    console.error(err);
+    res.json({
+      success: false,
+      err: err
+    });
+  }
+});
+
 router.post('/create', async (req, res) => {
   newLocation = new Location({ ...req.body });
-
+  newLocation.maxSize = newLocation.size;
+  newLocation.size = 0;
   const { zone, row, location, level } = newLocation;
   newLocation.fullName = `${zone}-${row}-${location}-${level}`;
   try {
     const oldLocation = await Location.findOne({
       fullName: newLocation.fullName
     });
-
     if (!oldLocation) {
       await newLocation.save();
+      const lastLocationAdded = await Location.find()
+        .sort({ date: -1 })
+        .limit(5);
       res.json({
         success: true,
         message: 'location create',
-        location: newLocation
+        location: newLocation,
+        allNewLocation: lastLocationAdded
       });
     } else {
       res.json({

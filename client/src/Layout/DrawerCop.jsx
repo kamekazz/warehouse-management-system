@@ -108,7 +108,10 @@ function NestedList(props) {
   return (
     <>
       <ListItem style={{ height: '90px', background: styleColor.color.black1 }}>
-        <img src="/img/1f087f06-5b76-468d-8d3b-57c236755776_200x200.png" />
+        <img
+          alt="logo"
+          src="/img/1f087f06-5b76-468d-8d3b-57c236755776_200x200.png"
+        />
       </ListItem>
       {rdMaintenanceList()}
     </>

@@ -97,7 +97,7 @@ function CustomizedSnackbar({ openSk, closeMsgBar, message, status }) {
           horizontal: 'left'
         }}
         open={openSk}
-        autoHideDuration={4000}
+        autoHideDuration={2000}
         onClose={handleClose}
       >
         <MySnackbarContentWrapper
