@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
@@ -7,60 +7,61 @@ import Typography from '@material-ui/core/Typography';
 
 function LocationCreateForm({
   search,
-  buttonDisable,
   handelCancel,
-  handalchanga
+  updateTextField,
+  level,
+  zone,
+  row,
+  location,
+  buttonDisable,
+  size
 }) {
   return (
     <PaperEl elevation={12}>
       <FullLocationDiv>
         <ZoneInputEl
+          autoFocus={true}
           label="ZONE"
           name="zone"
           margin="normal"
           variant="outlined"
           type="text"
-          inputProps={{ maxLength: 1 }}
-          onInput={e => {
-            e.target.value = e.target.value.replace(/[^a-z]/g, '');
-            handalchanga(e.target.name, e.target.value);
-          }}
+          value={zone}
+          autoFocus
+          onChange={e =>
+            updateTextField(
+              e.target.name,
+              e.target.value.replace(/[^a-z]/g, ''),
+              1
+            )
+          }
         />
         <RowInputEl
           label="ROW"
           name="row"
           margin="normal"
           variant="outlined"
-          type="text"
-          inputProps={{ maxLength: 3 }}
-          onInput={e => {
-            e.target.value = e.target.value.replace(/[^0-9]/g, '');
-            handalchanga(e.target.name, e.target.value);
-          }}
+          type="number"
+          value={row}
+          onChange={e => updateTextField(e.target.name, e.target.value, 3)}
         />
         <LocationInputEl
           label="LOCATION"
           name="location"
           margin="normal"
           variant="outlined"
-          type="text"
-          inputProps={{ maxLength: 4 }}
-          onInput={e => {
-            e.target.value = e.target.value.replace(/[^0-9]/g, '');
-            handalchanga(e.target.name, e.target.value);
-          }}
+          type="number"
+          value={location}
+          onChange={e => updateTextField(e.target.name, e.target.value, 4)}
         />
         <LevelInputEl
           label="LEVEL"
           name="level"
           margin="normal"
           variant="outlined"
-          type="text"
-          inputProps={{ maxLength: 2 }}
-          onInput={e => {
-            e.target.value = e.target.value.replace(/[^0-9]/g, '');
-            handalchanga(e.target.name, e.target.value);
-          }}
+          type="number"
+          value={level}
+          onChange={e => updateTextField(e.target.name, e.target.value, 2)}
         />
         {!search ? (
           <>
@@ -69,18 +70,20 @@ function LocationCreateForm({
               label="SIZE"
               margin="normal"
               variant="outlined"
-              type="text"
-              inputProps={{ maxLength: 6 }}
-              onInput={e => {
-                e.target.value = e.target.value.replace(/[^0-9]/g, '');
-                handalchanga(e.target.name, e.target.value);
-              }}
+              type="number"
+              value={size}
+              onChange={e => updateTextField(e.target.name, e.target.value, 6)}
             />
             <Typography variant="subtitle2" gutterBottom color="primary">
-              the size is set on cubic inches
+              the size is set to cubic inches
             </Typography>
             <ButtonDivEl>
-              <Button type="submit" variant="contained" color="secondary">
+              <Button
+                type="submit"
+                disabled={buttonDisable}
+                variant="contained"
+                color="secondary"
+              >
                 Submit
               </Button>
               <Button
@@ -94,6 +97,7 @@ function LocationCreateForm({
           </>
         ) : (
           <ButtonDivEl>
+            disabled={buttonDisable}
             <Button type="submit" variant="contained" color="primary">
               Submit
             </Button>
@@ -133,7 +137,7 @@ const LevelInputEl = styled(TextField)`
 `;
 
 const SizeInputEl = styled(TextField)`
-  max-width: 80px;
+  max-width: 100px;
 `;
 
 const ButtonDivEl = styled.div`
