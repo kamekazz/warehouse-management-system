@@ -1,70 +1,104 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import styled from 'styled-components';
 import Typography from '@material-ui/core/Typography';
 
-function LocationCreateForm() {
+function LocationCreateForm({
+  search,
+  buttonDisable,
+  handelCancel,
+  handalchanga
+}) {
   return (
     <PaperEl elevation={12}>
       <FullLocationDiv>
         <ZoneInputEl
-          // id="outlined-name"
           label="ZONE"
-          // value={values.name}
-          // onChange={handleChange('name')}
+          name="zone"
           margin="normal"
           variant="outlined"
           type="text"
+          inputProps={{ maxLength: 1 }}
+          onInput={e => {
+            e.target.value = e.target.value.replace(/[^a-z]/g, '');
+            handalchanga(e.target.name, e.target.value);
+          }}
         />
         <RowInputEl
-          // id="outlined-name"
           label="ROW"
-          // value={values.name}
-          // onChange={handleChange('name')}
+          name="row"
           margin="normal"
           variant="outlined"
-          type="number"
+          type="text"
+          inputProps={{ maxLength: 3 }}
+          onInput={e => {
+            e.target.value = e.target.value.replace(/[^0-9]/g, '');
+            handalchanga(e.target.name, e.target.value);
+          }}
         />
         <LocationInputEl
-          // id="outlined-name"
           label="LOCATION"
-          // value={values.name}
-          // onChange={handleChange('name')}
+          name="location"
           margin="normal"
           variant="outlined"
-          type="number"
+          type="text"
+          inputProps={{ maxLength: 4 }}
+          onInput={e => {
+            e.target.value = e.target.value.replace(/[^0-9]/g, '');
+            handalchanga(e.target.name, e.target.value);
+          }}
         />
         <LevelInputEl
-          // id="outlined-name"
           label="LEVEL"
-          // value={values.name}
-          // onChange={handleChange('name')}
+          name="level"
           margin="normal"
           variant="outlined"
-          type="number"
+          type="text"
+          inputProps={{ maxLength: 2 }}
+          onInput={e => {
+            e.target.value = e.target.value.replace(/[^0-9]/g, '');
+            handalchanga(e.target.name, e.target.value);
+          }}
         />
-        <SizeInputEl
-          // id="outlined-name"
-          label="SIZE"
-          // value={values.name}
-          // onChange={handleChange('name')}
-          margin="normal"
-          variant="outlined"
-          type="number"
-        />
-        <Typography variant="subtitle2" gutterBottom color="primary">
-          the size is set on cubic inches
-        </Typography>
-        <ButtonDivEl>
-          <Button type="submit" variant="contained" color="secondary">
-            Submit
-          </Button>
-          <Button type="submit" variant="contained" color="default">
-            cancel
-          </Button>
-        </ButtonDivEl>
+        {!search ? (
+          <>
+            <SizeInputEl
+              name="size"
+              label="SIZE"
+              margin="normal"
+              variant="outlined"
+              type="text"
+              inputProps={{ maxLength: 6 }}
+              onInput={e => {
+                e.target.value = e.target.value.replace(/[^0-9]/g, '');
+                handalchanga(e.target.name, e.target.value);
+              }}
+            />
+            <Typography variant="subtitle2" gutterBottom color="primary">
+              the size is set on cubic inches
+            </Typography>
+            <ButtonDivEl>
+              <Button type="submit" variant="contained" color="secondary">
+                Submit
+              </Button>
+              <Button
+                onClick={() => handelCancel()}
+                variant="contained"
+                color="default"
+              >
+                cancel
+              </Button>
+            </ButtonDivEl>
+          </>
+        ) : (
+          <ButtonDivEl>
+            <Button type="submit" variant="contained" color="primary">
+              Submit
+            </Button>
+          </ButtonDivEl>
+        )}
       </FullLocationDiv>
     </PaperEl>
   );
@@ -82,33 +116,26 @@ const FullLocationDiv = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
-  /* align-items: center; */
 `;
 
 const ZoneInputEl = styled(TextField)`
-  max-width: 60px;
+  max-width: 70px;
 `;
 const RowInputEl = styled(TextField)`
-  max-width: 90px;
+  max-width: 70px;
 `;
 
 const LocationInputEl = styled(TextField)`
-  max-width: 100px;
+  max-width: 104px;
 `;
 const LevelInputEl = styled(TextField)`
-  max-width: 90px;
+  max-width: 75px;
 `;
 
 const SizeInputEl = styled(TextField)`
-  max-width: 90px;
-  /* transform: translate(0, 0px); */
+  max-width: 80px;
 `;
 
-const BottonDivEl = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-`;
 const ButtonDivEl = styled.div`
   display: flex;
   align-items: center;

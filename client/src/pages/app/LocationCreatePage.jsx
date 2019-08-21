@@ -6,14 +6,38 @@ import { PageEl } from '../../Elements/ToolsEl';
 import LocationForm from './LocationcreateForm';
 
 export class LocationCreatePage extends Component {
+  state = {
+    zone: 'a',
+    row: 0,
+    location: 0,
+    size: 0,
+    buttonDisable: true,
+    search: false
+  };
+  handalchanga = (name, value) => {
+    this.setState({ [name]: value });
+  };
   componentDidMount() {
     this.props.setUrl(this.props.match.path);
   }
+  handelCancel = () => {
+    this.setState({
+      zone: 'a',
+      row: 0,
+      location: 0,
+      size: 0,
+      buttonDisable: true
+    });
+  };
   render() {
+    console.log('state', this.state);
     return (
       <PageEl>
         <ContainerHeader match={this.props.match} title={'Create'} />
-        <LocationForm search={false} />
+        <LocationForm
+          handelCancel={this.handelCancel}
+          handalchanga={this.handalchanga}
+        />
       </PageEl>
     );
   }
