@@ -8,7 +8,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import StarBorder from '@material-ui/icons/StarBorder';
+// import StarBorder from '@material-ui/icons/StarBorder';
 
 import LibraryIcon from '@material-ui/icons/LibraryAdd';
 import LocationIcon from '@material-ui/icons/GpsFixed';
@@ -23,9 +23,6 @@ const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     maxWidth: 360
-  },
-  nested: {
-    paddingLeft: theme.spacing(4)
   }
 }));
 
@@ -37,7 +34,7 @@ function NestedList(props) {
   function handleClick() {
     setOpen(!open);
   }
-  function NavPush(url) {
+  function navPush(url) {
     handleDrawerToggle();
     history.push(url);
   }
@@ -58,7 +55,7 @@ function NestedList(props) {
       className={classes.root}
     >
       {/* itemList */}
-      <ListItem button onClick={() => NavPush('/app/product')}>
+      <ListItem button onClick={() => navPush('/app/product')}>
         <ListItemIcon>
           <RedeemIcon
             color={activeUrl === '/app/product' ? 'secondary' : 'inherit'}
@@ -79,7 +76,7 @@ function NestedList(props) {
         </ListItemIcon>
         <ListItemTextEl
           inputcolor={activeUrl === '/app/location' ? true : false}
-          onClick={() => NavPush('/app/location')}
+          onClick={() => navPush('/app/location')}
           primary="Location"
         />
         {open ? <ExpandLessEl /> : <ExpandMoreEl />}
@@ -89,7 +86,7 @@ function NestedList(props) {
           <ListItem
             button
             className={classes.nested}
-            onClick={() => NavPush('/app/location/create')}
+            onClick={() => navPush('/app/location/create')}
           >
             <ListItemIcon>
               <LibraryIcon

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { setUrl } from '../../redux/Auth/user.actions';
 import ContainerHeader from '../../components/ContainerHeader';
 import { PageEl } from '../../Elements/ToolsEl';
+import LocationForm from './LocationcreateForm';
 
 export class LocationCreatePage extends Component {
   componentDidMount() {
@@ -12,6 +13,7 @@ export class LocationCreatePage extends Component {
     return (
       <PageEl>
         <ContainerHeader match={this.props.match} title={'Create'} />
+        <LocationForm search={false} />
       </PageEl>
     );
   }

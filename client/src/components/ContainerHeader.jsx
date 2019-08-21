@@ -2,7 +2,7 @@ import React from 'react';
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import styled from 'styled-components';
 import { styleColor } from '../Styles/styleThem';
-
+import history from '../redux/history';
 import Paper from '@material-ui/core/Paper';
 
 const getDisplayString = sub => {
@@ -31,7 +31,7 @@ const ContainerHeader = ({ title, match }) => {
   const path = match.path.substr(1);
   const subPath = path.split('/');
   return (
-    <PaperEl>
+    <PaperEl elevation={12}>
       <h1>{title}</h1>
 
       <BreadcrumbEl>
@@ -41,7 +41,7 @@ const ContainerHeader = ({ title, match }) => {
               active={subPath.length === index + 1}
               tag={subPath.length === index + 1 ? 'span' : 'a'}
               key={index}
-              href={getUrlString(path, sub, index)}
+              onClick={() => history.push(getUrlString(path, sub, index))}
             >
               {getDisplayString(sub)}
             </BreadcrumbItemEl>
@@ -54,19 +54,14 @@ const ContainerHeader = ({ title, match }) => {
 
 export default ContainerHeader;
 
-const BreadcrumbItemEl = styled(BreadcrumbItem)`
-  color: ${styleColor.primary.dark};
-  transition: all 0.5 ease-in-out;
-  &:hover {
-    color: ${styleColor.primary.lite};
-  }
-`;
+const BreadcrumbItemEl = styled(BreadcrumbItem)``;
 
 const PaperEl = styled(Paper)`
   padding: 8px 18px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 12px;
 
   h1 {
     margin-bottom: 0;
@@ -76,5 +71,13 @@ const PaperEl = styled(Paper)`
 const BreadcrumbEl = styled(Breadcrumb)`
   ol {
     margin-bottom: 0;
+    a:not([href]):not([tabindex]) {
+      color: ${styleColor.secondary.main};
+      font-weight: 700;
+      cursor: pointer;
+      &:hover {
+        color: ${styleColor.secondary.lite};
+      }
+    }
   }
 `;
