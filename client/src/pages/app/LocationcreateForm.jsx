@@ -14,96 +14,101 @@ function LocationCreateForm({
   row,
   location,
   buttonDisable,
-  size
+  size,
+  onSubmitFrom
 }) {
   return (
     <PaperEl elevation={12}>
-      <FullLocationDiv>
-        <ZoneInputEl
-          autoFocus={true}
-          label="ZONE"
-          name="zone"
-          margin="normal"
-          variant="outlined"
-          type="text"
-          value={zone}
-          autoFocus
-          onChange={e =>
-            updateTextField(
-              e.target.name,
-              e.target.value.replace(/[^a-z]/g, ''),
-              1
-            )
-          }
-        />
-        <RowInputEl
-          label="ROW"
-          name="row"
-          margin="normal"
-          variant="outlined"
-          type="number"
-          value={row}
-          onChange={e => updateTextField(e.target.name, e.target.value, 3)}
-        />
-        <LocationInputEl
-          label="LOCATION"
-          name="location"
-          margin="normal"
-          variant="outlined"
-          type="number"
-          value={location}
-          onChange={e => updateTextField(e.target.name, e.target.value, 4)}
-        />
-        <LevelInputEl
-          label="LEVEL"
-          name="level"
-          margin="normal"
-          variant="outlined"
-          type="number"
-          value={level}
-          onChange={e => updateTextField(e.target.name, e.target.value, 2)}
-        />
-        {!search ? (
-          <>
-            <SizeInputEl
-              name="size"
-              label="SIZE"
-              margin="normal"
-              variant="outlined"
-              type="number"
-              value={size}
-              onChange={e => updateTextField(e.target.name, e.target.value, 6)}
-            />
-            <Typography variant="subtitle2" gutterBottom color="primary">
-              the size is set to cubic inches
-            </Typography>
+      <form onSubmit={e => onSubmitFrom(e)}>
+        <FullLocationDiv>
+          <ZoneInputEl
+            autoFocus={true}
+            label="ZONE"
+            name="zone"
+            margin="normal"
+            variant="outlined"
+            type="text"
+            value={zone}
+            autoFocus
+            onChange={e =>
+              updateTextField(
+                e.target.name,
+                e.target.value.replace(/[^a-z]/g, ''),
+                1
+              )
+            }
+          />
+          <RowInputEl
+            label="ROW"
+            name="row"
+            margin="normal"
+            variant="outlined"
+            type="number"
+            value={row}
+            onChange={e => updateTextField(e.target.name, e.target.value, 3)}
+          />
+          <LocationInputEl
+            label="LOCATION"
+            name="location"
+            margin="normal"
+            variant="outlined"
+            type="number"
+            value={location}
+            onChange={e => updateTextField(e.target.name, e.target.value, 4)}
+          />
+          <LevelInputEl
+            label="LEVEL"
+            name="level"
+            margin="normal"
+            variant="outlined"
+            type="number"
+            value={level}
+            onChange={e => updateTextField(e.target.name, e.target.value, 2)}
+          />
+          {!search ? (
+            <>
+              <SizeInputEl
+                name="size"
+                label="SIZE"
+                margin="normal"
+                variant="outlined"
+                type="number"
+                value={size}
+                onChange={e =>
+                  updateTextField(e.target.name, e.target.value, 6)
+                }
+              />
+              <Typography variant="subtitle2" gutterBottom color="primary">
+                the size is set to cubic inches
+              </Typography>
+              <ButtonDivEl>
+                <Button
+                  type="submit"
+                  disabled={buttonDisable}
+                  variant="contained"
+                  color="secondary"
+                >
+                  Submit
+                </Button>
+                <Button
+                  onClick={() => handelCancel()}
+                  variant="contained"
+                  color="default"
+                >
+                  cancel
+                </Button>
+              </ButtonDivEl>
+            </>
+          ) : (
             <ButtonDivEl>
-              <Button
-                type="submit"
-                disabled={buttonDisable}
-                variant="contained"
-                color="secondary"
-              >
+              disabled={buttonDisable}
+              <Button type="submit" variant="contained" color="primary">
                 Submit
               </Button>
-              <Button
-                onClick={() => handelCancel()}
-                variant="contained"
-                color="default"
-              >
-                cancel
-              </Button>
             </ButtonDivEl>
-          </>
-        ) : (
-          <ButtonDivEl>
-            disabled={buttonDisable}
-            <Button type="submit" variant="contained" color="primary">
-              Submit
-            </Button>
-          </ButtonDivEl>
-        )}
-      </FullLocationDiv>
+          )}
+        </FullLocationDiv>
+      </form>
     </PaperEl>
   );
 }

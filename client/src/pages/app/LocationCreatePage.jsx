@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setUrl } from '../../redux/Auth/user.actions';
 import { warningMsgBar } from '../../redux/Notification/notification.actions';
+import { createLocation } from '../../redux/Location/location.action';
 import ContainerHeader from '../../components/ContainerHeader';
 import { PageEl } from '../../Elements/ToolsEl';
 import LocationForm from './LocationcreateForm';
 
 export class LocationCreatePage extends Component {
   state = {
-    zone: 'a',
-    row: '',
-    location: '',
-    level: '',
-    size: '',
+    zone: 0,
+    row: 0,
+    location: 0,
+    level: 0,
+    size: 100,
     buttonDisable: true,
     search: false
   };
@@ -22,37 +23,41 @@ export class LocationCreatePage extends Component {
   }
   handelCancel = () => {
     this.setState({
-      zone: 'a',
-      row: '',
-      location: '',
-      level: '',
-      size: '',
+      zone: 0,
+      row: 0,
+      location: 0,
+      level: 0,
+      size: 100,
       buttonDisable: true
     });
+  };
+  onSubmitFrom = e => {
+    e.preventDefault();
+    this.props.createLocation(this.state);
+    this.handelCancel();
   };
   buttonChange = () => {
     const { row, zone, location, level, size } = this.state;
     if (zone.length >= 1) {
-      if (row >= 1) {
-        if (location >= 1) {
-          if (level >= 1) {
-            if (size >= 1) {
+      if (row >= 0) {
+        if (location >= 0) {
+          if (level >= 0) {
+            if (size >= 0) {
               this.setState({ buttonDisable: false });
-              console.log('object');
             } else {
-              console.log('this.state', this.state);
+              this.setState({ buttonDisable: true });
             }
           } else {
-            console.log('this.state', this.state);
+            this.setState({ buttonDisable: true });
           }
         } else {
-          console.log('this.state', this.state);
+          this.setState({ buttonDisable: true });
         }
       } else {
-        console.log('this.state', this.state);
+        this.setState({ buttonDisable: true });
       }
     } else {
-      console.log('this.state', this.state);
+      this.setState({ buttonDisable: true });
     }
   };
 
@@ -73,6 +78,7 @@ export class LocationCreatePage extends Component {
           handelCancel={this.handelCancel}
           updateTextField={this.updateTextField}
           {...this.state}
+          onSubmitFrom={this.onSubmitFrom}
         />
       </PageEl>
     );
@@ -83,7 +89,8 @@ const mapStateToProps = state => ({});
 
 const mapDispatchToProps = {
   setUrl,
-  warningMsgBar
+  warningMsgBar,
+  createLocation
 };
 
 export default connect(
