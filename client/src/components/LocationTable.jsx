@@ -1,7 +1,7 @@
 import React from 'react';
 import MUIDataTable from 'mui-datatables';
 
-function LocationTable({ data }) {
+function LocationTable({ data, getEditFormCreat }) {
   console.log('data', data);
   const columns = [
     {
@@ -38,7 +38,7 @@ function LocationTable({ data }) {
     }
   ];
   const hitMe = e => {
-    console.log(e[0], e[1], e[3]);
+    getEditFormCreat(e[0], e[1]);
   };
 
   const options = {

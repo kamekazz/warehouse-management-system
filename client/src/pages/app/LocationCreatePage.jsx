@@ -14,6 +14,7 @@ import ContainerHeader from '../../components/ContainerHeader';
 import { PageEl } from '../../Elements/ToolsEl';
 import LocationForm from './LocationcreateForm';
 import LocationTable from '../../components/LocationTable';
+import LocationCreatDialog from './LocatonCreatDialog';
 
 export class LocationCreatePage extends Component {
   state = {
@@ -24,13 +25,45 @@ export class LocationCreatePage extends Component {
     size: 100,
     buttonDisable: true,
     search: false,
-    tableData: []
+    tableData: [],
+    dialogLocation: '',
+    dialogSize: 100,
+    open: false
   };
 
   componentDidMount() {
     this.props.setUrl(this.props.match.path);
     this.props.getCreateLocation(this.addTableData);
   }
+
+  //dialog Form get
+  getEditFormCreat = (fullName, maxSize) => {
+    this.setState({
+      dialogLocation: fullName,
+      dialogSize: maxSize,
+      open: true
+    });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
+  handelEditOnChange = text => {
+    this.setState({ dialogSize: text });
+  };
+
+  handedSize = () => {
+    this.props.infoMsgBar('Sized Edit to database');
+    this.setState({ open: false });
+  };
+
+  handedDelete = () => {
+    this.props.warningMsgBar('delete location from the database');
+    this.setState({ open: false });
+  };
+  //
+
   handelCancel = () => {
     this.setState({
       zone: '',
@@ -97,7 +130,17 @@ export class LocationCreatePage extends Component {
           {...this.state}
           onSubmitFrom={this.onSubmitFrom}
         />
-        <LocationTable data={this.state.tableData} />
+        <LocationTable
+          getEditFormCreat={this.getEditFormCreat}
+          data={this.state.tableData}
+        />
+        <LocationCreatDialog
+          {...this.state}
+          handelEditOnChange={this.handelEditOnChange}
+          handleClose={this.handleClose}
+          handedSize={this.handedSize}
+          handedDelete={this.handedDelete}
+        />
       </PageEl>
     );
   }
