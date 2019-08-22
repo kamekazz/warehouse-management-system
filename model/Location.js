@@ -40,6 +40,10 @@ const LocationSchema = new Schema({
     type: Number,
     default: 0
   },
+  status: {
+    type: String,
+    default: 'Empty'
+  },
   palletId: [{ type: Schema.Types.ObjectId, ref: 'pallets' }],
   activate: [{ type: Number }],
   date: {

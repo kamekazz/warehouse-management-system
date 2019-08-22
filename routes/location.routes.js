@@ -35,7 +35,7 @@ router.get('/create', async (req, res) => {
   try {
     const lastLocationAdded = await Location.find()
       .sort({ date: -1 })
-      .limit(20);
+      .limit(50);
     if (!lastLocationAdded) return res.json({ message: 'no location found' });
     res.json({
       success: true,
@@ -65,7 +65,7 @@ router.post('/create', async (req, res) => {
       await newLocation.save();
       const lastLocationAdded = await Location.find()
         .sort({ date: -1 })
-        .limit(5);
+        .limit(50);
       res.json({
         success: true,
         message: 'location create',

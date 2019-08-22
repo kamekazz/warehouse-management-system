@@ -13,6 +13,7 @@ import {
 import ContainerHeader from '../../components/ContainerHeader';
 import { PageEl } from '../../Elements/ToolsEl';
 import LocationForm from './LocationcreateForm';
+import LocationTable from '../../components/LocationTable';
 
 export class LocationCreatePage extends Component {
   state = {
@@ -22,7 +23,8 @@ export class LocationCreatePage extends Component {
     level: 0,
     size: 100,
     buttonDisable: true,
-    search: false
+    search: false,
+    tableData: []
   };
 
   componentDidMount() {
@@ -36,8 +38,7 @@ export class LocationCreatePage extends Component {
       location: '',
       level: '',
       size: '',
-      buttonDisable: true,
-      tableData: []
+      buttonDisable: true
     });
   };
   onSubmitFrom = e => {
@@ -49,7 +50,7 @@ export class LocationCreatePage extends Component {
 
   addTableData = data => {
     this.setState({ tableData: data });
-    console.log('data', data);
+    console.log('this.state.ta', this.state.tableData);
   };
 
   buttonChange = () => {
@@ -96,6 +97,7 @@ export class LocationCreatePage extends Component {
           {...this.state}
           onSubmitFrom={this.onSubmitFrom}
         />
+        <LocationTable data={this.state.tableData} />
       </PageEl>
     );
   }
