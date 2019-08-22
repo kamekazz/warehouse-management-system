@@ -2,7 +2,6 @@ import React from 'react';
 import MUIDataTable from 'mui-datatables';
 
 function LocationTable({ data, getEditFormCreat }) {
-  console.log('data', data);
   const columns = [
     {
       label: 'Location',

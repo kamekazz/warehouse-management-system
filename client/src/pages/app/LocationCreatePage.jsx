@@ -7,7 +7,9 @@ import {
 } from '../../redux/Notification/notification.actions';
 import {
   createLocation,
-  getCreateLocation
+  getCreateLocation,
+  deleteLocation,
+  updateSizeLocation
 } from '../../redux/Location/location.action';
 
 import ContainerHeader from '../../components/ContainerHeader';
@@ -35,6 +37,10 @@ export class LocationCreatePage extends Component {
     this.props.setUrl(this.props.match.path);
     this.props.getCreateLocation(this.addTableData);
   }
+  //table function
+  addTableData = data => {
+    this.setState({ tableData: data });
+  };
 
   //dialog Form get
   getEditFormCreat = (fullName, maxSize) => {
@@ -55,13 +61,24 @@ export class LocationCreatePage extends Component {
 
   handedSize = () => {
     this.props.infoMsgBar('Sized Edit to database');
+    this.props.updateSizeLocation(
+      this.state.dialogLocation,
+      this.state.dialogSize,
+      this.upDateTableData
+    );
     this.setState({ open: false });
   };
 
   handedDelete = () => {
-    this.props.warningMsgBar('delete location from the database');
+    this.props.warningMsgBar('Start to  delete location from the database');
+    this.props.deleteLocation(this.state.dialogLocation, this.upDateTableData);
     this.setState({ open: false });
   };
+
+  upDateTableData = () => {
+    this.props.getCreateLocation(this.addTableData);
+  };
+
   //
 
   handelCancel = () => {
@@ -79,11 +96,6 @@ export class LocationCreatePage extends Component {
     this.props.createLocation(this.state, this.addTableData);
     this.props.infoMsgBar(`location bine crate`);
     this.handelCancel();
-  };
-
-  addTableData = data => {
-    this.setState({ tableData: data });
-    console.log('this.state.ta', this.state.tableData);
   };
 
   buttonChange = () => {
@@ -153,7 +165,9 @@ const mapDispatchToProps = {
   warningMsgBar,
   createLocation,
   infoMsgBar,
-  getCreateLocation
+  getCreateLocation,
+  deleteLocation,
+  updateSizeLocation
 };
 
 export default connect(

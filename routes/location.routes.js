@@ -116,7 +116,8 @@ router.get('/:location', async (req, res) => {
 });
 
 router.post('/update', async (req, res) => {
-  const { skuNumber, location, department, size } = req.body;
+  const { skuNumber, location, department, size, maxSize } = req.body;
+
   try {
     const locationFond = await Location.findOne({
       fullName: location
@@ -131,10 +132,11 @@ router.post('/update', async (req, res) => {
       if (department) locationFond.department = department;
       if (skuNumber) locationFond.skuNumber = skuNumber;
       if (size) locationFond.size = size;
+      if (maxSize) locationFond.maxSize = maxSize;
       await locationFond.save();
       res.json({
         success: true,
-        message: `Location Updated `,
+        message: `Location Updated ${location}`,
         data: locationFond
       });
     }
@@ -147,16 +149,23 @@ router.post('/update', async (req, res) => {
   }
 });
 
-router.delete('/delete', async (req, res) => {
-  const { location } = req.body;
+router.delete('/delete/:locationFullName', async (req, res) => {
+  const { locationFullName } = req.params;
+  const location = locationFullName;
   try {
     const resolve = await Location.deleteOne({ fullName: location });
-    res.json({
-      message: 'done',
-      data: resolve
-    });
+    if (!resolve) {
+      res.json({
+        success: false,
+        message: `Location dose not exists${location}`
+      });
+    } else {
+      res.json({
+        message: `Location has ben delete: ${location}`,
+        success: true
+      });
+    }
   } catch (err) {
-    console.error(err);
     res.json({
       success: false,
       err: err
