@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setUrl } from '../../redux/Auth/user.actions';
 import ContainerHeader from '../../components/ContainerHeader';
-import { PageEl } from '../../Elements/ToolsEl';
+import { PageEl } from '../../Styles/Elements/ToolsEl';
 
 export class LocationPage extends Component {
   componentDidMount() {

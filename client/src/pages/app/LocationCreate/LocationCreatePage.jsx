@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setUrl } from '../../redux/Auth/user.actions';
+import { setUrl } from '../../../redux/Auth/user.actions';
 import {
   warningMsgBar,
   infoMsgBar
-} from '../../redux/Notification/notification.actions';
+} from '../../../redux/Notification/notification.actions';
 import {
   createLocation,
   getCreateLocation,
   deleteLocation,
   updateSizeLocation
-} from '../../redux/Location/location.action';
+} from '../../../redux/Location/location.action';
 
-import ContainerHeader from '../../components/ContainerHeader';
-import { PageEl } from '../../Elements/ToolsEl';
+import ContainerHeader from '../../../components/ContainerHeader';
+import { PageEl } from '../../../Styles/Elements/ToolsEl';
 import LocationForm from './LocationcreateForm';
-import LocationTable from '../../components/LocationTable';
+import LocationTable from '../../../components/LocationTable';
 import LocationCreatDialog from './LocatonCreatDialog';
 
 export class LocationCreatePage extends Component {

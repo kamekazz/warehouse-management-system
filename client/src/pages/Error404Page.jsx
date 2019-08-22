@@ -11,7 +11,7 @@ import Button from '@material-ui/core/Button';
 import Fade from '@material-ui/core/Fade';
 import Grow from '@material-ui/core/Grow';
 import Slide from '@material-ui/core/Slide';
-import { RemoveLickLine } from '../Elements/ButtonEls';
+import { RemoveLickLine } from '../Styles/Elements/ButtonEls';
 
 const useStyles = makeStyles({
   root: {

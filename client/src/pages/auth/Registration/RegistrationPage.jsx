@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import styled from 'styled-components';
 import { styleColor } from '../../../Styles/styleThem';
-import { RemoveLickLine } from '../../../Elements/ButtonEls';
+import { RemoveLickLine } from '../../../Styles/Elements/ButtonEls';
 
 const useStyles = makeStyles({
   card: {

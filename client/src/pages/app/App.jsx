@@ -5,7 +5,7 @@ import LayoutCop from '../../Layout/LayoutCop';
 import LocationPage from '../app/LocationPage';
 import ProductPage from '../app/ProductPage';
 import SecretorPage from '../app/SecretoPage';
-import LocationCreatePage from './LocationCreatePage';
+import LocationCreatePage from './LocationCreate/LocationCreatePage';
 
 export class AppMainRoute extends Component {
   render() {
