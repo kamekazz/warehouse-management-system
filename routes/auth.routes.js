@@ -1,15 +1,19 @@
+/* eslint-disable consistent-return */
+/* eslint-disable no-underscore-dangle */
 const express = require('express');
+
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 // User Model
+const jwt = require('jsonwebtoken');
 const User = require('../model/User');
 
-const jwt = require('jsonwebtoken');
 const auth = require('../middleware/auth');
 
 // @route   POST api/auth
 // @desc    Auth user
 // @access  Public
+// eslint-disable-next-line consistent-return
 router.post('/', (req, res) => {
   const { email, password } = req.body;
   //  Simple validation
@@ -72,7 +76,7 @@ router.get('/user', auth, async (req, res) => {
 // @access  Private
 router.post('/logout', auth, async (req, res) => {
   try {
-    req.user['status'] = 'off';
+    req.user.status = 'off';
     req.user.save();
     res.json({
       success: true,

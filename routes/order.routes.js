@@ -6,7 +6,7 @@ const express = require('express');
 
 const router = express.Router();
 // const Item = require('../model/Item');
-const Pallet = require('../model/Pallets');
+
 // const Location = require('../model/Location');
 const Orders = require('../model/Order');
 
@@ -57,7 +57,6 @@ router.post('/submit', async (req, res) => {
   const { id } = req.body;
   try {
     const order = await Orders.findOne({ _id: id });
-    const orderItemArry = order.items;
     const ticketItems = [];
     const orderItemsI = [];
 
