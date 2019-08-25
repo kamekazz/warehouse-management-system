@@ -1,13 +1,13 @@
 import api from '../../util/Api';
-import { MSG_ERROR, MSG_SUCCESS, MSG_WARNING } from '../types';
+import { MSG_ERROR, MSG_SUCCESS, MSG_WARNING, LOCATION_QUERY } from '../types';
 
 export const queryLocation = body => async dispatch => {
   try {
     const { data } = await api.get('location', { params: body });
     if (data.success) {
-      console.log('locations', data.locations);
+      dispatch({ type: LOCATION_QUERY, payload: data.locations });
     } else {
-      dispatch({ type: MSG_ERROR, payload: data.err });
+      dispatch({ type: MSG_ERROR, payload: data.error });
     }
   } catch (error) {
     console.log('error***', error);

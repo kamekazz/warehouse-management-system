@@ -4,6 +4,7 @@ import { setUrl } from '../../../redux/Auth/user.actions';
 import ContainerHeader from '../../../components/ContainerHeader';
 import { PageEl } from '../../../Styles/Elements/ToolsEl';
 import SearchForm from './SearchForm';
+import SearchTable from './SearchTable';
 
 export class LocationPage extends Component {
   componentDidMount() {
@@ -14,6 +15,7 @@ export class LocationPage extends Component {
       <PageEl>
         <ContainerHeader match={this.props.match} title={'Location'} />
         <SearchForm />
+        <SearchTable />
       </PageEl>
     );
   }
