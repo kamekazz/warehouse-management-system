@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import styled from 'styled-components';
 import MenuItem from '@material-ui/core/MenuItem';
+import { debounce } from 'lodash';
 import { locationStatus, locationDepartment } from '../../../util/option';
+import { cleanObj } from '../../../util/helper';
 import { connect } from 'react-redux';
 import {
   warningMsgBar,
@@ -11,7 +13,6 @@ import {
 } from '../../../redux/Notification/notification.actions';
 
 function SearchForm(props) {
-  const [focus, setFocus] = useState(true);
   const [input, setInput] = useState({
     zone: '',
     row: '',
@@ -21,24 +22,15 @@ function SearchForm(props) {
     status: ''
   });
 
-  const handelCancel = () => {
-    setInput({
-      zone: '',
-      row: '',
-      location: '',
-      level: '',
-      department: '',
-      status: ''
-    });
-    setFocus(true);
-  };
+  const onSubmitFrom = debounce(() => {
+    // e.preventDefault();
+    console.log('value', cleanObj(input));
+    // props.infoMsgBar(`location bine crate`);
+  }, 1000);
 
-  const onSubmitFrom = e => {
-    e.preventDefault();
-    console.log('value', input);
-    props.infoMsgBar(`location bine crate`);
-    handelCancel();
-  };
+  useEffect(() => {
+    onSubmitFrom();
+  }, [input]);
 
   const updateTextField = (name, value, length) => {
     if (value.length <= length) {
@@ -56,10 +48,10 @@ function SearchForm(props) {
 
   return (
     <PaperEl elevation={12}>
-      <form onSubmit={e => onSubmitFrom(e)}>
+      <form onSubmit={() => onSubmitFrom()}>
         <FullLocationDiv>
           <ZoneInputEl
-            autoFocus={focus}
+            autoFocus={true}
             label="ZONE"
             name="zone"
             margin="normal"
