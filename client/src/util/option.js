@@ -14,7 +14,8 @@ export const locationStatus = [
   {
     value: 'upcoming',
     label: 'Upcoming'
-  }
+  },
+  { value: '', label: 'N/A' }
 ];
 export const locationDepartment = [
   {
@@ -28,5 +29,6 @@ export const locationDepartment = [
   {
     value: 'exo',
     label: 'EXO'
-  }
+  },
+  { value: '', label: 'N/A' }
 ];

@@ -7,6 +7,7 @@ import { debounce } from 'lodash';
 import { locationStatus, locationDepartment } from '../../../util/option';
 import { cleanObj } from '../../../util/helper';
 import { connect } from 'react-redux';
+import { queryLocation } from '../../../redux/Location/location.action';
 import {
   warningMsgBar,
   infoMsgBar
@@ -14,7 +15,7 @@ import {
 
 function SearchForm(props) {
   const [input, setInput] = useState({
-    zone: '',
+    zone: 'a',
     row: '',
     location: '',
     level: '',
@@ -23,10 +24,8 @@ function SearchForm(props) {
   });
 
   const onSubmitFrom = debounce(() => {
-    // e.preventDefault();
-    console.log('value', cleanObj(input));
-    // props.infoMsgBar(`location bine crate`);
-  }, 1000);
+    props.queryLocation(cleanObj(input));
+  }, 3000);
 
   useEffect(() => {
     onSubmitFrom();
@@ -132,7 +131,8 @@ const mapStateToProps = state => ({});
 
 const mapDispatchToProps = {
   warningMsgBar,
-  infoMsgBar
+  infoMsgBar,
+  queryLocation
 };
 
 export default connect(

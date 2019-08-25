@@ -7,13 +7,16 @@ const Location = require('../model/Location');
 
 router.get('/', async (req, res) => {
   try {
-    const allLocation = await Location.find();
-    res.json({ data: allLocation });
+    const queryLocation = await Location.find(req.query);
+    res.json({
+      success: true,
+      locations: queryLocation
+    });
   } catch (err) {
     console.error(err);
     res.json({
       success: false,
-      err: err
+      error: err
     });
   }
 });

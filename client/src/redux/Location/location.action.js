@@ -1,6 +1,20 @@
 import api from '../../util/Api';
 import { MSG_ERROR, MSG_SUCCESS, MSG_WARNING } from '../types';
 
+export const queryLocation = body => async dispatch => {
+  try {
+    const { data } = await api.get('location', { params: body });
+    if (data.success) {
+      console.log('locations', data.locations);
+    } else {
+      dispatch({ type: MSG_ERROR, payload: data.err });
+    }
+  } catch (error) {
+    console.log('error***', error);
+    dispatch({ type: MSG_WARNING, payload: error });
+  }
+};
+
 export const createLocation = (body, callback) => async dispatch => {
   try {
     const { data } = await api.post('location/create', body);
