@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setUrl } from '../../redux/Auth/user.actions';
-import ContainerHeader from '../../components/ContainerHeader';
-import { PageEl } from '../../Styles/Elements/ToolsEl';
+import { setUrl } from '../../../redux/Auth/user.actions';
+import ContainerHeader from '../../../components/ContainerHeader';
+import { PageEl } from '../../../Styles/Elements/ToolsEl';
+import SearchForm from './SearchForm';
 
 export class LocationPage extends Component {
   componentDidMount() {
@@ -12,6 +13,7 @@ export class LocationPage extends Component {
     return (
       <PageEl>
         <ContainerHeader match={this.props.match} title={'Location'} />
+        <SearchForm />
       </PageEl>
     );
   }

@@ -1,34 +1,67 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import styled from 'styled-components';
 import Typography from '@material-ui/core/Typography';
 
-function LocationCreateForm({
-  search,
-  handelCancel,
-  updateTextField,
-  level,
-  zone,
-  row,
-  location,
-  buttonDisable,
-  size,
-  onSubmitFrom
-}) {
+import { connect } from 'react-redux';
+import {
+  warningMsgBar,
+  infoMsgBar
+} from '../../../redux/Notification/notification.actions';
+
+function SearchForm(props) {
+  const [focus, setFocus] = useState(true);
+  const [input, setInput] = useState({
+    zone: '',
+    row: '',
+    location: '',
+    level: '',
+    department: '',
+    status: ''
+  });
+
+  const handelCancel = () => {
+    setInput({
+      zone: '',
+      row: '',
+      location: '',
+      level: '',
+      size: ''
+    });
+    setFocus(true);
+  };
+
+  const onSubmitFrom = e => {
+    e.preventDefault();
+    console.log('value', input);
+    props.infoMsgBar(`location bine crate`);
+    handelCancel();
+  };
+
+  const updateTextField = (name, value, length) => {
+    if (value.length <= length) {
+      //Update your state
+      setInput({ ...input, [name]: value });
+    } else {
+      //Value length is biggest than 12
+      props.warningMsgBar(`Value length is biggest than ${length}`);
+    }
+  };
+
   return (
     <PaperEl elevation={12}>
       <form onSubmit={e => onSubmitFrom(e)}>
         <FullLocationDiv>
           <ZoneInputEl
-            autoFocus={true}
+            autoFocus={focus}
             label="ZONE"
             name="zone"
             margin="normal"
             variant="outlined"
             type="text"
-            value={zone}
+            value={input.zone}
             onChange={e =>
               updateTextField(
                 e.target.name,
@@ -43,7 +76,7 @@ function LocationCreateForm({
             margin="normal"
             variant="outlined"
             type="number"
-            value={row}
+            value={input.row}
             onChange={e => updateTextField(e.target.name, e.target.value, 3)}
           />
           <LocationInputEl
@@ -52,7 +85,7 @@ function LocationCreateForm({
             margin="normal"
             variant="outlined"
             type="number"
-            value={location}
+            value={input.location}
             onChange={e => updateTextField(e.target.name, e.target.value, 4)}
           />
           <LevelInputEl
@@ -61,57 +94,46 @@ function LocationCreateForm({
             margin="normal"
             variant="outlined"
             type="number"
-            value={level}
+            value={input.level}
             onChange={e => updateTextField(e.target.name, e.target.value, 2)}
           />
-          {!search ? (
-            <>
-              <SizeInputEl
-                name="size"
-                label="SIZE"
-                margin="normal"
-                variant="outlined"
-                type="number"
-                value={size}
-                onChange={e =>
-                  updateTextField(e.target.name, e.target.value, 6)
-                }
-              />
-              <Typography variant="subtitle2" gutterBottom color="primary">
-                the size is set to cubic inches
-              </Typography>
-              <ButtonDivEl>
-                <Button
-                  type="submit"
-                  disabled={buttonDisable}
-                  variant="contained"
-                  color="secondary"
-                >
-                  Submit
-                </Button>
-                <Button
-                  onClick={() => handelCancel()}
-                  variant="contained"
-                  color="default"
-                >
-                  cancel
-                </Button>
-              </ButtonDivEl>
-            </>
-          ) : (
-            <ButtonDivEl>
-              <Button type="submit" variant="contained" color="primary">
-                Submit
-              </Button>
-            </ButtonDivEl>
-          )}
+          <TextField
+            id="outlined-select-currency"
+            select
+            label="Select"
+            value={input.status}
+            onChange={updateTextField('currency')}
+            helperText="Please select your currency"
+            margin="normal"
+            variant="outlined"
+          >
+            {currencies.map(option => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+          <ButtonDivEl>
+            <Button type="submit" variant="contained" color="primary">
+              Submit
+            </Button>
+          </ButtonDivEl>
         </FullLocationDiv>
       </form>
     </PaperEl>
   );
 }
+const mapStateToProps = state => ({});
 
-export default LocationCreateForm;
+const mapDispatchToProps = {
+  warningMsgBar,
+  infoMsgBar
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SearchForm);
 
 const PaperEl = styled(Paper)`
   padding: 8px 18px;
