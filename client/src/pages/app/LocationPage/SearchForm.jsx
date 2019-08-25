@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import styled from 'styled-components';
-import Typography from '@material-ui/core/Typography';
-
+import MenuItem from '@material-ui/core/MenuItem';
+import { locationStatus, locationDepartment } from '../../../util/option';
 import { connect } from 'react-redux';
 import {
   warningMsgBar,
@@ -28,7 +27,8 @@ function SearchForm(props) {
       row: '',
       location: '',
       level: '',
-      size: ''
+      department: '',
+      status: ''
     });
     setFocus(true);
   };
@@ -48,6 +48,10 @@ function SearchForm(props) {
       //Value length is biggest than 12
       props.warningMsgBar(`Value length is biggest than ${length}`);
     }
+  };
+
+  const handleChange = name => event => {
+    setInput({ ...input, [name]: event.target.value });
   };
 
   return (
@@ -97,27 +101,36 @@ function SearchForm(props) {
             value={input.level}
             onChange={e => updateTextField(e.target.name, e.target.value, 2)}
           />
-          <TextField
+          <TextFieldEl
             id="outlined-select-currency"
             select
-            label="Select"
+            label="Status"
             value={input.status}
-            onChange={updateTextField('currency')}
-            helperText="Please select your currency"
+            onChange={handleChange('status')}
             margin="normal"
             variant="outlined"
           >
-            {currencies.map(option => (
+            {locationStatus.map(option => (
               <MenuItem key={option.value} value={option.value}>
                 {option.label}
               </MenuItem>
             ))}
-          </TextField>
-          <ButtonDivEl>
-            <Button type="submit" variant="contained" color="primary">
-              Submit
-            </Button>
-          </ButtonDivEl>
+          </TextFieldEl>
+          <TextFieldEl
+            id="outlined-select-currency"
+            select
+            label="Department"
+            value={input.department}
+            onChange={handleChange('department')}
+            margin="normal"
+            variant="outlined"
+          >
+            {locationDepartment.map(option => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextFieldEl>
         </FullLocationDiv>
       </form>
     </PaperEl>
@@ -161,19 +174,6 @@ const LevelInputEl = styled(TextField)`
   max-width: 75px;
 `;
 
-const SizeInputEl = styled(TextField)`
-  max-width: 100px;
-`;
-
-const ButtonDivEl = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  height: 56px;
-  button {
-    :not(:last-child) {
-      margin-right: 20px;
-    }
-  }
+const TextFieldEl = styled(TextField)`
+  flex-basis: 130px;
 `;
