@@ -12,13 +12,13 @@ import {
 const statusHelper = status => {
   switch (status) {
     case 'empty':
-      return <BagsEl>Empty</BagsEl>;
+      return <BagsEl bg="rgba(0, 255, 0, 0.3)">Empty</BagsEl>;
     case 'occupied':
-      return <BagsEl>Occupied</BagsEl>;
+      return <BagsEl bg="#5654df5b">Occupied</BagsEl>;
     case 'maintenance':
-      return <BagsEl>Maintenance</BagsEl>;
+      return <BagsEl bg={`#ff6a9c57`}>Maintenance</BagsEl>;
     case 'upcoming':
-      return <BagsEl>Upcoming</BagsEl>;
+      return <BagsEl bg="#ffe60088">Upcoming</BagsEl>;
     default:
       return <BagsEl>null</BagsEl>;
   }
@@ -39,7 +39,7 @@ function SearchTable(props) {
           <ItemEl>{row.fullName}</ItemEl>
           <ItemEl>{row.skuNumber ? row.skuNumber : 'empty'}</ItemEl>
           <ItemEl>{`${row.size}/${row.maxSize}`}</ItemEl>
-          <ItemEl>{row.status}</ItemEl>
+          <ItemEl>{statusHelper(row.status)}</ItemEl>
           <ItemEl>{row.department ? row.department : 'null'}</ItemEl>
         </BottomRowEl>
       ))}
@@ -99,9 +99,6 @@ const ItemEl = styled.div`
 const BagsEl = styled.div`
   ${centerEl};
   border-radius: 50px;
-  min-width: 75px;
-`;
-
-const BagsElEmptyEl = styled(BagsEl)`
-  background: ${styleColor.secondary.main};
+  background: ${({ bg }) => bg};
+  padding: 0 10px;
 `;
