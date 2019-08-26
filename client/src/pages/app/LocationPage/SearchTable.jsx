@@ -24,6 +24,21 @@ const statusHelper = status => {
   }
 };
 
+const sizeHelper = (size, maxSize) => {
+  let color = 'red';
+  let result = Math.round((size / maxSize) * 100);
+  if (result <= 20) {
+    color = 'rgba(0, 255, 0, 0.3)';
+  } else if (result <= 60) {
+    color = '#5654df5b';
+  } else if (result <= 75) {
+    color = '#ffe60088';
+  } else {
+    color = '#ff6a9c57';
+  }
+  return <SizeColorEl bg={color}>{`${size}/${maxSize}`}</SizeColorEl>;
+};
+
 function SearchTable(props) {
   return (
     <PaperEl elevation={3}>
@@ -38,7 +53,7 @@ function SearchTable(props) {
         <BottomRowEl key={row._id}>
           <ItemEl>{row.fullName}</ItemEl>
           <ItemEl>{row.skuNumber ? row.skuNumber : 'empty'}</ItemEl>
-          <ItemEl>{`${row.size}/${row.maxSize}`}</ItemEl>
+          <ItemEl>{sizeHelper(row.size, row.maxSize)}</ItemEl>
           <ItemEl>{statusHelper(row.status)}</ItemEl>
           <ItemEl>{row.department ? row.department : 'null'}</ItemEl>
         </BottomRowEl>
@@ -69,7 +84,14 @@ const RowEl = styled.div`
 `;
 
 const HeaderRowEl = styled(RowEl)`
-  background: rgba(139, 138, 231, 0.404);
+  background: linear-gradient(
+    90deg,
+    rgba(252, 251, 253, 0) 0%,
+    rgb(139, 138, 231, 0.404) 2%,
+    rgba(139, 138, 231, 0.404) 98%,
+    rgba(255, 255, 255, 0) 100%
+  );
+
   border-bottom: rgba(245, 245, 245, 0.5) solid 2px;
   border-radius: 3px;
   border-top: rgba(245, 245, 245, 0.5) solid 2px;
@@ -101,4 +123,11 @@ const BagsEl = styled.div`
   border-radius: 50px;
   background: ${({ bg }) => bg};
   padding: 0 10px;
+`;
+
+const SizeColorEl = styled.div`
+  ${centerEl};
+  border-radius: 10px;
+  background: ${({ bg }) => bg};
+  padding: 0 5px;
 `;
