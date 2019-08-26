@@ -22,7 +22,7 @@ app.use(express.json({ extended: false }));
 // Connect Database
 mongoose
   .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
-  .then(() => console.log(`mongodb connected`))
+  .then(() => console.log(`***mongodb connected`))
   .catch(err => console.log(err));
 
 app.use('/api/auth', authRoutes);

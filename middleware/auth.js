@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const User = require('../model/User');
 
+// eslint-disable-next-line consistent-return
 module.exports = async function(req, res, next) {
   // Get token from header
   const token = req.header('x-auth-token');
@@ -18,7 +19,7 @@ module.exports = async function(req, res, next) {
     const user = await User.findOne({ _id: id });
     if (!user)
       return res.json({ success: false, error: 'user token not valid' });
-    user['status'] = 'on';
+    user.status = 'on';
     req.user = user;
     next();
   } catch (err) {
