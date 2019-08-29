@@ -5,6 +5,7 @@ import LayoutCop from '../../Layout/LayoutCop';
 import LocationPage from './LocationPage/LocationPage';
 import ProductPage from '../app/ProductPages/ProductSerchPage/ProductPage';
 import LocationCreatePage from './LocationCreate/LocationCreatePage';
+import ProductCreatePage from './ProductPages/ProductCreactPage/ProductCreatePage';
 
 export class AppMainRoute extends Component {
   render() {
@@ -23,6 +24,11 @@ export class AppMainRoute extends Component {
             component={LocationCreatePage}
           />
           <Route exact path={`${match.path}/product`} component={ProductPage} />
+          <Route
+            exact
+            path={`${match.path}/product/create`}
+            component={ProductCreatePage}
+          />
         </LayoutCop>
       </Switch>
     );

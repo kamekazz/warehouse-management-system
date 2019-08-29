@@ -34,6 +34,13 @@ function NestedList(props) {
   function handleClick() {
     setOpen(!open);
   }
+
+  const [openProduct, setOpenProduct] = React.useState(false);
+
+  function handleClickProduct() {
+    setOpenProduct(!openProduct);
+  }
+
   function navPush(url) {
     handleDrawerToggle();
     history.push(url);
@@ -55,7 +62,7 @@ function NestedList(props) {
       className={classes.root}
     >
       {/* itemList */}
-      <ListItem button onClick={() => navPush('/app/product')}>
+      {/* <ListItem button onClick={() => navPush('/app/product')}>
         <ListItemIcon>
           <RedeemIcon
             color={activeUrl === '/app/product' ? 'secondary' : 'inherit'}
@@ -65,8 +72,44 @@ function NestedList(props) {
           inputcolor={activeUrl === '/app/product' ? true : false}
           primary="Product"
         />
-      </ListItem>
+      </ListItem> */}
       {/* itemList */}
+      {/* new Product  */}
+      <ListItem button onClick={handleClickProduct}>
+        <ListItemIcon>
+          <RedeemIcon
+            color={activeUrl === '/app/product' ? 'secondary' : 'inherit'}
+          />
+        </ListItemIcon>
+        <ListItemTextEl
+          inputcolor={activeUrl === '/app/product' ? true : false}
+          onClick={() => navPush('/app/product')}
+          primary="Product"
+        />
+        {openProduct ? <ExpandLessEl /> : <ExpandMoreEl />}
+      </ListItem>
+      <CollapseEl in={openProduct} timeout="auto" unmountOnExit>
+        <List component="div" disablePadding>
+          <ListItem
+            button
+            className={classes.nested}
+            onClick={() => navPush('/app/product/create')}
+          >
+            <ListItemIcon>
+              <LibraryIcon
+                color={
+                  activeUrl === '/app/product/create' ? 'secondary' : 'inherit'
+                }
+              />
+            </ListItemIcon>
+            <ListItemTextEl
+              inputcolor={activeUrl === '/app/product/create' ? true : false}
+              primary="Create"
+            />
+          </ListItem>
+        </List>
+      </CollapseEl>
+      {/* new Product  */}
 
       <ListItem button onClick={handleClick}>
         <ListItemIcon>
