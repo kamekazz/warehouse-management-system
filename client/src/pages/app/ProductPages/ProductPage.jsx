@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setUrl } from '../../redux/Auth/user.actions';
+import { setUrl } from '../../../redux/Auth/user.actions';
 
 export class ProductPage extends Component {
   componentDidMount() {

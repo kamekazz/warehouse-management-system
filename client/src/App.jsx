@@ -8,7 +8,7 @@ import SignInPage from './pages/auth/SignInPage';
 import SignUpPage from './pages/auth/SignUpPage';
 import RegistrationPage from './pages/auth/Registration/RegistrationPage';
 import Error404Page from './pages/Error404Page';
-import AppMainRoute from './pages/app/App';
+import AppMainRoute from './pages/app/App.routes';
 
 import PrivateRoute from './components/PrivateRoute';
 import LandingPage from './pages/LandingPage';
