@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import LayoutCop from '../../Layout/LayoutCop';
 import LocationPage from './LocationPage/LocationPage';
 import ProductPage from '../app/ProductPages/ProductSerchPage/ProductPage';
-import LocationCreatePage from './LocationCreate/LocationCreatePage';
+import LocationCreatePage from './LocationPage/LocationCreate/LocationCreatePage';
 import ProductCreatePage from './ProductPages/ProductCreactPage/ProductCreatePage';
 
 export class AppMainRoute extends Component {
