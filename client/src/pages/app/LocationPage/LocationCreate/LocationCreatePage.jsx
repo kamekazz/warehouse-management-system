@@ -15,7 +15,7 @@ import {
 import ContainerHeader from '../../../../components/ContainerHeader';
 import { PageEl } from '../../../../Styles/Elements/ToolsEl';
 import LocationForm from './LocationcreateForm';
-import LocationTable from '../../../../components/LocationTable';
+import LocationTable from './LocationTable';
 import LocationCreatDialog from './LocatonCreatDialog';
 
 export class LocationCreatePage extends Component {

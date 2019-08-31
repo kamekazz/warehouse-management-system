@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import styled from 'styled-components';
 import MenuItem from '@material-ui/core/MenuItem';
 import { debounce } from 'lodash';
-import { locationStatus, locationDepartment } from '../../../util/option';
+import { locationStatus, departmentOption } from '../../../util/option';
 import { cleanObj } from '../../../util/helper';
 import { connect } from 'react-redux';
 import { queryLocation } from '../../../redux/Location/location.action';
@@ -116,7 +116,7 @@ function SearchForm(props) {
             margin="normal"
             variant="outlined"
           >
-            {locationDepartment.map(option => (
+            {departmentOption.map(option => (
               <MenuItem key={option.value} value={option.value}>
                 {option.label}
               </MenuItem>

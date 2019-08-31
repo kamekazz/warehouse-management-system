@@ -17,7 +17,7 @@ export const locationStatus = [
   },
   { value: '', label: 'N/A' }
 ];
-export const locationDepartment = [
+export const departmentOption = [
   {
     value: 'std',
     label: 'STD'
