@@ -5,6 +5,7 @@ const express = require('express');
 const router = express.Router();
 const Item = require('../model/Item');
 
+// /api/item call
 router.get('/', async (req, res) => {
   try {
     const allItem = await Item.find();

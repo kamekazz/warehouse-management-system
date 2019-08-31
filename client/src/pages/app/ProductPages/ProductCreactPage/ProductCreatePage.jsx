@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { setUrl } from '../../../../redux/Auth/user.actions';
 import ContainerHeader from '../../../../components/ContainerHeader';
 import { PageEl } from '../../../../Styles/Elements/ToolsEl';
+import { createItem } from '../../../../redux/Item/item.action';
 import CreateProductForm from './CreateProductForm';
 import CreateProductTable from './CreateProductTable';
 import {
@@ -39,13 +40,12 @@ class ProductCreatePage extends Component {
   onSubmitFrom = e => {
     e.preventDefault();
     this.props.infoMsgBar(`product bine crate`);
-    console.log('onSubmitFrom', this.state);
+    this.props.createItem(this.state);
     this.handelCancel();
   };
 
   buttonChange = () => {
     const { name, skuNumber, size, ounce } = this.state;
-    console.log(name);
     if (name.length >= 4) {
       if (skuNumber.length >= 7) {
         if (size.length >= 1) {
@@ -101,7 +101,7 @@ class ProductCreatePage extends Component {
 
 const mapStateToProps = state => ({});
 
-const mapDispatchToProps = { setUrl, warningMsgBar, infoMsgBar };
+const mapDispatchToProps = { setUrl, warningMsgBar, infoMsgBar, createItem };
 
 export default connect(
   mapStateToProps,

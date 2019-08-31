@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable no-undef */
 /* eslint-disable node/no-unsupported-features/es-syntax */
 const express = require('express');

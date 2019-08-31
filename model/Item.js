@@ -7,7 +7,8 @@ const { Schema } = mongoose;
 const ItemSchema = new Schema({
   name: {
     type: String,
-    required: true
+    required: true,
+    trim: true
   },
   size: {
     type: Number,
