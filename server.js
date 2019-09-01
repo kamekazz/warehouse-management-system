@@ -21,7 +21,10 @@ app.use(express.json({ extended: false }));
 
 // Connect Database
 mongoose
-  .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useCreateIndex: true
+  })
   .then(() => console.log(`***mongodb connected`))
   .catch(err => console.log(err));
 

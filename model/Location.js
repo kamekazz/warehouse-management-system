@@ -7,26 +7,31 @@ const { Schema } = mongoose;
 const LocationSchema = new Schema({
   zone: {
     type: String,
-    required: true
+    required: true,
+    trim: true
   },
   row: {
     type: Number,
-    required: true
+    required: true,
+    trim: true
   },
   location: {
     type: Number,
-    required: true
+    required: true,
+    trim: true
   },
   level: {
     type: Number,
-    required: true
+    required: true,
+    trim: true
   },
   department: {
     type: String
   },
   fullName: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   skuNumber: {
     type: String,

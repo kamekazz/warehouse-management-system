@@ -4,6 +4,7 @@
 const express = require('express');
 
 const router = express.Router();
+const faker = require('faker');
 const Location = require('../model/Location');
 
 router.get('/', async (req, res) => {
@@ -178,3 +179,31 @@ router.delete('/delete/:locationFullName', async (req, res) => {
 });
 
 module.exports = router;
+
+// function runFakerData() {
+//   const optionRow = { min: 200, max: 212, precision: 1 };
+//   const optionLocation = { min: 87, max: 212, precision: 1 };
+//   const optionLevel = { min: 0, max: 40, precision: 10 };
+//   newLocation = new Location();
+//   newLocation.zone = faker.random.arrayElement(['a', 'b', 'c']);
+//   newLocation.row = faker.random.number(optionRow);
+//   newLocation.location = faker.random.number(optionLocation);
+//   newLocation.level = faker.random.number(optionLevel);
+//   newLocation.fullName = `${newLocation.zone}-${newLocation.row}-${newLocation.location}-${newLocation.level}`;
+//   newLocation.maxSize = faker.random.number(100);
+//   newLocation.status = faker.random.arrayElement([
+//     'empty',
+//     'maintenance',
+//     'upcoming'
+//   ]);
+//   newLocation.save();
+// }
+// runFakerData();
+
+// function runLoop() {
+//   for (let i = 0; i < 1000; i++) {
+//     runFakerData();
+//   }
+// }
+
+// runLoop();

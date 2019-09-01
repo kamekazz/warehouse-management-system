@@ -16,7 +16,8 @@ const ItemSchema = new Schema({
   },
   skuNumber: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   department: {
     type: String,
