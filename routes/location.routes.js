@@ -4,8 +4,22 @@
 const express = require('express');
 
 const router = express.Router();
-const faker = require('faker');
+
+const dateFns = require('date-fns');
 const Location = require('../model/Location');
+
+function helperDateMapping(data) {
+  const now = new Date();
+  const newArray = data.map(x => {
+    return {
+      fullName: x.fullName,
+      maxSize: x.maxSize,
+      status: x.status,
+      date: dateFns.formatDistance(x.date, now, { addSuffix: true })
+    };
+  });
+  return newArray;
+}
 
 router.get('/', async (req, res) => {
   try {
@@ -42,10 +56,11 @@ router.get('/create', async (req, res) => {
       .sort({ date: -1 })
       .limit(100);
     if (!lastLocationAdded) return res.json({ message: 'no location found' });
+
     res.json({
       success: true,
       message: 'all create',
-      allNewLocation: lastLocationAdded
+      allNewLocation: helperDateMapping(lastLocationAdded)
     });
   } catch (err) {
     console.error(err);

@@ -1,36 +1,10 @@
-const id = '5d36019080b69a47bc25f761';
-const arry = [
-  '5d36019080b69a47bc25f761',
-  '5d36019080b69a47bc25f761',
-  '5d36019080b69a47bc25f761',
-  '5d36019080b69a47bc25f761',
-  '5d36019080b69a47bc25f761',
-  '5d36019080b69a47bc25f761',
-  '5d36019080b69a47bc25f761',
-  '5d36019080b69a47bc25f761',
-  '5d36019080b69a47bc25f761',
-  '5d36019080b69a47bc25f761',
-  '5d36019080b69a47bc25f761',
-  '5d36019080b69a47bc25f761',
-  '5d36019080b69a47bc25f761',
-  '5d36019080b69a47bc25f761',
-  '5d36019080b69a47bc25f761',
-  '5d36019080b69a47bc25f761',
-  '5d36019080b69a47bc25f761'
+const array = [
+  { name: 'manny', balance: 4 },
+  { name: 'sara', balance: 7 },
+  { name: 'coco', balance: 44 },
+  { name: 'kk', balance: 4 }
 ];
 
-function helperUniqItemOne(arr, idParam) {
-  let result = true;
-  arr.forEach(function(item) {
-    if (item === idParam) {
-      result = false;
-      console.log('good');
-    }
-  });
-  console.log('arr', arr[0]);
-  console.log('id', idParam);
-  console.log('result', result);
-  return result;
-}
+const mapNew = array.map(x => x.balance * 2);
 
-console.log(helperUniqItemOne(arry, id));
+console.log('mapNew', mapNew);
