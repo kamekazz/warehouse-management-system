@@ -19,4 +19,9 @@ export const MSG_CLOSE = 'MSG_CLOSE';
 
 //url
 export const SET_URL = 'SET_URL';
+
+//action location
 export const LOCATION_QUERY = 'LOCATION_QUERY';
+
+// action item
+export const ITEM_QUERY = 'ITEM-QUERY';

@@ -19,7 +19,6 @@ class ProductCreatePage extends Component {
     size: '',
     ounce: '',
     department: 'std',
-    data: [],
     buttonDisable: true
   };
   componentDidMount() {

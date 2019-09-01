@@ -6,10 +6,12 @@ const router = express.Router();
 const Item = require('../model/Item');
 
 // /api/item call
-router.get('/', async (req, res) => {
+router.get('/created', async (req, res) => {
   try {
-    const allItem = await Item.find();
-    res.json({ data: allItem });
+    const allNewItem = await Item.find()
+      .sort({ date: -1 })
+      .limit(50);
+    res.json({ success: true, allNewItem: allNewItem });
   } catch (err) {
     console.error(err);
     res.json({
@@ -29,8 +31,7 @@ router.post('/create', async (req, res) => {
       await newItem.save();
       res.json({
         success: true,
-        message: 'item create',
-        item: newItem
+        message: 'item create'
       });
     } else {
       res.json({
