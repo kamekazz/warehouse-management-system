@@ -13,7 +13,10 @@ export class ProductPage extends Component {
   render() {
     return (
       <PageEl>
-        <ContainerHeader match={this.props.match} title={'Product'} />
+        <ContainerHeader
+          match={this.props.match}
+          title={'Search For Products'}
+        />
         <SearchFrom />
         <ProductTable />
       </PageEl>

@@ -3,7 +3,6 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import styled from 'styled-components';
-import Typography from '@material-ui/core/Typography';
 import { styleColor } from '../../../../Styles/styleThem';
 import MenuItem from '@material-ui/core/MenuItem';
 import { departmentOption } from '../../../../util/option';

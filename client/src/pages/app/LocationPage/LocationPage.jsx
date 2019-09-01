@@ -13,7 +13,10 @@ export class LocationPage extends Component {
   render() {
     return (
       <PageEl>
-        <ContainerHeader match={this.props.match} title={'Location'} />
+        <ContainerHeader
+          match={this.props.match}
+          title={'Search For Locations'}
+        />
         <SearchForm />
         <SearchTable />
       </PageEl>

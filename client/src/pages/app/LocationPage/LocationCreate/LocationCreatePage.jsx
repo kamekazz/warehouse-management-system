@@ -138,7 +138,10 @@ export class LocationCreatePage extends Component {
   render() {
     return (
       <PageEl>
-        <ContainerHeader match={this.props.match} title={'Create'} />
+        <ContainerHeader
+          match={this.props.match}
+          title={'Create New Location'}
+        />
         <LocationForm
           handelCancel={this.handelCancel}
           updateTextField={this.updateTextField}

@@ -1,5 +1,6 @@
 import React from 'react';
 import MUIDataTable from 'mui-datatables';
+import styled from 'styled-components';
 
 function LocationTable({ data, getEditFormCreat }) {
   const columns = [
@@ -50,7 +51,7 @@ function LocationTable({ data, getEditFormCreat }) {
   };
 
   return (
-    <MUIDataTable
+    <MUIDataTableEl
       title={'The Last 100 Location  Create'}
       data={data}
       columns={columns}
@@ -60,3 +61,11 @@ function LocationTable({ data, getEditFormCreat }) {
 }
 
 export default LocationTable;
+
+const MUIDataTableEl = styled(MUIDataTable)`
+  .MuiTableRow-root {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+`;

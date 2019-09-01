@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
 import { PaperEl } from '../../../../Styles/Elements/ToolsEl';
 import TextField from '@material-ui/core/TextField';
-import { debounce } from 'lodash';
 
 function SearchFrom() {
   const [input, setInput] = useState({
     product: ''
   });
-
-  const onSubmitFrom = debounce(() => {
-    // props.queryLocation(cleanObj(input));
-  }, 3000);
 
   const updateTextField = (name, value, length) => {
     if (value.length <= length) {
