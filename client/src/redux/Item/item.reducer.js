@@ -1,13 +1,13 @@
 import { ITEM_QUERY } from '../types';
 
 const initialState = {
-  itemData: []
+  itemArray: []
 };
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case ITEM_QUERY:
-      return { ...state, itemData: payload };
+      return { ...state, itemArray: payload };
     default:
       return state;
   }

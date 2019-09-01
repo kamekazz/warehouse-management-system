@@ -19,7 +19,10 @@ function CreateProductForm({
   updateTextField,
   handleChange,
   buttonDisable,
-  handelCancel
+  handelCancel,
+  editMode,
+  onSaveForm,
+  setOnDelete
 }) {
   return (
     <PaperEl elevation={12}>
@@ -99,14 +102,33 @@ function CreateProductForm({
           >
             cancel
           </ButtonEl>
-          <ButtonEl
-            disabled={buttonDisable}
-            type="submit"
-            variant="contained"
-            color="secondary"
-          >
-            Submit
-          </ButtonEl>
+          {!editMode ? (
+            <ButtonEl
+              disabled={buttonDisable}
+              type="submit"
+              variant="contained"
+              color="secondary"
+            >
+              Submit
+            </ButtonEl>
+          ) : (
+            <EditColumn>
+              <DeleteButtonEl
+                color="primary"
+                onClick={setOnDelete}
+                variant="contained"
+              >
+                delete
+              </DeleteButtonEl>
+              <ButtonEl
+                onClick={onSaveForm}
+                variant="contained"
+                color="secondary"
+              >
+                Save
+              </ButtonEl>
+            </EditColumn>
+          )}
         </ButtonDiv>
       </FormEl>
     </PaperEl>
@@ -160,6 +182,16 @@ const DescriptionTextEl = styled(TextField)`
 const DepartmentEl = styled(TextField)`
   width: 120px;
 `;
+
+const EditColumn = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 180px;
+  .MuiButton-containedPrimary {
+    background-color: ${styleColor.error.main};
+  }
+`;
+const DeleteButtonEl = styled(Button)``;
 
 const ButtonEl = styled(Button)`
   span {

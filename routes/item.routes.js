@@ -10,7 +10,7 @@ router.get('/created', async (req, res) => {
   try {
     const allNewItem = await Item.find()
       .sort({ date: -1 })
-      .limit(50);
+      .limit(100);
     res.json({ success: true, allNewItem: allNewItem });
   } catch (err) {
     console.error(err);
@@ -43,7 +43,7 @@ router.post('/create', async (req, res) => {
     console.error(err);
     res.json({
       success: false,
-      err: err
+      message: err
     });
   }
 });
@@ -98,19 +98,19 @@ router.post('/update', async (req, res) => {
       res.json({
         success: true,
         message: `item Updated `,
-        data: item
+        item: item
       });
     }
   } catch (err) {
     console.error(err);
     res.json({
       success: false,
-      err: err
+      message: err
     });
   }
 });
 
-router.delete('/delete', async (req, res) => {
+router.post('/delete', async (req, res) => {
   const { skuNumber } = req.body;
   try {
     const resolve = await Item.deleteOne({ skuNumber: skuNumber });

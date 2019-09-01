@@ -3,7 +3,12 @@ import { connect } from 'react-redux';
 import { setUrl } from '../../../../redux/Auth/user.actions';
 import ContainerHeader from '../../../../components/ContainerHeader';
 import { PageEl } from '../../../../Styles/Elements/ToolsEl';
-import { createItem } from '../../../../redux/Item/item.action';
+import {
+  createItem,
+  searchLatsItemCreate,
+  updateItem,
+  deleteItem
+} from '../../../../redux/Item/item.action';
 import CreateProductForm from './CreateProductForm';
 import CreateProductTable from './CreateProductTable';
 import {
@@ -19,11 +24,35 @@ class ProductCreatePage extends Component {
     size: '',
     ounce: '',
     department: 'std',
-    buttonDisable: true
+    buttonDisable: true,
+    editMode: false
   };
   componentDidMount() {
     this.props.setUrl(this.props.match.path);
+    this.props.searchLatsItemCreate();
   }
+
+  startEditMode = body => {
+    this.setState(
+      { editMode: true, buttonDisable: false },
+      this.enterEditToFiled(body)
+    );
+  };
+
+  setOnDelete = () => {
+    this.props.deleteItem(this.state.skuNumber);
+    this.handelCancel();
+  };
+
+  enterEditToFiled = body => {
+    this.setState({
+      name: body[0],
+      skuNumber: body[1],
+      size: body[4],
+      ounce: body[3],
+      department: body[2]
+    });
+  };
 
   handelCancel = () => {
     this.setState({
@@ -32,7 +61,8 @@ class ProductCreatePage extends Component {
       description: '',
       size: '',
       ounce: '',
-      buttonDisable: false
+      buttonDisable: true,
+      editMode: false
     });
   };
 
@@ -40,6 +70,12 @@ class ProductCreatePage extends Component {
     e.preventDefault();
     this.props.infoMsgBar(`product bine crate`);
     this.props.createItem(this.state);
+    this.handelCancel();
+  };
+
+  onSaveForm = e => {
+    this.props.infoMsgBar(`product bine saved`);
+    this.props.updateItem(this.state);
     this.handelCancel();
   };
 
@@ -91,16 +127,31 @@ class ProductCreatePage extends Component {
           {...this.state}
           onSubmitFrom={this.onSubmitFrom}
           handleChange={this.handleChange}
+          onSaveForm={this.onSaveForm}
+          setOnDelete={this.setOnDelete}
         />
-        <CreateProductTable />
+        <CreateProductTable
+          data={this.props.tableData}
+          startEditMode={this.startEditMode}
+        />
       </PageEl>
     );
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  tableData: state.itemReducer.itemArray
+});
 
-const mapDispatchToProps = { setUrl, warningMsgBar, infoMsgBar, createItem };
+const mapDispatchToProps = {
+  setUrl,
+  warningMsgBar,
+  infoMsgBar,
+  createItem,
+  searchLatsItemCreate,
+  updateItem,
+  deleteItem
+};
 
 export default connect(
   mapStateToProps,

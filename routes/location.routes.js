@@ -39,7 +39,7 @@ router.get('/create', async (req, res) => {
   try {
     const lastLocationAdded = await Location.find()
       .sort({ date: -1 })
-      .limit(50);
+      .limit(100);
     if (!lastLocationAdded) return res.json({ message: 'no location found' });
     res.json({
       success: true,

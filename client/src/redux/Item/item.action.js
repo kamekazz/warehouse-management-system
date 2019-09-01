@@ -18,11 +18,44 @@ export const createItem = body => async dispatch => {
   }
 };
 
+export const updateItem = body => async dispatch => {
+  try {
+    const { data } = await api.post('item/update', body);
+    if (data.success) {
+      dispatch({ type: MSG_SUCCESS, payload: data.message });
+      dispatch(searchLatsItemCreate());
+      console.log('data.item', data.item);
+    } else {
+      dispatch({ type: MSG_ERROR, payload: data.message });
+    }
+  } catch (error) {
+    console.log('error***', error);
+    dispatch({ type: MSG_WARNING, payload: error });
+  }
+};
+
 export const searchLatsItemCreate = () => async dispatch => {
   try {
     const { data } = await api.get('item/created');
     if (data.success) {
       dispatch({ type: ITEM_QUERY, payload: data.allNewItem });
+    } else {
+      dispatch({ type: MSG_ERROR, payload: data.message });
+    }
+  } catch (error) {
+    console.log('error***', error);
+    dispatch({ type: MSG_WARNING, payload: error });
+  }
+};
+
+export const deleteItem = skuNumber => async dispatch => {
+  let body = {};
+  body.skuNumber = skuNumber;
+  try {
+    const { data } = await api.post('item/delete', body);
+    if (data.success) {
+      dispatch({ type: MSG_SUCCESS, payload: data.message });
+      dispatch(searchLatsItemCreate());
     } else {
       dispatch({ type: MSG_ERROR, payload: data.message });
     }
