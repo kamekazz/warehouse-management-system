@@ -47,11 +47,13 @@ export const getCreateLocation = callback => async dispatch => {
 export const updateSizeLocation = (
   location,
   size,
+  status,
   callback
 ) => async dispatch => {
   let body = {};
   body['location'] = location;
   body['maxSize'] = size;
+  body['status'] = status;
   try {
     const { data } = await api.post('location/update', body);
     if (data.success) {

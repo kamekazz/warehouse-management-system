@@ -8,6 +8,8 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import styled from 'styled-components';
 import { styleColor } from '../../../../Styles/styleThem';
+import { locationStatus } from '../../../../util/option';
+import MenuItem from '@material-ui/core/MenuItem';
 
 export default function FormDialog({
   dialogLocation,
@@ -16,7 +18,8 @@ export default function FormDialog({
   open,
   handelEditOnChange,
   handedSize,
-  handedDelete
+  handedDelete,
+  dialogStatus
 }) {
   return (
     <div>
@@ -44,8 +47,22 @@ export default function FormDialog({
               name="dialogSize"
               label="size"
               type="number"
-              onChange={e => handelEditOnChange(e.target.value)}
+              onChange={handelEditOnChange}
             />
+            <TextFieldEl
+              id="outlined-select-currency"
+              select
+              name="dialogStatus"
+              label="Status"
+              value={dialogStatus}
+              onChange={handelEditOnChange}
+            >
+              {locationStatus.map(option => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextFieldEl>
           </FormContainer>
         </DialogContent>
         <DialogActions>
@@ -80,4 +97,8 @@ const DialogEl = styled(Dialog)`
 const FormContainer = styled.div`
   display: flex;
   justify-content: space-around;
+`;
+
+const TextFieldEl = styled(TextField)`
+  flex-basis: 130px;
 `;

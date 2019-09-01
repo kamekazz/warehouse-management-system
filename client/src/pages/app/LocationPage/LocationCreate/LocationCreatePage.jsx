@@ -30,6 +30,7 @@ export class LocationCreatePage extends Component {
     tableData: [],
     dialogLocation: '',
     dialogSize: 100,
+    dialogStatus: 100,
     open: false
   };
 
@@ -43,10 +44,11 @@ export class LocationCreatePage extends Component {
   };
 
   //dialog Form get
-  getEditFormCreat = (fullName, maxSize) => {
+  getEditFormCreat = (fullName, maxSize, status) => {
     this.setState({
       dialogLocation: fullName,
       dialogSize: maxSize,
+      dialogStatus: status,
       open: true
     });
   };
@@ -55,8 +57,8 @@ export class LocationCreatePage extends Component {
     this.setState({ open: false });
   };
 
-  handelEditOnChange = text => {
-    this.setState({ dialogSize: text });
+  handelEditOnChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   handedSize = () => {
@@ -64,6 +66,7 @@ export class LocationCreatePage extends Component {
     this.props.updateSizeLocation(
       this.state.dialogLocation,
       this.state.dialogSize,
+      this.state.dialogStatus,
       this.upDateTableData
     );
     this.setState({ open: false });

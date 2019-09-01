@@ -121,7 +121,7 @@ router.get('/:location', async (req, res) => {
 });
 
 router.post('/update', async (req, res) => {
-  const { skuNumber, location, department, size, maxSize } = req.body;
+  const { skuNumber, location, department, size, maxSize, status } = req.body;
 
   try {
     const locationFond = await Location.findOne({
@@ -138,6 +138,7 @@ router.post('/update', async (req, res) => {
       if (skuNumber) locationFond.skuNumber = skuNumber;
       if (size) locationFond.size = size;
       if (maxSize) locationFond.maxSize = maxSize;
+      if (status) locationFond.status = status;
       await locationFond.save();
       res.json({
         success: true,

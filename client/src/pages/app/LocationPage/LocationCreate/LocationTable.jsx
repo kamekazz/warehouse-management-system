@@ -37,7 +37,7 @@ function LocationTable({ data, getEditFormCreat }) {
     }
   ];
   const hitMe = e => {
-    getEditFormCreat(e[0], e[1]);
+    getEditFormCreat(e[0], e[1], e[2]);
   };
 
   const options = {
