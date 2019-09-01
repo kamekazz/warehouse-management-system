@@ -2,9 +2,9 @@ import { css } from 'styled-components';
 
 //media-query
 const size = {
-  small: 400,
-  med: 960,
-  large: 1140
+  phone: 600,
+  portrait: 900,
+  landscape: 1200
 };
 
 export const below = Object.keys(size).reduce((acc, label) => {
