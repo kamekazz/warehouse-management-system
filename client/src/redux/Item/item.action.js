@@ -1,5 +1,25 @@
 import api from '../../util/Api';
-import { MSG_ERROR, MSG_SUCCESS, MSG_WARNING, ITEM_QUERY } from '../types';
+import {
+  MSG_ERROR,
+  MSG_SUCCESS,
+  MSG_WARNING,
+  ITEM_QUERY,
+  GET_LAST_100_ITEM
+} from '../types';
+
+export const acQueryItem = body => async dispatch => {
+  try {
+    const { data } = await api.get('item', { params: body });
+    if (data.success) {
+      dispatch({ type: ITEM_QUERY, payload: data.items });
+    } else {
+      dispatch({ type: MSG_ERROR, payload: data.message });
+    }
+  } catch (error) {
+    console.log('error***', error);
+    dispatch({ type: MSG_WARNING, payload: error });
+  }
+};
 
 export const createItem = body => async dispatch => {
   delete body.data;
@@ -38,7 +58,7 @@ export const searchLatsItemCreate = () => async dispatch => {
   try {
     const { data } = await api.get('item/created');
     if (data.success) {
-      dispatch({ type: ITEM_QUERY, payload: data.allNewItem });
+      dispatch({ type: GET_LAST_100_ITEM, payload: data.allNewItem });
     } else {
       dispatch({ type: MSG_ERROR, payload: data.message });
     }

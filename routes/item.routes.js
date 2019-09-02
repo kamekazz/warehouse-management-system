@@ -5,7 +5,24 @@ const express = require('express');
 const router = express.Router();
 const Item = require('../model/Item');
 
+function escapeRegex(text) {
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+}
 // /api/item call
+router.get('/', async (req, res) => {
+  const regex = new RegExp(escapeRegex(req.query.skuNumber), 'gi');
+  try {
+    const items = await Item.find({ skuNumber: regex });
+    res.json({ success: true, items });
+  } catch (err) {
+    console.error(err);
+    res.json({
+      success: false,
+      err: message
+    });
+  }
+});
+
 router.get('/created', async (req, res) => {
   try {
     const allNewItem = await Item.find()

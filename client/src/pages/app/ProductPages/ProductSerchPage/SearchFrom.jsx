@@ -1,33 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { PaperEl } from '../../../../Styles/Elements/ToolsEl';
 import TextField from '@material-ui/core/TextField';
+import styled from 'styled-components';
+import { styleColor } from '../../../../Styles/styleThem';
 
-function SearchFrom() {
-  const [input, setInput] = useState({
-    product: ''
-  });
-
-  const updateTextField = (name, value, length) => {
-    if (value.length <= length) {
-      //Update your state
-      setInput({ ...input, [name]: value });
-    } else {
-      //Value length is biggest than 12
-      //   props.warningMsgBar(`Value length is biggest than ${length}`);
-    }
-  };
-
+function SearchFrom({ updateTextField, skuNumber }) {
   return (
     <PaperEl>
-      <TextField
-        name="product"
-        label="Product"
-        value={input.product}
+      <TextFieldEl
+        name="skuNumber"
+        label="SKU"
+        value={skuNumber}
         onChange={e =>
           updateTextField(
             e.target.name,
             e.target.value.replace(/[^a-z0-9]/gi, ''),
-            8
+            7
           )
         }
         margin="normal"
@@ -37,3 +25,13 @@ function SearchFrom() {
 }
 
 export default SearchFrom;
+
+const TextFieldEl = styled(TextField)`
+  width: 240px;
+  input {
+    letter-spacing: 3px;
+    font-size: 35px;
+    color: ${styleColor.error.main};
+    text-transform: uppercase;
+  }
+`;

@@ -24,4 +24,5 @@ export const SET_URL = 'SET_URL';
 export const LOCATION_QUERY = 'LOCATION_QUERY';
 
 // action item
+export const GET_LAST_100_ITEM = 'GET_LAST_100_ITEM';
 export const ITEM_QUERY = 'ITEM-QUERY';

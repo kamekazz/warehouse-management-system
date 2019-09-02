@@ -6,7 +6,6 @@ import history from '../redux/history';
 import Paper from '@material-ui/core/Paper';
 
 const getDisplayString = sub => {
-  document.title = sub.toUpperCase();
   const arr = sub.split('-');
   if (arr.length > 1) {
     return (
@@ -31,6 +30,7 @@ const getUrlString = (path, sub, index) => {
 const ContainerHeader = ({ title, match }) => {
   const path = match.path.substr(1);
   const subPath = path.split('/');
+  document.title = title.toUpperCase();
   return (
     <PaperEl elevation={12}>
       <h1>{title}</h1>
