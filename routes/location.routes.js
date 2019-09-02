@@ -189,7 +189,7 @@ router.delete('/delete/:locationFullName', async (req, res) => {
   } catch (err) {
     res.json({
       success: false,
-      err: err
+      message: err
     });
   }
 });

@@ -4,13 +4,23 @@ import { connect } from 'react-redux';
 import { PaperEl } from '../../../Styles/Elements/ToolsEl';
 import { centerEl } from '../../../Styles/Mixins';
 import { styleColor } from '../../../Styles/styleThem';
-import Icon from '@material-ui/icons/Add';
 import history from '../../../redux/history';
 import {
   warningMsgBar,
   infoMsgBar
 } from '../../../redux/Notification/notification.actions';
+
+import {
+  deleteLocation,
+  queryLocation
+} from '../../../redux/Location/location.action';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import Icon from '@material-ui/icons/Add';
+import DeleteIcon from '@material-ui/icons/Delete';
+import BuildIcon from '@material-ui/icons/Build';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import Tooltip from '@material-ui/core/Tooltip';
 
 const statusHelper = status => {
   switch (status) {
@@ -42,7 +52,16 @@ const sizeHelper = (size, maxSize) => {
   return <SizeColorEl bg={color}>{`${size}/${maxSize}`}</SizeColorEl>;
 };
 
-function SearchTable(props) {
+function SearchTable({
+  data,
+  deleteLocation,
+  queryLocation,
+  getEditFormCreat
+}) {
+  const runDeleteAndQueryLocation = body => {
+    deleteLocation(body, () => queryLocation());
+  };
+
   return (
     <PaperEl elevation={3}>
       <TopTopHeaderEl>
@@ -61,16 +80,40 @@ function SearchTable(props) {
         <ItemEl>size</ItemEl>
         <ItemEl>status</ItemEl>
         <ItemEl>department</ItemEl>
+        <ItemEl>action</ItemEl>
       </HeaderRowEl>
       <BottomDivEl>
-        {props.data.map(row => (
+        {data.map(row => (
           <BottomRowEl key={row._id}>
             <ItemEl>{row.fullName}</ItemEl>
             <ItemEl>{row.skuNumber ? row.skuNumber : 'empty'}</ItemEl>
             <ItemEl>{sizeHelper(row.size, row.maxSize)}</ItemEl>
             <ItemEl>{statusHelper(row.status)}</ItemEl>
             <ItemEl>{row.department ? row.department : 'null'}</ItemEl>
-            <ItemEl>actions button</ItemEl>
+            <ItemEl>
+              <Tooltip title="View">
+                <IconButton>
+                  <VisibilityIcon />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Edit">
+                <IconButton
+                  onClick={() =>
+                    getEditFormCreat(row.fullName, row.maxSize, row.status)
+                  }
+                >
+                  <BuildIcon />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Delete">
+                <IconButton
+                  aria-label="delete"
+                  onClick={() => runDeleteAndQueryLocation(row.fullName)}
+                >
+                  <DeleteIcon />
+                </IconButton>
+              </Tooltip>
+            </ItemEl>
           </BottomRowEl>
         ))}
       </BottomDivEl>
@@ -84,7 +127,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   warningMsgBar,
-  infoMsgBar
+  infoMsgBar,
+  deleteLocation,
+  queryLocation
 };
 
 export default connect(
@@ -149,6 +194,16 @@ const ItemEl = styled.div`
   ${centerEl};
   width: 110px;
   overflow: hidden;
+  button {
+    transition: all 0.3s ease-in-out;
+    padding: 6px;
+    color: rgba(255, 255, 255, 0.5);
+    &:hover {
+      color: rgba(255, 255, 255, 1);
+    }
+  }
+  path {
+  }
 `;
 
 const BagsEl = styled.div`
