@@ -4,10 +4,13 @@ import { connect } from 'react-redux';
 import { PaperEl } from '../../../Styles/Elements/ToolsEl';
 import { centerEl } from '../../../Styles/Mixins';
 import { styleColor } from '../../../Styles/styleThem';
+import Icon from '@material-ui/icons/Add';
+import history from '../../../redux/history';
 import {
   warningMsgBar,
   infoMsgBar
 } from '../../../redux/Notification/notification.actions';
+import Button from '@material-ui/core/Button';
 
 const statusHelper = status => {
   switch (status) {
@@ -42,6 +45,16 @@ const sizeHelper = (size, maxSize) => {
 function SearchTable(props) {
   return (
     <PaperEl elevation={3}>
+      <TopTopHeaderEl>
+        <AddLocationButton
+          onClick={() => history.push('/app/location/create')}
+          variant="contained"
+          color="primary"
+        >
+          <Icon>send</Icon>
+          Add Location
+        </AddLocationButton>
+      </TopTopHeaderEl>
       <HeaderRowEl>
         <ItemEl>location</ItemEl>
         <ItemEl>product</ItemEl>
@@ -49,15 +62,18 @@ function SearchTable(props) {
         <ItemEl>status</ItemEl>
         <ItemEl>department</ItemEl>
       </HeaderRowEl>
-      {props.data.map(row => (
-        <BottomRowEl key={row._id}>
-          <ItemEl>{row.fullName}</ItemEl>
-          <ItemEl>{row.skuNumber ? row.skuNumber : 'empty'}</ItemEl>
-          <ItemEl>{sizeHelper(row.size, row.maxSize)}</ItemEl>
-          <ItemEl>{statusHelper(row.status)}</ItemEl>
-          <ItemEl>{row.department ? row.department : 'null'}</ItemEl>
-        </BottomRowEl>
-      ))}
+      <BottomDivEl>
+        {props.data.map(row => (
+          <BottomRowEl key={row._id}>
+            <ItemEl>{row.fullName}</ItemEl>
+            <ItemEl>{row.skuNumber ? row.skuNumber : 'empty'}</ItemEl>
+            <ItemEl>{sizeHelper(row.size, row.maxSize)}</ItemEl>
+            <ItemEl>{statusHelper(row.status)}</ItemEl>
+            <ItemEl>{row.department ? row.department : 'null'}</ItemEl>
+            <ItemEl>actions button</ItemEl>
+          </BottomRowEl>
+        ))}
+      </BottomDivEl>
     </PaperEl>
   );
 }
@@ -76,6 +92,16 @@ export default connect(
   mapDispatchToProps
 )(SearchTable);
 
+const TopTopHeaderEl = styled.div`
+  margin: 12px 0;
+`;
+
+const AddLocationButton = styled(Button)`
+  svg {
+    margin-right: 6px;
+  }
+`;
+
 const RowEl = styled.div`
   display: flex;
   flex-wrap: nowrap;
@@ -92,9 +118,9 @@ const HeaderRowEl = styled(RowEl)`
     rgba(255, 255, 255, 0) 100%
   );
 
-  border-bottom: rgba(245, 245, 245, 0.5) solid 2px;
+  border-bottom: rgba(245, 245, 245, 0.2) solid 2px;
   border-radius: 3px;
-  border-top: rgba(245, 245, 245, 0.5) solid 2px;
+  border-top: rgba(245, 245, 245, 0.2) solid 2px;
   padding: 6px 21px;
   font-weight: 700;
   div {
@@ -107,9 +133,16 @@ const HeaderRowEl = styled(RowEl)`
   }
 `;
 
+const BottomDivEl = styled.div`
+  height: 60vh;
+  overflow: auto;
+`;
 const BottomRowEl = styled(RowEl)`
-  border-bottom: rgba(245, 245, 245, 0.5) solid 2px;
   color: rgba(245, 245, 245, 0.5);
+  &:nth-of-type(even) {
+    background-color: #7574c03b;
+    border-radius: 3px;
+  }
 `;
 
 const ItemEl = styled.div`
