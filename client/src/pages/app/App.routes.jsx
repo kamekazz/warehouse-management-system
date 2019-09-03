@@ -6,6 +6,7 @@ import LocationPage from './LocationPage/LocationPage';
 import ProductPage from '../app/ProductPages/ProductSerchPage/ProductPage';
 import LocationCreatePage from './LocationPage/LocationCreate/LocationCreatePage';
 import ProductCreatePage from './ProductPages/ProductCreactPage/ProductCreatePage';
+import ProductOnePage from './ProductPages/ProductSerchPage/ProductOnePage';
 
 export class AppMainRoute extends Component {
   render() {
@@ -24,6 +25,11 @@ export class AppMainRoute extends Component {
             component={LocationCreatePage}
           />
           <Route exact path={`${match.path}/product`} component={ProductPage} />
+          <Route
+            exact
+            path={`${match.path}/product/:id`}
+            component={ProductOnePage}
+          />
           <Route
             exact
             path={`${match.path}/product/create`}

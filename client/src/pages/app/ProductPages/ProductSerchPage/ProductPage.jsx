@@ -11,7 +11,7 @@ import _ from 'lodash';
 
 export class ProductPage extends Component {
   state = {
-    skuNumber: '3681116'
+    skuNumber: '77'
   };
   componentDidMount() {
     this.props.setUrl(this.props.match.path);
