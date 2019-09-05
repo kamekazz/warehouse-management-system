@@ -63,7 +63,7 @@ router.post('/create', async (req, res) => {
       res.json({
         success: true,
         message: 'pallet create',
-        item: newPallet,
+        newPallet,
         locations
       });
     }

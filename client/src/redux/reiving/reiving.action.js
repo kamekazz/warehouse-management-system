@@ -12,7 +12,7 @@ export const acCreatePallet = body => async dispatch => {
     const { data } = await api.post('pallet/create', body);
     console.log('data', data);
     if (data.success) {
-      dispatch({ type: ADD_NEW_PALLET, payload: data.item });
+      dispatch({ type: ADD_NEW_PALLET, payload: data });
       dispatch({ type: MSG_SUCCESS, payload: data.message });
     } else {
       dispatch({ type: MSG_ERROR, payload: data.message });
