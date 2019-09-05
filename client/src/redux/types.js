@@ -29,3 +29,4 @@ export const ITEM_QUERY = 'ITEM-QUERY';
 
 //reiving
 export const ADD_NEW_PALLET = 'ADD_NEW_PALLET';
+export const ADD_NEW_PALLET_BUTTON = 'ADD_NEW_PALLET_BUTTON';

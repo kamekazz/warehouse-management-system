@@ -10,6 +10,10 @@ import {
   warningMsgBar,
   infoMsgBar
 } from '../../../redux/Notification/notification.actions';
+import {
+  acCreatePallet,
+  acCreatePalletButton
+} from '../../../redux/reiving/reiving.action';
 
 function AddPalletForm(props) {
   const [input, setInput] = useState({
@@ -24,6 +28,7 @@ function AddPalletForm(props) {
 
   const handleSubmit = e => {
     e.preventDefault();
+    props.acCreatePallet(input);
     setInput({ skuNumber: '', cont: '' });
     goToInput('skuNumber');
   };
@@ -53,17 +58,16 @@ function AddPalletForm(props) {
   };
 
   const checkButton = () => {
-    console.log('hi');
-    // const { skuNumber, cont } = input;
-    // if (skuNumber.length === 7) {
-    //   if (cont > 0) {
-    //     setInput({ ...input, button: true });
-    //   } else {
-    //     setInput({ ...input, button: false });
-    //   }
-    // } else {
-    //   setInput({ ...input, button: false });
-    // }
+    const { skuNumber, cont } = input;
+    if (skuNumber.length === 7) {
+      if (cont > 0) {
+        props.acCreatePalletButton(false);
+      } else {
+        props.acCreatePalletButton(true);
+      }
+    } else {
+      props.acCreatePalletButton(true);
+    }
   };
 
   return (
@@ -95,7 +99,7 @@ function AddPalletForm(props) {
           onChange={e => updateContField(e.target.name, e.target.value)}
         />
         <ButtonEl
-          // disabled={false}
+          disabled={props.button}
           type="submit"
           variant="contained"
           color="secondary"
@@ -107,11 +111,15 @@ function AddPalletForm(props) {
   );
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  button: state.reivingReducer.addPalletButton
+});
 
 const mapDispatchToProps = {
   warningMsgBar,
-  infoMsgBar
+  infoMsgBar,
+  acCreatePallet,
+  acCreatePalletButton
 };
 
 export default connect(
