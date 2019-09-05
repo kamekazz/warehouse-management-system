@@ -13,6 +13,7 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import LibraryIcon from '@material-ui/icons/LibraryAdd';
 import LocationIcon from '@material-ui/icons/GpsFixed';
 import RedeemIcon from '@material-ui/icons/Redeem';
+import InputIcon from '@material-ui/icons/Input';
 
 import history from '../redux/history';
 import styled from 'styled-components';
@@ -29,6 +30,7 @@ const useStyles = makeStyles(theme => ({
 function NestedList(props) {
   const { handleDrawerToggle, activeUrl } = props;
   const classes = useStyles();
+
   const [open, setOpen] = React.useState(false);
 
   function handleClick() {
@@ -41,10 +43,68 @@ function NestedList(props) {
     setOpenProduct(!openProduct);
   }
 
+  const [openReceiving, setOpenReceiving] = React.useState(false);
+
+  function handleClickReceiving() {
+    setOpenReceiving(!openReceiving);
+  }
+
   function navPush(url) {
     handleDrawerToggle();
     history.push(url);
   }
+
+  const rdStoreFlowList = () => (
+    <List
+      component="nav"
+      aria-labelledby="nested-list-subheader"
+      subheader={
+        <ListSubheader
+          color="primary"
+          component="div"
+          id="nested-list-subheader"
+        >
+          Store Flow
+        </ListSubheader>
+      }
+      className={classes.root}
+    >
+      <ListItem button onClick={handleClickReceiving}>
+        <ListItemIcon>
+          <InputIcon
+            color={activeUrl === '/app/receiving' ? 'secondary' : 'inherit'}
+          />
+        </ListItemIcon>
+        <ListItemTextEl
+          inputcolor={activeUrl === '/app/receiving' ? true : false}
+          onClick={() => navPush('/app/receiving')}
+          primary="Receiving"
+        />
+        {openReceiving ? <ExpandLessEl /> : <ExpandMoreEl />}
+      </ListItem>
+      <CollapseEl in={openReceiving} timeout="auto" unmountOnExit>
+        <List component="div" disablePadding>
+          <ListItem
+            button
+            className={classes.nested}
+            onClick={() => navPush('/app/product/create')}
+          >
+            <ListItemIcon>
+              <LibraryIcon
+                color={
+                  activeUrl === '/app/product/create' ? 'secondary' : 'inherit'
+                }
+              />
+            </ListItemIcon>
+            <ListItemTextEl
+              inputcolor={activeUrl === '/app/product/create' ? true : false}
+              primary="Create"
+            />
+          </ListItem>
+        </List>
+      </CollapseEl>
+    </List>
+  );
 
   const rdMaintenanceList = () => (
     <List
@@ -156,6 +216,7 @@ function NestedList(props) {
           src="/img/1f087f06-5b76-468d-8d3b-57c236755776_200x200.png"
         />
       </ListItem>
+      {rdStoreFlowList()}
       {rdMaintenanceList()}
     </>
   );

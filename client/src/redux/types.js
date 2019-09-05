@@ -26,3 +26,6 @@ export const LOCATION_QUERY = 'LOCATION_QUERY';
 // action item
 export const GET_LAST_100_ITEM = 'GET_LAST_100_ITEM';
 export const ITEM_QUERY = 'ITEM-QUERY';
+
+//reiving
+export const ADD_NEW_PALLET = 'ADD_NEW_PALLET';

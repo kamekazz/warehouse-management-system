@@ -1,0 +1,139 @@
+import React, { useState } from 'react';
+import { PaperEl } from '../../../Styles/Elements/ToolsEl';
+import TextField from '@material-ui/core/TextField';
+import { styleColor } from '../../../Styles/styleThem';
+import styled from 'styled-components';
+import AddIcon from '@material-ui/icons/Add';
+import { connect } from 'react-redux';
+import Button from '@material-ui/core/Button';
+import {
+  warningMsgBar,
+  infoMsgBar
+} from '../../../redux/Notification/notification.actions';
+
+function AddPalletForm(props) {
+  const [input, setInput] = useState({
+    skuNumber: '',
+    cont: ''
+  });
+
+  const handleSubmit = e => {
+    console.log(input);
+    e.preventDefault();
+    setInput({ skuNumber: '', cont: '' });
+    goToInput('skuNumber');
+  };
+
+  const updateSkuNumberField = (name, value, length) => {
+    if (value.length >= 7) {
+      goToInput('cont');
+    }
+    if (value.length <= length) {
+      //Update your state
+      setInput({ ...input, [name]: value });
+    } else {
+      //Value length is biggest than 12
+      props.warningMsgBar(`Value length is biggest than ${length}`);
+    }
+  };
+
+  const updateContField = (name, value) => {
+    if (true) {
+      //Update your state
+      setInput({ ...input, [name]: value });
+    } else {
+      //Value length is biggest than 12
+      //   props.warningMsgBar(`Value length is biggest than ${length}`);
+    }
+  };
+
+  const goToInput = id => {
+    document.getElementById(id).focus();
+  };
+
+  return (
+    <AddPalletFormEl elevation={10}>
+      <FormContainerEl onSubmit={handleSubmit}>
+        <SkuEl
+          autoFocus
+          label="SkuNumber"
+          id="skuNumber"
+          value={input.skuNumber}
+          name="skuNumber"
+          type="text"
+          margin="none"
+          onChange={e =>
+            updateSkuNumberField(
+              e.target.name,
+              e.target.value.replace(/[^a-z0-9]/g, ''),
+              7
+            )
+          }
+        />
+        <Cont
+          id="cont"
+          label="Cont"
+          name="cont"
+          value={input.cont}
+          type="number"
+          margin="none"
+          onChange={e =>
+            updateContField(
+              e.target.name,
+              e.target.value.replace(/[^0-9]/g, '')
+            )
+          }
+        />
+        <ButtonEl type="submit" variant="contained" color="secondary">
+          <AddIcon />
+        </ButtonEl>
+      </FormContainerEl>
+    </AddPalletFormEl>
+  );
+}
+
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = {
+  warningMsgBar,
+  infoMsgBar
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AddPalletForm);
+
+const AddPalletFormEl = styled(PaperEl)`
+  max-width: 375px;
+`;
+
+const FormContainerEl = styled.form`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const SkuEl = styled(TextField)`
+  width: 140px;
+  input {
+    letter-spacing: 3px;
+    font-size: 25px;
+    color: ${styleColor.error.main};
+    text-transform: uppercase;
+  }
+`;
+
+const Cont = styled(SkuEl)`
+  width: 75px;
+  input {
+    color: whitesmoke;
+  }
+`;
+
+const ButtonEl = styled(Button)`
+  height: 45px;
+  svg {
+    color: whitesmoke;
+  }
+`;
