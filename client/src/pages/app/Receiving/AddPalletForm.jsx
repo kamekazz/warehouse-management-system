@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PaperEl } from '../../../Styles/Elements/ToolsEl';
 import TextField from '@material-ui/core/TextField';
 import { styleColor } from '../../../Styles/styleThem';
@@ -14,11 +14,15 @@ import {
 function AddPalletForm(props) {
   const [input, setInput] = useState({
     skuNumber: '',
-    cont: ''
+    cont: '',
+    button: true
   });
 
+  useEffect(() => {
+    checkButton();
+  }, [input]);
+
   const handleSubmit = e => {
-    console.log(input);
     e.preventDefault();
     setInput({ skuNumber: '', cont: '' });
     goToInput('skuNumber');
@@ -38,17 +42,28 @@ function AddPalletForm(props) {
   };
 
   const updateContField = (name, value) => {
-    if (true) {
-      //Update your state
+    let regex = new RegExp('^[0-9]+$');
+    if (regex.test(value)) {
       setInput({ ...input, [name]: value });
-    } else {
-      //Value length is biggest than 12
-      //   props.warningMsgBar(`Value length is biggest than ${length}`);
     }
   };
 
   const goToInput = id => {
     document.getElementById(id).focus();
+  };
+
+  const checkButton = () => {
+    console.log('hi');
+    // const { skuNumber, cont } = input;
+    // if (skuNumber.length === 7) {
+    //   if (cont > 0) {
+    //     setInput({ ...input, button: true });
+    //   } else {
+    //     setInput({ ...input, button: false });
+    //   }
+    // } else {
+    //   setInput({ ...input, button: false });
+    // }
   };
 
   return (
@@ -77,14 +92,14 @@ function AddPalletForm(props) {
           value={input.cont}
           type="number"
           margin="none"
-          onChange={e =>
-            updateContField(
-              e.target.name,
-              e.target.value.replace(/[^0-9]/g, '')
-            )
-          }
+          onChange={e => updateContField(e.target.name, e.target.value)}
         />
-        <ButtonEl type="submit" variant="contained" color="secondary">
+        <ButtonEl
+          // disabled={false}
+          type="submit"
+          variant="contained"
+          color="secondary"
+        >
           <AddIcon />
         </ButtonEl>
       </FormContainerEl>

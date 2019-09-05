@@ -6,6 +6,9 @@ class LandingPage extends Component {
   componentDidMount() {
     this.IsAuthenticatedReroute();
   }
+  componentDidUpdate() {
+    this.IsAuthenticatedReroute();
+  }
   IsAuthenticatedReroute = () => {
     if (this.props.auth) {
       history.push('/app');
