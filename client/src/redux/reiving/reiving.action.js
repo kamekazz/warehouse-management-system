@@ -5,7 +5,10 @@ import {
   MSG_WARNING,
   ADD_NEW_PALLET,
   ADD_NEW_PALLET_BUTTON,
-  GET_RECEIVING_TABLE
+  GET_RECEIVING_TABLE,
+  MSG_INFO,
+  DIALOG_STATUS,
+  CLEANED_PALLET_INFO
 } from '../types';
 
 export const acCreatePallet = body => async dispatch => {
@@ -41,6 +44,29 @@ export const acGetPalletsByState = status => async dispatch => {
   }
 };
 
+export const acSendDynamicToLocation = id => async dispatch => {
+  let body = {};
+  body.id = id;
+  dispatch({ type: DIALOG_STATUS, payload: false });
+  dispatch({ type: MSG_INFO, payload: 'sending pallet to location' });
+  try {
+    const { data } = await api.post('receiving/dynamicsend', body);
+    console.log('sendDynamicToLocation', data);
+    if (data.success) {
+      dispatch({ type: MSG_SUCCESS, payload: data.message });
+      dispatch({ type: CLEANED_PALLET_INFO, payload: null });
+    } else {
+      dispatch({ type: MSG_ERROR, payload: data.message });
+    }
+  } catch (error) {
+    console.log('error***', error);
+  }
+};
+
 export const acCreatePalletButton = body => dispatch => {
   dispatch({ type: ADD_NEW_PALLET_BUTTON, payload: body });
+};
+
+export const acDialogState = body => dispatch => {
+  dispatch({ type: DIALOG_STATUS, payload: body });
 };

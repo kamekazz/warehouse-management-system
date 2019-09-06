@@ -19,6 +19,7 @@ function helperNotGoodSize(location, pallet, maxLocation) {
   return result;
 }
 
+// get pallet query status
 router.post('/status', async (req, res) => {
   const { status } = req.body;
 
@@ -95,6 +96,67 @@ router.post('/send', async (req, res) => {
         fullName: location
       });
 
+      if (
+        locationFond.skuNumber === pallet.skuNumber ||
+        // locationFond.skuNumber === undefined ||
+        locationFond.skuNumber === null
+      ) {
+        if (
+          helperNotGoodSize(
+            locationFond.size,
+            pallet.size,
+            locationFond.maxSize
+          )
+        ) {
+          return res.json({ success: false, message: `err size` });
+        }
+        locationFond.skuNumber = pallet.skuNumber;
+        locationFond.palletId.push(pallet._id);
+        locationFond.size += pallet.size;
+        pallet.location = locationFond.fullName;
+        pallet.status = 'r/p';
+        pallet.date = Date.now();
+        pallet.save();
+        locationFond.save();
+        res.json({
+          success: true,
+          message: `pallets to be stored`,
+          pallet,
+          locationFond
+        });
+      } else {
+        res.json({
+          success: false,
+          message: `mix sku not permeated (${pallet.skuNumber} - ${locationFond.skuNumber})`
+        });
+      }
+    } else {
+      res.json({
+        success: false,
+        message: `pallet is  not received (${pallet.status})`
+      });
+    }
+  } catch (error) {
+    console.log('error', error);
+  }
+});
+
+router.post('/dynamicsend', async (req, res) => {
+  const { id } = req.body;
+  if (!id) return res.json({ success: false, message: 'need id ' });
+  try {
+    const pallet = await Pallet.findOne({
+      _id: id
+    });
+    if (!pallet) {
+      res.json({
+        success: false,
+        message: `pallet not fond (${id})`
+      });
+    } else if (pallet.status === 'received') {
+      const locationFond = await Location.findOne({
+        status: 'empty'
+      });
       if (
         locationFond.skuNumber === pallet.skuNumber ||
         // locationFond.skuNumber === undefined ||

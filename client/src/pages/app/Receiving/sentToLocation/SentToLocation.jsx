@@ -10,52 +10,84 @@ import styled from 'styled-components';
 import { styleColor } from '../../../../Styles/styleThem';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import { connect } from 'react-redux';
+import {
+  acDialogState,
+  acSendDynamicToLocation
+} from '../../../../redux/reiving/reiving.action';
 
-function SentToLocation() {
+function SentToLocation({
+  open,
+  acDialogState,
+  palletInfo,
+  acSendDynamicToLocation
+}) {
   return (
     <>
-      <DialogEl
-        open={true}
-        // onClose={handleClose}
-        aria-labelledby="form-dialog-title"
-      >
-        <DialogTitle id="form-dialog-title">Send To Location</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Pick a proper location and take in consideration canalization
-          </DialogContentText>
-          <PalletInfo>
-            <PalletInfoTop>
-              <Typography variant="h6" gutterBottom>
-                SKU: <span className="sku">8364m60</span>
-              </Typography>
-              <Typography variant="h6" gutterBottom>
-                CONT: <span className="cont">4</span>
-              </Typography>
-            </PalletInfoTop>
-            <PalletInfoBottom>
-              <Typography variant="h6" gutterBottom>
-                ID: <span className="id">8364dsfasdfasfasafasdfm60</span>
-              </Typography>
-            </PalletInfoBottom>
-          </PalletInfo>
-        </DialogContent>
-        <Divider />
-        <DialogActions>
-          <Typography variant="subtitle2" gutterBottom>
-            Or send to a dynamic empty location
-          </Typography>
-          <Button variant="contained" color="secondary">
-            send
-          </Button>
-          <Button variant="contained">Cancel</Button>
-        </DialogActions>
-      </DialogEl>
+      {palletInfo && (
+        <DialogEl
+          open={open}
+          // onClose={handleClose}
+          aria-labelledby="form-dialog-title"
+        >
+          <DialogTitle id="form-dialog-title">Send To Location</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Pick a proper location and take in consideration canalization
+            </DialogContentText>
+            <PalletInfo>
+              <PalletInfoTop>
+                <Typography variant="h6" gutterBottom>
+                  SKU: <span className="sku">{palletInfo.skuNumber}</span>
+                </Typography>
+                <Typography variant="h6" gutterBottom>
+                  CONT: <span className="cont">{palletInfo.cont}</span>
+                </Typography>
+              </PalletInfoTop>
+              <PalletInfoBottom>
+                <Typography variant="h6" gutterBottom>
+                  ID: <span className="id">{palletInfo._id}</span>
+                </Typography>
+                <Typography variant="h6" gutterBottom>
+                  Size: <span className="id">{palletInfo.size}</span>
+                </Typography>
+              </PalletInfoBottom>
+            </PalletInfo>
+          </DialogContent>
+          <Divider />
+          <DialogActions>
+            <Typography variant="subtitle2" gutterBottom>
+              Or send to a dynamic empty location
+            </Typography>
+            <Button
+              onClick={() => acSendDynamicToLocation(palletInfo._id)}
+              variant="contained"
+              color="secondary"
+            >
+              send
+            </Button>
+            <Button onClick={() => acDialogState(false)} variant="contained">
+              Cancel
+            </Button>
+          </DialogActions>
+        </DialogEl>
+      )}
     </>
   );
 }
 
-export default SentToLocation;
+const mapStateToProps = state => ({
+  open: state.reivingReducer.openLocationFinderModels,
+  palletInfo: state.reivingReducer.newPallet,
+  locations: state.reivingReducer.locations
+});
+
+const mapDispatchToProps = { acDialogState, acSendDynamicToLocation };
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SentToLocation);
 
 const DialogEl = styled(Dialog)`
   .MuiDialogTitle-root {
@@ -84,4 +116,7 @@ const PalletInfoTop = styled.div`
   display: flex;
   justify-content: space-between;
 `;
-const PalletInfoBottom = styled.div``;
+const PalletInfoBottom = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
