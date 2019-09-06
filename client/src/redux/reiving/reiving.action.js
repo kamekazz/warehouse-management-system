@@ -9,7 +9,7 @@ import {
 
 export const acCreatePallet = body => async dispatch => {
   try {
-    const { data } = await api.post('pallet/create', body);
+    const { data } = await api.post('receiving/create', body);
     console.log('data', data);
     if (data.success) {
       dispatch({ type: ADD_NEW_PALLET, payload: data });
@@ -19,7 +19,6 @@ export const acCreatePallet = body => async dispatch => {
     }
   } catch (error) {
     console.log('error***', error);
-    dispatch({ type: MSG_WARNING, payload: error });
   }
 };
 

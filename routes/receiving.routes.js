@@ -58,6 +58,7 @@ router.post('/create', async (req, res) => {
       newPallet.item = itemFond._id;
       newPallet.size = itemFond.size * newPallet.cont;
       newPallet.ounce = itemFond.ounce * newPallet.cont;
+      newPallet.department = itemFond.department;
       newPallet.status = 'received';
       await newPallet.save();
       res.json({

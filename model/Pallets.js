@@ -30,6 +30,9 @@ const PalletSchema = new Schema({
   ounce: {
     type: Number
   },
+  department: {
+    type: String
+  },
   activate: [
     {
       note: { type: String },

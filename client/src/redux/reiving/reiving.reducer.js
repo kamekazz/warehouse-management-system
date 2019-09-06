@@ -3,7 +3,43 @@ import { ADD_NEW_PALLET, ADD_NEW_PALLET_BUTTON } from '../types';
 const initialState = {
   newPallet: null,
   location: [],
-  palletTable: [],
+  palletTable: [
+    {
+      skuNumber: 'sknvors',
+      id: 'lkjfljlkfjkasjdfljfkfjaskjfajlkfjas',
+      department: 'pro',
+      cont: 1,
+      date: '25/36/25'
+    },
+    {
+      skuNumber: 'sknvors',
+      id: 'lkjfljlkfjkasjdfljfkfjaskjfajlkfjas',
+      department: 'pro',
+      cont: 1,
+      date: '25/36/25'
+    },
+    {
+      skuNumber: 'sknvors',
+      id: 'lkjfljlkfjkasjdfljfkfjaskjfajlkfjas',
+      department: 'pro',
+      cont: 1,
+      date: '25/36/25'
+    },
+    {
+      skuNumber: 'sknvors',
+      id: 'lkjfljlkfjkasjdfljfkfjaskjfajlkfjas',
+      department: 'pro',
+      cont: 1,
+      date: '25/36/25'
+    },
+    {
+      skuNumber: 'sknvors',
+      id: 'lkjfljlkfjkasjdfljfkfjaskjfajlkfjas',
+      department: 'pro',
+      cont: 1,
+      date: '25/36/25'
+    }
+  ],
   openLocationFinderModels: false,
   openAddNewProductModels: false,
   addPalletButton: true
