@@ -6,6 +6,7 @@ import { setUrl } from '../../../redux/Auth/user.actions';
 import ContainerHeader from '../../../components/ContainerHeader';
 import { PageEl } from '../../../Styles/Elements/ToolsEl';
 import AddPalletForm from './AddPalletForm';
+import ReceivingTable from './ReceivingTable';
 
 class ReceivingMainPage extends Component {
   componentDidMount() {
@@ -17,6 +18,7 @@ class ReceivingMainPage extends Component {
       <PageEl>
         <ContainerHeader match={this.props.match} title={'Receiving'} />
         <AddPalletForm />
+        <ReceivingTable />
       </PageEl>
     );
   }

@@ -6,35 +6,35 @@ const initialState = {
   palletTable: [
     {
       skuNumber: 'sknvors',
-      id: 'lkjfljlkfjkasjdfljfkfjaskjfajlkfjas',
+      _id: 'lkjfljlkfjkasjdfljfkfjaskjfajlkfjas',
       department: 'pro',
       cont: 1,
       date: '25/36/25'
     },
     {
       skuNumber: 'sknvors',
-      id: 'lkjfljlkfjkasjdfljfkfjaskjfajlkfjas',
+      _id: 'lkjfljlkfjkasjdfljfkfjaskjfajlkfjas',
       department: 'pro',
       cont: 1,
       date: '25/36/25'
     },
     {
       skuNumber: 'sknvors',
-      id: 'lkjfljlkfjkasjdfljfkfjaskjfajlkfjas',
+      _id: 'lkjfljlkfjkasjdfljfkfjaskjfajlkfjas',
       department: 'pro',
       cont: 1,
       date: '25/36/25'
     },
     {
       skuNumber: 'sknvors',
-      id: 'lkjfljlkfjkasjdfljfkfjaskjfajlkfjas',
+      _id: 'lkjfljlkfjkasjdfljfkfjaskjfajlkfjas',
       department: 'pro',
       cont: 1,
       date: '25/36/25'
     },
     {
       skuNumber: 'sknvors',
-      id: 'lkjfljlkfjkasjdfljfkfjaskjfajlkfjas',
+      _id: 'lkjfljlkfjkasjdfljfkfjaskjfajlkfjas',
       department: 'pro',
       cont: 1,
       date: '25/36/25'
