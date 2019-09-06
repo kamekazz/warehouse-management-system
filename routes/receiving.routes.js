@@ -19,8 +19,9 @@ function helperNotGoodSize(location, pallet, maxLocation) {
   return result;
 }
 
-router.post('/', async (req, res) => {
+router.post('/status', async (req, res) => {
   const { status } = req.body;
+
   const pallets = await Pallet.find({
     status
   });

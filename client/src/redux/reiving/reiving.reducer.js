@@ -1,45 +1,13 @@
-import { ADD_NEW_PALLET, ADD_NEW_PALLET_BUTTON } from '../types';
+import {
+  ADD_NEW_PALLET,
+  ADD_NEW_PALLET_BUTTON,
+  GET_RECEIVING_TABLE
+} from '../types';
 
 const initialState = {
   newPallet: null,
   location: [],
-  palletTable: [
-    {
-      skuNumber: 'sknvors',
-      _id: 'lkjfljlkfjkasjdfljfkfjaskjfajlkfjas',
-      department: 'pro',
-      cont: 1,
-      date: '25/36/25'
-    },
-    {
-      skuNumber: 'sknvors',
-      _id: 'lkjfljlkfjkasjdfljfkfjaskjfajlkfjas',
-      department: 'pro',
-      cont: 1,
-      date: '25/36/25'
-    },
-    {
-      skuNumber: 'sknvors',
-      _id: 'lkjfljlkfjkasjdfljfkfjaskjfajlkfjas',
-      department: 'pro',
-      cont: 1,
-      date: '25/36/25'
-    },
-    {
-      skuNumber: 'sknvors',
-      _id: 'lkjfljlkfjkasjdfljfkfjaskjfajlkfjas',
-      department: 'pro',
-      cont: 1,
-      date: '25/36/25'
-    },
-    {
-      skuNumber: 'sknvors',
-      _id: 'lkjfljlkfjkasjdfljfkfjaskjfajlkfjas',
-      department: 'pro',
-      cont: 1,
-      date: '25/36/25'
-    }
-  ],
+  palletTable: [],
   openLocationFinderModels: false,
   openAddNewProductModels: false,
   addPalletButton: true
@@ -56,6 +24,8 @@ export default (state = initialState, { type, payload }) => {
       };
     case ADD_NEW_PALLET_BUTTON:
       return { ...state, addPalletButton: payload };
+    case GET_RECEIVING_TABLE:
+      return { ...state, palletTable: payload };
     default:
       return state;
   }

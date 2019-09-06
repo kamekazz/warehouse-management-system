@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { PaperEl } from '../../../Styles/Elements/ToolsEl';
 import { styleColor } from '../../../Styles/styleThem';
 import styled from 'styled-components';
 import { centerEl } from '../../../Styles/Mixins';
 import Tooltip from '@material-ui/core/Tooltip';
+import { acGetPalletsByState } from '../../../redux/reiving/reiving.action';
+import { formatDistance } from 'date-fns';
 
-function ReceivingTable({ data }) {
+function ReceivingTable({ data, acGetPalletsByState }) {
+  useEffect(() => {
+    acGetPalletsByState('received');
+  }, []);
+  const now = new Date();
   return (
     <PaperEl>
       <TopTopHeaderEl>
@@ -21,16 +27,24 @@ function ReceivingTable({ data }) {
         <ItemEl>Date</ItemEl>
       </HeaderRowEl>
       <BottomDivEl>
-        {data.map(row => (
-          <BottomRowEl>
-            <ItemSkuEl>{row.skuNumber}</ItemSkuEl>
-            <ItemEl>manuel</ItemEl>
-            <ItemEl>{row._id}</ItemEl>
-            <ItemEl>{row.department}</ItemEl>
-            <ItemEl>{row.cont}</ItemEl>
-            <ItemEl>{row.date}</ItemEl>
-          </BottomRowEl>
-        ))}
+        {data.map(row => {
+          let palletDateData = Date.parse(row.date);
+          let date = formatDistance(palletDateData, now, { addSuffix: true });
+          return (
+            <BottomRowEl key={row._id}>
+              <ItemSkuEl>{row.skuNumber}</ItemSkuEl>
+              <ItemEl>manuel</ItemEl>
+              <Tooltip title={row._id}>
+                <ItemIdEl>{row._id}</ItemIdEl>
+              </Tooltip>
+              <ItemEl>{row.department}</ItemEl>
+              <ItemEl>{row.cont}</ItemEl>
+              <Tooltip title={date}>
+                <ItemIdEl>{date}</ItemIdEl>
+              </Tooltip>
+            </BottomRowEl>
+          );
+        })}
       </BottomDivEl>
     </PaperEl>
   );
@@ -40,7 +54,7 @@ const mapStateToProps = state => ({
   data: state.reivingReducer.palletTable
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { acGetPalletsByState };
 export default connect(
   mapStateToProps,
   mapDispatchToProps
@@ -107,5 +121,12 @@ const ItemSkuEl = styled.div`
   color: ${styleColor.primary.lite};
   letter-spacing: 3px;
   text-transform: uppercase;
+  width: 110px;
+`;
+
+const ItemIdEl = styled.div`
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
   width: 110px;
 `;
