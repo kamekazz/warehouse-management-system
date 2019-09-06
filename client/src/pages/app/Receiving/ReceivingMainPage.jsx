@@ -7,6 +7,7 @@ import ContainerHeader from '../../../components/ContainerHeader';
 import { PageEl } from '../../../Styles/Elements/ToolsEl';
 import AddPalletForm from './AddPalletForm';
 import ReceivingTable from './ReceivingTable';
+import SentToLocation from './sentToLocation/SentToLocation';
 
 class ReceivingMainPage extends Component {
   componentDidMount() {
@@ -19,6 +20,7 @@ class ReceivingMainPage extends Component {
         <ContainerHeader match={this.props.match} title={'Receiving'} />
         <AddPalletForm />
         <ReceivingTable />
+        <SentToLocation />
       </PageEl>
     );
   }
