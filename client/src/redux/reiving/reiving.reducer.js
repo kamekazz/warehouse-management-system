@@ -3,7 +3,9 @@ import {
   ADD_NEW_PALLET_BUTTON,
   GET_RECEIVING_TABLE,
   DIALOG_STATUS,
-  CLEANED_PALLET_INFO
+  CLEANED_PALLET_INFO,
+  PickPallet,
+  UPDATE_LOCATION_TABLE
 } from '../types';
 
 const initialState = {
@@ -23,6 +25,17 @@ export default (state = initialState, { type, payload }) => {
         openLocationFinderModels: true,
         newPallet: payload.newPallet,
         locations: payload.locations
+      };
+    case PickPallet:
+      return {
+        ...state,
+        openLocationFinderModels: true,
+        newPallet: payload
+      };
+    case UPDATE_LOCATION_TABLE:
+      return {
+        ...state,
+        locations: payload
       };
     case CLEANED_PALLET_INFO:
       return {

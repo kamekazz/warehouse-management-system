@@ -154,43 +154,31 @@ router.post('/dynamicsend', async (req, res) => {
         message: `pallet not fond (${id})`
       });
     } else if (pallet.status === 'received') {
-      const locationFond = await Location.findOne({
+      const locationFondArray = await Location.find({
         status: 'empty'
       });
+      const locationFond = locationFondArray[0];
+
       if (
-        locationFond.skuNumber === pallet.skuNumber ||
-        // locationFond.skuNumber === undefined ||
-        locationFond.skuNumber === null
+        helperNotGoodSize(locationFond.size, pallet.size, locationFond.maxSize)
       ) {
-        if (
-          helperNotGoodSize(
-            locationFond.size,
-            pallet.size,
-            locationFond.maxSize
-          )
-        ) {
-          return res.json({ success: false, message: `err size` });
-        }
-        locationFond.skuNumber = pallet.skuNumber;
-        locationFond.palletId.push(pallet._id);
-        locationFond.size += pallet.size;
-        pallet.location = locationFond.fullName;
-        pallet.status = 'r/p';
-        pallet.date = Date.now();
-        pallet.save();
-        locationFond.save();
-        res.json({
-          success: true,
-          message: `pallets to be stored`,
-          pallet,
-          locationFond
-        });
-      } else {
-        res.json({
-          success: false,
-          message: `mix sku not permeated (${pallet.skuNumber} - ${locationFond.skuNumber})`
-        });
+        return res.json({ success: false, message: `err size` });
       }
+      locationFond.skuNumber = pallet.skuNumber;
+      locationFond.palletId.push(pallet._id);
+      locationFond.size += pallet.size;
+      locationFond.status = 'occupied';
+      pallet.location = locationFond.fullName;
+      pallet.status = 'r/p';
+      pallet.date = Date.now();
+      pallet.save();
+      locationFond.save();
+      res.json({
+        success: true,
+        message: `pallets to be stored`,
+        pallet,
+        locationFond
+      });
     } else {
       res.json({
         success: false,

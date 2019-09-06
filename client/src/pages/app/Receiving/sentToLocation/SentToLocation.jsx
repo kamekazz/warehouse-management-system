@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import { styleColor } from '../../../../Styles/styleThem';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import TableCop from './Table';
 import { connect } from 'react-redux';
 import {
   acDialogState,
@@ -54,6 +55,8 @@ function SentToLocation({
               </PalletInfoBottom>
             </PalletInfo>
           </DialogContent>
+          <Divider />
+          <TableCop />
           <Divider />
           <DialogActions>
             <Typography variant="subtitle2" gutterBottom>

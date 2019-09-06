@@ -8,7 +8,9 @@ import {
   GET_RECEIVING_TABLE,
   MSG_INFO,
   DIALOG_STATUS,
-  CLEANED_PALLET_INFO
+  CLEANED_PALLET_INFO,
+  PickPallet,
+  UPDATE_LOCATION_TABLE
 } from '../types';
 
 export const acCreatePallet = body => async dispatch => {
@@ -24,6 +26,24 @@ export const acCreatePallet = body => async dispatch => {
     }
   } catch (error) {
     console.log('error***', error);
+  }
+};
+
+export const acPickPallet = body => async dispatch => {
+  dispatch({ type: PickPallet, payload: body });
+  let query = {};
+  query.skuNumber = body.skuNumber;
+  try {
+    const { data } = await api.get('location', { params: query });
+    console.log('data', data);
+    if (data.success) {
+      dispatch({ type: UPDATE_LOCATION_TABLE, payload: data.locations });
+    } else {
+      dispatch({ type: MSG_ERROR, payload: data.error });
+    }
+  } catch (error) {
+    console.log('error***', error);
+    dispatch({ type: MSG_WARNING, payload: error });
   }
 };
 
@@ -55,6 +75,7 @@ export const acSendDynamicToLocation = id => async dispatch => {
     if (data.success) {
       dispatch({ type: MSG_SUCCESS, payload: data.message });
       dispatch({ type: CLEANED_PALLET_INFO, payload: null });
+      dispatch(acGetPalletsByState('received'));
     } else {
       dispatch({ type: MSG_ERROR, payload: data.message });
     }

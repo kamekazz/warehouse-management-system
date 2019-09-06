@@ -1,50 +1,35 @@
+// 2276488
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { PaperEl } from '../../../Styles/Elements/ToolsEl';
-import { styleColor } from '../../../Styles/styleThem';
+import { PaperEl } from '../../../../Styles/Elements/ToolsEl';
+import { styleColor } from '../../../../Styles/styleThem';
 import styled from 'styled-components';
-import { centerEl } from '../../../Styles/Mixins';
+import { centerEl } from '../../../../Styles/Mixins';
 import Tooltip from '@material-ui/core/Tooltip';
 import {
   acGetPalletsByState,
-  acPickPallet
-} from '../../../redux/reiving/reiving.action';
+  acPickPallet,
+  acG
+} from '../../../../redux/reiving/reiving.action';
 import { formatDistance } from 'date-fns';
 
-function ReceivingTable({ data, acGetPalletsByState, acPickPallet }) {
-  useEffect(() => {
-    acGetPalletsByState('received');
-  }, []);
-  const now = new Date();
+function TableCop({ data, pallet }) {
+  useEffect(() => {}, []);
   return (
     <PaperEl>
       <TopTopHeaderEl>
-        <h3>Total Pallets in the received State </h3>
+        <h6>find Locations</h6>
       </TopTopHeaderEl>
       <HeaderRowEl>
-        <ItemEl>SKU</ItemEl>
-        <ItemEl>by</ItemEl>
-        <ItemEl>ID</ItemEl>
-        <ItemEl>department</ItemEl>
-        <ItemEl>Cont</ItemEl>
-        <ItemEl>Date</ItemEl>
+        <ItemEl>location</ItemEl>
+        <ItemEl>Size</ItemEl>
       </HeaderRowEl>
       <BottomDivEl>
         {data.map(row => {
-          let palletDateData = Date.parse(row.date);
-          let date = formatDistance(palletDateData, now, { addSuffix: true });
           return (
-            <BottomRowEl key={row._id} onClick={() => acPickPallet(row)}>
-              <ItemSkuEl>{row.skuNumber}</ItemSkuEl>
-              <ItemEl>manuel</ItemEl>
-              <Tooltip title={row._id}>
-                <ItemIdEl>{row._id}</ItemIdEl>
-              </Tooltip>
-              <ItemEl>{row.department}</ItemEl>
-              <ItemEl>{row.cont}</ItemEl>
-              <Tooltip title={date}>
-                <ItemIdEl>{date}</ItemIdEl>
-              </Tooltip>
+            <BottomRowEl key={row._id}>
+              <ItemEl>{row.fullName}</ItemEl>
+              <ItemEl>{row.size + '/' + row.maxSize}</ItemEl>
             </BottomRowEl>
           );
         })}
@@ -54,14 +39,15 @@ function ReceivingTable({ data, acGetPalletsByState, acPickPallet }) {
 }
 
 const mapStateToProps = state => ({
-  data: state.reivingReducer.palletTable
+  data: state.reivingReducer.locations,
+  pallet: state.reivingReducer.newPallet
 });
 
-const mapDispatchToProps = { acGetPalletsByState, acPickPallet };
+const mapDispatchToProps = {};
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ReceivingTable);
+)(TableCop);
 
 const TopTopHeaderEl = styled.div`
   margin: 12px 0;
@@ -104,12 +90,12 @@ const ItemEl = styled.div`
   overflow: hidden;
 `;
 const BottomDivEl = styled.div`
-  height: 60vh;
   overflow: auto;
 `;
 
 const BottomRowEl = styled(RowEl)`
   color: rgba(245, 245, 245, 0.5);
+  max-height: 30vh;
   &:nth-of-type(even) {
     background-color: #7574c03b;
     border-radius: 3px;
