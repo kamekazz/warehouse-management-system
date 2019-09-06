@@ -5,15 +5,9 @@ import { PaperEl } from '../../../../Styles/Elements/ToolsEl';
 import { styleColor } from '../../../../Styles/styleThem';
 import styled from 'styled-components';
 import { centerEl } from '../../../../Styles/Mixins';
-import Tooltip from '@material-ui/core/Tooltip';
-import {
-  acGetPalletsByState,
-  acPickPallet,
-  acG
-} from '../../../../redux/reiving/reiving.action';
-import { formatDistance } from 'date-fns';
+import { acSendConsolidationLocation } from '../../../../redux/reiving/reiving.action';
 
-function TableCop({ data, pallet }) {
+function TableCop({ data, pallet, acSendConsolidationLocation }) {
   useEffect(() => {}, []);
   return (
     <PaperEl>
@@ -27,7 +21,12 @@ function TableCop({ data, pallet }) {
       <BottomDivEl>
         {data.map(row => {
           return (
-            <BottomRowEl key={row._id}>
+            <BottomRowEl
+              key={row._id}
+              onClick={() =>
+                acSendConsolidationLocation(pallet._id, row.fullName)
+              }
+            >
               <ItemEl>{row.fullName}</ItemEl>
               <ItemEl>{row.size + '/' + row.maxSize}</ItemEl>
             </BottomRowEl>
@@ -43,7 +42,7 @@ const mapStateToProps = state => ({
   pallet: state.reivingReducer.newPallet
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { acSendConsolidationLocation };
 export default connect(
   mapStateToProps,
   mapDispatchToProps
@@ -104,18 +103,4 @@ const BottomRowEl = styled(RowEl)`
     cursor: pointer;
     color: ${styleColor.secondary.main};
   }
-`;
-
-const ItemSkuEl = styled.div`
-  color: ${styleColor.primary.lite};
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  width: 110px;
-`;
-
-const ItemIdEl = styled.div`
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  width: 110px;
 `;
