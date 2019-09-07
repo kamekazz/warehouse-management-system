@@ -1,11 +1,10 @@
-// 5d71d75ff101311f2c415e71
+// 5d71da55f101311f2c415e78
 // c-204-165-10
 import React, { useState, useEffect } from 'react';
 import { PaperEl } from '../../../Styles/Elements/ToolsEl';
 import TextField from '@material-ui/core/TextField';
 import { styleColor } from '../../../Styles/styleThem';
 import styled from 'styled-components';
-import AddIcon from '@material-ui/icons/Add';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import {
@@ -25,17 +24,22 @@ function ValidateLocation(props) {
   const goodLocation = props.palletInfo.location;
   const id = props.palletInfo._id;
 
-  // const checkButton = () => {
-  //   const { palletId } = input;
-  //   if (palletId.length === 24) {
-  //     props.acPikePallet(input.palletId);
-  //     setInput({ palletId: '' });
-  //   }
-  // };
+  const checkButton = () => {
+    const { location } = input;
+    if (location.length === goodLocation.length) {
+      if (input.location === goodLocation) {
+        props.acValidateLocation(id, input.location);
+        handelClear();
+      } else {
+        props.warningMsgBar(`wrong location${input.location}`);
+        handelClear();
+      }
+    }
+  };
 
-  // useEffect(() => {
-  //   checkButton();
-  // }, [input]);
+  useEffect(() => {
+    checkButton();
+  }, [input]);
 
   const updateContField = (name, value) => {
     let regex = new RegExp('^[a-z0-9-]+$');
@@ -43,6 +47,7 @@ function ValidateLocation(props) {
       setInput({ ...input, [name]: value });
     } else {
       props.warningMsgBar('wrong input');
+      handelClear();
     }
   };
   const handelSubmit = e => {
@@ -52,12 +57,19 @@ function ValidateLocation(props) {
       handelClear();
     } else {
       props.warningMsgBar(`wrong location${input.location}`);
+      handelClear();
     }
   };
 
   return (
-    <AddPalletFormEl elevation={10}>
-      <form onSubmit={handelSubmit}>
+    <PaperElEL elevation={10}>
+      <HeaderCard elevation={10}>
+        <H3El>
+          <span>Validate Location:</span>
+          <span className="goodLocation">{`"${goodLocation}"`}</span>
+        </H3El>
+      </HeaderCard>
+      <FormEL onSubmit={handelSubmit}>
         <TextField
           autoFocus
           label="Location"
@@ -68,12 +80,21 @@ function ValidateLocation(props) {
           margin="none"
           onChange={e => updateContField(e.target.name, e.target.value)}
         />
-        <Button onClick={handelClear}>clear</Button>
-        <Button type="submit" onClick={handelSubmit}>
-          Validate
-        </Button>
-      </form>
-    </AddPalletFormEl>
+        <ButtonDiv>
+          <Button variant="contained" onClick={handelClear}>
+            clear
+          </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            type="submit"
+            onClick={handelSubmit}
+          >
+            Validate
+          </Button>
+        </ButtonDiv>
+      </FormEL>
+    </PaperElEL>
   );
 }
 
@@ -92,6 +113,32 @@ export default connect(
   mapDispatchToProps
 )(ValidateLocation);
 
-const AddPalletFormEl = styled(PaperEl)`
-  margin-top: 12px;
+const PaperElEL = styled(PaperEl)`
+  margin-top: 26px;
+  .MuiPaper-root {
+    background-color: ${styleColor.primary.lite};
+    transform: translate(0, -26px);
+  }
+`;
+
+const HeaderCard = styled(PaperEl)``;
+
+const FormEL = styled.form`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const ButtonDiv = styled.div`
+  display: flex;
+  button:not(:last-child) {
+    margin-right: 12px;
+  }
+`;
+
+const H3El = styled.h3`
+  text-align: center;
+  .goodLocation {
+    color: ${styleColor.color.black1};
+    font-weight: 800;
+  }
 `;

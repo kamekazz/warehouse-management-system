@@ -9,6 +9,9 @@ import ScanPallet from './ScanPallet';
 import { connect } from 'react-redux';
 import ValidateLocation from './ValidateLocation';
 import { acResetPutAway } from '../../../redux/reiving/reiving.action';
+import styled from 'styled-components';
+import { PaperEl } from '../../../Styles/Elements/ToolsEl';
+import { styleColor } from '../../../Styles/styleThem';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -24,7 +27,18 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function AllDoneCop() {
-  return <Typography>All steps completed</Typography>;
+  return (
+    <PaperElEL elevation={10}>
+      <HeaderCard elevation={12}>
+        <H3El>All steps completed</H3El>
+      </HeaderCard>
+      <FormEL>
+        <Typography variant="h6" gutterBottom>
+          great pike a new pallet
+        </Typography>
+      </FormEL>
+    </PaperElEL>
+  );
 }
 
 function getSteps() {
@@ -85,3 +99,26 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Main);
+
+const PaperElEL = styled(PaperEl)`
+  margin-top: 26px;
+  .MuiPaper-root {
+    background-color: ${styleColor.primary.lite};
+    transform: translate(0, -26px);
+  }
+`;
+
+const HeaderCard = styled(PaperEl)``;
+
+const FormEL = styled.form`
+  display: flex;
+  justify-content: center;
+`;
+
+const H3El = styled.h3`
+  text-align: center;
+  .goodLocation {
+    color: ${styleColor.color.black1};
+    font-weight: 800;
+  }
+`;

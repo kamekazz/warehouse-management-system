@@ -3,7 +3,6 @@ import { PaperEl } from '../../../Styles/Elements/ToolsEl';
 import TextField from '@material-ui/core/TextField';
 import { styleColor } from '../../../Styles/styleThem';
 import styled from 'styled-components';
-import AddIcon from '@material-ui/icons/Add';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import {
@@ -41,19 +40,28 @@ function ScanPallet(props) {
   };
 
   return (
-    <AddPalletFormEl elevation={10}>
-      <TextField
-        autoFocus
-        label="Pallet ID"
-        id="palletId"
-        value={input.palletId}
-        name="palletId"
-        type="text"
-        margin="none"
-        onChange={e => updateContField(e.target.name, e.target.value)}
-      />
-      <Button onClick={handelClear}>clear</Button>
-    </AddPalletFormEl>
+    <PaperElEL elevation={10}>
+      <HeaderCard elevation={12}>
+        <H3El>
+          <span>Scan barcode</span>
+        </H3El>
+      </HeaderCard>
+      <FormEL>
+        <TextField
+          autoFocus
+          label="Pallet ID"
+          id="palletId"
+          value={input.palletId}
+          name="palletId"
+          type="text"
+          margin="none"
+          onChange={e => updateContField(e.target.name, e.target.value)}
+        />
+        <Button variant="contained" onClick={handelClear}>
+          clear
+        </Button>
+      </FormEL>
+    </PaperElEL>
   );
 }
 
@@ -72,6 +80,25 @@ export default connect(
   mapDispatchToProps
 )(ScanPallet);
 
-const AddPalletFormEl = styled(PaperEl)`
-  margin-top: 12px;
+const PaperElEL = styled(PaperEl)`
+  margin-top: 26px;
+  .MuiPaper-root {
+    background-color: ${styleColor.primary.lite};
+    transform: translate(0, -26px);
+  }
+`;
+
+const HeaderCard = styled(PaperEl)``;
+
+const FormEL = styled.form`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const H3El = styled.h3`
+  text-align: center;
+  .goodLocation {
+    color: ${styleColor.color.black1};
+    font-weight: 800;
+  }
 `;
