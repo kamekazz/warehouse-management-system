@@ -8,6 +8,7 @@ import LocationCreatePage from './LocationPage/LocationCreate/LocationCreatePage
 import ProductCreatePage from './ProductPages/ProductCreactPage/ProductCreatePage';
 import ProductOnePage from './ProductPages/ProductSerchPage/ProductOnePage';
 import ReceivingMainPage from './Receiving/ReceivingMainPage';
+import PutAway from './PutAway/PutAway';
 
 export class AppMainRoute extends Component {
   render() {
@@ -41,6 +42,11 @@ export class AppMainRoute extends Component {
             exact
             path={`${match.path}/receiving`}
             component={ReceivingMainPage}
+          />
+          <Route
+            exact
+            path={`${match.path}/receiving/put-away`}
+            component={PutAway}
           />
         </LayoutCop>
       </Switch>

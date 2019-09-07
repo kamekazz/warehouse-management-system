@@ -5,7 +5,10 @@ import {
   DIALOG_STATUS,
   CLEANED_PALLET_INFO,
   PickPallet,
-  UPDATE_LOCATION_TABLE
+  UPDATE_LOCATION_TABLE,
+  UPDATE_ACTIVE_STEP,
+  PICKET_UP_PALLET_INFO,
+  RESET_PATHWAY
 } from '../types';
 
 const initialState = {
@@ -13,8 +16,10 @@ const initialState = {
   locations: [],
   palletTable: [],
   openLocationFinderModels: false,
-  openAddNewProductModels: false,
-  addPalletButton: true
+  addPalletButton: true,
+  ////put away
+  activeStep: 0,
+  picketUpPallet: null
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -52,6 +57,12 @@ export default (state = initialState, { type, payload }) => {
       return { ...state, addPalletButton: payload };
     case GET_RECEIVING_TABLE:
       return { ...state, palletTable: payload };
+    case UPDATE_ACTIVE_STEP:
+      return { ...state, activeStep: payload };
+    case PICKET_UP_PALLET_INFO:
+      return { ...state, picketUpPallet: payload };
+    case RESET_PATHWAY:
+      return { ...state, picketUpPallet: null, activeStep: 0 };
     default:
       return state;
   }

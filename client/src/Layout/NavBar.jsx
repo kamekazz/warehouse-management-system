@@ -161,7 +161,7 @@ export default function PrimarySearchAppBar({ toggleDrawer }) {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar>
           <IconButton
             edge="start"

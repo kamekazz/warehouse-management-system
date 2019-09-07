@@ -10,7 +10,10 @@ import {
   DIALOG_STATUS,
   CLEANED_PALLET_INFO,
   PickPallet,
-  UPDATE_LOCATION_TABLE
+  UPDATE_LOCATION_TABLE,
+  UPDATE_ACTIVE_STEP,
+  PICKET_UP_PALLET_INFO,
+  RESET_PATHWAY
 } from '../types';
 import history from '../history';
 
@@ -56,6 +59,7 @@ export const acGetPalletsByState = status => async dispatch => {
     const { data } = await api.post('receiving/status', body);
     if (data.success) {
       dispatch({ type: GET_RECEIVING_TABLE, payload: data.pallets });
+      console.log('data.pallets', data.pallets);
     } else {
       dispatch({ type: MSG_ERROR, payload: data.message });
     }
@@ -112,3 +116,43 @@ export const acDialogState = body => dispatch => {
 };
 
 ////////put away
+export const acPikePallet = id => async dispatch => {
+  let body = {};
+  body.id = id;
+  try {
+    const { data } = await api.post('receiving/pike-pallet', body);
+    if (data.success) {
+      dispatch({ type: MSG_SUCCESS, payload: data.message });
+      dispatch({ type: PICKET_UP_PALLET_INFO, payload: data.pallet });
+      dispatch({ type: UPDATE_ACTIVE_STEP, payload: 1 });
+    } else {
+      dispatch({ type: MSG_ERROR, payload: data.message });
+    }
+  } catch (error) {
+    console.log('error***', error);
+  }
+};
+
+export const acValidateLocation = (id, location) => async dispatch => {
+  let body = {};
+  body.id = id;
+  body.location = location;
+  try {
+    const { data } = await api.post('receiving/valedation', body);
+    if (data.success) {
+      dispatch({ type: MSG_SUCCESS, payload: data.message });
+      dispatch({ type: UPDATE_ACTIVE_STEP, payload: 2 });
+      setTimeout(() => {
+        dispatch({ type: RESET_PATHWAY });
+      }, 5000);
+    } else {
+      dispatch({ type: MSG_ERROR, payload: data.message });
+    }
+  } catch (error) {
+    console.log('error***', error);
+  }
+};
+
+export const acResetPutAway = () => dispatch => {
+  dispatch({ type: RESET_PATHWAY });
+};

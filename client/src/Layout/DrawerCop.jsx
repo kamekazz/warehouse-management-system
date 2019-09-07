@@ -14,6 +14,7 @@ import LibraryIcon from '@material-ui/icons/LibraryAdd';
 import LocationIcon from '@material-ui/icons/GpsFixed';
 import RedeemIcon from '@material-ui/icons/Redeem';
 import InputIcon from '@material-ui/icons/Input';
+import DeviceHubIcon from '@material-ui/icons/DeviceHub';
 
 import history from '../redux/history';
 import styled from 'styled-components';
@@ -87,18 +88,22 @@ function NestedList(props) {
           <ListItem
             button
             className={classes.nested}
-            onClick={() => navPush('/app/product/create')}
+            onClick={() => navPush('/app/receiving/put-away')}
           >
             <ListItemIcon>
-              <LibraryIcon
+              <DeviceHubIcon
                 color={
-                  activeUrl === '/app/product/create' ? 'secondary' : 'inherit'
+                  activeUrl === '/app/receiving/put-away'
+                    ? 'secondary'
+                    : 'inherit'
                 }
               />
             </ListItemIcon>
             <ListItemTextEl
-              inputcolor={activeUrl === '/app/product/create' ? true : false}
-              primary="Create"
+              inputcolor={
+                activeUrl === '/app/receiving/put-away' ? true : false
+              }
+              primary="Put Away"
             />
           </ListItem>
         </List>

@@ -35,3 +35,7 @@ export const DIALOG_STATUS = 'DIALOG_STATUS';
 export const CLEANED_PALLET_INFO = 'CLEANED_PALLET_INFO';
 export const PickPallet = 'PickPallet';
 export const UPDATE_LOCATION_TABLE = 'UPDATE_LOCATION_TABLE';
+//put away
+export const UPDATE_ACTIVE_STEP = 'UPDATE_ACTIVE_STEP';
+export const PICKET_UP_PALLET_INFO = 'PICKET_UP_PALLET_INFO';
+export const RESET_PATHWAY = 'RESET_PATHWAY';

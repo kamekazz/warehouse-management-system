@@ -14,6 +14,7 @@ export default function TemporaryDrawer(props) {
   return (
     <>
       <NavBar toggleDrawer={handleDrawerToggle} />
+      <div style={{ height: '66px' }}></div>
       <Drawer open={mobileOpen} onClose={handleDrawerToggle}>
         <DrawerCop handleDrawerToggle={handleDrawerToggle} />
       </Drawer>

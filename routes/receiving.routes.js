@@ -191,7 +191,7 @@ router.post('/dynamicsend', async (req, res) => {
   }
 });
 
-router.post('/put', async (req, res) => {
+router.post('/pike-pallet', async (req, res) => {
   const { id } = req.body;
 
   const pallet = await Pallet.findOne({
@@ -221,20 +221,20 @@ router.post('/valedation', async (req, res) => {
   if (pallet.status !== 'r/p') {
     return res.json({
       success: false,
-      message: `pallet not r/p status (${pallet.status})`
+      message: `pallet is not r/p status is:(${pallet.status} status)`
     });
   }
   if (!pallet) {
     res.json({
       success: false,
-      message: `pallet not fond (${id})`
+      message: `pallet not found (${id})`
     });
   } else if (pallet.location === location) {
     pallet.status = 'store';
     pallet.save();
     res.json({
       success: true,
-      message: `pallet is  store (${pallet.location})`,
+      message: `pallet is  store in (${pallet.location})`,
       location: pallet.location,
       pallet
     });
