@@ -12,6 +12,7 @@ import {
   PickPallet,
   UPDATE_LOCATION_TABLE
 } from '../types';
+import history from '../history';
 
 export const acCreatePallet = body => async dispatch => {
   try {
@@ -21,6 +22,9 @@ export const acCreatePallet = body => async dispatch => {
       dispatch({ type: MSG_SUCCESS, payload: data.message });
       dispatch(acGetPalletsByState('received'));
     } else {
+      if (data.create) {
+        window.open('/app/product/create', '_blank');
+      }
       dispatch({ type: MSG_ERROR, payload: data.message });
     }
   } catch (error) {
@@ -52,7 +56,6 @@ export const acGetPalletsByState = status => async dispatch => {
     const { data } = await api.post('receiving/status', body);
     if (data.success) {
       dispatch({ type: GET_RECEIVING_TABLE, payload: data.pallets });
-      dispatch({ type: MSG_SUCCESS, payload: data.message });
     } else {
       dispatch({ type: MSG_ERROR, payload: data.message });
     }
@@ -107,3 +110,5 @@ export const acCreatePalletButton = body => dispatch => {
 export const acDialogState = body => dispatch => {
   dispatch({ type: DIALOG_STATUS, payload: body });
 };
+
+////////put away

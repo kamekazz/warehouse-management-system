@@ -51,7 +51,8 @@ router.post('/create', async (req, res) => {
     if (!itemFond) {
       res.json({
         success: false,
-        message: `item not fond (${skuNumber})`
+        message: `item not fond (${skuNumber})`,
+        create: true
       });
     } else {
       const locations = await Location.find({

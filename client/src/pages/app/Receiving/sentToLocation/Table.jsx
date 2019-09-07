@@ -8,9 +8,8 @@ import { centerEl } from '../../../../Styles/Mixins';
 import { acSendConsolidationLocation } from '../../../../redux/reiving/reiving.action';
 
 function TableCop({ data, pallet, acSendConsolidationLocation }) {
-  useEffect(() => {}, []);
   return (
-    <PaperEl>
+    <PaperElEl>
       <TopTopHeaderEl>
         <h6>find Locations</h6>
       </TopTopHeaderEl>
@@ -33,7 +32,7 @@ function TableCop({ data, pallet, acSendConsolidationLocation }) {
           );
         })}
       </BottomDivEl>
-    </PaperEl>
+    </PaperElEl>
   );
 }
 
@@ -47,6 +46,10 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(TableCop);
+
+const PaperElEl = styled(PaperEl)`
+  margin-bottom: 0;
+`;
 
 const TopTopHeaderEl = styled.div`
   margin: 12px 0;

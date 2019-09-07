@@ -98,6 +98,9 @@ const DialogEl = styled(Dialog)`
   .MuiDialogActions-root {
     justify-content: space-around;
   }
+  .MuiDialog-paperScrollPaper {
+    max-height: 523px;
+  }
 `;
 
 const PalletInfo = styled.div`

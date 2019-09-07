@@ -26,15 +26,16 @@ export class AppMainRoute extends Component {
             component={LocationCreatePage}
           />
           <Route exact path={`${match.path}/product`} component={ProductPage} />
-          <Route
-            exact
-            path={`${match.path}/product/:id`}
-            component={ProductOnePage}
-          />
+
           <Route
             exact
             path={`${match.path}/product/create`}
             component={ProductCreatePage}
+          />
+          <Route
+            exact
+            path={`${match.path}/product/:id`}
+            component={ProductOnePage}
           />
           <Route
             exact
