@@ -40,50 +40,53 @@ These instructions will get you a copy of the project up and running on your loc
 
 ```json
   "dependencies": {
-    "body-parser": "^1.18.2",
-    "cors": "^2.8.4",
-    "express": "^4.16.2",
-    "jsonwebtoken": "^8.1.0",
-    "moment": "^2.20.1",
-    "moment-timezone": "^0.5.14",
-    "mongoose": "^4.13.9",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "cross-env": "^5.2.0",
+    "date-fns": "^2.0.1",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "faker": "^4.1.0",
+    "gravatar": "^1.8.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
+    "mongoose": "^5.5.0",
+    "mui-datatables": "^2.8.1",
     "passport": "^0.4.0",
-    "passport-google-oauth20": "^1.0.0",
-    "passport-jwt": "^3.0.1",
+    "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
-    "passport-local-mongoose": "^4.4.0"
+    "reactstrap": "^8.0.1",
+    "styled-components": "^4.3.2"
   },
   "devDependencies": {
-    "dotenv": "^4.0.0",
-    "eslint": "^4.15.0",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-config-standard": "^11.0.0-beta.0",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-node": "^5.2.1",
-    "eslint-plugin-prettier": "^2.4.0",
-    "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "nodemon": "^1.14.10",
-    "now": "^9.2.7",
-    "prettier": "^1.10.2"
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb": "^17.1.1",
+    "eslint-config-node": "^4.0.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.14.2",
+    "prettier": "^1.18.2",
+    "concurrently": "^4.1.0"
   }
 ```
 #### Front-end:
 - React.js
 ```json
   "dependencies": {
-    "axios": "^0.17.1",
-    "jwt-decode": "^2.2.0",
-    "moment": "^2.20.1",
-    "moment-timezone": "^0.5.14",
-    "normalize.css": "^7.0.0",
-    "query-string": "^5.0.1",
-    "react": "^16.2.0",
-    "react-datetime": "^2.11.1",
-    "react-dom": "^16.2.0",
-    "react-modal": "^3.1.11",
-    "react-router-dom": "^4.2.2",
-    "react-scripts": "1.0.17"
+    "@material-ui/core": "^4.3.2",
+    "@material-ui/icons": "^4.2.1",
+    "axios": "^0.19.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-redux": "^7.1.0",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.1.1",
+    "redux": "^4.0.4",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0"
   },
     "devDependencies": {
     "autoprefixer-stylus": "^0.14.0",
