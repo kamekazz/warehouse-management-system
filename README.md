@@ -1,11 +1,6 @@
+![Logo](https://res.cloudinary.com/dujqdfwzi/image/upload/v1567925665/wms/1f087f06-5b76-468d-8d3b-57c236755776_200x200.png)
 #  Warehouse Management System
 A  warehouse management system built with MongoDB, Express, Node.js and ReactJS.
-
-![Logo](https://res.cloudinary.com/dujqdfwzi/image/upload/v1567925665/wms/1f087f06-5b76-468d-8d3b-57c236755776_200x200.png)
-
-
-
-
 
 
 * [Getting started](#getting-started)
