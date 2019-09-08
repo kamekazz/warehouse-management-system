@@ -141,7 +141,7 @@ Meet with the business owner or organisation manager to find out what challenges
 
 
 Using Trello we began adding all tasks and delegating work between each member of the team.
-
+![alt text](https://res.cloudinary.com/dujqdfwzi/image/upload/v1567927026/wms/trilo.png)
 ## Trello 
 [Trello Board](https://trello.com/b/174yAXvn/ez-wms)
 
