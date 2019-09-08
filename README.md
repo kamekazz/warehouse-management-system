@@ -6,6 +6,7 @@ A  warehouse management system built with MongoDB, Express, Node.js and ReactJS.
 
 ## Trello 
 [Trello](https://trello.com/b/174yAXvn/ez-wms)
+![Trello]https://res.cloudinary.com/dujqdfwzi/image/upload/v1567927026/wms/trilo.png)
 
 * [Getting started](#getting-started)
   * [Prerequisites](#prerequisites)
@@ -96,41 +97,35 @@ Clone the repo
 git clone https://github.com/kamekazz/warehouse-management-system.git
 ```
 
-Change to the `api` folder and install development and production dependencies.
+Change to the `wms` folder and install development and production dependencies.
 
 ```
-cd api
-yarn install
+cd wms
+npm install
 ```
 
-Change to the `web` folder and install development and producation dependencies.
+Change to the `client` folder and install development and producation dependencies.
 ```
-cd web
-yarn install
-```
-
-You will need to set up MongoDB. See [MongoDB](https://docs.mongodb.com/) for instructions.
-
-Seed the data
-```
-yarn seed
+cd client
+npm install
 ```
 
-For Google OAuth you will need to register an application with Google. See [passport-google-oauth2](https://github.com/jaredhanson/passport-google-oauth2) for further instructions.
-
-Go to the `api` folder and start the server.
-```
-cd api
-yarn dev
+You will need to set up MongoDB. See [MongoDB](https://docs.mongodb.com/) for instructions
+and setup a .env file and add.
+MONGODB_URI=YOUR MONGODB DATA
 ```
 
-Go to the `web` folder and run the script start script.
+For jwtToken  you will need to add  SECRET_OR_KEY=pppppp and PORT=5000
+
+Go to the `wms` folder and start the server.
 ```
-cd api
-yarn start
+cd wms
+npm run dev
 ```
 
-Open in your browser and navigate to http://localhost:3000. You access the back-end on http://localhost:7000.
+
+
+Open in your browser and navigate to http://localhost:3000. You access the back-end on http://localhost:5000.
 
 ## About project
 You are to design, build, deploy, and present an application built for a real world customer.
@@ -140,11 +135,8 @@ Find a business or organisation nearby to Coder Academy to build an application 
 Meet with the business owner or organisation manager to find out what challenges they face. Find a problem that you can solve with an application and present your ideas to the client.
 
 ### Problem
-The client has forty rooms over two floors available for use by staff, teachers and students. The booking of these rooms is currently managed using a basic spreadsheet system. This method is inflexible, cumbersome and does not allow for a high degree of specificity with respect to booking times. It also does not give the client a clear understanding of how their rooms are used and how the use of these resources can be optimised.
-### Solution
-A web-based application that allows the client (including its administrative staff, teachers and students) to login from anywhere to easily, accurately and quickly make room bookings.
 
-This will help to ensure that room resources are used as fully-utilised as possible, whilst avoiding double-bookings and other common user frustrations. It will also make room booking statistics available to the client's staff and management to assist their planning and decision-making.
+### Solution
 
 ## Planning
 We began the planning process by meeting with the client to better understand the problem and to see how the existing system worked. We also gathered information about what the client would like to expect in the new system. We then looked at other booking systems on Hotel websites and room booking systems used by libraries such as LibCal.
