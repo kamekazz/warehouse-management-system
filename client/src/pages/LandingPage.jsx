@@ -16,7 +16,12 @@ class LandingPage extends Component {
   };
 
   render() {
-    return <div>LandingPage</div>;
+    return (
+      <div>
+        LandingPage
+        <button onClick={() => history.push('/signin')}>go to sing In</button>
+      </div>
+    );
   }
 }
 
