@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const path = require('path');
 
 const app = express();
 
@@ -37,6 +38,16 @@ app.use('/api/order', orderRoutes);
 app.use('/api/ticket', ticketRoutes);
 app.use('/api/picker', pickerRoutes);
 app.use('/api/user', userRoutes);
+
+// Serve static assets in production
+if (process.env.NODE_ENV === 'production') {
+  // Set static folder
+  app.use(express.static('client/build'));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 app.listen(process.env.PORT, () =>
   console.log(`server running on port ${process.env.PORT}`)
