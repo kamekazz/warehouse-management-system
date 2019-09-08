@@ -6,7 +6,7 @@ A  warehouse management system built with MongoDB, Express, Node.js and ReactJS.
 
 ## Trello 
 [Trello](https://trello.com/b/174yAXvn/ez-wms)
-![Trello]https://res.cloudinary.com/dujqdfwzi/image/upload/v1567927026/wms/trilo.png)
+![Logo]https://res.cloudinary.com/dujqdfwzi/image/upload/v1567927026/wms/trilo.png)
 
 * [Getting started](#getting-started)
   * [Prerequisites](#prerequisites)
