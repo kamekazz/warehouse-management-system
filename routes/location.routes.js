@@ -1,3 +1,5 @@
+/* eslint-disable prefer-destructuring */
+/* eslint-disable radix */
 /* eslint-disable consistent-return */
 /* eslint-disable no-undef */
 /* eslint-disable node/no-unsupported-features/es-syntax */
@@ -21,17 +23,30 @@ function helperDateMapping(data) {
   return newArray;
 }
 
-router.get('/', async (req, res) => {
+router.get('/', (req, res) => {
   try {
-    const queryLocation = await Location.find(req.query);
-    res.json({
-      success: true,
-      locations: queryLocation
+    const pagination = req.query.pagination
+      ? parseInt(req.query.pagination)
+      : 10;
+    const page = req.query.page ? parseInt(req.query.page) : 1;
+    delete req.query.pagination;
+    delete req.query.page;
+    Promise.all([
+      Location.count(req.query),
+      Location.find(req.query)
+        .skip((page - 1) * pagination)
+        .limit(pagination)
+    ]).then(([count, queryLocation]) => {
+      res.json({
+        success: true,
+        locations: queryLocation,
+        query: req.query,
+        count
+      });
     });
   } catch (err) {
     console.error(err);
     res.json({
-      success: false,
       error: err
     });
   }

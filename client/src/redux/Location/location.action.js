@@ -1,17 +1,48 @@
 import api from '../../util/Api';
-import { MSG_ERROR, MSG_SUCCESS, MSG_WARNING, LOCATION_QUERY } from '../types';
+import {
+  MSG_ERROR,
+  MSG_SUCCESS,
+  MSG_WARNING,
+  LOCATION_QUERY,
+  PAGINATION_FOR_LOCATION,
+  LAST_QUERY_BODY
+} from '../types';
 
-export const queryLocation = body => async dispatch => {
+export const acPaginationLocation = paginationInfo => async (
+  dispatch,
+  getState
+) => {
+  dispatch({ type: PAGINATION_FOR_LOCATION, payload: paginationInfo });
   try {
-    const { data } = await api.get('location', { params: body });
+    const { data } = await api.get('location', {
+      params: getState().locationReducer.lastQuery
+    });
+    console.log('data2', getState().locationReducer);
     if (data.success) {
       dispatch({ type: LOCATION_QUERY, payload: data.locations });
     } else {
-      dispatch({ type: MSG_ERROR, payload: data.error });
+      dispatch({ type: MSG_ERROR, payload: data.message });
     }
   } catch (error) {
     console.log('error***', error);
-    dispatch({ type: MSG_WARNING, payload: error });
+  }
+};
+
+export const queryLocation = body => async (dispatch, getState) => {
+  dispatch({ type: LAST_QUERY_BODY, payload: body });
+  body.pagination = getState().locationReducer.pagination;
+  body.page = getState().locationReducer.page;
+  try {
+    const { data } = await api.get('location', { params: body });
+    console.log('data', getState().locationReducer);
+    console.log('data', data);
+    if (data.success) {
+      dispatch({ type: LOCATION_QUERY, payload: data.locations });
+    } else {
+      dispatch({ type: MSG_ERROR, payload: data.message });
+    }
+  } catch (error) {
+    console.log('error***', error);
   }
 };
 
