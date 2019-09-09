@@ -1,15 +1,18 @@
 import {
   LOCATION_QUERY,
   PAGINATION_FOR_LOCATION,
-  LAST_QUERY_BODY
+  LAST_QUERY_BODY,
+  LOADING_SEARCH_TABLE
 } from '../types';
 
 const initialState = {
   queryData: [],
-  pagination: 10,
+  pagination: 50,
   page: 1,
   totalResults: 0,
-  lastQuery: null
+  lastQuery: null,
+  pages: 1,
+  loading: false
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -18,12 +21,15 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         queryData: payload.locations,
-        totalResults: payload.total
+        totalResults: payload.total,
+        pages: payload.pages
       };
     case PAGINATION_FOR_LOCATION:
       return { ...state, pagination: payload.pagination, page: payload.page };
     case LAST_QUERY_BODY:
       return { ...state, lastQuery: payload };
+    case LOADING_SEARCH_TABLE:
+      return { ...state, loading: payload };
     default:
       return state;
   }

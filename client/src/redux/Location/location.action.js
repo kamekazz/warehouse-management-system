@@ -5,19 +5,29 @@ import {
   MSG_WARNING,
   LOCATION_QUERY,
   PAGINATION_FOR_LOCATION,
-  LAST_QUERY_BODY
+  LAST_QUERY_BODY,
+  LOADING_SEARCH_TABLE
 } from '../types';
 
-export const acPaginationLocation = paginationInfo => async (
+export const acPaginationLocation = (pagination, page) => async (
   dispatch,
   getState
 ) => {
-  dispatch({ type: PAGINATION_FOR_LOCATION, payload: paginationInfo });
+  let payload = {
+    pagination,
+    page
+  };
+  dispatch({ type: LOADING_SEARCH_TABLE, payload: true });
+  let body = getState().locationReducer.lastQuery;
+  body.pagination = getState().locationReducer.pagination;
+  body.page = getState().locationReducer.page;
+  dispatch({ type: PAGINATION_FOR_LOCATION, payload });
   try {
     const { data } = await api.get('location', {
-      params: getState().locationReducer.lastQuery
+      params: body
     });
-    console.log('data2', getState().locationReducer);
+    dispatch({ type: LOADING_SEARCH_TABLE, payload: false });
+
     if (data.success) {
       dispatch({ type: LOCATION_QUERY, payload: data });
     } else {
@@ -29,13 +39,19 @@ export const acPaginationLocation = paginationInfo => async (
 };
 
 export const queryLocation = body => async (dispatch, getState) => {
+  dispatch({ type: LOADING_SEARCH_TABLE, payload: true });
   dispatch({ type: LAST_QUERY_BODY, payload: body });
+  let payload = {
+    pagination: 50,
+    page: 1
+  };
+  dispatch({ type: PAGINATION_FOR_LOCATION, payload });
   body.pagination = getState().locationReducer.pagination;
   body.page = getState().locationReducer.page;
   try {
     const { data } = await api.get('location', { params: body });
-    console.log('data', getState().locationReducer);
-    console.log('data', data);
+    dispatch({ type: LOADING_SEARCH_TABLE, payload: false });
+
     if (data.success) {
       dispatch({ type: LOCATION_QUERY, payload: data });
     } else {

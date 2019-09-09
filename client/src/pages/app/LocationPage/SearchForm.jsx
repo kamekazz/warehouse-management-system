@@ -15,7 +15,7 @@ import {
 
 function SearchForm(props) {
   const [input, setInput] = useState({
-    zone: 'a',
+    zone: '',
     row: '',
     location: '',
     level: '',
@@ -25,7 +25,7 @@ function SearchForm(props) {
 
   const onSubmitFrom = debounce(() => {
     props.queryLocation(cleanObj(input));
-  }, 3000);
+  }, 1000);
 
   useEffect(() => {
     onSubmitFrom();

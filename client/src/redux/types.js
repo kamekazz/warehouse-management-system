@@ -24,6 +24,7 @@ export const SET_URL = 'SET_URL';
 export const LOCATION_QUERY = 'LOCATION_QUERY';
 export const PAGINATION_FOR_LOCATION = 'PAGINATION_FOR_LOCATION';
 export const LAST_QUERY_BODY = 'LAST_QUERY_BODY';
+export const LOADING_SEARCH_TABLE = 'LOADING_SEARCH_TABLE';
 
 // action item
 export const GET_LAST_100_ITEM = 'GET_LAST_100_ITEM';

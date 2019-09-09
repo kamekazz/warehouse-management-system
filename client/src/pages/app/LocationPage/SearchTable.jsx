@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { PaperEl } from '../../../Styles/Elements/ToolsEl';
+import Paper from '@material-ui/core/Paper';
 import { centerEl } from '../../../Styles/Mixins';
 import { styleColor } from '../../../Styles/styleThem';
 import history from '../../../redux/history';
@@ -12,7 +13,8 @@ import {
 
 import {
   deleteLocation,
-  queryLocation
+  queryLocation,
+  acPaginationLocation
 } from '../../../redux/Location/location.action';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
@@ -21,6 +23,9 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import BuildIcon from '@material-ui/icons/Build';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import Tooltip from '@material-ui/core/Tooltip';
+import Pagination from 'material-ui-flat-pagination';
+import Typography from '@material-ui/core/Typography';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 const statusHelper = status => {
   switch (status) {
@@ -56,7 +61,12 @@ function SearchTable({
   data,
   deleteLocation,
   queryLocation,
-  getEditFormCreat
+  getEditFormCreat,
+  pages,
+  page,
+  acPaginationLocation,
+  total,
+  loading
 }) {
   const runDeleteAndQueryLocation = body => {
     deleteLocation(body, () => queryLocation());
@@ -65,14 +75,29 @@ function SearchTable({
   return (
     <PaperEl elevation={3}>
       <TopTopHeaderEl>
-        <AddLocationButton
-          onClick={() => history.push('/app/location/create')}
-          variant="contained"
-          color="primary"
-        >
-          <Icon>send</Icon>
-          Add Location
-        </AddLocationButton>
+        <AddAndTotal>
+          <AddLocationButton
+            onClick={() => history.push('/app/location/create')}
+            variant="contained"
+            color="primary"
+          >
+            <Icon>send</Icon>
+            Add Location
+          </AddLocationButton>
+          <TotalDivEl>
+            <Typography variant="subtitle2">Total</Typography>
+            <Paper>{total}</Paper>
+          </TotalDivEl>
+        </AddAndTotal>
+
+        <PaginationEl
+          limit={1}
+          offset={page - 1}
+          total={pages}
+          onClick={(e, offset) => {
+            acPaginationLocation(50, offset + 1);
+          }}
+        />
       </TopTopHeaderEl>
       <HeaderRowEl>
         <ItemEl>location</ItemEl>
@@ -83,53 +108,62 @@ function SearchTable({
         <ItemEl>action</ItemEl>
       </HeaderRowEl>
       <BottomDivEl>
-        {data.map(row => (
-          <BottomRowEl key={row._id}>
-            <ItemEl>{row.fullName}</ItemEl>
-            <ItemEl>{row.skuNumber ? row.skuNumber : 'empty'}</ItemEl>
-            <ItemEl>{sizeHelper(row.size, row.maxSize)}</ItemEl>
-            <ItemEl>{statusHelper(row.status)}</ItemEl>
-            <ItemEl>{row.department ? row.department : 'null'}</ItemEl>
-            <ItemEl>
-              <Tooltip title="View">
-                <IconButton>
-                  <VisibilityIcon />
-                </IconButton>
-              </Tooltip>
-              <Tooltip title="Edit">
-                <IconButton
-                  onClick={() =>
-                    getEditFormCreat(row.fullName, row.maxSize, row.status)
-                  }
-                >
-                  <BuildIcon />
-                </IconButton>
-              </Tooltip>
-              <Tooltip title="Delete">
-                <IconButton
-                  aria-label="delete"
-                  onClick={() => runDeleteAndQueryLocation(row.fullName)}
-                >
-                  <DeleteIcon />
-                </IconButton>
-              </Tooltip>
-            </ItemEl>
-          </BottomRowEl>
-        ))}
+        {!loading ? (
+          data.map(row => (
+            <BottomRowEl key={row._id}>
+              <ItemEl>{row.fullName}</ItemEl>
+              <ItemEl>{row.skuNumber ? row.skuNumber : 'empty'}</ItemEl>
+              <ItemEl>{sizeHelper(row.size, row.maxSize)}</ItemEl>
+              <ItemEl>{statusHelper(row.status)}</ItemEl>
+              <ItemEl>{row.department ? row.department : 'null'}</ItemEl>
+              <ItemEl>
+                <Tooltip title="View">
+                  <IconButton>
+                    <VisibilityIcon />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title="Edit">
+                  <IconButton
+                    onClick={() =>
+                      getEditFormCreat(row.fullName, row.maxSize, row.status)
+                    }
+                  >
+                    <BuildIcon />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title="Delete">
+                  <IconButton
+                    aria-label="delete"
+                    onClick={() => runDeleteAndQueryLocation(row.fullName)}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </Tooltip>
+              </ItemEl>
+            </BottomRowEl>
+          ))
+        ) : (
+          <LinearProgress color="secondary" />
+        )}
       </BottomDivEl>
     </PaperEl>
   );
 }
 
 const mapStateToProps = state => ({
-  data: state.locationReducer.queryData
+  data: state.locationReducer.queryData,
+  pages: state.locationReducer.pages,
+  page: state.locationReducer.page,
+  loading: state.locationReducer.loading,
+  total: state.locationReducer.totalResults
 });
 
 const mapDispatchToProps = {
   warningMsgBar,
   infoMsgBar,
   deleteLocation,
-  queryLocation
+  queryLocation,
+  acPaginationLocation
 };
 
 export default connect(
@@ -137,8 +171,37 @@ export default connect(
   mapDispatchToProps
 )(SearchTable);
 
+const AddAndTotal = styled.div`
+  display: flex;
+  button {
+    margin-right: 12px;
+  }
+`;
+
+const TotalDivEl = styled.div`
+  display: flex;
+  align-items: center;
+  h6 {
+    margin-right: 6px;
+  }
+  div {
+    padding: 3px 9px;
+    background-color: #ffffff1f;
+    color: ${styleColor.secondary.main};
+  }
+`;
+
+const PaginationEl = styled(Pagination)`
+  .MuiFlatPageButton-root:not(:first-child):not(:last-child) {
+    background-color: #ffffff1f;
+    margin-left: 5px;
+  }
+`;
+
 const TopTopHeaderEl = styled.div`
   margin: 12px 0;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const AddLocationButton = styled(Button)`
@@ -179,7 +242,7 @@ const HeaderRowEl = styled(RowEl)`
 `;
 
 const BottomDivEl = styled.div`
-  height: 60vh;
+  max-height: 60vh;
   overflow: auto;
 `;
 const BottomRowEl = styled(RowEl)`
