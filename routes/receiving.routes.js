@@ -113,6 +113,8 @@ router.post('/send', async (req, res) => {
         }
         locationFond.skuNumber = pallet.skuNumber;
         locationFond.palletId.push(pallet._id);
+        locationFond.department = pallet.department;
+        locationFond.status = 'occupied';
         locationFond.size += pallet.size;
         pallet.location = locationFond.fullName;
         pallet.status = 'r/p';
@@ -167,6 +169,7 @@ router.post('/dynamicsend', async (req, res) => {
       }
       locationFond.skuNumber = pallet.skuNumber;
       locationFond.palletId.push(pallet._id);
+      locationFond.department = pallet.department;
       locationFond.size += pallet.size;
       locationFond.status = 'occupied';
       pallet.location = locationFond.fullName;
