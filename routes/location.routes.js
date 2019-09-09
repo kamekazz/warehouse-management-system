@@ -23,7 +23,7 @@ function helperDateMapping(data) {
   return newArray;
 }
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const pagination = req.query.pagination
       ? parseInt(req.query.pagination)
@@ -31,18 +31,17 @@ router.get('/', (req, res) => {
     const page = req.query.page ? parseInt(req.query.page) : 1;
     delete req.query.pagination;
     delete req.query.page;
-    Promise.all([
-      Location.count(req.query),
-      Location.find(req.query)
-        .skip((page - 1) * pagination)
-        .limit(pagination)
-    ]).then(([count, queryLocation]) => {
-      res.json({
-        success: true,
-        locations: queryLocation,
-        query: req.query,
-        count
-      });
+
+    const queryLocation = await Location.find(req.query)
+      .skip(pagination * page - pagination)
+      .limit(pagination);
+    const count = await Location.count(req.query);
+    res.json({
+      success: true,
+      locations: queryLocation,
+      query: req.query,
+      total: count,
+      pages: Math.ceil(count / pagination)
     });
   } catch (err) {
     console.error(err);

@@ -19,7 +19,7 @@ export const acPaginationLocation = paginationInfo => async (
     });
     console.log('data2', getState().locationReducer);
     if (data.success) {
-      dispatch({ type: LOCATION_QUERY, payload: data.locations });
+      dispatch({ type: LOCATION_QUERY, payload: data });
     } else {
       dispatch({ type: MSG_ERROR, payload: data.message });
     }
@@ -37,7 +37,7 @@ export const queryLocation = body => async (dispatch, getState) => {
     console.log('data', getState().locationReducer);
     console.log('data', data);
     if (data.success) {
-      dispatch({ type: LOCATION_QUERY, payload: data.locations });
+      dispatch({ type: LOCATION_QUERY, payload: data });
     } else {
       dispatch({ type: MSG_ERROR, payload: data.message });
     }
