@@ -9,13 +9,14 @@ import ProductCreatePage from './ProductPages/ProductCreactPage/ProductCreatePag
 import ProductOnePage from './ProductPages/ProductSerchPage/ProductOnePage';
 import ReceivingMainPage from './Receiving/ReceivingMainPage';
 import PutAway from './PutAway/PutAway';
+import PalletPage from './Pallete/PalletPage';
 
 export class AppMainRoute extends Component {
   render() {
     const { match } = this.props;
     return (
-      <Switch>
-        <LayoutCop>
+      <LayoutCop>
+        <Switch>
           <Route
             exact
             path={`${match.path}/location`}
@@ -48,8 +49,13 @@ export class AppMainRoute extends Component {
             path={`${match.path}/receiving/put-away`}
             component={PutAway}
           />
-        </LayoutCop>
-      </Switch>
+          <Route
+            exact
+            path={`${match.path}/pallet/:id`}
+            component={PalletPage}
+          />
+        </Switch>
+      </LayoutCop>
     );
   }
 }

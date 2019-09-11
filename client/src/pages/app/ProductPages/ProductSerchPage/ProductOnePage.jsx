@@ -9,7 +9,6 @@ import { PageEl } from '../../../../Styles/Elements/ToolsEl';
 class ProductOnePage extends Component {
   componentDidMount() {
     this.props.setUrl(this.props.match.path);
-    // this.search();
   }
 
   render() {

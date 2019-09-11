@@ -76,11 +76,11 @@ router.get('/skuNumber/:skuNumber', async (req, res) => {
 router.get('/id/:id', async (req, res) => {
   const { id } = req.params;
   try {
-    const palletsFond = await Pallet.find({
+    const palletFond = await Pallet.findOne({
       _id: id
-    });
+    }).populate({ path: 'items', select: 'name' });
 
-    if (!palletsFond) {
+    if (!palletFond) {
       res.json({
         success: false,
         message: `id not fond (${id})`
@@ -88,8 +88,8 @@ router.get('/id/:id', async (req, res) => {
     } else {
       res.json({
         success: true,
-        message: `id fond `,
-        pallets: palletsFond
+        message: `id found `,
+        pallet: palletFond
       });
     }
   } catch (err) {

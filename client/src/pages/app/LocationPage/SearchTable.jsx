@@ -62,9 +62,9 @@ function SearchTable({
   deleteLocation,
   queryLocation,
   getEditFormCreat,
+  acPaginationLocation,
   pages,
   page,
-  acPaginationLocation,
   total,
   loading
 }) {
@@ -89,7 +89,6 @@ function SearchTable({
             <Paper>{total}</Paper>
           </TotalDivEl>
         </AddAndTotal>
-
         <PaginationEl
           limit={1}
           offset={page - 1}
