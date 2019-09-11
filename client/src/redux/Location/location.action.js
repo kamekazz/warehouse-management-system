@@ -26,15 +26,16 @@ export const acPaginationLocation = (pagination, page) => async (
     const { data } = await api.get('location', {
       params: body
     });
-    dispatch({ type: LOADING_SEARCH_TABLE, payload: false });
-
     if (data.success) {
       dispatch({ type: LOCATION_QUERY, payload: data });
+      dispatch({ type: LOADING_SEARCH_TABLE, payload: false });
     } else {
       dispatch({ type: MSG_ERROR, payload: data.message });
+      dispatch({ type: LOADING_SEARCH_TABLE, payload: false });
     }
   } catch (error) {
     console.log('error***', error);
+    dispatch({ type: LOADING_SEARCH_TABLE, payload: false });
   }
 };
 
@@ -50,15 +51,16 @@ export const queryLocation = body => async (dispatch, getState) => {
   body.page = getState().locationReducer.page;
   try {
     const { data } = await api.get('location', { params: body });
-    dispatch({ type: LOADING_SEARCH_TABLE, payload: false });
-
     if (data.success) {
       dispatch({ type: LOCATION_QUERY, payload: data });
+      dispatch({ type: LOADING_SEARCH_TABLE, payload: false });
     } else {
       dispatch({ type: MSG_ERROR, payload: data.message });
+      dispatch({ type: LOADING_SEARCH_TABLE, payload: false });
     }
   } catch (error) {
     console.log('error***', error);
+    dispatch({ type: LOADING_SEARCH_TABLE, payload: false });
   }
 };
 
