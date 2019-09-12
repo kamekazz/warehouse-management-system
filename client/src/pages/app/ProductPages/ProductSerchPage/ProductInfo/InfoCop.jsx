@@ -4,10 +4,11 @@ import Typography from '@material-ui/core/Typography';
 import styled from 'styled-components';
 import { styleColor } from '../../../../../Styles/styleThem';
 import Paper from '@material-ui/core/Paper';
+import { format } from 'date-fns';
 
 function InfoCop({ data }) {
   const { name, size, skuNumber, department, description, ounce, date } = data;
-
+  const okDate = Date.parse(date);
   return (
     <PaperElEl>
       <DivRowEl>
@@ -27,7 +28,7 @@ function InfoCop({ data }) {
         </ItemInfo>
         <ItemInfo>
           <Typography variant="subtitle2">Created By:</Typography>
-          <Paper>9/8/19</Paper>
+          <Paper>{format(okDate, 'MM-dd-yyyy')}</Paper>
         </ItemInfo>
       </DivRowEl>
       <DivRowEl>
@@ -38,7 +39,7 @@ function InfoCop({ data }) {
           <Paper>{description}</Paper>
         </ItemInfoEl>
       </DivRowEl>
-      <DivRowEl>
+      <DivRowElLastEl>
         <ItemInfo>
           <Typography variant="subtitle2">Size:</Typography>
           <Paper>{size}</Paper>
@@ -47,7 +48,7 @@ function InfoCop({ data }) {
           <Typography variant="subtitle2">weigh:</Typography>
           <Paper>{ounce}</Paper>
         </ItemInfo>
-      </DivRowEl>
+      </DivRowElLastEl>
     </PaperElEl>
   );
 }
@@ -95,7 +96,6 @@ const IDItemEl = styled(ItemInfo)`
 const NameInfo = styled(Paper)`
   &:hover {
     color: ${styleColor.secondary.lite};
-    cursor: pointer;
   }
   text-overflow: ellipsis;
   overflow: hidden;
