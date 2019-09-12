@@ -70,8 +70,7 @@ router.get('/:skuNumber', async (req, res) => {
   try {
     const itemFond = await Item.findOne({
       skuNumber: skuNumber
-    }).populate();
-
+    });
     if (!itemFond) {
       res.json({
         success: false,

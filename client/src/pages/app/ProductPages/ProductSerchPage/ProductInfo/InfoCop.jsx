@@ -1,84 +1,61 @@
 import React from 'react';
-import { PaperEl } from '../../../Styles/Elements/ToolsEl';
+import { PaperEl } from '../../../../../Styles/Elements/ToolsEl';
 import Typography from '@material-ui/core/Typography';
 import styled from 'styled-components';
-import { styleColor } from '../../../Styles/styleThem';
-import history from '../../../redux/history';
+import { styleColor } from '../../../../../Styles/styleThem';
 import Paper from '@material-ui/core/Paper';
 
-function PalletInfoCop({ data }) {
-  const {
-    skuNumber,
-    _id,
-    contAvailable,
-    cont,
-    location,
-    size,
-    ounce,
-    department,
-    status,
-    item
-  } = data;
+function InfoCop({ data }) {
+  const { name, size, skuNumber, department, description, ounce, date } = data;
+
   return (
     <PaperElEl>
       <DivRowEl>
         <ItemInfo>
           <Typography variant="subtitle2">SKU:</Typography>
-          <NameInfo onClick={() => history.push(`/app/product/${skuNumber}`)}>
-            {skuNumber}
-          </NameInfo>
+          <NameInfo>{skuNumber}</NameInfo>
         </ItemInfo>
         <ItemInfo>
           <Typography variant="subtitle2">Name:</Typography>
-          <NameInfo onClick={() => history.push(`/app/product/${skuNumber}`)}>
-            {item.name}
-          </NameInfo>
+          <NameInfo>{name}</NameInfo>
         </ItemInfo>
       </DivRowEl>
       <DivRowEl>
-        <IDItemEl>
-          <Typography variant="subtitle2">ID:</Typography>
-          <Paper>{_id}</Paper>
-        </IDItemEl>
-      </DivRowEl>
-      <DivRowEl>
-        <ItemInfo>
-          <Typography variant="subtitle2">Status:</Typography>
-          <Paper>{status}</Paper>
-        </ItemInfo>
         <ItemInfo>
           <Typography variant="subtitle2">Department:</Typography>
           <Paper>{department}</Paper>
         </ItemInfo>
+        <ItemInfo>
+          <Typography variant="subtitle2">Created By:</Typography>
+          <Paper>9/8/19</Paper>
+        </ItemInfo>
       </DivRowEl>
       <DivRowEl>
-        <ItemInfo>
-          <Typography variant="subtitle2">Items:</Typography>
-          <Paper>{`${contAvailable}/${cont}`}</Paper>
-        </ItemInfo>
-        <ItemInfo>
-          <Typography variant="subtitle2">Location:</Typography>
-          <Paper>{location}</Paper>
-        </ItemInfo>
+        <ItemInfoEl>
+          <Typography variant="subtitle2" gutterBottom>
+            Description:
+          </Typography>
+          <Paper>{description}</Paper>
+        </ItemInfoEl>
       </DivRowEl>
-      <DivRowElLastEl>
+      <DivRowEl>
         <ItemInfo>
           <Typography variant="subtitle2">Size:</Typography>
           <Paper>{size}</Paper>
         </ItemInfo>
         <ItemInfo>
-          <Typography variant="subtitle2">Weight:</Typography>
+          <Typography variant="subtitle2">weigh:</Typography>
           <Paper>{ounce}</Paper>
         </ItemInfo>
-      </DivRowElLastEl>
+      </DivRowEl>
     </PaperElEl>
   );
 }
 
-export default PalletInfoCop;
+export default InfoCop;
 
 const PaperElEl = styled(PaperEl)`
-  max-width: 350px;
+  max-width: 450px;
 `;
 
 const DivRowEl = styled.div`
@@ -106,6 +83,10 @@ const ItemInfo = styled.div`
   }
 `;
 
+const ItemInfoEl = styled(ItemInfo)`
+  align-items: flex-start;
+`;
+
 const IDItemEl = styled(ItemInfo)`
   width: 100%;
   justify-content: space-between;
@@ -116,7 +97,6 @@ const NameInfo = styled(Paper)`
     color: ${styleColor.secondary.lite};
     cursor: pointer;
   }
-  max-width: 120px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;

@@ -78,7 +78,7 @@ router.get('/id/:id', async (req, res) => {
   try {
     const palletFond = await Pallet.findOne({
       _id: id
-    }).populate({ path: 'items', select: 'name' });
+    }).populate({ path: 'item', select: 'name' });
 
     if (!palletFond) {
       res.json({

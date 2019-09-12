@@ -7,20 +7,6 @@ import {
   GET_LAST_100_ITEM
 } from '../types';
 
-export const acGetItemInfo = (skuNumber, callBack) => async dispatch => {
-  try {
-    const { data } = await api.get(`item/${skuNumber}`);
-    if (data.success) {
-      dispatch({ type: ITEM_QUERY, payload: data.items });
-    } else {
-      dispatch({ type: MSG_ERROR, payload: data.message });
-    }
-  } catch (error) {
-    console.log('error***', error);
-    dispatch({ type: MSG_WARNING, payload: error });
-  }
-};
-
 export const acQueryItem = body => async dispatch => {
   try {
     const { data } = await api.get('item', { params: body });

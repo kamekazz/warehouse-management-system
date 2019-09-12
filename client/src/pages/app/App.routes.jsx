@@ -6,7 +6,7 @@ import LocationPage from './LocationPage/LocationPage';
 import ProductPage from '../app/ProductPages/ProductSerchPage/ProductPage';
 import LocationCreatePage from './LocationPage/LocationCreate/LocationCreatePage';
 import ProductCreatePage from './ProductPages/ProductCreactPage/ProductCreatePage';
-import ProductOnePage from './ProductPages/ProductSerchPage/ProductOnePage';
+import ProductOnePage from './ProductPages/ProductSerchPage/ProductInfo/ProductOnePage';
 import ReceivingMainPage from './Receiving/ReceivingMainPage';
 import PutAway from './PutAway/PutAway';
 import PalletPage from './Pallete/PalletPage';
@@ -28,7 +28,6 @@ export class AppMainRoute extends Component {
             component={LocationCreatePage}
           />
           <Route exact path={`${match.path}/product`} component={ProductPage} />
-
           <Route
             exact
             path={`${match.path}/product/create`}
@@ -36,7 +35,7 @@ export class AppMainRoute extends Component {
           />
           <Route
             exact
-            path={`${match.path}/product/:id`}
+            path={`${match.path}/product/:skuNumber`}
             component={ProductOnePage}
           />
           <Route

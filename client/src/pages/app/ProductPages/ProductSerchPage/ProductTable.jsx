@@ -12,7 +12,6 @@ import Tooltip from '@material-ui/core/Tooltip';
 function ProductTable({ data }) {
   return (
     <PaperEl>
-      {' '}
       <TopTopHeaderEl>
         <AddLocationButton
           onClick={() => history.push('/app/product/create')}
