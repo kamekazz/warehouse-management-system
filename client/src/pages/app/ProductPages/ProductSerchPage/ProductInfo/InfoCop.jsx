@@ -88,11 +88,6 @@ const ItemInfoEl = styled(ItemInfo)`
   align-items: flex-start;
 `;
 
-const IDItemEl = styled(ItemInfo)`
-  width: 100%;
-  justify-content: space-between;
-`;
-
 const NameInfo = styled(Paper)`
   &:hover {
     color: ${styleColor.secondary.lite};

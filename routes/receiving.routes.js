@@ -158,7 +158,8 @@ router.post('/dynamicsend', async (req, res) => {
       });
     } else if (pallet.status === 'received') {
       const locationFondArray = await Location.find({
-        status: 'empty'
+        status: 'empty',
+        maxSize: { $gte: pallet.size }
       });
       const locationFond = locationFondArray[0];
 

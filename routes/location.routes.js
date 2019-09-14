@@ -35,7 +35,7 @@ router.get('/', async (req, res) => {
     const queryLocation = await Location.find(req.query)
       .skip(pagination * page - pagination)
       .limit(pagination);
-    const count = await Location.count(req.query);
+    const count = await Location.countDocuments(req.query);
     res.json({
       success: true,
       locations: queryLocation,
