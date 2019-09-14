@@ -8,6 +8,7 @@ import { PageEl } from '../../../../Styles/Elements/ToolsEl';
 import ProductTable from './ProductTable';
 import SearchFrom from './SearchFrom';
 import _ from 'lodash';
+import { hpGoToInput } from '../../../../util/helper';
 
 export class ProductPage extends Component {
   state = {

@@ -8,6 +8,8 @@ function SearchFrom({ updateTextField, skuNumber }) {
   return (
     <PaperEl>
       <TextFieldEl
+        autoFocus
+        id="skuNumberId"
         name="skuNumber"
         label="SKU"
         value={skuNumber}

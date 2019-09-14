@@ -10,6 +10,7 @@ import {
   infoMsgBar
 } from '../../../redux/Notification/notification.actions';
 import { acPikePallet } from '../../../redux/reiving/reiving.action';
+import { hpGoToInput } from '../../../util/helper';
 
 function ScanPallet(props) {
   const [input, setInput] = useState({
@@ -25,6 +26,7 @@ function ScanPallet(props) {
 
   useEffect(() => {
     checkButton();
+    hpGoToInput('palletId');
   }, [input]);
 
   const updateContField = (name, value) => {
@@ -37,6 +39,7 @@ function ScanPallet(props) {
   };
   const handelClear = () => {
     setInput({ palletId: '' });
+    hpGoToInput('palletId');
   };
 
   return (

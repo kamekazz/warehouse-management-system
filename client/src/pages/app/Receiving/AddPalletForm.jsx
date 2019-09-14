@@ -24,6 +24,7 @@ function AddPalletForm(props) {
 
   useEffect(() => {
     checkButton();
+    goToInput('skuNumber');
   }, [input]);
 
   const handleSubmit = e => {
@@ -74,7 +75,6 @@ function AddPalletForm(props) {
     <AddPalletFormEl elevation={10}>
       <FormContainerEl onSubmit={handleSubmit}>
         <SkuEl
-          autoFocus
           label="SkuNumber"
           id="skuNumber"
           value={input.skuNumber}

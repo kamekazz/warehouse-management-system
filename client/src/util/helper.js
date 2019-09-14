@@ -7,3 +7,7 @@ export const cleanObj = obj => {
   });
   return newObj;
 };
+
+export const hpGoToInput = id => {
+  document.getElementById(id).focus();
+};
