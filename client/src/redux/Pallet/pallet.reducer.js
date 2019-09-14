@@ -24,7 +24,8 @@ export default (state = initialState, { type, payload }) => {
     case ADD_PALLET_ARRAY:
       return {
         ...state,
-        queryData: payload
+        queryData: payload.pallets,
+        totalResults: payload.total
       };
     case LOADING_PALLET_TABLE:
       return { ...state, loading: payload };

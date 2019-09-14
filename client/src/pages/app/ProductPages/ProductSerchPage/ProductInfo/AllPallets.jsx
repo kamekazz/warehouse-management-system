@@ -12,29 +12,82 @@ import {
 } from '../../../../../redux/Notification/notification.actions';
 import { acGetAllPallet } from '../../../../../redux/Pallet/pallet.action';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
 import Icon from '@material-ui/icons/Add';
-import DeleteIcon from '@material-ui/icons/Delete';
-import BuildIcon from '@material-ui/icons/Build';
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import Tooltip from '@material-ui/core/Tooltip';
 import Pagination from 'material-ui-flat-pagination';
 import Typography from '@material-ui/core/Typography';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
-function AllPallets({ skuNumber, acGetAllPallet }) {
+function AllPallets({
+  skuNumber,
+  acGetAllPallet,
+  data,
+  pages,
+  page,
+  total,
+  loading
+}) {
   useEffect(() => {
     acGetAllPallet(skuNumber, 30, 1);
   }, []);
-  return <PaperEl elevation={10}>AllPallets</PaperEl>;
+  return (
+    <PaperEl elevation={10}>
+      <TopTopHeaderEl>
+        <AddAndTotal>
+          <AddLocationButton
+            onClick={() => history.push('/app/receiving')}
+            variant="contained"
+            color="primary"
+          >
+            <Icon>send</Icon>
+            Add New Pallet
+          </AddLocationButton>
+          <TotalDivEl>
+            <Typography variant="subtitle2">Total</Typography>
+            <Paper>{total}</Paper>
+          </TotalDivEl>
+        </AddAndTotal>
+        <PaginationEl
+          limit={1}
+          offset={page - 1}
+          total={pages}
+          onClick={(e, offset) => {
+            acGetAllPallet(skuNumber, 30, offset + 1);
+          }}
+        />
+      </TopTopHeaderEl>
+      <HeaderRowEl>
+        <ItemEl>location</ItemEl>
+        <ItemEl>Count</ItemEl>
+        <ItemEl>Status</ItemEl>
+        <ItemEl>department</ItemEl>
+      </HeaderRowEl>
+      <BottomDivEl>
+        {!loading ? (
+          data.map(row => (
+            <BottomRowEl
+              key={row._id}
+              onClick={() => history.push(`/app/pallet/${row._id}`)}
+            >
+              <ItemEl>{row.location ? row.location : 'null'}</ItemEl>
+              <ItemEl>{`${row.contAvailable}/${row.cont}`}</ItemEl>
+              <ItemEl>{row.status}</ItemEl>
+              <ItemEl>{row.department}</ItemEl>
+            </BottomRowEl>
+          ))
+        ) : (
+          <LinearProgress color="secondary" />
+        )}
+      </BottomDivEl>
+    </PaperEl>
+  );
 }
 
 const mapStateToProps = state => ({
-  data: state.locationReducer.queryData,
-  pages: state.locationReducer.pages,
-  page: state.locationReducer.page,
-  loading: state.locationReducer.loading,
-  total: state.locationReducer.totalResults
+  data: state.palletReducer.queryData,
+  pages: state.palletReducer.pages,
+  page: state.palletReducer.page,
+  loading: state.palletReducer.loading,
+  total: state.palletReducer.totalResults
 });
 const mapDispatchToProps = {
   warningMsgBar,
@@ -108,7 +161,7 @@ const HeaderRowEl = styled(RowEl)`
   padding: 6px 21px;
   font-weight: 700;
   div {
-    transition: all 0.2s ease-in-out;
+    transition: all 0.1s ease-in-out;
     text-transform: uppercase;
     &:hover {
       color: ${styleColor.secondary.lite};
@@ -120,6 +173,14 @@ const HeaderRowEl = styled(RowEl)`
 const BottomDivEl = styled.div`
   max-height: 60vh;
   overflow: auto;
+  div {
+    transition: all 0.2s ease-in-out;
+    text-transform: uppercase;
+    &:hover {
+      color: ${styleColor.secondary.lite};
+      cursor: pointer;
+    }
+  }
 `;
 const BottomRowEl = styled(RowEl)`
   color: rgba(245, 245, 245, 0.5);
@@ -143,18 +204,4 @@ const ItemEl = styled.div`
   }
   path {
   }
-`;
-
-const BagsEl = styled.div`
-  ${centerEl};
-  border-radius: 50px;
-  background: ${({ bg }) => bg};
-  padding: 0 10px;
-`;
-
-const SizeColorEl = styled.div`
-  ${centerEl};
-  border-radius: 10px;
-  background: ${({ bg }) => bg};
-  padding: 0 5px;
 `;

@@ -15,7 +15,6 @@ import {
   PICKET_UP_PALLET_INFO,
   RESET_PATHWAY
 } from '../types';
-import history from '../history';
 
 export const acCreatePallet = body => async dispatch => {
   try {

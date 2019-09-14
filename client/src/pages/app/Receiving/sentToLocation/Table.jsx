@@ -1,5 +1,4 @@
-// 2276488
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { PaperEl } from '../../../../Styles/Elements/ToolsEl';
 import { styleColor } from '../../../../Styles/styleThem';

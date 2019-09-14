@@ -43,7 +43,7 @@ export const acGetAllPallet = (skuNumber, pagination, page) => async (
     });
     console.log('data', data);
     if (data.success) {
-      dispatch({ type: ADD_PALLET_ARRAY, payload: data.pallets });
+      dispatch({ type: ADD_PALLET_ARRAY, payload: data });
       dispatch({ type: LOADING_PALLET_TABLE, payload: false });
     } else {
       dispatch({ type: LOADING_PALLET_TABLE, payload: false });
