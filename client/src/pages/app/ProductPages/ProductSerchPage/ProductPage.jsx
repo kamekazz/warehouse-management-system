@@ -33,7 +33,7 @@ export class ProductPage extends Component {
   search = _.debounce(() => {
     let body = {};
     body.skuNumber = this.state.skuNumber;
-    this.props.acQueryItem(body);
+    this.props.acQueryItem(body, 50, 1);
   }, 2000);
 
   render() {

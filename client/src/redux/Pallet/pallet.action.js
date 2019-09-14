@@ -34,7 +34,7 @@ export const acGetAllPallet = (skuNumber, pagination, page) => async (
   };
   dispatch({ type: PAGINATION_FOR_PALLET, payload });
   let body = {};
-  body.pagination = getState().locationReducer.pagination;
+  body.pagination = getState().palletReducer.pagination;
   body.page = getState().palletReducer.page;
   body.skuNumber = skuNumber.skuNumber;
   try {

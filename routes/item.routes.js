@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 /* eslint-disable no-undef */
 /* eslint-disable node/no-unsupported-features/es-syntax */
 const express = require('express');
@@ -10,10 +11,20 @@ function escapeRegex(text) {
 }
 // /api/item call
 router.get('/', async (req, res) => {
+  const pagination = req.query.pagination ? parseInt(req.query.pagination) : 10;
+  const page = req.query.page ? parseInt(req.query.page) : 1;
   const regex = new RegExp(escapeRegex(req.query.skuNumber), 'gi');
   try {
-    const items = await Item.find({ skuNumber: regex });
-    res.json({ success: true, items });
+    const items = await Item.find({ skuNumber: regex })
+      .skip(pagination * page - pagination)
+      .limit(pagination);
+    const count = await Item.countDocuments({ skuNumber: regex });
+    res.json({
+      success: true,
+      query: req.query,
+      total: count,
+      items
+    });
   } catch (err) {
     console.error(err);
     res.json({

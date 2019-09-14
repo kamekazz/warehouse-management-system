@@ -33,6 +33,9 @@ export const LOADING_PALLET_TABLE = 'LOADING_PALLET_TABLE';
 // action item
 export const GET_LAST_100_ITEM = 'GET_LAST_100_ITEM';
 export const ITEM_QUERY = 'ITEM-QUERY';
+//PAGINATION
+export const PAGINATION_FOR_ITEM = 'PAGINATION_FOR_ITEM';
+export const LOADING_ITEM_TABLE = 'LOADING_ITEM_TABLE';
 
 //reiving
 export const ADD_NEW_PALLET = 'ADD_NEW_PALLET';

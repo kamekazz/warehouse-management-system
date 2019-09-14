@@ -4,12 +4,30 @@ import {
   MSG_SUCCESS,
   MSG_WARNING,
   ITEM_QUERY,
-  GET_LAST_100_ITEM
+  GET_LAST_100_ITEM,
+  LOADING_ITEM_TABLE,
+  PAGINATION_FOR_ITEM
 } from '../types';
 
-export const acQueryItem = body => async dispatch => {
+export const acQueryItem = (skuNumber, pagination, page) => async (
+  dispatch,
+  getState
+) => {
+  dispatch({ type: ITEM_QUERY, payload: [] });
+  dispatch({ type: LOADING_ITEM_TABLE, payload: true });
+  let payload = {
+    pagination,
+    page
+  };
+  dispatch({ type: PAGINATION_FOR_ITEM, payload });
+  let body = {};
+  body.pagination = getState().itemReducer.pagination;
+  body.page = getState().itemReducer.page;
+  body.skuNumber = skuNumber.skuNumber;
+  console.log('skuNumber', skuNumber);
   try {
     const { data } = await api.get('item', { params: body });
+    console.log('acQueryItem', data);
     if (data.success) {
       dispatch({ type: ITEM_QUERY, payload: data.items });
     } else {
