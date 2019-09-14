@@ -1,6 +1,7 @@
 import React from 'react';
 import { PaperEl } from '../../../../Styles/Elements/ToolsEl';
 import { styleColor } from '../../../../Styles/styleThem';
+import { acQueryItem } from '../../../../redux/Item/item.action';
 import { centerEl } from '../../../../Styles/Mixins';
 import AddIcon from '@material-ui/icons/Add';
 import history from '../../../../redux/history';
@@ -8,19 +9,46 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
+import Pagination from 'material-ui-flat-pagination';
 
-function ProductTable({ data }) {
+function ProductTable({
+  data,
+  pages,
+  page,
+  total,
+  loading,
+  acQueryItem,
+  skuNumber
+}) {
+  let skuNumberOjc = {};
+  skuNumberOjc.skuNumber = skuNumber;
   return (
     <PaperEl>
       <TopTopHeaderEl>
-        <AddLocationButton
-          onClick={() => history.push('/app/product/create')}
-          variant="contained"
-          color="primary"
-        >
-          <AddIcon></AddIcon>
-          Add Product
-        </AddLocationButton>
+        <AddAndTotal>
+          <AddLocationButton
+            onClick={() => history.push('/app/product/create')}
+            variant="contained"
+            color="primary"
+          >
+            <AddIcon></AddIcon>
+            Add Product
+          </AddLocationButton>
+          <TotalDivEl>
+            <Typography variant="subtitle2">Total</Typography>
+            <Paper>{total}</Paper>
+          </TotalDivEl>
+        </AddAndTotal>
+        <PaginationEl
+          limit={1}
+          offset={page - 1}
+          total={pages}
+          onClick={(e, offset) => {
+            acQueryItem(skuNumberOjc, 25, offset + 1);
+          }}
+        />
       </TopTopHeaderEl>
       <HeaderRowEl>
         <ItemEl>SKU</ItemEl>
@@ -50,10 +78,16 @@ function ProductTable({ data }) {
 }
 
 const mapStateToProps = state => ({
-  data: state.itemReducer.itemArray
+  data: state.itemReducer.itemArray,
+  pages: state.itemReducer.pages,
+  page: state.itemReducer.page,
+  loading: state.itemReducer.loading,
+  total: state.itemReducer.totalResults
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  acQueryItem
+};
 export default connect(
   mapStateToProps,
   mapDispatchToProps
@@ -61,6 +95,15 @@ export default connect(
 
 const TopTopHeaderEl = styled.div`
   margin: 12px 0;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const AddAndTotal = styled.div`
+  display: flex;
+  button {
+    margin-right: 12px;
+  }
 `;
 
 const AddLocationButton = styled(Button)`
@@ -134,4 +177,24 @@ const ItemNameEl = styled.div`
   overflow: hidden;
   white-space: nowrap;
   width: 110px;
+`;
+
+const TotalDivEl = styled.div`
+  display: flex;
+  align-items: center;
+  h6 {
+    margin-right: 6px;
+  }
+  div {
+    padding: 3px 9px;
+    background-color: #ffffff1f;
+    color: ${styleColor.secondary.main};
+  }
+`;
+
+const PaginationEl = styled(Pagination)`
+  .MuiFlatPageButton-root:not(:first-child):not(:last-child) {
+    background-color: #ffffff1f;
+    margin-left: 5px;
+  }
 `;

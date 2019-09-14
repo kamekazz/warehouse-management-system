@@ -6,7 +6,8 @@ import {
   ITEM_QUERY,
   GET_LAST_100_ITEM,
   LOADING_ITEM_TABLE,
-  PAGINATION_FOR_ITEM
+  PAGINATION_FOR_ITEM,
+  ADD_TOTAL
 } from '../types';
 
 export const acQueryItem = (skuNumber, pagination, page) => async (
@@ -30,6 +31,7 @@ export const acQueryItem = (skuNumber, pagination, page) => async (
     console.log('acQueryItem', data);
     if (data.success) {
       dispatch({ type: ITEM_QUERY, payload: data.items });
+      dispatch({ type: ADD_TOTAL, payload: data });
     } else {
       dispatch({ type: MSG_ERROR, payload: data.message });
     }

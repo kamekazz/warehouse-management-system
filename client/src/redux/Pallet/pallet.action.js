@@ -2,7 +2,6 @@ import api from '../../util/Api';
 import {
   MSG_ERROR,
   MSG_SUCCESS,
-  MSG_WARNING,
   PAGINATION_FOR_PALLET,
   LOADING_PALLET_TABLE,
   ADD_PALLET_ARRAY

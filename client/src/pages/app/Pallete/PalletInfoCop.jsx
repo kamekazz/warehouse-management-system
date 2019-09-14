@@ -58,7 +58,7 @@ function PalletInfoCop({ data }) {
         </ItemInfo>
         <ItemInfo>
           <Typography variant="subtitle2">Location:</Typography>
-          <Paper>{location}</Paper>
+          <Paper>{location ? location : 'null'}</Paper>
         </ItemInfo>
       </DivRowEl>
       <DivRowElLastEl>

@@ -52,7 +52,7 @@ function ScanPallet(props) {
       <FormEL>
         <TextField
           autoFocus
-          label="Pallet ID"
+          label="TRACKER ID"
           id="palletId"
           value={input.palletId}
           name="palletId"

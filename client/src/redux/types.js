@@ -36,6 +36,7 @@ export const ITEM_QUERY = 'ITEM-QUERY';
 //PAGINATION
 export const PAGINATION_FOR_ITEM = 'PAGINATION_FOR_ITEM';
 export const LOADING_ITEM_TABLE = 'LOADING_ITEM_TABLE';
+export const ADD_TOTAL = 'ADD_TOTAL';
 
 //reiving
 export const ADD_NEW_PALLET = 'ADD_NEW_PALLET';

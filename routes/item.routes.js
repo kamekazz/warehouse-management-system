@@ -23,7 +23,8 @@ router.get('/', async (req, res) => {
       success: true,
       query: req.query,
       total: count,
-      items
+      items,
+      pages: Math.ceil(count / pagination)
     });
   } catch (err) {
     console.error(err);
