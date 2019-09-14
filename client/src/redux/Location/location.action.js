@@ -18,10 +18,10 @@ export const acPaginationLocation = (pagination, page) => async (
     page
   };
   dispatch({ type: LOADING_SEARCH_TABLE, payload: true });
+  dispatch({ type: PAGINATION_FOR_LOCATION, payload });
   let body = getState().locationReducer.lastQuery;
   body.pagination = getState().locationReducer.pagination;
   body.page = getState().locationReducer.page;
-  dispatch({ type: PAGINATION_FOR_LOCATION, payload });
   try {
     const { data } = await api.get('location', {
       params: body

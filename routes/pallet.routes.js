@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-undef */
@@ -34,8 +35,24 @@ function helperNotGoodSize(location, pallet, maxLocation) {
 
 router.get('/', async (req, res) => {
   try {
-    const allPallet = await Pallet.find();
-    res.json({ data: allPallet });
+    const pagination = req.query.pagination
+      ? parseInt(req.query.pagination)
+      : 50;
+    const page = req.query.page ? parseInt(req.query.page) : 1;
+    delete req.query.pagination;
+    delete req.query.page;
+
+    const queryPallet = await Pallet.find(req.query)
+      .skip(pagination * page - pagination)
+      .limit(pagination);
+    const count = await Pallet.countDocuments(req.query);
+    res.json({
+      success: true,
+      pallets: queryPallet,
+      query: req.query,
+      total: count,
+      pages: Math.ceil(count / pagination)
+    });
   } catch (err) {
     console.error(err);
     res.json({

@@ -6,8 +6,12 @@ import { warningMsgBar } from '../../../../../redux/Notification/notification.ac
 import ContainerHeader from '../../../../../components/ContainerHeader';
 import { PageEl } from '../../../../../Styles/Elements/ToolsEl';
 import InfoCop from './InfoCop';
+import AllPallets from './AllPallets';
 
 class ProductOnePage extends Component {
+  state = {
+    allPalletData: []
+  };
   componentDidMount() {
     this.props.setUrl(this.props.match.path);
     this.getInfo();
@@ -20,10 +24,13 @@ class ProductOnePage extends Component {
 
   render() {
     const product = this.props.products[0];
+    const skuNumber = this.props.match.params;
+
     return (
       <PageEl>
         <ContainerHeader match={this.props.match} title={`Product Info`} />
         {product && <InfoCop data={product} />}
+        <AllPallets skuNumber={skuNumber} />
       </PageEl>
     );
   }
