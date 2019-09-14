@@ -1,6 +1,3 @@
-// 5d71b7298c8b480bf058ae7b
-// ${this.props.match.params.id}`}
-// http://localhost:3000/app/pallet/5d71b7298c8b480bf058ae7b
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setUrl } from '../../../redux/Auth/user.actions';

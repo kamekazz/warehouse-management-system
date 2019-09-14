@@ -109,7 +109,10 @@ function SearchTable({
       <BottomDivEl>
         {!loading ? (
           data.map(row => (
-            <BottomRowEl key={row._id}>
+            <BottomRowEl
+              key={row._id}
+              onClick={() => history.push(`/app/location/${row.fullName}`)}
+            >
               <ItemEl>{row.fullName}</ItemEl>
               <ItemEl>{row.skuNumber ? row.skuNumber : 'empty'}</ItemEl>
               <ItemEl>{sizeHelper(row.size, row.maxSize)}</ItemEl>
@@ -246,6 +249,9 @@ const BottomDivEl = styled.div`
 `;
 const BottomRowEl = styled(RowEl)`
   color: rgba(245, 245, 245, 0.5);
+  &:hover {
+    cursor: pointer;
+  }
   &:nth-of-type(even) {
     background-color: #7574c03b;
     border-radius: 3px;

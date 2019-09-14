@@ -1,6 +1,7 @@
 import React from 'react';
 import Drawer from '@material-ui/core/Drawer';
-
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
 import NavBar from './NavBar';
 import DrawerCop from './DrawerCop';
 
@@ -14,7 +15,7 @@ export default function TemporaryDrawer(props) {
   return (
     <>
       <NavBar toggleDrawer={handleDrawerToggle} />
-      <div style={{ height: '66px' }}></div>
+      <Spats />
       <Drawer open={mobileOpen} onClose={handleDrawerToggle}>
         <DrawerCop handleDrawerToggle={handleDrawerToggle} />
       </Drawer>
@@ -22,3 +23,9 @@ export default function TemporaryDrawer(props) {
     </>
   );
 }
+
+const Spats = () => (
+  <AppBar position="static" elevation={0}>
+    <Toolbar></Toolbar>
+  </AppBar>
+);

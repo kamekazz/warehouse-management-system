@@ -121,17 +121,17 @@ router.post('/create', async (req, res) => {
   }
 });
 
-router.get('/:location', async (req, res) => {
-  const { location } = req.params;
+router.post('/get-info', async (req, res) => {
   try {
-    const locationFond = await Location.findOne({
-      fullName: location
+    const locationFond = await Location.findOne(req.body).populate({
+      path: 'palletId'
+      // select: 'name'
     });
 
     if (!locationFond) {
       res.json({
         success: false,
-        message: `location not fond (${location})`
+        message: `location not fond (${req.body.fullName})`
       });
     } else {
       res.json({

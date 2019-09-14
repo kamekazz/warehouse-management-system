@@ -10,6 +10,7 @@ import ProductOnePage from './ProductPages/ProductSerchPage/ProductInfo/ProductO
 import ReceivingMainPage from './Receiving/ReceivingMainPage';
 import PutAway from './PutAway/PutAway';
 import PalletPage from './Pallete/PalletPage';
+import LocationInfoPage from './LocationPage/LocationInfo/LocationInfoPage';
 
 export class AppMainRoute extends Component {
   render() {
@@ -26,6 +27,11 @@ export class AppMainRoute extends Component {
             exact
             path={`${match.path}/location/create`}
             component={LocationCreatePage}
+          />
+          <Route
+            exact
+            path={`${match.path}/location/:location`}
+            component={LocationInfoPage}
           />
           <Route exact path={`${match.path}/product`} component={ProductPage} />
           <Route

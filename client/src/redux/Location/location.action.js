@@ -135,3 +135,17 @@ export const deleteLocation = (
     dispatch({ type: MSG_WARNING, payload: error });
   }
 };
+
+export const acGetLocationInfo = body => async dispatch => {
+  try {
+    const { data } = await api.post('location/get-info', body);
+    console.log('acGetLocationInfo', data);
+    if (data.success) {
+    } else {
+      dispatch({ type: MSG_ERROR, payload: data.message });
+    }
+  } catch (error) {
+    console.log('error***', error);
+    dispatch({ type: MSG_WARNING, payload: error });
+  }
+};
