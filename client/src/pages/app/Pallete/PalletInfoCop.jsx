@@ -56,7 +56,12 @@ function PalletInfoCop({ data }) {
           <Typography variant="subtitle2">Items:</Typography>
           <Paper>{`${contAvailable}/${cont}`}</Paper>
         </ItemInfo>
-        <ItemInfo>
+        <ItemInfo
+          clickGood
+          onClick={
+            location ? () => history.push(`/app/location/${location}`) : null
+          }
+        >
           <Typography variant="subtitle2">Location:</Typography>
           <Paper>{location ? location : 'null'}</Paper>
         </ItemInfo>
@@ -96,6 +101,7 @@ const ItemInfo = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 0;
+  ${({ clickGood }) => clickGood && 'cursor: pointer;'}
   h6 {
     margin-right: 6px;
   }

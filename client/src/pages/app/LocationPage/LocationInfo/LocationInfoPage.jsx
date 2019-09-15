@@ -5,6 +5,7 @@ import { acGetLocationInfo } from '../../../../redux/Location/location.action';
 import ContainerHeader from '../../../../components/ContainerHeader';
 import { PageEl } from '../../../../Styles/Elements/ToolsEl';
 import InfoCop from './InfoCop';
+import LocationPalletTable from './LocationPalletTable';
 
 class LocationInfoPage extends Component {
   componentDidMount() {
@@ -18,17 +19,19 @@ class LocationInfoPage extends Component {
     this.props.acGetLocationInfo(body);
   };
   render() {
-    console.log('object', this.props.match.params.location);
     return (
       <PageEl>
-        <ContainerHeader match={this.props.match} title={`Location Info`} />;
-        <InfoCop />
+        <ContainerHeader match={this.props.match} title={`Location Info`} />
+        {this.props.data && <InfoCop data={this.props.data} />}
+        {this.props.data && <LocationPalletTable data={this.props.data} />}
       </PageEl>
     );
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  data: state.locationReducer.locationInfo
+});
 
 const mapDispatchToProps = { setUrl, acGetLocationInfo };
 

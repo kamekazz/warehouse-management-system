@@ -2,7 +2,8 @@ import {
   LOCATION_QUERY,
   PAGINATION_FOR_LOCATION,
   LAST_QUERY_BODY,
-  LOADING_SEARCH_TABLE
+  LOADING_SEARCH_TABLE,
+  ADD_MAIN_INFO
 } from '../types';
 
 const initialState = {
@@ -12,7 +13,8 @@ const initialState = {
   totalResults: 0,
   lastQuery: null,
   pages: 1,
-  loading: false
+  loading: false,
+  locationInfo: null
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -30,6 +32,8 @@ export default (state = initialState, { type, payload }) => {
       return { ...state, lastQuery: payload };
     case LOADING_SEARCH_TABLE:
       return { ...state, loading: payload };
+    case ADD_MAIN_INFO:
+      return { ...state, locationInfo: payload };
     default:
       return state;
   }

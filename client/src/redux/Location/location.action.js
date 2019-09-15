@@ -6,7 +6,8 @@ import {
   LOCATION_QUERY,
   PAGINATION_FOR_LOCATION,
   LAST_QUERY_BODY,
-  LOADING_SEARCH_TABLE
+  LOADING_SEARCH_TABLE,
+  ADD_MAIN_INFO
 } from '../types';
 
 export const acPaginationLocation = (pagination, page) => async (
@@ -139,8 +140,8 @@ export const deleteLocation = (
 export const acGetLocationInfo = body => async dispatch => {
   try {
     const { data } = await api.post('location/get-info', body);
-    console.log('acGetLocationInfo', data);
     if (data.success) {
+      dispatch({ type: ADD_MAIN_INFO, payload: data.location });
     } else {
       dispatch({ type: MSG_ERROR, payload: data.message });
     }

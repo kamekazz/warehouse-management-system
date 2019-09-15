@@ -27,7 +27,7 @@ function InfoCop({ data }) {
           <Paper>{department}</Paper>
         </ItemInfo>
         <ItemInfo>
-          <Typography variant="subtitle2">Created By:</Typography>
+          <Typography variant="subtitle2">Created:</Typography>
           <Paper>{format(okDate, 'MM-dd-yyyy')}</Paper>
         </ItemInfo>
       </DivRowEl>

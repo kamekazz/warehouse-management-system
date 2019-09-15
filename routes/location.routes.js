@@ -137,7 +137,7 @@ router.post('/get-info', async (req, res) => {
       res.json({
         success: true,
         message: `Location fond `,
-        data: locationFond
+        location: locationFond
       });
     }
   } catch (err) {
