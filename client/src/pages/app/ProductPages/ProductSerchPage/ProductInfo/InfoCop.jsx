@@ -10,7 +10,7 @@ function InfoCop({ data }) {
   const { name, size, skuNumber, department, description, ounce, date } = data;
   const okDate = Date.parse(date);
   return (
-    <PaperElEl>
+    <PaperElEl elevation={10}>
       <DivRowEl>
         <ItemInfo>
           <Typography variant="subtitle2">SKU:</Typography>

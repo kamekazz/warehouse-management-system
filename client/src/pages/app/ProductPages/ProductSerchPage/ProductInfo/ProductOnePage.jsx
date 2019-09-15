@@ -7,6 +7,8 @@ import ContainerHeader from '../../../../../components/ContainerHeader';
 import { PageEl } from '../../../../../Styles/Elements/ToolsEl';
 import InfoCop from './InfoCop';
 import AllPallets from './AllPallets';
+import HistoryCop from '../../../../../components/HistoryCop';
+import styled from 'styled-components';
 
 class ProductOnePage extends Component {
   state = {
@@ -29,7 +31,9 @@ class ProductOnePage extends Component {
     return (
       <PageEl>
         <ContainerHeader match={this.props.match} title={`Product Info`} />
+
         {product && <InfoCop data={product} />}
+
         <AllPallets skuNumber={skuNumber} />
       </PageEl>
     );

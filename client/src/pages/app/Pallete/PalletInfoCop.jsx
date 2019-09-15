@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { styleColor } from '../../../Styles/styleThem';
 import history from '../../../redux/history';
 import Paper from '@material-ui/core/Paper';
+import { maxMinWidth } from '../../../Styles/Mixins';
 
 function PalletInfoCop({ data }) {
   const {
@@ -20,7 +21,7 @@ function PalletInfoCop({ data }) {
     item
   } = data;
   return (
-    <PaperElEl>
+    <PaperElEl elevation={10}>
       <DivRowEl>
         <ItemInfo>
           <Typography variant="subtitle2">SKU:</Typography>
@@ -83,7 +84,9 @@ function PalletInfoCop({ data }) {
 export default PalletInfoCop;
 
 const PaperElEl = styled(PaperEl)`
-  max-width: 350px;
+  grid-area: PalletInfoCop;
+  ${maxMinWidth('350px', '400px')}
+  max-height:194px;
 `;
 
 const DivRowEl = styled.div`

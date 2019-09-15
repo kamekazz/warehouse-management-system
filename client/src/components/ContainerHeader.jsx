@@ -34,7 +34,6 @@ const ContainerHeader = ({ title, match }) => {
   return (
     <PaperEl elevation={12}>
       <h1>{title}</h1>
-
       <BreadcrumbEl>
         {subPath.map((sub, index) => {
           return (
@@ -58,11 +57,11 @@ export default ContainerHeader;
 const BreadcrumbItemEl = styled(BreadcrumbItem)``;
 
 const PaperEl = styled(Paper)`
+  grid-area: ContainerHeader;
   padding: 8px 18px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
 
   h1 {
     margin-bottom: 0;

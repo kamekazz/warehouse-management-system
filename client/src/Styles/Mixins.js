@@ -50,3 +50,8 @@ export const removeOutline = css`
     outline: none;
   }
 `;
+
+export const maxMinWidth = (max, min) => css`
+  max-width: ${max};
+  min-width: ${min};
+`;
