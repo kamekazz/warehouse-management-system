@@ -85,8 +85,9 @@ export default PalletInfoCop;
 
 const PaperElEl = styled(PaperEl)`
   grid-area: PalletInfoCop;
-  ${maxMinWidth('350px', '400px')}
-  max-height:194px;
+  ${maxMinWidth('400px', '300px')}
+  min-height:194px;
+  max-height: 215px;
 `;
 
 const DivRowEl = styled.div`

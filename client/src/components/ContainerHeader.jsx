@@ -2,6 +2,7 @@ import React from 'react';
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import styled from 'styled-components';
 import { styleColor } from '../Styles/styleThem';
+import { below } from '../Styles/Mixins';
 import history from '../redux/history';
 import Paper from '@material-ui/core/Paper';
 
@@ -62,15 +63,29 @@ const PaperEl = styled(Paper)`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: nowrap;
 
   h1 {
     margin-bottom: 0;
     font-weight: 800;
+    min-width: 200px;
+  }
+  ol {
+    ${below.phone`
+       display:none;
+    `}
   }
 `;
 const BreadcrumbEl = styled(Breadcrumb)`
   ol {
+    min-width: 200px;
     margin-bottom: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+    span {
+      text-overflow: ellipsis;
+    }
     a:not([href]):not([tabindex]) {
       color: ${styleColor.secondary.main};
       font-weight: 700;

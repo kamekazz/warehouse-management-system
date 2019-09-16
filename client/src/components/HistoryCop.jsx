@@ -11,7 +11,7 @@ const dataListNote = [
   { note: 'put away by joe', date: '9/2/19' },
   { note: 'scan  by maria', date: '9/1/19' },
   { note: 'pick by manny', date: '9/15/19' },
-  { note: 'created by manny', date: '9/1/19' },
+  { note: 'scan by manny', date: '9/1/19' },
   { note: 'packing by manny', date: '9/1/19' },
   { note: 'removed by manny', date: '9/21/19' }
 ];
@@ -30,7 +30,7 @@ function HistoryCop() {
       </InfoDivEl>
       <BottomBodyEl>
         {dataListNote.map(row => (
-          <DivRowEl>
+          <DivRowEl key={row.note}>
             <ItemInfo>
               <Paper>{row.note}</Paper>
             </ItemInfo>
@@ -48,10 +48,14 @@ export default HistoryCop;
 
 const PaperElEL = styled(PaperEl)`
   grid-area: HistoryCop;
+  justify-self: end;
   ${maxMinWidth('300px', '320px')}
   .MuiPaper-root {
     background-color: ${styleColor.primary.lite};
     transform: translate(0, -19px);
+  }
+  @media (max-width: 600px) {
+    justify-self: center;
   }
 `;
 
