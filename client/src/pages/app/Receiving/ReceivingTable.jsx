@@ -17,15 +17,15 @@ function ReceivingTable({ data, acGetPalletsByState, acPickPallet }) {
   }, []);
   const now = new Date();
   return (
-    <PaperEl>
+    <PaperElEl>
       <TopTopHeaderEl>
         <h3>Total Pallets in the received State </h3>
       </TopTopHeaderEl>
       <HeaderRowEl>
         <ItemEl>SKU</ItemEl>
-        <ItemEl>by</ItemEl>
+        <ItemElDsNoneEl>by</ItemElDsNoneEl>
         <ItemEl>ID</ItemEl>
-        <ItemEl>department</ItemEl>
+        <ItemElDsNoneEl>department</ItemElDsNoneEl>
         <ItemEl>Cont</ItemEl>
         <ItemEl>Date</ItemEl>
       </HeaderRowEl>
@@ -36,11 +36,11 @@ function ReceivingTable({ data, acGetPalletsByState, acPickPallet }) {
           return (
             <BottomRowEl key={row._id} onClick={() => acPickPallet(row)}>
               <ItemSkuEl>{row.skuNumber}</ItemSkuEl>
-              <ItemEl>manuel</ItemEl>
+              <ItemElDsNoneEl>manuel</ItemElDsNoneEl>
               <Tooltip title={row._id}>
                 <ItemIdEl>{row._id}</ItemIdEl>
               </Tooltip>
-              <ItemEl>{row.department}</ItemEl>
+              <ItemElDsNoneEl>{row.department}</ItemElDsNoneEl>
               <ItemEl>{row.cont}</ItemEl>
               <Tooltip title={date}>
                 <ItemIdEl>{date}</ItemIdEl>
@@ -49,7 +49,7 @@ function ReceivingTable({ data, acGetPalletsByState, acPickPallet }) {
           );
         })}
       </BottomDivEl>
-    </PaperEl>
+    </PaperElEl>
   );
 }
 
@@ -63,6 +63,12 @@ export default connect(
   mapDispatchToProps
 )(ReceivingTable);
 
+const PaperElEl = styled(PaperEl)`
+  grid-area: ReceivingTable;
+  @media (max-width: 600px) {
+    padding: 8px 8px;
+  }
+`;
 const TopTopHeaderEl = styled.div`
   margin: 12px 0;
 `;
@@ -72,6 +78,9 @@ const RowEl = styled.div`
   flex-wrap: nowrap;
   justify-content: space-between;
   padding: 12px 21px;
+  @media (max-width: 600px) {
+    padding: 12px 0px;
+  }
 `;
 
 const HeaderRowEl = styled(RowEl)`
@@ -100,11 +109,19 @@ const HeaderRowEl = styled(RowEl)`
 
 const ItemEl = styled.div`
   ${centerEl};
-  width: 110px;
   overflow: hidden;
+  width: 100px;
+  @media (max-width: 600px) {
+    width: 85px;
+  }
+`;
+const ItemElDsNoneEl = styled(ItemEl)`
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;
 const BottomDivEl = styled.div`
-  height: 60vh;
+  max-height: 60vh;
   overflow: auto;
 `;
 
@@ -124,12 +141,18 @@ const ItemSkuEl = styled.div`
   color: ${styleColor.primary.lite};
   letter-spacing: 3px;
   text-transform: uppercase;
-  width: 110px;
+  width: 100px;
+  @media (max-width: 600px) {
+    width: 85px;
+  }
 `;
 
 const ItemIdEl = styled.div`
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  width: 110px;
+  width: 100px;
+  @media (max-width: 600px) {
+    width: 85px;
+  }
 `;

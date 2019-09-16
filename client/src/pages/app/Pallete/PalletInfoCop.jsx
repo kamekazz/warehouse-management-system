@@ -88,6 +88,9 @@ const PaperElEl = styled(PaperEl)`
   ${maxMinWidth('400px', '300px')}
   min-height:194px;
   max-height: 215px;
+  @media (max-width: 600px) {
+    justify-self: center;
+  }
 `;
 
 const DivRowEl = styled.div`

@@ -128,7 +128,9 @@ export default connect(
 )(AddPalletForm);
 
 const AddPalletFormEl = styled(PaperEl)`
-  max-width: 375px;
+  grid-area: AddPalletForm;
+  max-height: 85px;
+  min-width: 340px;
 `;
 
 const FormContainerEl = styled.form`

@@ -54,10 +54,10 @@ export default connect(
 const PageElEl = styled(PageEl)`
   display: grid;
   grid-gap: 20px;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   grid-template-areas:
-    'ContainerHeader ContainerHeader ContainerHeader ContainerHeader ContainerHeader ContainerHeader ContainerHeader ContainerHeader ContainerHeader ContainerHeader ContainerHeader ContainerHeader'
-    'MainContent MainContent MainContent MainContent MainContent MainContent MainContent MainContent MainContent MainContent MainContent MainContent';
+    'ContainerHeader'
+    'MainContent';
   @media (max-width: 600px) {
     grid-gap: 12px;
   }
