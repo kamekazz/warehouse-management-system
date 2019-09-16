@@ -60,6 +60,7 @@ export const acGetPalletsByState = status => async dispatch => {
   try {
     const { data } = await api.post('receiving/status', body);
     if (data.success) {
+      console.log('data', data);
       dispatch({ type: GET_RECEIVING_TABLE, payload: data.pallets });
     } else {
       dispatch({ type: MSG_ERROR, payload: data.message });

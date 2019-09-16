@@ -9,6 +9,7 @@ import ReceivingTable from './ReceivingTable';
 import SentToLocation from './sentToLocation/SentToLocation';
 import LocationChart from './LocationChart';
 import PalletChart from './PalletChart';
+import ProgressCop from './Progress';
 import styled from 'styled-components';
 
 class ReceivingMainPage extends Component {
@@ -23,6 +24,7 @@ class ReceivingMainPage extends Component {
         <ContainerHeader match={this.props.match} title={'Receiving'} />
         <MainContent>
           <AddPalletForm />
+          <ProgressCop />
           <LocationChart />
           <PalletChart />
           <ReceivingTable />
@@ -65,11 +67,12 @@ const MainContent = styled.main`
   grid-template-columns: repeat(3, auto);
   grid-template-areas:
     'AddPalletForm LocationChart PalletChart'
+    'ProgressCop LocationChart PalletChart'
     'ReceivingTable ReceivingTable ReceivingTable';
   @media (max-width: 1200px) {
     grid-template-columns: repeat(2, auto);
     grid-template-areas:
-      'AddPalletForm  .'
+      'AddPalletForm  ProgressCop'
       'LocationChart PalletChart'
       'ReceivingTable ReceivingTable';
   }
@@ -78,6 +81,7 @@ const MainContent = styled.main`
     grid-gap: 12px;
     grid-template-areas:
       'AddPalletForm'
+      'ProgressCop'
       'LocationChart'
       'PalletChart'
       'ReceivingTable';
