@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setUrl } from '../../../redux/Auth/user.actions';
+import { acChartData } from '../../../redux/reiving/reiving.action';
 import ContainerHeader from '../../../components/ContainerHeader';
 import { PageEl } from '../../../Styles/Elements/ToolsEl';
 import AddPalletForm from './AddPalletForm';
@@ -13,6 +14,7 @@ import styled from 'styled-components';
 class ReceivingMainPage extends Component {
   componentDidMount() {
     this.props.setUrl(this.props.match.path);
+    this.props.acChartData();
   }
 
   render() {
@@ -34,7 +36,8 @@ class ReceivingMainPage extends Component {
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = {
-  setUrl
+  setUrl,
+  acChartData
 };
 
 export default connect(

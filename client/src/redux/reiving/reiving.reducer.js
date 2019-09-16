@@ -8,7 +8,9 @@ import {
   UPDATE_LOCATION_TABLE,
   UPDATE_ACTIVE_STEP,
   PICKET_UP_PALLET_INFO,
-  RESET_PATHWAY
+  RESET_PATHWAY,
+  ADD_CHART_LOCATION_DATA,
+  ADD_CHART_PALLET_DATA
 } from '../types';
 
 const initialState = {
@@ -19,7 +21,10 @@ const initialState = {
   addPalletButton: true,
   ////put away
   activeStep: 0,
-  picketUpPallet: null
+  picketUpPallet: null,
+  //chart
+  locationChart: [2, 2, 2, 2],
+  palletChart: [35, 35, 34]
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -63,6 +68,10 @@ export default (state = initialState, { type, payload }) => {
       return { ...state, picketUpPallet: payload };
     case RESET_PATHWAY:
       return { ...state, picketUpPallet: null, activeStep: 0 };
+    case ADD_CHART_LOCATION_DATA:
+      return { ...state, locationChart: payload };
+    case ADD_CHART_PALLET_DATA:
+      return { ...state, palletChart: payload };
     default:
       return state;
   }

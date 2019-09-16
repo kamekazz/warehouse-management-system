@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import styled from 'styled-components';
 import Elevation from '../../../Styles/Elevation';
-
+import { connect } from 'react-redux';
 class LocationChart extends Component {
   constructor(props) {
     super(props);
@@ -20,8 +20,7 @@ class LocationChart extends Component {
             }
           }
         ]
-      },
-      series: [44, 55, 41, 17]
+      }
     };
   }
 
@@ -30,7 +29,7 @@ class LocationChart extends Component {
       <ChartDivEl>
         <ChartEl
           options={this.state.options}
-          series={this.state.series}
+          series={this.props.data}
           type="donut"
           width="320"
           height="184"
@@ -44,7 +43,16 @@ class LocationChart extends Component {
     );
   }
 }
-export default LocationChart;
+
+const mapStateToProps = state => ({
+  data: state.reivingReducer.locationChart
+});
+
+const mapDispatchToProps = {};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LocationChart);
 
 const ChartDivEl = styled.div`
   grid-area: LocationChart;
@@ -56,7 +64,7 @@ const ChartDivEl = styled.div`
   background-color: #424242;
   padding: 12px;
   align-items: center;
-  ${Elevation[2]}
+  ${Elevation[2]};
 `;
 const ChartEl = styled(ReactApexChart)``;
 const H6El = styled.h4`

@@ -13,7 +13,9 @@ import {
   UPDATE_LOCATION_TABLE,
   UPDATE_ACTIVE_STEP,
   PICKET_UP_PALLET_INFO,
-  RESET_PATHWAY
+  RESET_PATHWAY,
+  ADD_CHART_LOCATION_DATA,
+  ADD_CHART_PALLET_DATA
 } from '../types';
 
 export const acCreatePallet = body => async dispatch => {
@@ -23,6 +25,7 @@ export const acCreatePallet = body => async dispatch => {
       dispatch({ type: ADD_NEW_PALLET, payload: data });
       dispatch({ type: MSG_SUCCESS, payload: data.message });
       dispatch(acGetPalletsByState('received'));
+      dispatch(acChartData());
     } else {
       if (data.create) {
         window.open('/app/product/create', '_blank');
@@ -77,6 +80,7 @@ export const acSendDynamicToLocation = id => async dispatch => {
       dispatch({ type: MSG_SUCCESS, payload: data.message });
       dispatch({ type: CLEANED_PALLET_INFO, payload: null });
       dispatch(acGetPalletsByState('received'));
+      dispatch(acChartData());
     } else {
       dispatch({ type: MSG_ERROR, payload: data.message });
     }
@@ -97,6 +101,7 @@ export const acSendConsolidationLocation = (id, location) => async dispatch => {
       dispatch({ type: MSG_SUCCESS, payload: data.message });
       dispatch({ type: CLEANED_PALLET_INFO, payload: null });
       dispatch(acGetPalletsByState('received'));
+      dispatch(acChartData());
     } else {
       dispatch({ type: MSG_ERROR, payload: data.message });
     }
@@ -153,4 +158,21 @@ export const acValidateLocation = (id, location) => async dispatch => {
 
 export const acResetPutAway = () => dispatch => {
   dispatch({ type: RESET_PATHWAY });
+};
+
+//chart
+export const acChartData = () => async dispatch => {
+  let body = {};
+  try {
+    const { data } = await api.post('receiving/get-chart-data', body);
+    console.log('data', data);
+    if (data.success) {
+      dispatch({ type: ADD_CHART_LOCATION_DATA, payload: data.locationTotal });
+      dispatch({ type: ADD_CHART_PALLET_DATA, payload: data.palletTotal });
+    } else {
+      dispatch({ type: MSG_ERROR, payload: data.message });
+    }
+  } catch (error) {
+    console.log('error***', error);
+  }
 };

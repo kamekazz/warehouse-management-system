@@ -250,4 +250,51 @@ router.post('/valedation', async (req, res) => {
   }
 });
 
+router.post('/get-chart-data', async (req, res) => {
+  locationTotal = [];
+  palletTotal = [];
+  try {
+    const locationOccupied = await Location.countDocuments({
+      status: 'occupied'
+    });
+    const locationEmpty = await Location.countDocuments({
+      status: 'empty'
+    });
+    const locationUpcoming = await Location.countDocuments({
+      status: 'upcoming'
+    });
+    const locationMaintenance = await Location.countDocuments({
+      status: 'maintenance'
+    });
+    locationTotal[0] = locationOccupied;
+    locationTotal[1] = locationEmpty;
+    locationTotal[2] = locationUpcoming;
+    locationTotal[3] = locationMaintenance;
+    const palletStore = await Pallet.countDocuments({
+      status: 'store'
+    });
+    const palletPutAway = await Pallet.countDocuments({
+      status: 'r/p'
+    });
+    const palletReceived = await Pallet.countDocuments({
+      status: 'received'
+    });
+    palletTotal[0] = palletStore;
+    palletTotal[1] = palletPutAway;
+    palletTotal[2] = palletReceived;
+
+    res.json({
+      success: true,
+      message: `locationTotal is  store in (locationTotal)`,
+      locationTotal,
+      palletTotal
+    });
+  } catch (error) {
+    res.json({
+      success: false,
+      message: error
+    });
+  }
+});
+
 module.exports = router;
