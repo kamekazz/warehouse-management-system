@@ -55,7 +55,9 @@ function SentToLocation({
             </PalletInfo>
           </DialogContent>
           <Divider />
+
           <TableCop />
+
           <Divider />
           <DialogActions>
             <Typography variant="subtitle2" gutterBottom>
@@ -98,8 +100,8 @@ const DialogEl = styled(Dialog)`
   .MuiDialogActions-root {
     justify-content: space-around;
   }
-  .MuiDialog-paperScrollPaper {
-    max-height: 523px;
+  .MuiDialogContent-root {
+    overflow: visible;
   }
 `;
 

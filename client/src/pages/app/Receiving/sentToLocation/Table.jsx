@@ -78,10 +78,6 @@ const HeaderRowEl = styled(RowEl)`
   div {
     transition: all 0.2s ease-in-out;
     text-transform: uppercase;
-    &:hover {
-      color: ${styleColor.secondary.lite};
-      cursor: pointer;
-    }
   }
 `;
 
@@ -92,6 +88,7 @@ const ItemEl = styled.div`
 `;
 const BottomDivEl = styled.div`
   overflow: auto;
+  max-height: 35vh;
 `;
 
 const BottomRowEl = styled(RowEl)`
@@ -101,7 +98,7 @@ const BottomRowEl = styled(RowEl)`
     background-color: #7574c03b;
     border-radius: 3px;
   }
-  &:hover div {
+  &:hover {
     cursor: pointer;
     color: ${styleColor.secondary.main};
   }

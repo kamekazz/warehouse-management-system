@@ -5,6 +5,7 @@ import { styleColor } from '../../../Styles/styleThem';
 import styled from 'styled-components';
 import { centerEl } from '../../../Styles/Mixins';
 import Tooltip from '@material-ui/core/Tooltip';
+import Paper from '@material-ui/core/Paper';
 import {
   acGetPalletsByState,
   acPickPallet
@@ -19,7 +20,10 @@ function ReceivingTable({ data, acGetPalletsByState, acPickPallet }) {
   return (
     <PaperElEl>
       <TopTopHeaderEl>
-        <h3>Total Pallets in the received State </h3>
+        <H3El>
+          <span>Total Pallets in the received State</span>
+          <Paper>{data.length}</Paper>
+        </H3El>
       </TopTopHeaderEl>
       <HeaderRowEl>
         <ItemEl>SKU</ItemEl>
@@ -71,6 +75,19 @@ const PaperElEl = styled(PaperEl)`
 `;
 const TopTopHeaderEl = styled.div`
   margin: 12px 0;
+`;
+
+const H3El = styled.h3`
+  display: flex;
+  justify-content: space-between;
+  .count {
+    color: ${styleColor.secondary.main};
+  }
+  div {
+    padding: 3px 9px;
+    background-color: #ffffff1f;
+    color: ${styleColor.secondary.main};
+  }
 `;
 
 const RowEl = styled.div`
