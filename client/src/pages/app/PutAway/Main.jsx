@@ -15,7 +15,8 @@ import { styleColor } from '../../../Styles/styleThem';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '100%'
+    width: '100%',
+    gridArea: 'Main'
   },
   backButton: {
     marginRight: theme.spacing(1)
