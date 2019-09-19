@@ -25,7 +25,7 @@ function ProductTable({
   let skuNumberOjc = {};
   skuNumberOjc.skuNumber = skuNumber;
   return (
-    <PaperEl>
+    <PaperElEl elevation={10}>
       <TopTopHeaderEl>
         <AddAndTotal>
           <AddLocationButton
@@ -54,8 +54,8 @@ function ProductTable({
         <ItemEl>SKU</ItemEl>
         <ItemEl>name</ItemEl>
         <ItemEl>department</ItemEl>
-        <ItemEl>size</ItemEl>
-        <ItemEl>ounce</ItemEl>
+        <ItemElDsNone425El>size</ItemElDsNone425El>
+        <ItemElDsNoneEl>ounce</ItemElDsNoneEl>
       </HeaderRowEl>
       <BottomDivEl>
         {data.map(row => (
@@ -68,12 +68,12 @@ function ProductTable({
               <ItemNameEl>{row.name}</ItemNameEl>
             </Tooltip>
             <ItemEl>{row.department}</ItemEl>
-            <ItemEl>{row.size}</ItemEl>
-            <ItemEl>{row.ounce}</ItemEl>
+            <ItemElDsNone425El>{row.size}</ItemElDsNone425El>
+            <ItemElDsNoneEl>{row.ounce}</ItemElDsNoneEl>
           </BottomRowEl>
         ))}
       </BottomDivEl>
-    </PaperEl>
+    </PaperElEl>
   );
 }
 
@@ -92,6 +92,10 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(ProductTable);
+
+const PaperElEl = styled(PaperEl)`
+  grid-area: ProductTable;
+`;
 
 const TopTopHeaderEl = styled.div`
   margin: 12px 0;
@@ -144,7 +148,13 @@ const HeaderRowEl = styled(RowEl)`
 `;
 
 const BottomDivEl = styled.div`
-  height: 60vh;
+  max-height: 55vh;
+  @media (max-width: 1000px) {
+    max-height: 35vh;
+  }
+  @media (max-width: 600px) {
+    max-height: 30vh;
+  }
   overflow: auto;
 `;
 const BottomRowEl = styled(RowEl)`
@@ -196,5 +206,16 @@ const PaginationEl = styled(Pagination)`
   .MuiFlatPageButton-root:not(:first-child):not(:last-child) {
     background-color: #ffffff1f;
     margin-left: 5px;
+  }
+`;
+
+const ItemElDsNoneEl = styled(ItemEl)`
+  @media (max-width: 600px) {
+    display: none;
+  }
+`;
+const ItemElDsNone425El = styled(ItemEl)`
+  @media (max-width: 450px) {
+    display: none;
   }
 `;

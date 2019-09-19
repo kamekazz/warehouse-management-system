@@ -7,9 +7,11 @@ import ContainerHeader from '../../../../components/ContainerHeader';
 import { PageEl } from '../../../../Styles/Elements/ToolsEl';
 import ProductTable from './ProductTable';
 import SearchFrom from './SearchFrom';
+import styled from 'styled-components';
 import _ from 'lodash';
+import ProductChart from './ProductChart';
 
-export class ProductPage extends Component {
+class ProductPage extends Component {
   state = {
     skuNumber: ''
   };
@@ -37,7 +39,7 @@ export class ProductPage extends Component {
 
   render() {
     return (
-      <PageEl>
+      <PageElEl>
         <ContainerHeader
           match={this.props.match}
           title={'Search For Products'}
@@ -47,7 +49,8 @@ export class ProductPage extends Component {
           skuNumber={this.state.skuNumber}
         />
         <ProductTable skuNumber={this.state.skuNumber} />
-      </PageEl>
+        <ProductChart />
+      </PageElEl>
     );
   }
 }
@@ -64,3 +67,23 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(ProductPage);
+
+const PageElEl = styled(PageEl)`
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: auto auto;
+  grid-template-areas:
+    'ContainerHeader ContainerHeader'
+    'SearchFrom ProductTable'
+    'ProductChart ProductTable';
+
+  @media (max-width: 1000px) {
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 12px;
+    grid-template-areas:
+      'ContainerHeader'
+      'SearchFrom'
+      'ProductTable'
+      'ProductChart';
+  }
+`;

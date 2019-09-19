@@ -6,7 +6,7 @@ import { styleColor } from '../../../../Styles/styleThem';
 
 function SearchFrom({ updateTextField, skuNumber }) {
   return (
-    <PaperEl>
+    <PaperElEl elevation={10}>
       <TextFieldEl
         autoFocus
         id="skuNumberId"
@@ -22,14 +22,19 @@ function SearchFrom({ updateTextField, skuNumber }) {
         }
         margin="normal"
       />
-    </PaperEl>
+    </PaperElEl>
   );
 }
 
 export default SearchFrom;
 
+const PaperElEl = styled(PaperEl)`
+  grid-area: SearchFrom;
+  max-width: 561px;
+  max-height: 115px;
+`;
+
 const TextFieldEl = styled(TextField)`
-  width: 240px;
   input {
     letter-spacing: 3px;
     font-size: 35px;
