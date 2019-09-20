@@ -30,7 +30,7 @@ function AllPallets({
     acGetAllPallet(skuNumber, 30, 1);
   }, []);
   return (
-    <PaperEl elevation={10}>
+    <PaperElEl elevation={10}>
       <TopTopHeaderEl>
         <AddAndTotal>
           <AddLocationButton
@@ -78,7 +78,7 @@ function AllPallets({
           <LinearProgress color="secondary" />
         )}
       </BottomDivEl>
-    </PaperEl>
+    </PaperElEl>
   );
 }
 
@@ -99,6 +99,10 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(AllPallets);
+
+const PaperElEl = styled(PaperEl)`
+  grid-area: AllPallets;
+`;
 
 const AddAndTotal = styled.div`
   display: flex;

@@ -29,13 +29,13 @@ class ProductOnePage extends Component {
     const skuNumber = this.props.match.params;
 
     return (
-      <PageEl>
+      <PageElEl>
         <ContainerHeader match={this.props.match} title={`Product Info`} />
 
         {product && <InfoCop data={product} />}
-
+        <HistoryCop />
         <AllPallets skuNumber={skuNumber} />
-      </PageEl>
+      </PageElEl>
     );
   }
 }
@@ -54,3 +54,16 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(ProductOnePage);
+
+const PageElEl = styled(PageEl)`
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(2, auto);
+  grid-template-areas:
+    'ContainerHeader    ContainerHeader'
+    'InfoCop            AllPallets'
+    'HistoryCop         AllPallets';
+  @media (max-width: 600px) {
+    grid-gap: 12px;
+  }
+`;
