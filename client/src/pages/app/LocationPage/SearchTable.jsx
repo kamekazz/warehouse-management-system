@@ -73,7 +73,7 @@ function SearchTable({
   };
 
   return (
-    <PaperEl elevation={3}>
+    <PaperElEl elevation={3}>
       <TopTopHeaderEl>
         <AddAndTotal>
           <AddLocationButton
@@ -100,11 +100,11 @@ function SearchTable({
       </TopTopHeaderEl>
       <HeaderRowEl>
         <ItemEl>location</ItemEl>
-        <ItemEl>product</ItemEl>
+        <ItemSkuEl>product</ItemSkuEl>
         <ItemEl>size</ItemEl>
         <ItemEl>status</ItemEl>
-        <ItemEl>department</ItemEl>
-        <ItemEl>action</ItemEl>
+        <ItemActionEl>department</ItemActionEl>
+        <ItemActionEl>action</ItemActionEl>
       </HeaderRowEl>
       <BottomDivEl>
         {!loading ? (
@@ -114,11 +114,13 @@ function SearchTable({
               onClick={() => history.push(`/app/location/${row.fullName}`)}
             >
               <ItemEl>{row.fullName}</ItemEl>
-              <ItemEl>{row.skuNumber ? row.skuNumber : 'empty'}</ItemEl>
+              <ItemSkuEl>{row.skuNumber ? row.skuNumber : 'empty'}</ItemSkuEl>
               <ItemEl>{sizeHelper(row.size, row.maxSize)}</ItemEl>
               <ItemEl>{statusHelper(row.status)}</ItemEl>
-              <ItemEl>{row.department ? row.department : 'null'}</ItemEl>
-              <ItemEl>
+              <ItemActionEl>
+                {row.department ? row.department : 'null'}
+              </ItemActionEl>
+              <ItemActionEl>
                 <Tooltip title="View">
                   <IconButton>
                     <VisibilityIcon />
@@ -141,14 +143,14 @@ function SearchTable({
                     <DeleteIcon />
                   </IconButton>
                 </Tooltip>
-              </ItemEl>
+              </ItemActionEl>
             </BottomRowEl>
           ))
         ) : (
           <LinearProgress color="secondary" />
         )}
       </BottomDivEl>
-    </PaperEl>
+    </PaperElEl>
   );
 }
 
@@ -173,10 +175,22 @@ export default connect(
   mapDispatchToProps
 )(SearchTable);
 
+const PaperElEl = styled(PaperEl)`
+  grid-area: SearchTable;
+  height: 100%;
+  @media (max-width: 600px) {
+    padding: 8px 8px;
+  }
+`;
+
 const AddAndTotal = styled.div`
   display: flex;
   button {
     margin-right: 12px;
+  }
+  @media (max-width: 600px) {
+    justify-content: space-between;
+    margin-bottom: 6px;
   }
 `;
 
@@ -204,6 +218,9 @@ const TopTopHeaderEl = styled.div`
   margin: 12px 0;
   display: flex;
   justify-content: space-between;
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
 `;
 
 const AddLocationButton = styled(Button)`
@@ -217,6 +234,9 @@ const RowEl = styled.div`
   flex-wrap: nowrap;
   justify-content: space-between;
   padding: 12px 21px;
+  @media (max-width: 600px) {
+    padding: 12px 8px;
+  }
 `;
 
 const HeaderRowEl = styled(RowEl)`
@@ -244,7 +264,7 @@ const HeaderRowEl = styled(RowEl)`
 `;
 
 const BottomDivEl = styled.div`
-  max-height: 60vh;
+  max-height: 50vh;
   overflow: auto;
 `;
 const BottomRowEl = styled(RowEl)`
@@ -271,6 +291,21 @@ const ItemEl = styled.div`
     }
   }
   path {
+  }
+  @media (max-width: 600px) {
+    width: 95px;
+  }
+`;
+
+const ItemActionEl = styled(ItemEl)`
+  @media (max-width: 600px) {
+    display: none;
+  }
+`;
+
+const ItemSkuEl = styled(ItemEl)`
+  @media (max-width: 425px) {
+    display: none;
   }
 `;
 

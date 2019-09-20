@@ -14,6 +14,7 @@ import { PageEl } from '../../../Styles/Elements/ToolsEl';
 import SearchForm from './SearchForm';
 import SearchTable from './SearchTable';
 import LocatonCreatDialog from './LocationCreate/LocatonCreatDialog';
+import styled from 'styled-components';
 
 class LocationPage extends Component {
   state = {
@@ -67,7 +68,7 @@ class LocationPage extends Component {
 
   render() {
     return (
-      <PageEl>
+      <PageElEl>
         <ContainerHeader
           match={this.props.match}
           title={'Search For Locations'}
@@ -81,7 +82,7 @@ class LocationPage extends Component {
           handedSize={this.handedSize}
           handedDelete={this.handedDelete}
         />
-      </PageEl>
+      </PageElEl>
     );
   }
 }
@@ -100,3 +101,17 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(LocationPage);
+
+const PageElEl = styled(PageEl)`
+  height: 100vh;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(2, auto);
+  grid-template-areas:
+    'ContainerHeader   ContainerHeader'
+    'SearchForm SearchForm'
+    'SearchTable      SearchTable';
+  @media (max-width: 600px) {
+    grid-gap: 12px;
+  }
+`;
