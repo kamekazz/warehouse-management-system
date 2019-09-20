@@ -1,5 +1,6 @@
 import React from 'react';
 import MUIDataTable from 'mui-datatables';
+import styled from 'styled-components';
 
 function CreateProductTable({ data, startEditMode }) {
   const columns = [
@@ -67,7 +68,7 @@ function CreateProductTable({ data, startEditMode }) {
   };
 
   return (
-    <MUIDataTable
+    <MUIDataTableEl
       title={'The Last 100 Product  Create'}
       data={data}
       columns={columns}
@@ -77,3 +78,7 @@ function CreateProductTable({ data, startEditMode }) {
 }
 
 export default CreateProductTable;
+
+const MUIDataTableEl = styled(MUIDataTable)`
+  grid-area: CreateProductTable;
+`;

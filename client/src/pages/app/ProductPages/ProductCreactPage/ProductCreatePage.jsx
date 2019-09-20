@@ -11,10 +11,12 @@ import {
 } from '../../../../redux/Item/item.action';
 import CreateProductForm from './CreateProductForm';
 import CreateProductTable from './CreateProductTable';
+import ProductChart from '../../ProductPages/ProductSerchPage/ProductChart';
 import {
   warningMsgBar,
   infoMsgBar
 } from '../../../../redux/Notification/notification.actions';
+import styled from 'styled-components';
 
 class ProductCreatePage extends Component {
   state = {
@@ -116,7 +118,7 @@ class ProductCreatePage extends Component {
 
   render() {
     return (
-      <PageEl>
+      <PageElEl>
         <ContainerHeader
           match={this.props.match}
           title={'Create New Product'}
@@ -134,7 +136,8 @@ class ProductCreatePage extends Component {
           data={this.props.tableData}
           startEditMode={this.startEditMode}
         />
-      </PageEl>
+        <ProductChart />
+      </PageElEl>
     );
   }
 }
@@ -157,3 +160,36 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(ProductCreatePage);
+
+const PageElEl = styled(PageEl)`
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(2, auto);
+  grid-template-areas:
+    'ContainerHeader   ContainerHeader'
+    'CreateProductForm CreateProductTable'
+    'ProductChart      CreateProductTable';
+  @media (max-width: 1200px) {
+    grid-template-areas:
+      'ContainerHeader     ContainerHeader'
+      'CreateProductForm   ProductChart'
+      'CreateProductTable  CreateProductTable';
+  }
+  @media (max-width: 850px) {
+    grid-template-columns: repeat(1, auto);
+    grid-template-areas:
+      'ContainerHeader'
+      'CreateProductForm'
+      'CreateProductTable'
+      'ProductChart';
+  }
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(1, auto);
+    grid-gap: 12px;
+    grid-template-areas:
+      'ContainerHeader'
+      'CreateProductForm'
+      'CreateProductTable'
+      'ProductChart';
+  }
+`;

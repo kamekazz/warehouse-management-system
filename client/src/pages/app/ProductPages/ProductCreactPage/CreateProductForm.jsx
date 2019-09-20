@@ -137,6 +137,7 @@ function CreateProductForm({
 export default CreateProductForm;
 
 const PaperEl = styled(Paper)`
+  grid-area: CreateProductForm;
   padding: 8px 18px;
   margin-bottom: 12px;
   max-width: 734px;
@@ -150,11 +151,17 @@ const FormEl = styled.form`
 const TopDiv = styled.div`
   display: flex;
   justify-content: space-between;
+  @media (max-width: 734px) {
+    flex-direction: column;
+  }
 `;
 const BottomDiv = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 12px;
+  @media (max-width: 734px) {
+    flex-direction: column;
+  }
 `;
 const ButtonDiv = styled.div`
   display: flex;

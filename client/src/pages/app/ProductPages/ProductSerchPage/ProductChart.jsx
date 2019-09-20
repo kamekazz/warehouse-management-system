@@ -24,7 +24,7 @@ class ProductChart extends Component {
           curve: 'straight'
         },
         title: {
-          text: 'Unique Product  by Month',
+          text: 'New Product  by Month',
           align: 'left'
         },
         grid: {
