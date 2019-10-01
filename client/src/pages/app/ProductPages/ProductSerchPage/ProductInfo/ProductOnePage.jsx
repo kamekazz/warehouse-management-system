@@ -63,7 +63,19 @@ const PageElEl = styled(PageEl)`
     'ContainerHeader    ContainerHeader'
     'InfoCop            AllPallets'
     'HistoryCop         AllPallets';
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, auto);
+    grid-template-areas:
+      'ContainerHeader    ContainerHeader'
+      'InfoCop            HistoryCop'
+      'AllPallets         AllPallets';
+  }
   @media (max-width: 600px) {
-    grid-gap: 12px;
+    grid-template-columns: repeat(1, auto);
+    grid-template-areas:
+      'ContainerHeader'
+      'InfoCop'
+      'HistoryCop'
+      'AllPallets';
   }
 `;

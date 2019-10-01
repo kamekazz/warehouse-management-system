@@ -59,7 +59,7 @@ function AllPallets({
         <ItemEl>location</ItemEl>
         <ItemEl>Count</ItemEl>
         <ItemEl>Status</ItemEl>
-        <ItemEl>department</ItemEl>
+        <DepartmentItemEl>department</DepartmentItemEl>
       </HeaderRowEl>
       <BottomDivEl>
         {!loading ? (
@@ -71,7 +71,7 @@ function AllPallets({
               <ItemEl>{row.location ? row.location : 'null'}</ItemEl>
               <ItemEl>{`${row.contAvailable}/${row.cont}`}</ItemEl>
               <ItemEl>{row.status}</ItemEl>
-              <ItemEl>{row.department}</ItemEl>
+              <DepartmentItemEl>{row.department}</DepartmentItemEl>
             </BottomRowEl>
           ))
         ) : (
@@ -148,6 +148,9 @@ const RowEl = styled.div`
   flex-wrap: nowrap;
   justify-content: space-between;
   padding: 12px 21px;
+  @media (max-width: 600px) {
+    padding: 12px 12px;
+  }
 `;
 
 const HeaderRowEl = styled(RowEl)`
@@ -207,5 +210,14 @@ const ItemEl = styled.div`
     }
   }
   path {
+  }
+  @media (max-width: 600px) {
+    width: 85px;
+  }
+`;
+
+const DepartmentItemEl = styled(ItemEl)`
+  @media (max-width: 380px) {
+    display: none;
   }
 `;
