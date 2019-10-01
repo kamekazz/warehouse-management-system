@@ -6,6 +6,8 @@ import ContainerHeader from '../../../../components/ContainerHeader';
 import { PageEl } from '../../../../Styles/Elements/ToolsEl';
 import InfoCop from './InfoCop';
 import LocationPalletTable from './LocationPalletTable';
+import Charts from '../../Pallete/Charts';
+import styled from 'styled-components';
 
 class LocationInfoPage extends Component {
   componentDidMount() {
@@ -20,11 +22,12 @@ class LocationInfoPage extends Component {
   };
   render() {
     return (
-      <PageEl>
+      <PageElEl>
         <ContainerHeader match={this.props.match} title={`Location Info`} />
         {this.props.data && <InfoCop data={this.props.data} />}
+        <Charts title="Location life activity" />
         {this.props.data && <LocationPalletTable data={this.props.data} />}
-      </PageEl>
+      </PageElEl>
     );
   }
 }
@@ -39,3 +42,21 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(LocationInfoPage);
+
+const PageElEl = styled(PageEl)`
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(2, auto);
+  grid-template-areas:
+    'ContainerHeader    ContainerHeader'
+    'InfoCop            Charts'
+    'LocationPalletTable         LocationPalletTable';
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(1, auto);
+    grid-template-areas:
+      'ContainerHeader'
+      'InfoCop'
+      'Charts'
+      'LocationPalletTable';
+  }
+`;

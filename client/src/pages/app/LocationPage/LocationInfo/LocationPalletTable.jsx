@@ -11,7 +11,7 @@ import Pagination from 'material-ui-flat-pagination';
 
 function LocationPalletTable({ data }) {
   return (
-    <PaperEl elevation={10}>
+    <PaperElEl elevation={10}>
       <TopTopHeaderEl>
         <AddAndTotal>
           <AddLocationButton
@@ -43,7 +43,7 @@ function LocationPalletTable({ data }) {
           </BottomRowEl>
         ))}
       </BottomDivEl>
-    </PaperEl>
+    </PaperElEl>
   );
 }
 
@@ -54,6 +54,10 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(LocationPalletTable);
+
+const PaperElEl = styled(PaperEl)`
+  grid-area: LocationPalletTable;
+`;
 
 const AddAndTotal = styled.div`
   display: flex;
@@ -99,6 +103,9 @@ const RowEl = styled.div`
   flex-wrap: nowrap;
   justify-content: space-between;
   padding: 12px 21px;
+  @media (max-width: 600px) {
+    padding: 12px 12px;
+  }
 `;
 
 const HeaderRowEl = styled(RowEl)`
@@ -158,5 +165,14 @@ const ItemEl = styled.div`
     }
   }
   path {
+  }
+  @media (max-width: 600px) {
+    width: 85px;
+  }
+`;
+
+const DepartmentItemEl = styled(ItemEl)`
+  @media (max-width: 380px) {
+    display: none;
   }
 `;

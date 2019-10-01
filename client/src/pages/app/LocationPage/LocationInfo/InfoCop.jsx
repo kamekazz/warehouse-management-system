@@ -57,6 +57,7 @@ export default InfoCop;
 
 const PaperElEl = styled(PaperEl)`
   max-width: 375px;
+  grid-area: InfoCop;
 `;
 
 const DivRowEl = styled.div`

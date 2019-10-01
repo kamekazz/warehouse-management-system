@@ -68,7 +68,7 @@ class HeatmapChart extends React.Component {
           enabled: false
         },
         title: {
-          text: 'Pallet life activity'
+          text: !this.props.title ? 'Pallet life activity' : this.props.title
         }
       },
       series: [
