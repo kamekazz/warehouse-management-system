@@ -9,6 +9,7 @@ import PalletInfoCop from './PalletInfoCop';
 import HistoryCop from '../../../components/HistoryCop';
 import styled from 'styled-components';
 import Charts from './Charts';
+import ActionCop from './ActionCop';
 
 class PalletPage extends Component {
   state = {
@@ -31,6 +32,7 @@ class PalletPage extends Component {
         <MainContent>
           {this.state.data && <PalletInfoCop data={this.state.data} />}
           <Charts />
+          <ActionCop />
           <HistoryCop />
         </MainContent>
       </PageElEl>
@@ -69,16 +71,21 @@ const MainContent = styled.main`
   width: 100%;
   grid-gap: 20px;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-areas: 'PalletInfoCop PalletInfoCop PalletInfoCop HistoryCop HistoryCop HistoryCop Charts Charts Charts Charts Charts Charts';
+  grid-template-areas:
+    'PalletInfoCop PalletInfoCop PalletInfoCop HistoryCop HistoryCop HistoryCop Charts Charts Charts Charts Charts Charts'
+    'ActionCop     ActionCop     ActionCop     HistoryCop HistoryCop HistoryCop Charts Charts Charts Charts Charts Charts';
   @media (max-width: 1200px) {
+    grid-template-columns: repeat(2, auto);
     grid-template-areas:
-      'PalletInfoCop PalletInfoCop PalletInfoCop PalletInfoCop . . . HistoryCop HistoryCop HistoryCop HistoryCop HistoryCop'
-      'Charts Charts Charts Charts Charts Charts Charts Charts Charts Charts Charts Charts';
+      'PalletInfoCop   HistoryCop'
+      'ActionCop       HistoryCop'
+      'Charts Charts ';
   }
   @media (max-width: 600px) {
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 12px;
     grid-template-areas:
+      'ActionCop'
       'PalletInfoCop'
       'HistoryCop'
       'Charts';

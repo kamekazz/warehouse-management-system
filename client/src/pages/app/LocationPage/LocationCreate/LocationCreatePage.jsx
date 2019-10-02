@@ -17,6 +17,7 @@ import { PageEl } from '../../../../Styles/Elements/ToolsEl';
 import LocationForm from './LocationcreateForm';
 import LocationTable from './LocationTable';
 import LocationCreatDialog from './LocatonCreatDialog';
+import styled from 'styled-components';
 
 export class LocationCreatePage extends Component {
   state = {
@@ -137,7 +138,7 @@ export class LocationCreatePage extends Component {
   };
   render() {
     return (
-      <PageEl>
+      <PageElEl>
         <ContainerHeader
           match={this.props.match}
           title={'Create New Location'}
@@ -159,7 +160,7 @@ export class LocationCreatePage extends Component {
           handedSize={this.handedSize}
           handedDelete={this.handedDelete}
         />
-      </PageEl>
+      </PageElEl>
     );
   }
 }
@@ -180,3 +181,17 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(LocationCreatePage);
+
+const PageElEl = styled(PageEl)`
+  height: 100vh;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(1, auto);
+  grid-template-areas:
+    'ContainerHeader'
+    'SearchForm'
+    'SearchTable';
+  @media (max-width: 600px) {
+    grid-gap: 12px;
+  }
+`;
