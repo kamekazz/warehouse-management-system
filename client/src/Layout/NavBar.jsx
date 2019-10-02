@@ -14,6 +14,8 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import { connect } from 'react-redux';
+import { userSignOut } from '../redux/Auth/user.actions';
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -77,7 +79,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function PrimarySearchAppBar({ toggleDrawer }) {
+function PrimarySearchAppBar({ toggleDrawer, userSignOut }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -101,6 +103,9 @@ export default function PrimarySearchAppBar({ toggleDrawer }) {
   function handleMobileMenuOpen(event) {
     setMobileMoreAnchorEl(event.currentTarget);
   }
+  const handleUserSignOut = () => {
+    userSignOut();
+  };
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -114,7 +119,7 @@ export default function PrimarySearchAppBar({ toggleDrawer }) {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={() => handleUserSignOut()}>Sign Out</MenuItem>
     </Menu>
   );
 
@@ -229,3 +234,14 @@ export default function PrimarySearchAppBar({ toggleDrawer }) {
     </div>
   );
 }
+
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = {
+  userSignOut
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PrimarySearchAppBar);
