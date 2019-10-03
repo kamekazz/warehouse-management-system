@@ -98,4 +98,7 @@ const MainContainerEl = styled.div`
   align-items: center;
   justify-content: space-evenly;
   height: 80vh;
+  h2 {
+    color: whitesmoke;
+  }
 `;

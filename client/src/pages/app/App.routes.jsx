@@ -11,6 +11,7 @@ import ReceivingMainPage from './Receiving/ReceivingMainPage';
 import PutAway from './PutAway/PutAway';
 import PalletPage from './Pallete/PalletPage';
 import LocationInfoPage from './LocationPage/LocationInfo/LocationInfoPage';
+import QuickStart from './QuickStart/QuickStart';
 
 export class AppMainRoute extends Component {
   render() {
@@ -18,6 +19,7 @@ export class AppMainRoute extends Component {
     return (
       <LayoutCop>
         <Switch>
+          <Route exact path={`${match.path}`} component={QuickStart} />
           <Route
             exact
             path={`${match.path}/location`}
