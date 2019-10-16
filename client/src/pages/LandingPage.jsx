@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import history from '../redux/history';
 import styled from 'styled-components';
 import { styleColor } from '../Styles/styleThem';
-import './assets/css/fontawesome-all.min.css';
+
 import './assets/css/main.css';
 
 const Title = styled.h1`
@@ -18,6 +18,19 @@ const Section = styled.section`
   a {
     color: ${styleColor.secondary.dark};
   }
+`;
+
+const Ispreload = styled.div`
+  /* position: relative; */
+`;
+
+const Button = styled.div`
+  position: sticky;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  background: red;
+  z-index: 400;
 `;
 
 const SectionA = styled.section`
@@ -55,7 +68,7 @@ class LandingPage extends Component {
 
   render() {
     return (
-      <div className="is-preload">
+      <Ispreload className="is-preload">
         <div id="wrapper">
           <Section className="intro">
             <header>
@@ -64,6 +77,12 @@ class LandingPage extends Component {
                 EZ WAREHOUSE MANAGEMENT SYSTEM By
                 <a href="https://github.com/kamekazz">Manuel Taveras</a> /
               </p>
+              <Button
+                className="button primary large"
+                onClick={() => history.push('/signin')}
+              >
+                try demo
+              </Button>
               <ul className="actions">
                 <li>
                   <a href="#first" className="arrow scrolly">
@@ -240,7 +259,7 @@ class LandingPage extends Component {
               <ul className="actions">
                 <li>
                   <a
-                    onClick={() => history.push('/location')}
+                    onClick={() => history.push('/signin')}
                     className="button primary large"
                   >
                     Get Started
@@ -250,7 +269,7 @@ class LandingPage extends Component {
             </div>
           </SectionA>
 
-          <section>
+          <SectionA>
             <header>
               <h2>Get in touch</h2>
             </header>
@@ -349,9 +368,9 @@ class LandingPage extends Component {
                 </li>
               </ul>
             </footer>
-          </section>
+          </SectionA>
         </div>
-      </div>
+      </Ispreload>
     );
   }
 }
