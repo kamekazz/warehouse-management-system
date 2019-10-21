@@ -16,6 +16,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import { connect } from 'react-redux';
 import { userSignOut } from '../redux/Auth/user.actions';
+import history from '../redux/history';
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -28,7 +29,8 @@ const useStyles = makeStyles(theme => ({
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block'
-    }
+    },
+    cursor: 'pointer'
   },
   search: {
     position: 'relative',
@@ -177,7 +179,12 @@ function PrimarySearchAppBar({ toggleDrawer, userSignOut }) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
+          <Typography
+            onClick={() => history.push('/app')}
+            className={classes.title}
+            variant="h6"
+            noWrap
+          >
             EZ-WMS
           </Typography>
           <div className={classes.search}>
