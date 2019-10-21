@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import history from '../redux/history';
 import styled from 'styled-components';
 import { styleColor } from '../Styles/styleThem';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 import './assets/css/main.css';
 
@@ -85,9 +86,9 @@ class LandingPage extends Component {
               </Button>
               <ul className="actions">
                 <li>
-                  <a href="#first" className="arrow scrolly">
+                  <AnchorLink href="#first" className="arrow scrolly">
                     <span className="label">Next</span>
-                  </a>
+                  </AnchorLink>
                 </li>
               </ul>
             </header>
