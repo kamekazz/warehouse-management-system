@@ -19,6 +19,7 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cheerio": "^1.0.0-rc.3",
     "cors": "^2.8.5",
     "cross-env": "^5.2.0",
     "date-fns": "^2.0.1",
@@ -30,10 +31,14 @@
     "lodash": "^4.17.15",
     "mongoose": "^5.5.0",
     "mui-datatables": "^2.8.1",
+    "nodemon": "^2.0.2",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
+    "puppeteer": "^2.1.1",
     "reactstrap": "^8.0.1",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5",
     "styled-components": "^4.3.2"
   },
   "devDependencies": {

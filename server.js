@@ -14,6 +14,7 @@ const orderRoutes = require('./routes/order.routes');
 const ticketRoutes = require('./routes/ticket.routes');
 const pickerRoutes = require('./routes/picker.routes');
 const userRoutes = require('./routes/user.routes');
+const webScrapingRoutes = require('./routes/webscraping.routes');
 
 // app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(bodyParser.json());
@@ -24,7 +25,8 @@ app.use(express.json({ extended: false }));
 mongoose
   .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
-    useCreateIndex: true
+    useCreateIndex: true,
+    useUnifiedTopology: true
   })
   .then(() => console.log(`***mongodb connected`))
   .catch(err => console.log(err));
@@ -38,6 +40,7 @@ app.use('/api/order', orderRoutes);
 app.use('/api/ticket', ticketRoutes);
 app.use('/api/picker', pickerRoutes);
 app.use('/api/user', userRoutes);
+app.use('/webs/item', webScrapingRoutes);
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
