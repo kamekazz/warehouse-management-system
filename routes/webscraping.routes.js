@@ -15,6 +15,7 @@ function getUrl(item) {
   return `http://cranbury.worldandmain.com/shop/Catalog.aspx?kw=${item}`;
 }
 
+// eslint-disable-next-line consistent-return
 async function scraperCraigsliest(item) {
   const itemTextData = {};
   try {
@@ -59,14 +60,14 @@ router.post('/', async (req, res) => {
     itemData = { ...itemData, ...getAllData(fullStringData) };
     res.json({
       success: true,
-      message: 'good ruote',
+      message: 'fond item',
       data: itemData
     });
   } catch (err) {
     console.error(err);
     res.json({
       success: false,
-      message: err
+      message: 'err'
     });
   }
 });

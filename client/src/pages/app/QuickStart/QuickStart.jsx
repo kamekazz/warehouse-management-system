@@ -12,7 +12,11 @@ const detractionOption = [
     url: '/app/receiving/put-away'
   },
   { icon: 'fas fa-suitcase-rolling', title: 'Products', url: '/app/product' },
-  { icon: 'fas fa-plus-square', title: 'New Products', url: '/app/product' },
+  {
+    icon: 'fas fa-plus-square',
+    title: 'New Products',
+    url: '/app/product/create'
+  },
   { icon: 'fas fa-map-marked-alt', title: 'Locations', url: '/app/location' },
   {
     icon: 'fas fa-plus-square',
@@ -24,7 +28,8 @@ const detractionOption = [
   { icon: 'fas fa-file-signature', title: 'Cycle Count', url: 'BOS' },
   { icon: 'fas fa-people-carry', title: 'Picking', url: 'BOS' },
   { icon: 'fas fa-box', title: 'Packaging', url: 'Packaging' },
-  { icon: 'fas fa-coins', title: 'Q/A', url: 'Q/A' }
+  { icon: 'fas fa-coins', title: 'Q/A', url: 'Q/A' },
+  { icon: 'fas fa-boxes', title: 'CubeScan', url: '/app/cubescan' }
 ];
 
 function QuickStart() {

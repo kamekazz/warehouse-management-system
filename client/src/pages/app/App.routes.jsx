@@ -12,6 +12,7 @@ import PutAway from './PutAway/PutAway';
 import PalletPage from './Pallete/PalletPage';
 import LocationInfoPage from './LocationPage/LocationInfo/LocationInfoPage';
 import QuickStart from './QuickStart/QuickStart';
+import CubePage from './CubeScan/CubePage';
 
 export class AppMainRoute extends Component {
   render() {
@@ -46,6 +47,7 @@ export class AppMainRoute extends Component {
             path={`${match.path}/product/:skuNumber`}
             component={ProductOnePage}
           />
+          <Route exact path={`${match.path}/cubescan`} component={CubePage} />
           <Route
             exact
             path={`${match.path}/receiving`}
