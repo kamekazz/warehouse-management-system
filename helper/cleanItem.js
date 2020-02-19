@@ -24,6 +24,10 @@ function getUpc(string) {
   return string.substr(4);
 }
 
+function getImgUrl(item) {
+  return `http://cranbury.worldandmain.com/img/items/${item}_1.jpg`;
+}
+
 function cutString(string, endLocation) {
   return string.substr(endLocation);
 }
@@ -36,8 +40,11 @@ function getAllData(fullData) {
   const { modelId, endModelLocation } = getModel(removeItemNumber);
   const removeModel = cutString(removeItemNumber, endModelLocation);
   const upc = getUpc(removeModel);
+  item.img = getImgUrl(itemNumber);
   item.itemNumber = itemNumber;
   item.model = modelId;
   item.upc = upc;
   return item;
 }
+
+module.exports = getAllData;
