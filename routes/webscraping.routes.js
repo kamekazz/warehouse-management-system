@@ -19,7 +19,10 @@ function getUrl(item) {
 async function scraperCraigsliest(item) {
   const itemTextData = {};
   try {
-    const browser = await puppeteer.launch({ headless: true });
+    const browser = await puppeteer.launch({
+      headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
     const page = await browser.newPage();
     await page.goto(getUrl(item));
     await page.waitForXPath('//*[@id="divItems"]/div/div', {
