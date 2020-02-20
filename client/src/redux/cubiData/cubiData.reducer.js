@@ -90,7 +90,7 @@ const initialState = {
       '075877125378',
       '125037',
       'EA',
-      'HEATER DLX MILKHOUSE UTIL GRY',
+      'HEATER DLX MILKHOUSE UTIL manny',
       '1.56',
       '2.36',
       '25.02',
