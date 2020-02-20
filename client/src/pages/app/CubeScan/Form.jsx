@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import { styleColor } from '../../../Styles/styleThem';
 import { connect } from 'react-redux';
+import { acGetWebData } from '../../../redux/cubiData/cubiData.action';
 class FormUpcContainer extends Component {
   constructor(props) {
     super(props);
@@ -12,7 +13,7 @@ class FormUpcContainer extends Component {
   }
   onSubmitFrom = e => {
     e.preventDefault();
-    console.log(this.state.upc);
+    this.props.acGetWebData(this.state.upc);
     this.setState({ upc: '' });
   };
   render() {
@@ -42,7 +43,7 @@ class FormUpcContainer extends Component {
 }
 const mapStateToProps = state => ({});
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { acGetWebData };
 
 export default connect(
   mapStateToProps,

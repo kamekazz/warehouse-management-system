@@ -1,6 +1,7 @@
-// import {} from '../types';
+import { GET_PRODUCT_INFO } from '../types';
 
 const initialState = {
+  productInfo: null,
   tableData: [
     [
       '075877125378',
@@ -95,6 +96,8 @@ const initialState = {
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
+    case GET_PRODUCT_INFO:
+      return { ...state, productInfo: payload };
     default:
       return state;
   }

@@ -38,7 +38,7 @@ async function scraperCraigsliest(item) {
     itemTextData.fullStringData = $(
       '#divItems > div > div > p:nth-child(4)'
     ).text();
-
+    browser.close();
     return itemTextData;
   } catch (err) {
     console.error(err);
