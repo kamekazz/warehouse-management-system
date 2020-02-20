@@ -3,25 +3,33 @@ import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
-import MenuItem from '@material-ui/core/MenuItem';
 import { styleColor } from '../../../Styles/styleThem';
-
+import { connect } from 'react-redux';
 class FormUpcContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { upc: '' };
+  }
+  onSubmitFrom = e => {
+    e.preventDefault();
+    console.log(this.state.upc);
+    this.setState({ upc: '' });
+  };
   render() {
     return (
       <PaperEl elevation={12}>
-        <FormEl>
+        <FormEl onSubmit={e => this.onSubmitFrom(e)}>
           <UpcTextEl
             autoFocus={true}
             label="UPC"
-            name="name"
+            name="upc"
             margin="normal"
             type="text"
-            // value={name}
-            // onChange={e => updateTextField(e.target.name, e.target.value, 75)}
+            value={this.state.upc}
+            onChange={e => this.setState({ upc: e.target.value })}
           />
           <ButtonEl
-            // onClick={handelCancel}
+            onClick={this.onSubmitFrom}
             variant="contained"
             color="secondary"
           >
@@ -32,14 +40,21 @@ class FormUpcContainer extends Component {
     );
   }
 }
-export default FormUpcContainer;
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = {};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FormUpcContainer);
 
 const PaperEl = styled(Paper)`
   grid-area: FormUpcContainer;
   padding: 8px 18px;
-  max-width: 734px;
   display: flex;
   align-items: center;
+  height: 100px;
 `;
 
 const FormEl = styled.form`

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { PageEl } from '../../../Styles/Elements/ToolsEl';
 import ContainerHeader from '../../../components/ContainerHeader';
 import FormUpcContainer from './Form';
+import DataTable from './DataTable';
 
 class CubePage extends Component {
   render() {
@@ -12,6 +13,7 @@ class CubePage extends Component {
         <ContainerHeader match={this.props.match} title={'CubeScan'} />
         <MainContent>
           <FormUpcContainer />
+          <DataTable />
         </MainContent>
       </PageElEl>
     );
@@ -28,7 +30,7 @@ export default connect(
 
 const PageElEl = styled(PageEl)`
   display: grid;
-  grid-gap: 20px;
+  grid-gap: 12px;
   grid-template-columns: repeat(1, 1fr);
   grid-template-areas:
     'ContainerHeader'
@@ -39,7 +41,12 @@ const PageElEl = styled(PageEl)`
 `;
 
 const MainContent = styled.main`
+  width: 100%;
   grid-area: MainContent;
   display: grid;
-  width: 100%;
+  grid-gap: 12px;
+  grid-template-columns: 1fr 2fr;
+  grid-template-areas:
+    'FormUpcContainer DataTable'
+    'FormUpcContainer DataTable';
 `;
