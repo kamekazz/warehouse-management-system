@@ -1,10 +1,15 @@
 import api from '../../util/ApiWorldandMain';
-import { GET_PRODUCT_INFO, MSG_ERROR } from '../types';
+import {
+  GET_PRODUCT_INFO,
+  MSG_ERROR,
+  LOADING_CUBISCAN,
+  CANCEL_ALL_CUBISCAN
+} from '../types';
 
 export const acGetWebData = upc => async (dispatch, getState) => {
+  dispatch({ type: LOADING_CUBISCAN, payload: true });
   let body = {};
   body.item = upc;
-
   try {
     const { data } = await api.post('', body);
 
@@ -16,4 +21,9 @@ export const acGetWebData = upc => async (dispatch, getState) => {
   } catch (error) {
     console.log('error***', error);
   }
+  dispatch({ type: LOADING_CUBISCAN, payload: false });
+};
+
+export const acCancelSuctions = upc => async (dispatch, getState) => {
+  dispatch({ type: CANCEL_ALL_CUBISCAN, payload: null });
 };

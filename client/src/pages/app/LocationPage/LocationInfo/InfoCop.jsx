@@ -85,19 +85,3 @@ const ItemInfo = styled.div`
     color: ${styleColor.secondary.main};
   }
 `;
-
-const IDItemEl = styled(ItemInfo)`
-  width: 100%;
-  justify-content: space-between;
-`;
-
-const NameInfo = styled(Paper)`
-  &:hover {
-    color: ${styleColor.secondary.lite};
-    cursor: pointer;
-  }
-  max-width: 120px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-`;

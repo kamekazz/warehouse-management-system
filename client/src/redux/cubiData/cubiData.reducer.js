@@ -1,7 +1,13 @@
-import { GET_PRODUCT_INFO } from '../types';
+import {
+  GET_PRODUCT_INFO,
+  LOADING_CUBISCAN,
+  CANCEL_ALL_CUBISCAN
+} from '../types';
 
 const initialState = {
   productInfo: null,
+  modelBox: true,
+  loading: false,
   tableData: [
     [
       '075877125378',
@@ -97,7 +103,11 @@ const initialState = {
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_PRODUCT_INFO:
-      return { ...state, productInfo: payload };
+      return { ...state, productInfo: payload, modelBox: true };
+    case CANCEL_ALL_CUBISCAN:
+      return { ...state, productInfo: null, modelBox: false };
+    case LOADING_CUBISCAN:
+      return { ...state, loading: payload };
     default:
       return state;
   }

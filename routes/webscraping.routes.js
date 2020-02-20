@@ -23,7 +23,7 @@ async function scraperCraigsliest(item) {
     const page = await browser.newPage();
     await page.goto(getUrl(item));
     await page.waitForXPath('//*[@id="divItems"]/div/div', {
-      timeout: 10000
+      timeout: 5000
     });
 
     const html = await page.content();

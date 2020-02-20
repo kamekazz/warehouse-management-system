@@ -9,12 +9,14 @@ import { acGetWebData } from '../../../redux/cubiData/cubiData.action';
 class FormUpcContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = { upc: '' };
+    this.state = { upc: '075877252562' };
   }
   onSubmitFrom = e => {
-    e.preventDefault();
-    this.props.acGetWebData(this.state.upc);
-    this.setState({ upc: '' });
+    if (this.state.upc) {
+      e.preventDefault();
+      this.props.acGetWebData(this.state.upc);
+      this.setState({ upc: '' });
+    }
   };
   render() {
     return (
