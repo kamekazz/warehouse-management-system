@@ -122,5 +122,7 @@ const PaperEl = styled(Paper)`
 const MUIDataTableEl = styled(MUIDataTable)`
   grid-area: DataTable;
   padding: 8px 18px;
-  width: 100%;
+  @media (max-width: 1440px) {
+    width: 100vw;
+  }
 `;

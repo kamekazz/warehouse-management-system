@@ -17,8 +17,8 @@ class CubePage extends Component {
           <FormUpcContainer />
           <DataTable />
         </MainContent>
-        {/* <LoadingBox />
-        <CubiFormContaner /> */}
+        <LoadingBox />
+        <CubiFormContaner />
       </PageElEl>
     );
   }
@@ -45,6 +45,7 @@ const PageElEl = styled(PageEl)`
 `;
 
 const MainContent = styled.main`
+  width: 100%;
   grid-area: MainContent;
   display: grid;
   grid-gap: 12px;
@@ -53,6 +54,7 @@ const MainContent = styled.main`
     'FormUpcContainer DataTable'
     'FormUpcContainer DataTable';
   @media (max-width: 1440px) {
+    grid-gap: 0px;
     grid-template-columns: 1fr;
     grid-template-areas:
       'FormUpcContainer '

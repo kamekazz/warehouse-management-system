@@ -46,6 +46,7 @@ function LocationTable({ data, getEditFormCreat }) {
     responsive: 'scroll',
     onRowClick: hitMe,
     selectableRows: 'none',
+    resizableColumns: true,
     rowsPerPage: 20,
     rowsPerPageOptions: [20, 45, 100]
   };
