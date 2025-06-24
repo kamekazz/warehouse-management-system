@@ -86,12 +86,12 @@ router.get('/:skuNumber', async (req, res) => {
     if (!itemFond) {
       res.json({
         success: false,
-        message: `item not fond (${skuNumber})`
+        message: `item not found (${skuNumber})`
       });
     } else {
       res.json({
         success: true,
-        message: `Location fond `,
+        message: `Item found`,
         item: itemFond
       });
     }
