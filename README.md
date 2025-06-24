@@ -2,6 +2,8 @@
 #  Warehouse Management System
 A  warehouse management system built with MongoDB, Express, Node.js and ReactJS.
 
+A simplified Next.js version using SQLite is included in the `next-app` folder for local development.
+
 
 * [Getting started](#getting-started)
   * [Prerequisites](#prerequisites)
@@ -107,6 +109,15 @@ Change to the `client` folder and install development and production dependencie
 cd client
 npm install
 ```
+
+# Next.js local demo
+cd ..
+cd next-app
+npm install
+# Start development
+cd ..
+npm run next-dev
+
 
 You will need to set up MongoDB. See [MongoDB](https://docs.mongodb.com/) for instructions
 and setup a .env file and add.
