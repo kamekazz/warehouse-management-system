@@ -102,7 +102,7 @@ cd wms
 npm install
 ```
 
-Change to the `client` folder and install development and producation dependencies.
+Change to the `client` folder and install development and production dependencies.
 ```
 cd client
 npm install
