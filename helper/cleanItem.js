@@ -48,3 +48,11 @@ function getAllData(fullData) {
 }
 
 module.exports = getAllData;
+module.exports.getAllData = getAllData;
+module.exports.removeSpaces = removeSpaces;
+module.exports.getLocation = getLocation;
+module.exports.getItemNumber = getItemNumber;
+module.exports.getModel = getModel;
+module.exports.getUpc = getUpc;
+module.exports.getImgUrl = getImgUrl;
+module.exports.cutString = cutString;
