@@ -119,7 +119,7 @@ router.get('/id/:id', async (req, res) => {
 });
 
 router.post('/create', async (req, res) => {
-  newPallet = new Pallet({ ...req.body });
+  const newPallet = new Pallet({ ...req.body });
   const { skuNumber } = newPallet;
   try {
     const itemFond = await Item.findOne({

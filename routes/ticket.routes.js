@@ -26,7 +26,7 @@ router.post('/create', async (req, res) => {
   let not_found = [];
   const order_id = req.body['order_id'];
   const customer_id = req.body['customerId'];
-  newTicket = new Ticket();
+  const newTicket = new Ticket();
   let products = [];
   let order = await Orders.findOne({ _id: order_id, status: 'create' });
   if (!order) return res.json({ success: false, message: 'Order not fond' });

@@ -32,7 +32,7 @@ router.post('/create', async (req, res) => {
     //   ticketsId, customerId,
     items
   } = req.body;
-  newOrder = new Orders({
+  const newOrder = new Orders({
     //    ticketsId, customerId,
     items
   });
