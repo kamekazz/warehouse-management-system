@@ -41,7 +41,7 @@ router.post('/status', async (req, res) => {
 });
 
 router.post('/create', async (req, res) => {
-  newPallet = new Pallet({ ...req.body });
+  const newPallet = new Pallet({ ...req.body });
   const { skuNumber, cont } = newPallet;
   newPallet.contAvailable = cont;
   try {

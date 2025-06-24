@@ -86,7 +86,7 @@ router.get('/create', async (req, res) => {
 });
 
 router.post('/create', async (req, res) => {
-  newLocation = new Location({ ...req.body });
+  const newLocation = new Location({ ...req.body });
   newLocation.maxSize = newLocation.size;
   newLocation.size = 0;
   const { zone, row, location, level } = newLocation;

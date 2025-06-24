@@ -30,7 +30,7 @@ router.get('/', async (req, res) => {
     console.error(err);
     res.json({
       success: false,
-      err: message
+      err: err
     });
   }
 });
@@ -51,7 +51,7 @@ router.get('/created', async (req, res) => {
 });
 
 router.post('/create', async (req, res) => {
-  newItem = new Item({ ...req.body });
+  const newItem = new Item({ ...req.body });
 
   const { skuNumber } = newItem;
   try {
